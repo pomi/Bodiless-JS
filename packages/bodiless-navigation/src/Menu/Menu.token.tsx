@@ -12,6 +12,8 @@
  * limitations under the License.
  */
 
+import React, { ComponentType } from 'react';
+import { flow } from 'lodash';
 import { useEditContext } from '@bodiless/core';
 import type { Token } from '@bodiless/fclasses';
 import {
@@ -25,10 +27,11 @@ import {
 import { useIsMenuOpen } from './withMenuContext';
 import withMenuDesign from './withMenuDesign';
 import {
-  asFlex, asOverflowHidden, asRelative, asAbsolute,
-  asPositionedLeft, withFullWidthStyles, withColumnDirectionStyles,
+  asFlex, asRelative, withFullWidthStyles, withColumnDirectionStyles,
   withStaticOnHoverStyles, withVisibleOnHoverStyles,
 } from '../token';
+import { asAccessibleMenu, asAccessibleSubMenu } from './asAccessibleMenu';
+import { withSubmenuContext, useSubmenuContext } from './withMenuItemContext';
 
 /*
  * Utility Styles
@@ -86,16 +89,36 @@ const withBaseMenuStyles = asToken(
   withHoverStyles,
   withDesign({
     Wrapper: asToken(asFlex, asRelative),
-    Item: asOverflowHidden,
+    Item: asFlex,
   }),
 );
+
+const withToggleSubmenuOnHover = <P extends object>(Component: ComponentType<P>) => {
+  const WithToggleSubmenuOnHover = (props: P) => {
+    const { setIsSubmenuOpen, isSubmenuOpen } = useSubmenuContext();
+    return (
+      <Component
+        onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+        onMouseOver={() => setIsSubmenuOpen(true)}
+        onMouseOut={() => setIsSubmenuOpen(false)}
+        {...props}
+      />
+    );
+  };
+  return WithToggleSubmenuOnHover;
+};
 
 /*
  * Base Sub Menu Styles
  * ===========================================
  */
 const withBaseSubMenuStyles = withDesign({
-  Wrapper: asToken(asFlex, asAbsolute, asPositionedLeft),
+  OuterWrapper: flow(
+    withSubmenuContext,
+    withToggleSubmenuOnHover,
+  ),
+  // Wrapper: asToken(asFlex, asAbsolute, asPositionedLeft),
+  Wrapper: addClassesIf(() => !useSubmenuContext().isSubmenuOpen)('hidden'),
 });
 
 /*
@@ -104,10 +127,16 @@ const withBaseSubMenuStyles = withDesign({
  */
 const asListSubMenu = asToken(
   asResponsiveSublist,
+  withDesign({
+    Wrapper: asToken(
+      addClasses('absolute top-full'),
+    ),
+  }),
   asVerticalSubMenu,
   withBaseSubMenuStyles,
   asVisibleOnActive,
   asRelative,
+  asAccessibleSubMenu,
 );
 
 /*
@@ -119,6 +148,7 @@ const asFullWidthSubMenu = asToken(
   asStaticOnHover,
   withBaseSubMenuStyles,
   asRelativeNotActive,
+  asAccessibleSubMenu,
 );
 
 /**
@@ -130,7 +160,7 @@ const asFullWidthSubMenu = asToken(
  */
 const asTopNav = (...keys: string[]) => {
   const TopNavDesign: { [key: string]: Token } = {
-    Main: withMenuDesign('Main')(withBaseMenuStyles),
+    Main: withMenuDesign('Main')(withBaseMenuStyles, asAccessibleMenu),
     List: withMenuDesign('List')(asListSubMenu),
     Cards: withMenuDesign('Cards')(asFullWidthSubMenu),
     Columns: withMenuDesign('Columns', 1)(asFullWidthSubMenu),
