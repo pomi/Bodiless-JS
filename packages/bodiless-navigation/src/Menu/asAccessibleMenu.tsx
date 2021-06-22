@@ -13,8 +13,7 @@
  */
 
 import React, { ComponentType, FC } from 'react';
-import { flow } from 'lodash';
-import { withPrependChild, ifToggledOn, useNode } from '@bodiless/core';
+import { withParent, withPrependChild, useNode } from '@bodiless/core';
 import type { LinkData } from '@bodiless/components';
 import {
   addProps,
@@ -26,13 +25,25 @@ import {
   Button as ButtonClean,
   DesignableComponentsProps,
   designable,
+  flowIf,
+  not,
 } from '@bodiless/fclasses';
 
 import { useSubmenuContext } from './withMenuItemContext';
 import { DEFAULT_NODE_KEYS } from './MenuTitles';
 
-type NavAccessibilityProps = {
-  'aria-label'?: string,
+const useHasSubmenu = () => useSubmenuContext().hasSubmenu;
+const useHasLink = () => {
+  const { linkNodeKey } = DEFAULT_NODE_KEYS;
+  const { node } = useNode();
+  const linkHref = node.child<LinkData>(linkNodeKey);
+
+  return Boolean(linkHref.data.href);
+};
+
+const withSubmenuToggle = (Component: ComponentType<any> | string) => (props: any) => {
+  const { isSubmenuOpen, setIsSubmenuOpen } = useSubmenuContext();
+  return <Component {...props} onClick={() => setIsSubmenuOpen(!isSubmenuOpen)} />;
 };
 
 type SubmenuIndicatorComponents = {
@@ -42,21 +53,11 @@ type SubmenuIndicatorComponents = {
 
 type SubmenuIndicatorProps = DesignableComponentsProps<SubmenuIndicatorComponents>;
 
-const asSubmenuIndicatorIcon = asToken(
-  addClasses('material-icons'),
-  addProps({ children: 'expand_more' }),
+const SubmenuIndicatorBase: FC<SubmenuIndicatorProps> = ({ components: C, ...rest }) => (
+  <C.Button {...rest}>
+    <C.Title />
+  </C.Button>
 );
-
-const SubmenuIndicatorBase: FC<SubmenuIndicatorProps> = ({ components, ...rest }) => {
-  const { Button, Title } = components;
-  const { isSubmenuOpen, setIsSubmenuOpen } = useSubmenuContext();
-
-  return (
-    <Button {...rest} onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}>
-      <Title />
-    </Button>
-  );
-};
 
 const SubmenuIndicatorComponents: SubmenuIndicatorComponents = {
   Button: ButtonClean,
@@ -69,55 +70,45 @@ const SubmenuIndicatorComponents: SubmenuIndicatorComponents = {
  * @see SubmenuIndicatorComponents for a list of design components.
  */
 const SubmenuIndicatorClean = designable(SubmenuIndicatorComponents, 'SubmenuIndicator')(SubmenuIndicatorBase);
-const SubmenuIndicator = withDesign({
-  Title: asSubmenuIndicatorIcon,
-})(SubmenuIndicatorClean);
+const SubmenuIndicator = asToken(
+  withSubmenuToggle,
+  withDesign({
+    Title: asToken(
+      addClasses('material-icons'),
+      addProps({ children: 'expand_more' }),
+    ),
+  }),
+)(SubmenuIndicatorClean);
 
-const MenuNav = addClasses('w-full')(Nav);
+const withSubmenuIndicator = flowIf(useHasLink)(
+  withPrependChild(SubmenuIndicator, 'SubmenuIndicator'),
+);
 
 /**
  * HOC that wrappes the component in a navigation region implemented with
  * a nav element that has an aria-label that matches the label on the menubar.
  */
-const withMenuNav = <P extends NavAccessibilityProps>(Component: ComponentType<P>) => {
-  const WithMenuNav = (props: P) => {
-    const { 'aria-label': ariaLabel = 'Main Site Navigation Menu' } = props;
-    return (
-      <MenuNav aria-label={ariaLabel}>
-        <Component {...props} />
-      </MenuNav>
-    );
-  };
-  return WithMenuNav;
-};
-
-const useHasSubmenu = () => useSubmenuContext().hasSubmenu;
-
-const withSubmenuIndicator = (nodeKeys = DEFAULT_NODE_KEYS) => {
-  const { linkNodeKey } = nodeKeys;
-
-  const useLinkNode = () => {
-    const { node } = useNode();
-    return node.child<LinkData>(linkNodeKey);
-  };
-
-  const useHasLink = () => Boolean(useLinkNode().data.href);
-
-  return ifToggledOn(useHasLink)(
-    withPrependChild(SubmenuIndicator, 'SubmenuIndicator'),
-  );
-};
+const withMenuNav = asToken(
+  withParent(Nav, 'Nav'),
+  withDesign({
+    Nav: asToken(
+      addClasses('w-full'),
+      addProps({ 'aria-label': 'Main Site Navigation Menu' }),
+    ),
+  }),
+);
 
 const asAccessibleMenu = asToken(
   withDesign({
-    Wrapper: flow(
+    Wrapper: asToken(
       withMenuNav,
       addProps({ role: 'menubar', 'aria-label': 'Navigation Menu' }),
     ),
     Title: asToken(
       addProps({ role: 'menuitem', tabIndex: 0 }),
-      ifToggledOn(useHasSubmenu)(
+      flowIf(useHasSubmenu)(
         addProps({ 'aria-haspopup': 'true' }),
+        flowIf(not(useHasLink))(withSubmenuToggle),
       ),
     ),
     Item: addProps({ role: 'none' }),
@@ -125,11 +116,10 @@ const asAccessibleMenu = asToken(
 );
 
 const asAccessibleSubMenu = asToken(
-  withSubmenuIndicator(),
+  withSubmenuIndicator,
   withDesign({
-    OuterWrapper: addClasses('TEST'),
     Wrapper: addProps({ role: 'menu' }),
-    Title: addProps({ role: 'menuitem', tabIndex: -1 }),
+    Title: addProps({ role: 'menuitem' }),
     Item: addProps({ role: 'none' }),
   }),
 );

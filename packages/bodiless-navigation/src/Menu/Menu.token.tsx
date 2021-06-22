@@ -12,8 +12,6 @@
  * limitations under the License.
  */
 
-import React, { ComponentType } from 'react';
-import { flow } from 'lodash';
 import { useEditContext } from '@bodiless/core';
 import type { Token } from '@bodiless/fclasses';
 import {
@@ -22,13 +20,14 @@ import {
   addClassesIf,
   withDesign,
   asToken,
+  not,
 } from '@bodiless/fclasses';
 
 import { useIsMenuOpen } from './withMenuContext';
 import withMenuDesign from './withMenuDesign';
 import {
-  asFlex, asRelative, withFullWidthStyles, withColumnDirectionStyles,
-  withStaticOnHoverStyles, withVisibleOnHoverStyles,
+  asFlex, asRelative, withColumnDirectionStyles,
+  withStaticOnHoverStyles,
 } from '../token';
 import { asAccessibleMenu, asAccessibleSubMenu } from './asAccessibleMenu';
 import { withSubmenuContext, useSubmenuContext } from './withMenuItemContext';
@@ -51,14 +50,8 @@ const asVerticalSubMenu = withDesign({
   Wrapper: withColumnDirectionStyles,
 });
 
-const asVisibleOnActive = asToken(
-  addClassesIf(isMenuContextActive)('overflow-visible'),
-);
-
 const asResponsiveSublist = withDesign({
-  Wrapper: asToken(
-    addClasses('min-w-full'),
-  ),
+  Wrapper: addClasses('min-w-full'),
 });
 
 const asStaticOnHover = asToken(
@@ -66,18 +59,31 @@ const asStaticOnHover = asToken(
   removeClassesIf(useIsMenuOpen)('hover:static'),
 );
 
-const asRelativeNotActive = asToken(
-  addClassesIf(isMenuContextNotActive)('relative'),
-);
-
 const asFullWidthSublist = withDesign({
-  Wrapper: withFullWidthStyles,
+  Wrapper: addClasses('w-full left-0'),
 });
 
+const useIsSubmenuExpanded = () => {
+  const { isActive, isEdit } = useEditContext();
+  const { isSubmenuOpen } = useSubmenuContext();
+
+  return isSubmenuOpen || (isEdit && isActive);
+};
+
+const useIsSubmenuContracted = () => {
+  const { isActive, isEdit } = useEditContext();
+  const { isSubmenuOpen } = useSubmenuContext();
+  const isNotActive = isEdit ? !isActive : true;
+
+  return !isSubmenuOpen && isNotActive;
+};
+
 const withHoverStyles = withDesign({
-  Item: asToken(
-    withVisibleOnHoverStyles,
-    removeClassesIf(useIsMenuOpen)('hover:overflow-visible'),
+  OuterWrapper: addClassesIf(not(useIsMenuOpen) && useIsSubmenuContracted)('group'),
+  Wrapper: asToken(
+    addClasses('group-hover:flex'),
+    addClassesIf(useIsSubmenuContracted)('hidden'),
+    addClassesIf(useIsSubmenuExpanded)('flex'),
   ),
 });
 
@@ -85,40 +91,19 @@ const withHoverStyles = withDesign({
  * Base Menu Styles
  * ===========================================
  */
-const withBaseMenuStyles = asToken(
-  withHoverStyles,
-  withDesign({
-    Wrapper: asToken(asFlex, asRelative),
-    Item: asFlex,
-  }),
-);
-
-const withToggleSubmenuOnHover = <P extends object>(Component: ComponentType<P>) => {
-  const WithToggleSubmenuOnHover = (props: P) => {
-    const { setIsSubmenuOpen, isSubmenuOpen } = useSubmenuContext();
-    return (
-      <Component
-        onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
-        onMouseOver={() => setIsSubmenuOpen(true)}
-        onMouseOut={() => setIsSubmenuOpen(false)}
-        {...props}
-      />
-    );
-  };
-  return WithToggleSubmenuOnHover;
-};
+const withBaseMenuStyles = withDesign({
+  Wrapper: asToken(asFlex, asRelative),
+  Item: asFlex,
+});
 
 /*
  * Base Sub Menu Styles
  * ===========================================
  */
 const withBaseSubMenuStyles = withDesign({
-  OuterWrapper: flow(
-    withSubmenuContext,
-    withToggleSubmenuOnHover,
-  ),
-  // Wrapper: asToken(asFlex, asAbsolute, asPositionedLeft),
-  Wrapper: addClassesIf(() => !useSubmenuContext().isSubmenuOpen)('hidden'),
+  OuterWrapper: withSubmenuContext,
+  Wrapper: addClasses('absolute top-full'),
+  SubmenuIndicator: addClasses('flex items-center'),
 });
 
 /*
@@ -126,16 +111,12 @@ const withBaseSubMenuStyles = withDesign({
  * ===========================================
  */
 const asListSubMenu = asToken(
+  asAccessibleSubMenu,
   asResponsiveSublist,
-  withDesign({
-    OuterWrapper: addClasses('group'),
-    Wrapper: addClasses('absolute top-full group-hover:flex'),
-  }),
   asVerticalSubMenu,
   withBaseSubMenuStyles,
-  asVisibleOnActive,
+  withHoverStyles,
   asRelative,
-  asAccessibleSubMenu,
 );
 
 /*
@@ -143,11 +124,11 @@ const asListSubMenu = asToken(
  * ===========================================
  */
 const asFullWidthSubMenu = asToken(
+  asAccessibleSubMenu,
   asFullWidthSublist,
   asStaticOnHover,
   withBaseSubMenuStyles,
-  asRelativeNotActive,
-  asAccessibleSubMenu,
+  withHoverStyles,
 );
 
 /**
