@@ -127,6 +127,7 @@ const asAccessibleMenu = asToken(
 const asAccessibleSubMenu = asToken(
   withSubmenuIndicator(),
   withDesign({
+    OuterWrapper: addClasses('TEST'),
     Wrapper: addProps({ role: 'menu' }),
     Title: addProps({ role: 'menuitem', tabIndex: -1 }),
     Item: addProps({ role: 'none' }),

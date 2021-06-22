@@ -128,9 +128,8 @@ const withBaseSubMenuStyles = withDesign({
 const asListSubMenu = asToken(
   asResponsiveSublist,
   withDesign({
-    Wrapper: asToken(
-      addClasses('absolute top-full'),
-    ),
+    OuterWrapper: addClasses('group'),
+    Wrapper: addClasses('absolute top-full group-hover:flex'),
   }),
   asVerticalSubMenu,
   withBaseSubMenuStyles,
