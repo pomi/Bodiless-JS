@@ -12,11 +12,12 @@
  * limitations under the License.
  */
 
-import React, { ComponentType, FC } from 'react';
-import { withParent, withPrependChild, useNode } from '@bodiless/core';
+import React, { ComponentType, FC, useRef } from 'react';
+import { withParent, withPrependChild, useNode, useClickOutside } from '@bodiless/core';
 import type { LinkData } from '@bodiless/components';
 import {
   addProps,
+  addPropsIf,
   addClasses,
   withDesign,
   asToken,
@@ -33,6 +34,7 @@ import { useSubmenuContext } from './withMenuItemContext';
 import { DEFAULT_NODE_KEYS } from './MenuTitles';
 
 const useHasSubmenu = () => useSubmenuContext().hasSubmenu;
+const useIsSubmenuExpanded = () => useSubmenuContext().isSubmenuOpen;
 const useHasLink = () => {
   const { linkNodeKey } = DEFAULT_NODE_KEYS;
   const { node } = useNode();
@@ -43,7 +45,17 @@ const useHasLink = () => {
 
 const withSubmenuToggle = (Component: ComponentType<any> | string) => (props: any) => {
   const { isSubmenuOpen, setIsSubmenuOpen } = useSubmenuContext();
-  return <Component {...props} onClick={() => setIsSubmenuOpen(!isSubmenuOpen)} />;
+
+  // @TODO -- This is not ideal. We need a way to close submenu on click outside
+  // without adding another html element for ref
+  const ref = useRef(null);
+  useClickOutside(ref, () => setIsSubmenuOpen(false));
+
+  return (
+    <button ref={ref} onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}>
+      <Component {...props} />
+    </button>
+  );
 };
 
 type SubmenuIndicatorComponents = {
@@ -73,6 +85,7 @@ const SubmenuIndicatorClean = designable(SubmenuIndicatorComponents, 'SubmenuInd
 const SubmenuIndicator = asToken(
   withSubmenuToggle,
   withDesign({
+    Button: addClasses('flex items-center'),
     Title: asToken(
       addClasses('material-icons'),
       addProps({ children: 'expand_more' }),
@@ -98,30 +111,64 @@ const withMenuNav = asToken(
   }),
 );
 
+/**
+ * Token that adds an accessibility attributes to the menu
+ */
+const withAccessibleMenuAttr = withDesign({
+  Wrapper: addProps({ role: 'menubar', 'aria-label': 'Navigation Menu' }),
+  Title: asToken(
+    addProps({ role: 'menuitem', tabIndex: 0 }),
+    flowIf(useHasSubmenu)(
+      addProps({ 'aria-haspopup': 'true', 'aria-expanded': 'false' }),
+      addPropsIf(useIsSubmenuExpanded)({ 'aria-expanded': 'true' })
+    ),
+  ),
+  Item: addProps({ role: 'none' }),
+});
+
+/**
+ * Token that wraps menu in the Nav tag and adds an ability
+ * to toggle submenus with a keyboard.
+ */
+const withAccessibleMenuInteractions = withDesign({
+  Wrapper: withMenuNav,
+  Title: flowIf(useHasSubmenu)(
+    flowIf(not(useHasLink))(withSubmenuToggle),
+  ),
+})
+
+/**
+ * Token that makes menu accessible.
+ * Wraps menu in Nav tag and adds keyboard interactions.
+ */
 const asAccessibleMenu = asToken(
-  withDesign({
-    Wrapper: asToken(
-      withMenuNav,
-      addProps({ role: 'menubar', 'aria-label': 'Navigation Menu' }),
-    ),
-    Title: asToken(
-      addProps({ role: 'menuitem', tabIndex: 0 }),
-      flowIf(useHasSubmenu)(
-        addProps({ 'aria-haspopup': 'true' }),
-        flowIf(not(useHasLink))(withSubmenuToggle),
-      ),
-    ),
-    Item: addProps({ role: 'none' }),
-  }),
+  withAccessibleMenuAttr,
+  withAccessibleMenuInteractions,
 );
 
+/**
+ * Token that adds an accessibility attributes to the Sub Menu.
+ */
+const withAccessibleSubMenuAttr = withDesign({
+  Wrapper: addProps({ role: 'menu' }),
+  Title: addProps({ role: 'menuitem' }),
+  Item: addProps({ role: 'none' }),
+});
+
+/**
+ * Token that makes Sub Menu accessible.
+ * It adds Sub Menu indicator to the main menu items that have submenus
+ * and accessibility attributes to the submenu items.
+ */
 const asAccessibleSubMenu = asToken(
   withSubmenuIndicator,
-  withDesign({
-    Wrapper: addProps({ role: 'menu' }),
-    Title: addProps({ role: 'menuitem' }),
-    Item: addProps({ role: 'none' }),
-  }),
+  withAccessibleSubMenuAttr,
 );
 
-export { asAccessibleMenu, asAccessibleSubMenu };
+export {
+  withAccessibleMenuAttr,
+  withAccessibleSubMenuAttr,
+  withAccessibleMenuInteractions,
+  asAccessibleMenu,
+  asAccessibleSubMenu,
+};

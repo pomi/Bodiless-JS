@@ -111,10 +111,10 @@ const withBaseSubMenuStyles = withDesign({
  * ===========================================
  */
 const asListSubMenu = asToken(
+  withBaseSubMenuStyles,
   asAccessibleSubMenu,
   asResponsiveSublist,
   asVerticalSubMenu,
-  withBaseSubMenuStyles,
   withHoverStyles,
   asRelative,
 );
@@ -124,10 +124,10 @@ const asListSubMenu = asToken(
  * ===========================================
  */
 const asFullWidthSubMenu = asToken(
+  withBaseSubMenuStyles,
   asAccessibleSubMenu,
   asFullWidthSublist,
   asStaticOnHover,
-  withBaseSubMenuStyles,
   withHoverStyles,
 );
 
@@ -155,4 +155,6 @@ export default asTopNav;
 export {
   isMenuContextActive,
   isMenuContextNotActive,
+  useIsSubmenuExpanded,
+  useIsSubmenuContracted,
 };
