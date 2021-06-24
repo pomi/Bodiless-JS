@@ -13,7 +13,9 @@
  */
 
 import React, { ComponentType, FC, useRef } from 'react';
-import { withParent, withPrependChild, useNode, useClickOutside } from '@bodiless/core';
+import {
+  withParent, withPrependChild, useNode, useClickOutside,
+} from '@bodiless/core';
 import type { LinkData } from '@bodiless/components';
 import {
   addProps,
@@ -23,18 +25,18 @@ import {
   asToken,
   Nav,
   Span,
-  Button as ButtonClean,
   DesignableComponentsProps,
   designable,
   flowIf,
   not,
 } from '@bodiless/fclasses';
 
+import { useMenuContext } from './withMenuContext';
 import { useSubmenuContext } from './withMenuItemContext';
 import { DEFAULT_NODE_KEYS } from './MenuTitles';
 
 const useHasSubmenu = () => useSubmenuContext().hasSubmenu;
-const useIsSubmenuExpanded = () => useSubmenuContext().isSubmenuOpen;
+const useIsSubmenuExpanded = () => useMenuContext().activeSubmenu !== undefined;
 const useHasLink = () => {
   const { linkNodeKey } = DEFAULT_NODE_KEYS;
   const { node } = useNode();
@@ -44,16 +46,24 @@ const useHasLink = () => {
 };
 
 const withSubmenuToggle = (Component: ComponentType<any> | string) => (props: any) => {
-  const { isSubmenuOpen, setIsSubmenuOpen } = useSubmenuContext();
+  const { activeSubmenu, setActiveSubmenu } = useMenuContext();
+  const { node } = useNode();
+  const nodeID = node.path[node.path.length - 1];
+
+  const toggleSubmenu = () => (
+    activeSubmenu === nodeID
+      ? setActiveSubmenu(undefined)
+      : setActiveSubmenu(nodeID)
+  );
 
   // @TODO -- This is not ideal. We need a way to close submenu on click outside
   // without adding another html element for ref
   const ref = useRef(null);
-  useClickOutside(ref, () => setIsSubmenuOpen(false));
+  useClickOutside(ref, () => setActiveSubmenu(undefined));
 
   return (
-    <button ref={ref} onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}>
-      <Component {...props} />
+    <button type="button" ref={ref} onClick={toggleSubmenu}>
+      <Component {...props} tabIndex={-1} />
     </button>
   );
 };
@@ -72,7 +82,7 @@ const SubmenuIndicatorBase: FC<SubmenuIndicatorProps> = ({ components: C, ...res
 );
 
 const SubmenuIndicatorComponents: SubmenuIndicatorComponents = {
-  Button: ButtonClean,
+  Button: Span,
   Title: Span,
 };
 
@@ -120,7 +130,7 @@ const withAccessibleMenuAttr = withDesign({
     addProps({ role: 'menuitem', tabIndex: 0 }),
     flowIf(useHasSubmenu)(
       addProps({ 'aria-haspopup': 'true', 'aria-expanded': 'false' }),
-      addPropsIf(useIsSubmenuExpanded)({ 'aria-expanded': 'true' })
+      addPropsIf(useIsSubmenuExpanded)({ 'aria-expanded': 'true' }),
     ),
   ),
   Item: addProps({ role: 'none' }),
@@ -135,7 +145,7 @@ const withAccessibleMenuInteractions = withDesign({
   Title: flowIf(useHasSubmenu)(
     flowIf(not(useHasLink))(withSubmenuToggle),
   ),
-})
+});
 
 /**
  * Token that makes menu accessible.

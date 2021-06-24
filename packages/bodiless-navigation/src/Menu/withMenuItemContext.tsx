@@ -16,14 +16,11 @@ import React, {
   FC,
   createContext,
   useContext,
-  useState,
   ComponentType,
 } from 'react';
 
 type SubmenuContextType = {
   hasSubmenu: boolean,
-  isSubmenuOpen: boolean,
-  setIsSubmenuOpen: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 type SubmenuProviderType = {
@@ -32,21 +29,15 @@ type SubmenuProviderType = {
 
 const SubmenuContext = createContext<SubmenuContextType>({
   hasSubmenu: false,
-  isSubmenuOpen: false,
-  setIsSubmenuOpen: () => null,
 });
 
 const useSubmenuContext = () => useContext(SubmenuContext);
 
-const SubmenuProvider: FC<SubmenuProviderType> = ({ children, hasSubmenu }) => {
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState<boolean>(false);
-
-  return (
-    <SubmenuContext.Provider value={{ hasSubmenu, isSubmenuOpen, setIsSubmenuOpen }}>
-      { children }
-    </SubmenuContext.Provider>
-  );
-};
+const SubmenuProvider: FC<SubmenuProviderType> = ({ children, hasSubmenu }) => (
+  <SubmenuContext.Provider value={{ hasSubmenu }}>
+    { children }
+  </SubmenuContext.Provider>
+);
 
 /**
  * HOC that wrapps component in SubmenuProvider.

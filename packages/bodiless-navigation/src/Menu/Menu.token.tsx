@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import { useEditContext } from '@bodiless/core';
+import { useEditContext, useNode } from '@bodiless/core';
 import type { Token } from '@bodiless/fclasses';
 import {
   addClasses,
@@ -23,14 +23,14 @@ import {
   not,
 } from '@bodiless/fclasses';
 
-import { useIsMenuOpen } from './withMenuContext';
+import withMenuContext, { useIsMenuOpen, useMenuContext } from './withMenuContext';
 import withMenuDesign from './withMenuDesign';
 import {
   asFlex, asRelative, withColumnDirectionStyles,
   withStaticOnHoverStyles,
 } from '../token';
 import { asAccessibleMenu, asAccessibleSubMenu } from './asAccessibleMenu';
-import { withSubmenuContext, useSubmenuContext } from './withMenuItemContext';
+import { withSubmenuContext } from './withMenuItemContext';
 
 /*
  * Utility Styles
@@ -65,17 +65,23 @@ const asFullWidthSublist = withDesign({
 
 const useIsSubmenuExpanded = () => {
   const { isActive, isEdit } = useEditContext();
-  const { isSubmenuOpen } = useSubmenuContext();
+  const { activeSubmenu } = useMenuContext();
 
-  return isSubmenuOpen || (isEdit && isActive);
+  const { node } = useNode();
+  const parentNodeId = node.path[node.path.length - 2];
+
+  return (activeSubmenu === parentNodeId) || (isEdit && isActive);
 };
 
 const useIsSubmenuContracted = () => {
   const { isActive, isEdit } = useEditContext();
-  const { isSubmenuOpen } = useSubmenuContext();
+  const { activeSubmenu } = useMenuContext();
   const isNotActive = isEdit ? !isActive : true;
 
-  return !isSubmenuOpen && isNotActive;
+  const { node } = useNode();
+  const parentNodeId = node.path[node.path.length - 2];
+
+  return (activeSubmenu !== parentNodeId) && isNotActive;
 };
 
 const withHoverStyles = withDesign({
@@ -92,7 +98,7 @@ const withHoverStyles = withDesign({
  * ===========================================
  */
 const withBaseMenuStyles = withDesign({
-  Wrapper: asToken(asFlex, asRelative),
+  Wrapper: asToken(asFlex, asRelative, withMenuContext),
   Item: asFlex,
 });
 
