@@ -1,0 +1,18 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "body text here 2"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  }
+]

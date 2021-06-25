@@ -1,0 +1,40 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "/breadcrumb/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "here"
+          }
+        ]
+      },
+      {
+        "text": " is a "
+      },
+      {
+        "text": "card",
+        "Bold": true,
+        "Italic": true,
+        "Underline": true
+      },
+      {
+        "text": " body "
+      },
+      {
+        "text": "text",
+        "SuperScript": true
+      }
+    ]
+  }
+]
