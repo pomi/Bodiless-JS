@@ -83,7 +83,7 @@
 
 Ƭ **CategoryListContextType**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L22)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L22)*
 
 #### Type declaration:
 
@@ -95,7 +95,7 @@ ___
 
 Ƭ **DefaultTagProps**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:123](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L123)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:123](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L123)*
 
 #### Type declaration:
 
@@ -115,7 +115,7 @@ ___
 
 Ƭ **FBGContextOptions**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L63)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L63)*
 
 #### Type declaration:
 
@@ -129,7 +129,7 @@ ___
 
 Ƭ **FBGContextType**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L77)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L77)*
 
 #### Type declaration:
 
@@ -171,7 +171,7 @@ ___
 
 Ƭ **FilterByGroupBaseProps**: *Omit‹[FilterByGroupProps](globals.md#filterbygroupprops), "design"› & DesignableComponentsProps‹[FilterByGroupComponents](globals.md#filterbygroupcomponents)›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L35)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L35)*
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 Ƭ **FilterByGroupComponents**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L26)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L26)*
 
 #### Type declaration:
 
@@ -203,7 +203,7 @@ ___
 
 Ƭ **FilterByGroupProps**: *object & DesignableProps‹[FilterByGroupComponents](globals.md#filterbygroupcomponents)›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:50](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L50)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:50](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L50)*
 
 ___
 
@@ -211,7 +211,7 @@ ___
 
 Ƭ **FilterByGroupStoreSettings**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L37)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L37)*
 
 #### Type declaration:
 
@@ -223,7 +223,7 @@ ___
 
 Ƭ **FilterComponents**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L36)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L36)*
 
 #### Type declaration:
 
@@ -237,9 +237,9 @@ ___
 
 Ƭ **FilterProps**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L48)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L48)*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:203](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L203)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:203](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L203)*
 
 #### Type declaration:
 
@@ -255,7 +255,7 @@ ___
 
 Ƭ **NodeTagType**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:59](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L59)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:59](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L59)*
 
 #### Type declaration:
 
@@ -267,7 +267,7 @@ ___
 
 Ƭ **RegisterSuggestionsProps**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:73](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L73)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:73](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L73)*
 
 #### Type declaration:
 
@@ -281,7 +281,7 @@ ___
 
 Ƭ **SuggestionsRefType**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:68](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L68)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:68](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L68)*
 
 #### Type declaration:
 
@@ -295,7 +295,7 @@ ___
 
 Ƭ **TagTitleComponents**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L41)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L41)*
 
 #### Type declaration:
 
@@ -313,7 +313,7 @@ ___
 
 Ƭ **TagTitleProps**: *object & DesignableComponentsProps‹[TagTitleComponents](globals.md#tagtitlecomponents)›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L55)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L55)*
 
 ___
 
@@ -321,7 +321,7 @@ ___
 
 Ƭ **TagType**: *Omit‹BaseTagType, "id"› & object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L20)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/types.tsx:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/types.tsx#L20)*
 
 ___
 
@@ -329,7 +329,7 @@ ___
 
 Ƭ **ToggleByTagsProps**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L26)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L26)*
 
 #### Type declaration:
 
@@ -341,7 +341,7 @@ ___
 
 • **CategoryListContext**: *Context‹object›* = createContext<CategoryListContextType>({})
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L26)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L26)*
 
 ___
 
@@ -354,7 +354,7 @@ ___
   withFilterByGroupContext,
 )(FilterByGroupBase)
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:78](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L78)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:78](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L78)*
 
 ___
 
@@ -371,7 +371,7 @@ ___
   multipleAllowedTags: false,
 })
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L36)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L36)*
 
 ___
 
@@ -383,7 +383,7 @@ ___
   withNodeKey('filter'),
 )('ul')
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:249](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L249)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:249](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L249)*
 
 ___
 
@@ -391,7 +391,7 @@ ___
 
 • **TAG_ANY_KEY**: *"any"* = "any"
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L17)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L17)*
 
 ___
 
@@ -399,7 +399,7 @@ ___
 
 • **TAG_ANY_LABEL**: *"- Any -"* = "- Any -"
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx#L24)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx#L24)*
 
 ___
 
@@ -441,7 +441,7 @@ ___
   designable(tagTitleComponentsStart, 'TagTitle'),
 )(TagTitleBase)
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:125](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L125)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:125](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L125)*
 
 ___
 
@@ -449,7 +449,7 @@ ___
 
 • **TestableFilterByGroup**: *any* = flow(asTestableFilterByGroup)(FilterByGroupClean)
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx#L47)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx#L47)*
 
 ___
 
@@ -462,7 +462,7 @@ ___
   }),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L39)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L39)*
 
 ___
 
@@ -496,7 +496,7 @@ ___
   ),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:175](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L175)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:175](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L175)*
 
 ___
 
@@ -509,7 +509,7 @@ ___
   }),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L32)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L32)*
 
 ___
 
@@ -529,7 +529,7 @@ ___
   }),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:161](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L161)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:161](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L161)*
 
 ___
 
@@ -546,7 +546,7 @@ ___
   ),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L46)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L46)*
 
 #### Type declaration:
 
@@ -587,7 +587,7 @@ ___
   }),
 })
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx#L22)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupTestable.tsx#L22)*
 
 ___
 
@@ -595,7 +595,7 @@ ___
 
 • **ifTagsNotSelected**: *function* = ifToggledOff(useToggleByTags)
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:73](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L73)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:73](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L73)*
 
 #### Type declaration:
 
@@ -662,7 +662,7 @@ ___
 
 • **ifTagsSelected**: *function* = ifToggledOn(useToggleByTags)
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:72](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L72)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:72](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L72)*
 
 #### Type declaration:
 
@@ -733,7 +733,7 @@ ___
   }),
 })
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.token.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.token.ts#L23)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.token.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.token.ts#L23)*
 
 ___
 
@@ -744,7 +744,7 @@ ___
   withoutProps(['selectedTags']),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:75](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L75)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:75](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L75)*
 
 ___
 
@@ -756,7 +756,7 @@ ___
   }),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L57)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L57)*
 
 ___
 
@@ -773,7 +773,7 @@ ___
   }),
 )
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L63)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/token.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/token.tsx#L63)*
 
 ## Functions
 
@@ -781,7 +781,7 @@ ___
 
 ▸ **FilterByGroupBase**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:38](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L38)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:38](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L38)*
 
 **Parameters:**
 
@@ -803,7 +803,7 @@ ___
 
 ▸ **FilterByGroupProvider**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L53)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L53)*
 
 **Parameters:**
 
@@ -823,7 +823,7 @@ ___
 
 ▸ **TagTitleBase**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:79](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L79)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:79](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L79)*
 
 **Parameters:**
 
@@ -843,7 +843,7 @@ ___
 
 ▸ **asFilterableByGroup**(`nodeKey`: string): *function & object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/asFilterableByGroup.tsx:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/asFilterableByGroup.tsx#L21)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/asFilterableByGroup.tsx:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/asFilterableByGroup.tsx#L21)*
 
 **Parameters:**
 
@@ -859,7 +859,7 @@ ___
 
 ▸ **readTagsFromQueryParams**(): *[Tag](classes/tag.md)‹›[]*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L41)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L41)*
 
 **Returns:** *[Tag](classes/tag.md)‹›[]*
 
@@ -869,7 +869,7 @@ ___
 
 ▸ **updateUrlQueryParams**(`tags`: [Tag](classes/tag.md)[]): *void*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:51](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L51)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:51](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L51)*
 
 **Parameters:**
 
@@ -885,7 +885,7 @@ ___
 
 ▸ **useCategoryListContext**(): *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L28)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L28)*
 
 **Returns:** *object*
 
@@ -897,7 +897,7 @@ ___
 
 ▸ **useFilterByGroupContext**(): *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L47)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L47)*
 
 **Returns:** *object*
 
@@ -939,7 +939,7 @@ ___
 
 ▸ **useFilterByGroupStore**(`settings`: [FilterByGroupStoreSettings](globals.md#filterbygroupstoresettings)): *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:67](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L67)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:67](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L67)*
 
 **Parameters:**
 
@@ -965,7 +965,7 @@ ___
 
 ▸ **useIsFilterTagSelected**(): *boolean*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L48)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L48)*
 
 **Returns:** *boolean*
 
@@ -975,7 +975,7 @@ ___
 
 ▸ **useTagsAccessors**(): *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx#L26)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterModel.tsx#L26)*
 
 **Returns:** *object*
 
@@ -987,7 +987,7 @@ ___
 
 ▸ **useToggleByTags**(`__namedParameters`: object): *boolean*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L35)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/withFilterByTags.tsx#L35)*
 
 Determine which component to show based on selected tags.
 
@@ -1007,7 +1007,7 @@ ___
 
 ▸ **withCategoryListContextProvider**(`Component`: ComponentOrTag‹any›): *WithCategoryListContextProvider*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L29)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/CategoryListContext.tsx#L29)*
 
 **Parameters:**
 
@@ -1023,7 +1023,7 @@ ___
 
 ▸ **withFBGSuggestions**(`__namedParameters`: object): *function & object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:150](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L150)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:150](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L150)*
 
 **Parameters:**
 
@@ -1041,7 +1041,7 @@ ___
 
 ▸ **withFilterByGroupContext**‹**P**›(`Component`: ComponentType‹P› | string): *(Anonymous function)*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:109](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L109)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:109](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L109)*
 
 **Type parameters:**
 
@@ -1061,7 +1061,7 @@ ___
 
 ▸ **withFilterDesignTransformer**‹**P**›(`Component`: ComponentOrTag‹P & [FilterProps](globals.md#filterprops)›): *WithFilterDesignTransformer*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:210](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L210)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:210](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L210)*
 
 **Type parameters:**
 
@@ -1081,7 +1081,7 @@ ___
 
 ▸ **withTagProps**(`suggestionOptions?`: TagButtonProps): *Injector‹[DefaultTagProps](globals.md#defaulttagprops)›*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:129](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L129)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx:129](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupContext.tsx#L129)*
 
 **Parameters:**
 
@@ -1097,7 +1097,7 @@ ___
 
 ▸ **withUnselectOnDelete**(`Component`: "symbol" | "object" | "cite" | "data" | "form" | "label" | "pattern" | "span" | "summary" | "slot" | "style" | "title" | "a" | "abbr" | "address" | "area" | "article" | "aside" | "audio" | "b" | "base" | "bdi" | "bdo" | "big" | "blockquote" | "body" | "br" | "button" | "canvas" | "caption" | "code" | "col" | "colgroup" | "datalist" | "dd" | "del" | "details" | "dfn" | "dialog" | "div" | "dl" | "dt" | "em" | "embed" | "fieldset" | "figcaption" | "figure" | "footer" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "head" | "header" | "hgroup" | "hr" | "html" | "i" | "iframe" | "img" | "input" | "ins" | "kbd" | "keygen" | "legend" | "li" | "link" | "main" | "map" | "mark" | "menu" | "menuitem" | "meta" | "meter" | "nav" | "noindex" | "noscript" | "ol" | "optgroup" | "option" | "output" | "p" | "param" | "picture" | "pre" | "progress" | "q" | "rp" | "rt" | "ruby" | "s" | "samp" | "script" | "section" | "select" | "small" | "source" | "strong" | "sub" | "sup" | "table" | "template" | "tbody" | "td" | "textarea" | "tfoot" | "th" | "thead" | "time" | "tr" | "track" | "u" | "ul" | "var" | "video" | "wbr" | "webview" | "svg" | "animate" | "animateMotion" | "animateTransform" | "circle" | "clipPath" | "defs" | "desc" | "ellipse" | "feBlend" | "feColorMatrix" | "feComponentTransfer" | "feComposite" | "feConvolveMatrix" | "feDiffuseLighting" | "feDisplacementMap" | "feDistantLight" | "feDropShadow" | "feFlood" | "feFuncA" | "feFuncB" | "feFuncG" | "feFuncR" | "feGaussianBlur" | "feImage" | "feMerge" | "feMergeNode" | "feMorphology" | "feOffset" | "fePointLight" | "feSpecularLighting" | "feSpotLight" | "feTile" | "feTurbulence" | "filter" | "foreignObject" | "g" | "image" | "line" | "linearGradient" | "marker" | "mask" | "metadata" | "mpath" | "path" | "polygon" | "polyline" | "radialGradient" | "rect" | "stop" | "switch" | "text" | "textPath" | "tspan" | "use" | "view" | ComponentClass‹P, any› & object | FunctionComponent‹P› & object): *(Anonymous function)*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:68](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L68)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:68](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L68)*
 
 **Parameters:**
 
@@ -1113,49 +1113,49 @@ Name | Type |
 
 ### ▪ **FilterByGroupComponentsStart**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L25)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L25)*
 
 ###  ContentWrapper
 
 • **ContentWrapper**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Div
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L30)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L30)*
 
 ###  Filter
 
 • **Filter**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = FilterClean
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L32)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L32)*
 
 ###  FilterHeader
 
 • **FilterHeader**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Div
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L28)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L28)*
 
 ###  FilterTitle
 
 • **FilterTitle**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = H3
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L29)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L29)*
 
 ###  FilterWrapper
 
 • **FilterWrapper**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Div
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L27)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L27)*
 
 ###  ResetButton
 
 • **ResetButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Button
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L31)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L31)*
 
 ###  Wrapper
 
 • **Wrapper**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Div
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L26)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupClean.tsx#L26)*
 
 ___
 
@@ -1163,28 +1163,28 @@ ___
 
 ### ▪ **tagTitleComponentsStart**: *object*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:61](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L61)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:61](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L61)*
 
 ###  FilterGroupItemInput
 
 • **FilterGroupItemInput**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Input
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L63)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L63)*
 
 ###  FilterGroupItemLabel
 
 • **FilterGroupItemLabel**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Label
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:65](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L65)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:65](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L65)*
 
 ###  FilterGroupItemPlaceholder
 
 • **FilterGroupItemPlaceholder**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Label
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:64](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L64)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:64](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L64)*
 
 ###  FilterInputWrapper
 
 • **FilterInputWrapper**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = Div
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6c1425ce/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L62)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/Filter.tsx:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-filtering/src/FilterByGroup/Filter.tsx#L62)*
