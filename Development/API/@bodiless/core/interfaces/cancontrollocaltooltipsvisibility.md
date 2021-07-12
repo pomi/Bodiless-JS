@@ -23,7 +23,7 @@
 
 • **areLocalTooltipsDisabled**: *boolean*
 
-*Defined in [packages/bodiless-core/src/PageEditContext/types.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-core/src/PageEditContext/types.ts#L31)*
+*Defined in [packages/bodiless-core/src/PageEditContext/types.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/1d771ebf/packages/bodiless-core/src/PageEditContext/types.ts#L31)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **toggleLocalTooltipsDisabled**: *function*
 
-*Defined in [packages/bodiless-core/src/PageEditContext/types.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8d63f93c/packages/bodiless-core/src/PageEditContext/types.ts#L32)*
+*Defined in [packages/bodiless-core/src/PageEditContext/types.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/1d771ebf/packages/bodiless-core/src/PageEditContext/types.ts#L32)*
 
 #### Type declaration:
 
