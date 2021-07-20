@@ -18,4 +18,4 @@
 
 • **BODILESS_GATSBY_LOGS**: *string[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/43c96b0e/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L20)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/47aa0c4a/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L20)*
