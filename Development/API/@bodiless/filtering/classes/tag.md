@@ -28,7 +28,7 @@
 
 \+ **new Tag**(`id`: string, `name`: string, `categoryId?`: undefined | string): *[Tag](tag.md)*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/3ec13f04/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L24)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/a898b46d/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L24)*
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ Name | Type |
 
 • **categoryId**: *string*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/3ec13f04/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L22)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/a898b46d/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L22)*
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 • **id**: *string*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/3ec13f04/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L20)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/a898b46d/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L20)*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 • **name**: *string*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/3ec13f04/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L24)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/a898b46d/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L24)*
 
 ## Methods
 
@@ -70,7 +70,7 @@ ___
 
 ▸ **isEqual**(`tag`: [Tag](tag.md)): *boolean*
 
-*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/3ec13f04/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L32)*
+*Defined in [packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/a898b46d/packages/bodiless-filtering/src/FilterByGroup/FilterByGroupStore.ts#L32)*
 
 **Parameters:**
 
