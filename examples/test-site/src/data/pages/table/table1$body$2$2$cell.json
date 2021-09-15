@@ -1,0 +1,15 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "row2",
+        "Italic": true,
+        "Underline": true
+      },
+      {
+        "text": "-2"
+      }
+    ]
+  }
+]

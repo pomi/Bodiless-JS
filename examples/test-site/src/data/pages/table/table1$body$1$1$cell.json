@@ -1,0 +1,35 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "https://www.johnsonsbaby.com/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "",
+            "SuperScript": true
+          }
+        ]
+      },
+      {
+        "text": "\nImodium "
+      },
+      {
+        "text": "(R)",
+        "SuperScript": true
+      },
+      {
+        "text": " Capsules"
+      }
+    ]
+  }
+]

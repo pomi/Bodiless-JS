@@ -1,0 +1,27 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "https://www.johnsonsbaby.com/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "column "
+          }
+        ]
+      },
+      {
+        "text": "2"
+      }
+    ]
+  }
+]
