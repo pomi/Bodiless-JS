@@ -1,0 +1,27 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "/test-page/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "link to disabled page"
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  }
+]
