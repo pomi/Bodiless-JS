@@ -13,7 +13,7 @@
  */
 
 import React, {
-  useCallback, useEffect,
+  useCallback,
 } from 'react';
 import { observer } from 'mobx-react-lite';
 import {
@@ -34,16 +34,8 @@ import {
 import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
-
-type FormState = {
-  buttonLabel: string,
-  formIcon: string,
-  formTitle: string,
-  formDescription: string[],
-  togglePageVisibility: () => void,
-};
-
-type FormProps = ContextMenuFormProps & { state: FormState };
+import { ComponentFormDescription } from '@bodiless/ui';
+import { useFormApi } from 'informed';
 
 type DataItem = {
   pageDisabled: boolean,
@@ -58,27 +50,6 @@ type Data = {
   },
 };
 
-const enabledFormState: FormState = {
-  buttonLabel: 'Disable',
-  formTitle: 'Page Disabled',
-  formDescription: [
-    'This page is now disabled.',
-    'You can enable it again at this URL.',
-  ],
-  formIcon: 'visibility_off',
-  togglePageVisibility: () => null,
-};
-
-const disabledFormState: FormState = {
-  ...enabledFormState,
-  buttonLabel: 'Enable',
-  formTitle: 'Page Enabled',
-  formDescription: [
-    'This page is now enabled.',
-  ],
-  formIcon: 'visibility',
-};
-
 const useIsPageDisabled = (path?: string) => {
   const { node } = useNode<Data>();
   const { pagePath, data } = node;
@@ -88,85 +59,135 @@ const useIsPageDisabled = (path?: string) => {
   return isPageDisabled;
 };
 
-const Form = (props: FormProps) => {
-  const { ComponentFormFieldTitle, ComponentFormTitle } = useMenuOptionUI();
+// const PageCheckbox = () => {
+//   const {
+//     ComponentFormLabel,
+//     ComponentFormCheckBox,
+//   } = useMenuOptionUI();
+//   const { getState, setValues } = useFormApi();
+//   return (
+//     <ComponentFormLabel>
+//       <ComponentFormCheckBox
+//         field="page"
+//         onChange={
+//           () => {
+//             const { values } = getState();
+//             const { page } = values;
+//             setValues({
+//               ...values,
+//               'menu-links': page,
+//               'non-menu-links': page,
+//               indexing: page,
+//             });
+//           }
+//         }
+//       />
+//       Page
+//     </ComponentFormLabel>
+//   );
+// };
+
+const Fields = () => {
   const {
-    state: { formTitle, formDescription, togglePageVisibility },
-  } = props;
-
-  useEffect(() => {
-    togglePageVisibility();
-  }, []);
-
+    ComponentFormTitle,
+    ComponentFormFieldWrapper,
+    ComponentFormLabel,
+    ComponentFormCheckBox,
+  } = useMenuOptionUI();
+  const { getState, setValues } = useFormApi();
   return (
-    <ContextMenuForm {...props}>
+    <>
       <ComponentFormTitle>
-        {formTitle}
+        Disable Status
       </ComponentFormTitle>
-      <ComponentFormFieldTitle>
-        {
-          // We are not going to modify this array, so let's use the index as a key
-          // eslint-disable-next-line react/no-array-index-key
-          formDescription.map((string, index) => <p key={index}>{string}</p>)
-        }
-      </ComponentFormFieldTitle>
-    </ContextMenuForm>
+      <ComponentFormDescription>
+        Features to disable:
+      </ComponentFormDescription>
+      <ComponentFormFieldWrapper>
+        <ComponentFormLabel>
+          <ComponentFormCheckBox
+            field="page"
+            onChange={
+            () => {
+              const { values } = getState();
+              const { page } = values;
+              setValues({
+                ...values,
+                'menu-links': page,
+                'non-menu-links': page,
+                indexing: page,
+              });
+            }
+          }
+          />
+          Page
+        </ComponentFormLabel>
+        <ComponentFormFieldWrapper className="pl-5">
+          <ComponentFormLabel>
+            <ComponentFormCheckBox field="menu-links" />
+            Menu links
+          </ComponentFormLabel>
+          <ComponentFormLabel>
+            <ComponentFormCheckBox field="non-menu-links" />
+            Non-menu links
+          </ComponentFormLabel>
+          <ComponentFormLabel>
+            <ComponentFormCheckBox field="indexing" />
+            Indexing
+          </ComponentFormLabel>
+        </ComponentFormFieldWrapper>
+      </ComponentFormFieldWrapper>
+    </>
   );
 };
 
+const Form = (props: ContextMenuFormProps) => (
+  <ContextMenuForm {...props}>
+    <Fields />
+  </ContextMenuForm>
+);
+
 const useMenuOptions = (): TMenuOption[] => {
-  const { node } = useNode<Data>();
-  const { pagePath, data } = node;
-  const { disabledPages = {} } = data;
+  // const { node } = useNode<Data>();
+  // const { pagePath, data } = node;
+  // const { disabledPages = {} } = data;
   const context = useEditContext();
-  const isPageDisabled = useIsPageDisabled();
+  // const isPageDisabled = useIsPageDisabled();
 
-  const togglePageVisibility = (): void => {
-    if (isPageDisabled) {
-      // Enable
-      node.setData({
-        ...data,
-        disabledPages: {
-          ...disabledPages,
-          [pagePath]: {
-            ...disabledPages[pagePath],
-            pageDisabled: false,
-          },
-        },
-      });
-    } else {
-      // Disable
-      node.setData({
-        ...data,
-        disabledPages: {
-          ...disabledPages,
-          [pagePath]: {
-            ...disabledPages[pagePath],
-            pageDisabled: true,
-          },
-        },
-      });
-    }
-  };
+  // const togglePageVisibility = (): void => {
+  //   if (isPageDisabled) {
+  //     // Enable
+  //     node.setData({
+  //       ...data,
+  //       disabledPages: {
+  //         ...disabledPages,
+  //         [pagePath]: {
+  //           ...disabledPages[pagePath],
+  //           pageDisabled: false,
+  //         },
+  //       },
+  //     });
+  //   } else {
+  //     // Disable
+  //     node.setData({
+  //       ...data,
+  //       disabledPages: {
+  //         ...disabledPages,
+  //         [pagePath]: {
+  //           ...disabledPages[pagePath],
+  //           pageDisabled: true,
+  //         },
+  //       },
+  //     });
+  //   }
+  // };
 
-  const formState: FormState = isPageDisabled ? disabledFormState : enabledFormState;
-
-  const render = (formProps: FormProps) => {
-    const props = {
-      ...formProps,
-      state: {
-        ...formState,
-        togglePageVisibility,
-      },
-    };
-    return <Form {...props} />;
-  };
-  const { buttonLabel, formIcon } = formState;
+  const render = (props: ContextMenuFormProps) => <Form {...props} />;
   const menuOptions$: TMenuOption[] = [
     {
       name: 'page-disable',
-      icon: formIcon,
-      label: buttonLabel,
+      icon: 'visibility_off',
+      label: 'Disable',
       group: 'page-group',
       isHidden: useCallback(() => !context.isEdit, []),
       handler: () => render,
