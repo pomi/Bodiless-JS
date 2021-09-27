@@ -15,7 +15,7 @@
 import React, {
   useCallback,
 } from 'react';
-import { observer } from 'mobx-react-lite';
+// import { observer } from 'mobx-react-lite';
 import {
   withNode,
   useNode,
@@ -28,14 +28,15 @@ import {
   withNodeKey,
 } from '@bodiless/core';
 import {
-  asToken, HOC, Token, withOnlyProps,
+  asToken,
+  // HOC, Token, withOnlyProps,
 } from '@bodiless/fclasses';
 
 import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
 import { ComponentFormDescription } from '@bodiless/ui';
-import { useFormApi } from 'informed';
+import { useFormApi, useFormState } from 'informed';
 
 type DataItem = {
   pageDisabled: boolean,
@@ -59,47 +60,35 @@ const useIsPageDisabled = (path?: string) => {
   return isPageDisabled;
 };
 
-// const PageCheckbox = () => {
-//   const {
-//     ComponentFormLabel,
-//     ComponentFormCheckBox,
-//   } = useMenuOptionUI();
-//   const { getState, setValues } = useFormApi();
-//   return (
-//     <ComponentFormLabel>
-//       <ComponentFormCheckBox
-//         field="page"
-//         onChange={
-//           () => {
-//             const { values } = getState();
-//             const { page } = values;
-//             setValues({
-//               ...values,
-//               'menu-links': page,
-//               'non-menu-links': page,
-//               indexing: page,
-//             });
-//           }
-//         }
-//       />
-//       Page
-//     </ComponentFormLabel>
-//   );
-// };
-
 const Fields = () => {
   const {
     ComponentFormTitle,
     ComponentFormFieldWrapper,
     ComponentFormLabel,
     ComponentFormCheckBox,
+    ComponentFormSubmitButton,
   } = useMenuOptionUI();
-  const { getState, setValues } = useFormApi();
-  return (
+  const {
+    setValue, setValues, setStep,
+  } = useFormApi();
+  const { values, step } = useFormState();
+
+  const toggleSubCheckboxes = () => {
+    const { page } = values;
+    setValues({
+      ...values,
+      'menu-links': page,
+      'non-menu-links': page,
+      indexing: page,
+    });
+  };
+
+  const toggleOffPageCheckbox = () => {
+    setValue('page', false);
+  };
+
+  const StepOneContent = useCallback(() => (
     <>
-      <ComponentFormTitle>
-        Disable Status
-      </ComponentFormTitle>
       <ComponentFormDescription>
         Features to disable:
       </ComponentFormDescription>
@@ -107,42 +96,69 @@ const Fields = () => {
         <ComponentFormLabel>
           <ComponentFormCheckBox
             field="page"
-            onChange={
-            () => {
-              const { values } = getState();
-              const { page } = values;
-              setValues({
-                ...values,
-                'menu-links': page,
-                'non-menu-links': page,
-                indexing: page,
-              });
-            }
-          }
+            keepState
+            onChange={toggleSubCheckboxes}
           />
           Page
         </ComponentFormLabel>
         <ComponentFormFieldWrapper className="pl-5">
           <ComponentFormLabel>
-            <ComponentFormCheckBox field="menu-links" />
+            <ComponentFormCheckBox keepState field="menu-links" onChange={toggleOffPageCheckbox} />
             Menu links
           </ComponentFormLabel>
           <ComponentFormLabel>
-            <ComponentFormCheckBox field="non-menu-links" />
+            <ComponentFormCheckBox keepState field="non-menu-links" onChange={toggleOffPageCheckbox} />
             Non-menu links
           </ComponentFormLabel>
           <ComponentFormLabel>
-            <ComponentFormCheckBox field="indexing" />
+            <ComponentFormCheckBox keepState field="indexing" onChange={toggleOffPageCheckbox} />
             Indexing
           </ComponentFormLabel>
         </ComponentFormFieldWrapper>
       </ComponentFormFieldWrapper>
+      <ComponentFormSubmitButton
+        aria-label="Submit"
+        onClick={(e: any) => {
+          e.preventDefault();
+          setStep(1);
+        }}
+      />
+    </>
+  ), [values]);
+
+  const StepTwoContentBase = () => {
+    const { node } = useNode();
+    console.log('node', JSON.stringify(node, null, '\t'));
+    return (
+      <>
+        {Object.entries(values).map(
+          ([key, value]) => <h1 key={key}>{`${key}: ${value}`}</h1>,
+        )}
+      </>
+    );
+  };
+
+  const StepTwoContent: any = asToken(
+    withNode,
+    withNodeKey({
+      nodeKey: 'disabled-pages',
+      nodeCollection: 'site',
+    }),
+  )(StepTwoContentBase);
+
+  return (
+    <>
+      <ComponentFormTitle>
+        Disable Status
+      </ComponentFormTitle>
+      {step < 1 && <StepOneContent />}
+      {step > 0 && <StepTwoContent />}
     </>
   );
 };
 
 const Form = (props: ContextMenuFormProps) => (
-  <ContextMenuForm {...props}>
+  <ContextMenuForm {...props} hasSubmit={false}>
     <Fields />
   </ContextMenuForm>
 );
@@ -188,7 +204,7 @@ const useMenuOptions = (): TMenuOption[] => {
       name: 'page-disable',
       icon: 'visibility_off',
       label: 'Disable',
-      group: 'page-group',
+      // group: 'page-group',
       isHidden: useCallback(() => !context.isEdit, []),
       handler: () => render,
     },
@@ -202,27 +218,29 @@ const menuOptions: MenuOptionsDefinition<object> = {
   root: true,
 };
 
-const withNodeObserver: Token = Component => observer(props => {
-  const isPageDisabled = useIsPageDisabled();
-  // Update component's prop on data change to force re-rendering.
-  return <Component {...props} page-disabled={isPageDisabled.toString()} />;
-});
+// const withNodeObserver: Token = Component => observer(props => {
+//   const isPageDisabled = useIsPageDisabled();
+//   // Update component's prop on data change to force re-rendering.
+//   return <Component {...props} page-disabled={isPageDisabled.toString()} />;
+// });
 
 // Remove temporary props before rendering.
 // Fix "Invalid prop `...` supplied to `React.Fragment`.
 // React.Fragment can only have `key` and `children` props.
-const withPropsCleanUp = withOnlyProps('key', 'children') as HOC;
+// const withPropsCleanUp = withOnlyProps('key', 'children') as HOC;
 
-const withPageDisableButton = asToken(
-  withPropsCleanUp,
-  withMenuOptions(menuOptions),
-  withNodeObserver,
-  withNode,
-  withNodeKey({
-    nodeKey: 'disabled-pages',
-    nodeCollection: 'site',
-  }),
-);
+// const withPageDisableButton = asToken(
+//   withPropsCleanUp,
+//   withMenuOptions(menuOptions),
+//   withNodeObserver,
+//   withNode,
+//   withNodeKey({
+//     nodeKey: 'disabled-pages',
+//     nodeCollection: 'site',
+//   }),
+// );
+
+const withPageDisableButton = withMenuOptions(menuOptions);
 
 export default withPageDisableButton;
 export {
