@@ -1,0 +1,7 @@
+{
+  "disabledPages": {
+    "/test-page/": {
+      "pageDisabled": true
+    }
+  }
+}
