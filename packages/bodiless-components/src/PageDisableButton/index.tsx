@@ -13,7 +13,7 @@
  */
 
 import React, {
-  useCallback,
+  useCallback, useEffect,
 } from 'react';
 // import { observer } from 'mobx-react-lite';
 import {
@@ -71,12 +71,12 @@ const Fields = () => {
   const {
     setValue, setValues, setStep,
   } = useFormApi();
-  const { values, step } = useFormState();
+  const { values: formValues, step } = useFormState();
 
   const toggleSubCheckboxes = () => {
-    const { page } = values;
+    const { page } = formValues;
     setValues({
-      ...values,
+      ...formValues,
       'menu-links': page,
       'non-menu-links': page,
       indexing: page,
@@ -124,14 +124,31 @@ const Fields = () => {
         }}
       />
     </>
-  ), [values]);
+  ), [formValues]);
 
   const StepTwoContentBase = () => {
-    const { node } = useNode();
+    const { node } = useNode<Data>();
+    const { pagePath, data } = node;
+    const { disabledPages = {} } = data;
+
+    useEffect(() => {
+      // Save form values in node.
+      node.setData({
+        ...data,
+        disabledPages: {
+          ...disabledPages,
+          [pagePath]: {
+            ...disabledPages[pagePath],
+            ...formValues,
+          },
+        },
+      });
+    }, []);
+
     console.log('node', JSON.stringify(node, null, '\t'));
     return (
       <>
-        {Object.entries(values).map(
+        {Object.entries(formValues).map(
           ([key, value]) => <h1 key={key}>{`${key}: ${value}`}</h1>,
         )}
       </>
@@ -164,40 +181,7 @@ const Form = (props: ContextMenuFormProps) => (
 );
 
 const useMenuOptions = (): TMenuOption[] => {
-  // const { node } = useNode<Data>();
-  // const { pagePath, data } = node;
-  // const { disabledPages = {} } = data;
   const context = useEditContext();
-  // const isPageDisabled = useIsPageDisabled();
-
-  // const togglePageVisibility = (): void => {
-  //   if (isPageDisabled) {
-  //     // Enable
-  //     node.setData({
-  //       ...data,
-  //       disabledPages: {
-  //         ...disabledPages,
-  //         [pagePath]: {
-  //           ...disabledPages[pagePath],
-  //           pageDisabled: false,
-  //         },
-  //       },
-  //     });
-  //   } else {
-  //     // Disable
-  //     node.setData({
-  //       ...data,
-  //       disabledPages: {
-  //         ...disabledPages,
-  //         [pagePath]: {
-  //           ...disabledPages[pagePath],
-  //           pageDisabled: true,
-  //         },
-  //       },
-  //     });
-  //   }
-  // };
-
   const render = (props: ContextMenuFormProps) => <Form {...props} />;
   const menuOptions$: TMenuOption[] = [
     {
