@@ -66,7 +66,7 @@ import withBodilessLinkToggle from './withBodilessLinkToggle';
 
 import withFormHeader from './withFormHeader';
 import withFormSnippet from './withFormSnippet';
-import withPageDisableButton, { useIsPageDisabled } from './PageDisableButton';
+import withPageDisableButton from './PageDisableButton';
 
 export {
   withFormHeader,
@@ -123,7 +123,6 @@ export {
   withDataLayerScript,
   asBodilessAnchor,
   withPageDisableButton,
-  useIsPageDisabled,
 };
 
 export * from './Chameleon/index';

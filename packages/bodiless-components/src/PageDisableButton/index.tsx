@@ -51,16 +51,28 @@ type Data = {
   },
 };
 
-const useIsPageDisabled = (path?: string) => {
+type FormValues = {
+  Page: boolean,
+  'Menu Links': boolean,
+  'Non-menu Links': boolean,
+  Indexing: boolean,
+};
+
+const defaultFormValues: FormValues = {
+  Page: false,
+  'Menu Links': false,
+  'Non-menu Links': false,
+  Indexing: false,
+};
+
+const FormBodyBase = () => {
   const { node } = useNode<Data>();
   const { pagePath, data } = node;
   const { disabledPages = {} } = data;
-  const path$ = path || pagePath;
-  const isPageDisabled = disabledPages[path$]?.pageDisabled === true;
-  return isPageDisabled;
-};
-
-const Fields = () => {
+  const pageData = {
+    ...defaultFormValues,
+    ...disabledPages[pagePath],
+  };
   const {
     ComponentFormTitle,
     ComponentFormFieldWrapper,
@@ -74,63 +86,66 @@ const Fields = () => {
   const { values: formValues, step } = useFormState();
 
   const toggleSubCheckboxes = () => {
-    const { page } = formValues;
+    const { Page } = formValues;
     setValues({
       ...formValues,
-      'menu-links': page,
-      'non-menu-links': page,
-      indexing: page,
+      'Menu Links': Page,
+      'Non-menu Links': Page,
+      Indexing: Page,
     });
   };
 
   const toggleOffPageCheckbox = () => {
-    setValue('page', false);
+    setValue('Page', false);
   };
 
-  const StepOneContent = useCallback(() => (
-    <>
-      <ComponentFormDescription>
-        Features to disable:
-      </ComponentFormDescription>
-      <ComponentFormFieldWrapper>
-        <ComponentFormLabel>
-          <ComponentFormCheckBox
-            field="page"
-            keepState
-            onChange={toggleSubCheckboxes}
-          />
-          Page
-        </ComponentFormLabel>
-        <ComponentFormFieldWrapper className="pl-5">
+  const StepOneContent = useCallback(() => {
+    useEffect(() => {
+      // Get initial values from node.
+      setValues(pageData);
+    }, []);
+
+    return (
+      <>
+        <ComponentFormDescription>
+          Features to disable:
+        </ComponentFormDescription>
+        <ComponentFormFieldWrapper>
           <ComponentFormLabel>
-            <ComponentFormCheckBox keepState field="menu-links" onChange={toggleOffPageCheckbox} />
-            Menu links
+            <ComponentFormCheckBox
+              field="Page"
+              keepState
+              onChange={toggleSubCheckboxes}
+            />
+            Page
           </ComponentFormLabel>
-          <ComponentFormLabel>
-            <ComponentFormCheckBox keepState field="non-menu-links" onChange={toggleOffPageCheckbox} />
-            Non-menu links
-          </ComponentFormLabel>
-          <ComponentFormLabel>
-            <ComponentFormCheckBox keepState field="indexing" onChange={toggleOffPageCheckbox} />
-            Indexing
-          </ComponentFormLabel>
+          <ComponentFormFieldWrapper className="pl-5">
+            <ComponentFormLabel>
+              <ComponentFormCheckBox keepState field="Menu Links" onChange={toggleOffPageCheckbox} />
+              Menu links
+            </ComponentFormLabel>
+            <ComponentFormLabel>
+              <ComponentFormCheckBox keepState field="Non-menu Links" onChange={toggleOffPageCheckbox} />
+              Non-menu links
+            </ComponentFormLabel>
+            <ComponentFormLabel>
+              <ComponentFormCheckBox keepState field="Indexing" onChange={toggleOffPageCheckbox} />
+              Indexing
+            </ComponentFormLabel>
+          </ComponentFormFieldWrapper>
         </ComponentFormFieldWrapper>
-      </ComponentFormFieldWrapper>
-      <ComponentFormSubmitButton
-        aria-label="Submit"
-        onClick={(e: any) => {
-          e.preventDefault();
-          setStep(1);
-        }}
-      />
-    </>
-  ), [formValues]);
+        <ComponentFormSubmitButton
+          aria-label="Submit"
+          onClick={(e: any) => {
+            e.preventDefault();
+            setStep(1);
+          }}
+        />
+      </>
+    );
+  }, [formValues]);
 
-  const StepTwoContentBase = () => {
-    const { node } = useNode<Data>();
-    const { pagePath, data } = node;
-    const { disabledPages = {} } = data;
-
+  const StepTwoContent = () => {
     useEffect(() => {
       // Save form values in node.
       node.setData({
@@ -145,23 +160,14 @@ const Fields = () => {
       });
     }, []);
 
-    console.log('node', JSON.stringify(node, null, '\t'));
     return (
       <>
         {Object.entries(formValues).map(
-          ([key, value]) => <h1 key={key}>{`${key}: ${value}`}</h1>,
+          ([key, value]) => <h1 key={key}>{`${key}: ${value ? 'Enabled' : 'Disabled'}`}</h1>,
         )}
       </>
     );
   };
-
-  const StepTwoContent: any = asToken(
-    withNode,
-    withNodeKey({
-      nodeKey: 'disabled-pages',
-      nodeCollection: 'site',
-    }),
-  )(StepTwoContentBase);
 
   return (
     <>
@@ -174,9 +180,17 @@ const Fields = () => {
   );
 };
 
+const FormBody: any = asToken(
+  withNode,
+  withNodeKey({
+    nodeKey: 'disabled-pages',
+    nodeCollection: 'site',
+  }),
+)(FormBodyBase);
+
 const Form = (props: ContextMenuFormProps) => (
   <ContextMenuForm {...props} hasSubmit={false}>
-    <Fields />
+    <FormBody />
   </ContextMenuForm>
 );
 
@@ -227,6 +241,3 @@ const menuOptions: MenuOptionsDefinition<object> = {
 const withPageDisableButton = withMenuOptions(menuOptions);
 
 export default withPageDisableButton;
-export {
-  useIsPageDisabled,
-};
