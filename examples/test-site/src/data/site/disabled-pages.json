@@ -2,6 +2,12 @@
   "disabledPages": {
     "/test-page/": {
       "pageDisabled": true
+    },
+    "/": {
+      "pageDisabled": false
+    },
+    "/test/heidi/": {
+      "pageDisabled": true
     }
   }
 }
