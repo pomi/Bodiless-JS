@@ -1,6 +1,6 @@
 {
   "name": "@bodiless/gatsby-theme-bodiless",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Gatsby theme for BodilessJS",
   "author": "Chris Oden <coden@its.jnj.com>",
   "homepage": "",
@@ -46,13 +46,13 @@
     "copy": "copyfiles -u 1 \"./src/dist/**/*.{json,jpg,png}\" \".\""
   },
   "dependencies": {
-    "@bodiless/components": "^0.1.1",
-    "@bodiless/core": "^0.1.1",
-    "@bodiless/core-ui": "^0.1.1",
-    "@bodiless/fclasses": "^0.1.1",
-    "@bodiless/layouts": "^0.1.1",
-    "@bodiless/organisms": "^0.1.1",
-    "@bodiless/ui": "^0.1.1",
+    "@bodiless/components": "^0.1.2",
+    "@bodiless/core": "^0.1.2",
+    "@bodiless/core-ui": "^0.1.2",
+    "@bodiless/fclasses": "^0.1.2",
+    "@bodiless/layouts": "^0.1.2",
+    "@bodiless/organisms": "^0.1.2",
+    "@bodiless/ui": "^0.1.2",
     "@types/nodegit": "^0.26.11",
     "@types/walk": "^2.3.0",
     "autoprefixer": "^10.2.4",
