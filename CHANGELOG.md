@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/johnsonandjohnson/bodiless-js/compare/v0.1.1...v0.1.2) (2021-09-28)
+
+
+### Bug Fixes
+
+* **GTM:** Sites running with rocketloader are pushing duplicate events ([8cb76a1](https://github.com/johnsonandjohnson/bodiless-js/commit/8cb76a16ee5bada9248167a524e03b5b3822a5b9))
+
+
+
+
+
 ## [0.1.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v0.1.0...v0.1.1) (2021-04-28)
 
 **Note:** Version bump only for package bodiless-js
