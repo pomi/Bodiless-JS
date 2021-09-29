@@ -8,6 +8,9 @@
     },
     "/test/heidi/": {
       "pageDisabled": true
+    },
+    "/accordion/": {
+      "pageDisabled": true
     }
   }
 }
