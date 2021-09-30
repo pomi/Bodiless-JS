@@ -28,7 +28,6 @@ import {
 } from '@bodiless/core';
 import {
   asToken,
-  // HOC, Token, withOnlyProps,
 } from '@bodiless/fclasses';
 
 import type {
@@ -201,7 +200,7 @@ const useMenuOptions = (): TMenuOption[] => {
       name: 'page-disable',
       icon: 'visibility_off',
       label: 'Disable',
-      // group: 'page-group',
+      group: 'page-group',
       isHidden: useCallback(() => !context.isEdit, []),
       handler: () => render,
     },
@@ -214,28 +213,6 @@ const menuOptions: MenuOptionsDefinition<object> = {
   name: 'PageDisable',
   root: true,
 };
-
-// const withNodeObserver: Token = Component => observer(props => {
-//   const isPageDisabled = useIsPageDisabled();
-//   // Update component's prop on data change to force re-rendering.
-//   return <Component {...props} page-disabled={isPageDisabled.toString()} />;
-// });
-
-// Remove temporary props before rendering.
-// Fix "Invalid prop `...` supplied to `React.Fragment`.
-// React.Fragment can only have `key` and `children` props.
-// const withPropsCleanUp = withOnlyProps('key', 'children') as HOC;
-
-// const withPageDisableButton = asToken(
-//   withPropsCleanUp,
-//   withMenuOptions(menuOptions),
-//   withNodeObserver,
-//   withNode,
-//   withNodeKey({
-//     nodeKey: 'disabled-pages',
-//     nodeCollection: 'site',
-//   }),
-// );
 
 const withPageDisableButton = withMenuOptions(menuOptions);
 
