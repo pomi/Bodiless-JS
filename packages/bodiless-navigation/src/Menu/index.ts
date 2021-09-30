@@ -20,7 +20,12 @@ import asTopNav, {
 import { useIsMenuOpen, useMenuContext } from './withMenuContext';
 import { useSubmenuContext } from './withMenuItemContext';
 import { withListSubMenu, withCardsSubMenu, withColumnSubMenu } from './withSubMenu';
-import { withMenuTitleEditors, withDefaultMenuTitleEditors } from './MenuTitles';
+import {
+  withMenuTitleEditors,
+  withDefaultMenuTitleEditors,
+  asMenuLink,
+  asDisableableMenuLink,
+} from './MenuTitles';
 
 export {
   asBodilessMenu,
@@ -37,6 +42,8 @@ export {
   isMenuContextNotActive,
   withMenuTitleEditors,
   withDefaultMenuTitleEditors,
+  asMenuLink,
+  asDisableableMenuLink,
 };
 
 export * from './asAccessibleMenu';

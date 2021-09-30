@@ -15,7 +15,6 @@
 import React, {
   useCallback, useEffect,
 } from 'react';
-// import { observer } from 'mobx-react-lite';
 import {
   withNode,
   useNode,
@@ -72,7 +71,7 @@ const FormBodyBase = () => {
   const pageData = {
     ...defaultFormValues,
     ...disabledPages[pagePath],
-  };
+  } as any;
   const {
     ComponentFormTitle,
     ComponentFormFieldWrapper,
@@ -163,7 +162,7 @@ const FormBodyBase = () => {
     return (
       <>
         {Object.entries(formValues).map(
-          ([key, value]) => <h1 key={key}>{`${key}: ${value ? 'Enabled' : 'Disabled'}`}</h1>,
+          ([key, value]) => <h1 key={key}>{`${key}: ${value ? 'Disabled' : 'Enabled'}`}</h1>,
         )}
       </>
     );

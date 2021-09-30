@@ -14,8 +14,10 @@
 
 import React, { ComponentType, FC } from 'react';
 import { flow } from 'lodash';
-import { withSidecarNodes, withNode, withNodeKey } from '@bodiless/core';
-import { asEditable, withBodilessLinkToggle } from '@bodiless/components';
+import {
+  withSidecarNodes, withNode, withNodeKey, useNode, useEditContext,
+} from '@bodiless/core';
+import { asEditable, withBodilessLinkToggle, LinkData } from '@bodiless/components';
 import { asBodilessLink } from '@bodiless/components-ui';
 import { CardClean } from '@bodiless/card';
 import {
@@ -64,11 +66,30 @@ const asMenuLink = (asEditableLink: typeof asBodilessLink) => asToken(
 );
 
 /**
+ * Token that check if the current menu item is disabled for static and preview mode.
+ * Returns an empty fragment if the link is listed in src/data/site/disabled-pages.json
+ */
+const asDisableableMenuLink: Token = Component => props => {
+  const { node } = useNode();
+  const { isEdit } = useEditContext();
+  const { disabledPages } = node.peer<any>(['Site', 'disabled-pages']).data;
+  const { href } = node.child<LinkData>('link').data;
+  const href$ = href && href.endsWith('/') ? href : `${href}/`;
+  if (!isEdit && href && disabledPages?.[href$]?.['Menu Links'] === true) {
+    return <Fragment />;
+  }
+  return <Component {...props} />;
+};
+
+/**
  * Token that adds a default Editors to the menu Title and Link.
  * Transforms Link into Editable Bodiless Link Toggle and Title to Editable.
  */
 const withDefaultMenuTitleEditors = withDesign({
-  Link: asMenuLink(withBodilessLinkToggle(asBodilessLink, startWith(A), true)),
+  Link: asToken(
+    asMenuLink(withBodilessLinkToggle(asBodilessLink, startWith(A), true)),
+    asDisableableMenuLink,
+  ),
   Title: asToken(
     startWith(Fragment),
     asEditable('text', 'Menu Item'),
@@ -115,4 +136,6 @@ export {
   withDefaultMenuTitleEditors,
   asMenuCard,
   asMenuTitle,
+  asMenuLink,
+  asDisableableMenuLink,
 };
