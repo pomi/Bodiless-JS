@@ -24,7 +24,7 @@ import {
   withMenuTitleEditors,
   withDefaultMenuTitleEditors,
   asMenuLink,
-  asDisableableMenuLink,
+  asDisabledPageLink,
 } from './MenuTitles';
 
 export {
@@ -43,7 +43,7 @@ export {
   withMenuTitleEditors,
   withDefaultMenuTitleEditors,
   asMenuLink,
-  asDisableableMenuLink,
+  asDisabledPageLink,
 };
 
 export * from './asAccessibleMenu';

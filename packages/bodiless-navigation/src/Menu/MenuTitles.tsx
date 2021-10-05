@@ -137,5 +137,5 @@ export {
   asMenuCard,
   asMenuTitle,
   asMenuLink,
-  asDisableableMenuLink,
+  asDisabledPageLink,
 };
