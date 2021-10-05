@@ -69,7 +69,7 @@ const asMenuLink = (asEditableLink: typeof asBodilessLink) => asToken(
  * Token that check if the current menu item is disabled for static and preview mode.
  * Returns an empty fragment if the link is listed in src/data/site/disabled-pages.json
  */
-const asDisableableMenuLink: Token = Component => props => {
+const asDisabledPageLink: Token = Component => props => {
   const { node } = useNode();
   const { isEdit } = useEditContext();
   const { disabledPages } = node.peer<any>(['Site', 'disabled-pages']).data;
@@ -88,7 +88,7 @@ const asDisableableMenuLink: Token = Component => props => {
 const withDefaultMenuTitleEditors = withDesign({
   Link: asToken(
     asMenuLink(withBodilessLinkToggle(asBodilessLink, startWith(A), true)),
-    asDisableableMenuLink,
+    asDisabledPageLink,
   ),
   Title: asToken(
     startWith(Fragment),

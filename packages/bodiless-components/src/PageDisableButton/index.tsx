@@ -63,6 +63,9 @@ const defaultFormValues: FormValues = {
   Indexing: false,
 };
 
+// Create an enum with the step values
+enum Steps { FeaturesSelect, Confirmation }
+
 const FormBodyBase = () => {
   const { node } = useNode<Data>();
   const { pagePath, data } = node;
@@ -97,7 +100,7 @@ const FormBodyBase = () => {
     setValue('Page', false);
   };
 
-  const StepOneContent = useCallback(() => {
+  const FeaturesSelectForm = useCallback(() => {
     useEffect(() => {
       // Get initial values from node.
       setValues(pageData);
@@ -136,14 +139,14 @@ const FormBodyBase = () => {
           aria-label="Submit"
           onClick={(e: any) => {
             e.preventDefault();
-            setStep(1);
+            setStep(Steps.Confirmation);
           }}
         />
       </>
     );
   }, [formValues]);
 
-  const StepTwoContent = () => {
+  const ConfirmationForm = () => {
     useEffect(() => {
       // Save form values in node.
       node.setData({
@@ -159,11 +162,11 @@ const FormBodyBase = () => {
     }, []);
 
     return (
-      <>
+      <ul>
         {Object.entries(formValues).map(
-          ([key, value]) => <h1 key={key}>{`${key}: ${value ? 'Disabled' : 'Enabled'}`}</h1>,
+          ([key, value]) => <li key={key}>{`${key}: ${value ? 'Disabled' : 'Enabled'}`}</li>,
         )}
-      </>
+      </ul>
     );
   };
 
@@ -172,8 +175,8 @@ const FormBodyBase = () => {
       <ComponentFormTitle>
         Disable Status
       </ComponentFormTitle>
-      {step < 1 && <StepOneContent />}
-      {step > 0 && <StepTwoContent />}
+      {step === Steps.FeaturesSelect && <FeaturesSelectForm />}
+      {step === Steps.Confirmation && <ConfirmationForm />}
     </>
   );
 };
