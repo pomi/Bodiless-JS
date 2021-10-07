@@ -8,7 +8,7 @@
     },
     "/": {
       "Page": false,
-      "Menu Links": true,
+      "Menu Links": false,
       "Non-menu Links": false,
       "Indexing": false
     }
