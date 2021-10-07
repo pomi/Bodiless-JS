@@ -1,0 +1,31 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "prod "
+      },
+      {
+        "text": "omj ",
+        "SuperScript": true
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "http://localhost:8005/products/product-a/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "ipok "
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  }
+]

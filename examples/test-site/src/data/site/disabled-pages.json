@@ -5,6 +5,12 @@
       "Menu Links": false,
       "Non-menu Links": false,
       "Indexing": false
+    },
+    "/": {
+      "Page": false,
+      "Menu Links": true,
+      "Non-menu Links": false,
+      "Indexing": false
     }
   }
 }
