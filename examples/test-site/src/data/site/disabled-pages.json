@@ -1,10 +1,10 @@
 {
   "disabledPages": {
     "/test-page/": {
-      "Page": true,
-      "Menu Links": true,
-      "Non-menu Links": true,
-      "Indexing": true
+      "Page": false,
+      "Menu Links": false,
+      "Non-menu Links": false,
+      "Indexing": false
     }
   }
 }
