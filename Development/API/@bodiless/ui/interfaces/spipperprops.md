@@ -18,4 +18,4 @@
 
 • **color**: *string*
 
-*Defined in [packages/bodiless-ui/src/Spinner.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/0d831e71/packages/bodiless-ui/src/Spinner.tsx#L22)*
+*Defined in [packages/bodiless-ui/src/Spinner.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/fb7102ec/packages/bodiless-ui/src/Spinner.tsx#L22)*
