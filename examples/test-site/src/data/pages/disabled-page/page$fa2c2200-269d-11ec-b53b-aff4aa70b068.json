@@ -1,0 +1,44 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "/disabled-page/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "Link to disabled page 1"
+          }
+        ]
+      },
+      {
+        "text": " some text"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Some bold test",
+        "Bold": true
+      }
+    ]
+  }
+]

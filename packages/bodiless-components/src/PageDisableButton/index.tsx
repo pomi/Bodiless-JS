@@ -35,45 +35,28 @@ import type {
 } from '@bodiless/core';
 import { ComponentFormDescription } from '@bodiless/ui';
 import { useFormApi, useFormState } from 'informed';
+import { PageDisabledData, PageDisabledDataItem } from './types';
 
-type DataItem = {
-  pageDisabled: boolean,
-  menuLinksDisabled?: boolean,
-  contentLinksDisabled?: boolean,
-  indexingDisabled?: boolean,
-};
-
-type Data = {
-  disabledPages?: {
-    [path: string]: DataItem,
-  },
-};
-
-type FormValues = {
-  Page: boolean,
-  'Menu Links': boolean,
-  'Non-menu Links': boolean,
-  Indexing: boolean,
-};
+type FormValues = PageDisabledDataItem;
 
 const defaultFormValues: FormValues = {
-  Page: false,
-  'Menu Links': false,
-  'Non-menu Links': false,
-  Indexing: false,
+  pageDisabled: false,
+  menuLinksDisabled: false,
+  contentLinksDisabled: false,
+  indexingDisabled: false,
 };
 
 // Create an enum with the step values
 enum Steps { FeaturesSelect, Confirmation }
 
 const FormBodyBase = () => {
-  const { node } = useNode<Data>();
+  const { node } = useNode<PageDisabledData>();
   const { pagePath, data } = node;
   const { disabledPages = {} } = data;
   const pageData = {
     ...defaultFormValues,
     ...disabledPages[pagePath],
-  } as any;
+  };
   const {
     ComponentFormTitle,
     ComponentFormFieldWrapper,
@@ -87,13 +70,14 @@ const FormBodyBase = () => {
   const { values: formValues, step } = useFormState();
 
   const toggleSubCheckboxes = () => {
-    const { Page } = formValues;
-    setValues({
+    const { pageDisabled } = formValues;
+    const values = {
       ...formValues,
-      'Menu Links': Page,
-      'Non-menu Links': Page,
-      Indexing: Page,
-    });
+      menuLinksDisabled: pageDisabled,
+      contentLinksDisabled: pageDisabled,
+      indexingDisabled: pageDisabled,
+    };
+    setValues(values);
   };
 
   const toggleOffPageCheckbox = () => {
@@ -114,7 +98,7 @@ const FormBodyBase = () => {
         <ComponentFormFieldWrapper>
           <ComponentFormLabel>
             <ComponentFormCheckBox
-              field="Page"
+              field="pageDisabled"
               keepState
               onChange={toggleSubCheckboxes}
             />
@@ -122,15 +106,15 @@ const FormBodyBase = () => {
           </ComponentFormLabel>
           <ComponentFormFieldWrapper className="pl-5">
             <ComponentFormLabel>
-              <ComponentFormCheckBox keepState field="Menu Links" onChange={toggleOffPageCheckbox} />
+              <ComponentFormCheckBox keepState field="menuLinksDisabled" onChange={toggleOffPageCheckbox} />
               Menu links
             </ComponentFormLabel>
             <ComponentFormLabel>
-              <ComponentFormCheckBox keepState field="Non-menu Links" onChange={toggleOffPageCheckbox} />
+              <ComponentFormCheckBox keepState field="contentLinksDisabled" onChange={toggleOffPageCheckbox} />
               Non-menu links
             </ComponentFormLabel>
             <ComponentFormLabel>
-              <ComponentFormCheckBox keepState field="Indexing" onChange={toggleOffPageCheckbox} />
+              <ComponentFormCheckBox keepState field="indexingDisabled" onChange={toggleOffPageCheckbox} />
               Indexing
             </ComponentFormLabel>
           </ComponentFormFieldWrapper>
@@ -161,10 +145,24 @@ const FormBodyBase = () => {
       });
     }, []);
 
+    const mapKeysToLabels = (key: string) => {
+      switch (key) {
+        case 'pageDisabled':
+          return 'Page';
+        case 'menuLinksDisabled':
+          return 'Menu links';
+        case 'contentLinksDisabled':
+          return 'Non-menu links';
+        case 'indexingDisabled':
+          return 'Indexing';
+        default: return '';
+      }
+    };
+
     return (
       <ul>
         {Object.entries(formValues).map(
-          ([key, value]) => <li key={key}>{`${key}: ${value ? 'Disabled' : 'Enabled'}`}</li>,
+          ([key, value]) => <li key={key}>{`${mapKeysToLabels(key)}: ${value ? 'Disabled' : 'Enabled'}`}</li>,
         )}
       </ul>
     );
@@ -219,4 +217,7 @@ const menuOptions: MenuOptionsDefinition<object> = {
 
 const withPageDisableButton = withMenuOptions(menuOptions);
 
-export default withPageDisableButton;
+export type { PageDisabledData, PageDisabledDataItem };
+export {
+  withPageDisableButton,
+};

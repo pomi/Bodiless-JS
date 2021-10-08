@@ -20,6 +20,9 @@ import {
   withExtendHandler,
   ifToggledOn,
   EditButtonOptions,
+  useEditContext,
+  useNode,
+  ContentNode,
 } from '@bodiless/core';
 import type { BodilessOptions } from '@bodiless/core';
 import { flowRight, identity } from 'lodash';
@@ -29,11 +32,13 @@ import {
   replaceWith,
   withoutProps,
   asToken,
+  Token,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import DefaultNormalHref from './NormalHref';
 import withGoToLinkButton from './withGoToLinkButton';
 import useEmptyLinkToggle from './useEmptyLinkToggle';
+import type { PageDisabledData } from '../PageDisableButton';
 import {
   LinkData,
   UseLinkOverrides,
@@ -173,9 +178,39 @@ const withLinkTarget = (
  */
 const withoutLinkWhenLinkDataEmpty = ifToggledOn(useEmptyLinkToggle)(replaceWith(Fragment));
 
+// @TODO: Move to richtext types?
+type ParentGetters = {
+  getParentNode: ContentNode<object>,
+  getParentPeer: (path: string|string[]) => ContentNode<object>,
+};
+type SlateNodeWithParentGetters<T> = {
+  node: ContentNode<T> & {
+    getGetters: () => ParentGetters,
+  }
+};
+
+/**
+ * Allows to disable non-menu links on the page.
+ */
+const asDisabledPageLink: Token = Component => props => {
+  const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
+  const { isEdit } = useEditContext();
+  if (!isEdit && node.path && node.path[0] === 'slatenode') {
+    const { href } = node.data;
+    const { disabledPages = {} }: PageDisabledData = node.getGetters()
+      .getParentPeer(['Site', 'disabled-pages']).data;
+    const href$ = href && href.endsWith('/') ? href : `${href}/`;
+    if (href && disabledPages?.[href$]?.contentLinksDisabled === true) {
+      return <Fragment />;
+    }
+  }
+  return <Component {...props} />;
+};
+
 const asBodilessLink: AsBodilessLink = (
   nodeKeys, defaultData, useOverrides,
 ) => flowRight(
+  asDisabledPageLink,
   asBodilessComponent<Props, LinkData>(options)(
     nodeKeys, defaultData, useLinkOverrides(useOverrides),
   ),

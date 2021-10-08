@@ -1,0 +1,11 @@
+{
+  "items": [
+    {
+      "uuid": "fa2c2200-269d-11ec-b53b-aff4aa70b068",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "EditorBasic"
+    }
+  ]
+}
