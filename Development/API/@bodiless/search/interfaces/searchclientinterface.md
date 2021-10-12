@@ -23,7 +23,7 @@
 
 • **loadIndex**: *function*
 
-*Defined in [packages/bodiless-search/src/types.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/fb7102ec/packages/bodiless-search/src/types.ts#L18)*
+*Defined in [packages/bodiless-search/src/types.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/37ca442c/packages/bodiless-search/src/types.ts#L18)*
 
 #### Type declaration:
 
@@ -41,7 +41,7 @@ ___
 
 • **search**: *function*
 
-*Defined in [packages/bodiless-search/src/types.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/fb7102ec/packages/bodiless-search/src/types.ts#L19)*
+*Defined in [packages/bodiless-search/src/types.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/37ca442c/packages/bodiless-search/src/types.ts#L19)*
 
 #### Type declaration:
 
