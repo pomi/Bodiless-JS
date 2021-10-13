@@ -23,38 +23,5 @@
         "text": " "
       }
     ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": ""
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "some text"
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": ""
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Some bold test",
-        "Bold": true
-      }
-    ]
   }
 ]

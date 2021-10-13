@@ -35,10 +35,12 @@ import {
   Token,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
+import { useGetDisabledPages } from '../PageDisable';
+import type { PageDisabledData } from '../PageDisable';
 import DefaultNormalHref from './NormalHref';
 import withGoToLinkButton from './withGoToLinkButton';
 import useEmptyLinkToggle from './useEmptyLinkToggle';
-import type { PageDisabledData } from '../PageDisable';
+import useGetLinkHref from './useGetLinkHref';
 import {
   LinkData,
   UseLinkOverrides,
@@ -195,12 +197,11 @@ type SlateNodeWithParentGetters<T> = {
 const asDisabledPageLink: Token = Component => props => {
   const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
   const { isEdit } = useEditContext();
-  if (!isEdit && node.path && node.path[0] === 'slatenode') {
-    const { href } = node.data;
+  const href = useGetLinkHref(node);
+  if (!isEdit && href && node.path && node.path[0] === 'slatenode') {
     const { disabledPages = {} }: PageDisabledData = node.getGetters()
       .getParentPeer(['Site', 'disabled-pages']).data;
-    const href$ = href && href.endsWith('/') ? href : `${href}/`;
-    if (href && disabledPages?.[href$]?.contentLinksDisabled === true) {
+    if (disabledPages?.[href]?.contentLinksDisabled === true) {
       return <Fragment />;
     }
   }

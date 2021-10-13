@@ -3,7 +3,7 @@
     "/disabled-page/": {
       "pageDisabled": false,
       "menuLinksDisabled": false,
-      "contentLinksDisabled": false,
+      "contentLinksDisabled": true,
       "indexingDisabled": false
     }
   }
