@@ -36,7 +36,7 @@ import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
 
-import { useGetDisabledPages } from './hooks';
+import { useGetDisabledPages, useIsAnyPageOptionDisabled } from './hooks';
 import type { PageDisabledData, PageDisabledDataItem } from './types';
 
 type FormValues = PageDisabledDataItem;
@@ -197,6 +197,7 @@ const Form = (props: ContextMenuFormProps) => (
 );
 
 const useMenuOptions = (): TMenuOption[] => {
+  const { node } = useNode();
   const context = useEditContext();
   const render = (props: ContextMenuFormProps) => <Form {...props} />;
   const menuOptions$: TMenuOption[] = [
@@ -205,6 +206,7 @@ const useMenuOptions = (): TMenuOption[] => {
       icon: 'visibility_off',
       label: 'Disable',
       group: 'page-group',
+      isActive: useIsAnyPageOptionDisabled(node),
       isHidden: useCallback(() => !context.isEdit, []),
       handler: () => render,
     },

@@ -14,7 +14,7 @@
  */
 
 import { ContentNode } from '@bodiless/core';
-import { PageDisabledDataItems, PageDisabledData } from './types';
+import { PageDisabledDataItems, PageDisabledData, PageDisabledDataItem } from './types';
 
 /**
  * Get list of disabled pages.
@@ -24,4 +24,18 @@ import { PageDisabledDataItems, PageDisabledData } from './types';
 export const useGetDisabledPages = (node: ContentNode<any>): PageDisabledDataItems => {
   const { disabledPages } = node.peer<PageDisabledData>(['Site', 'disabled-pages']).data;
   return disabledPages || {};
+};
+
+/**
+ * Checks if any of page options is disabled (page, menu link, page link etc).
+ * @param node - the content node of the current component of its child/peer.
+ * @returns boolean.
+ */
+export const useIsAnyPageOptionDisabled = (node: ContentNode<any>): boolean => {
+  const disabledPages = useGetDisabledPages(node);
+  if (disabledPages[node.pagePath] === undefined) {
+    return false;
+  }
+  const options: PageDisabledDataItem = disabledPages[node.pagePath];
+  return Object.values(options).some(value => value === true);
 };
