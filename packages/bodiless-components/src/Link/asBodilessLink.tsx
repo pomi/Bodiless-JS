@@ -36,7 +36,6 @@ import {
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
-import type { PageDisabledData } from '../PageDisable';
 import DefaultNormalHref from './NormalHref';
 import withGoToLinkButton from './withGoToLinkButton';
 import useEmptyLinkToggle from './useEmptyLinkToggle';
@@ -182,7 +181,7 @@ const withoutLinkWhenLinkDataEmpty = ifToggledOn(useEmptyLinkToggle)(replaceWith
 
 // @TODO: Move to richtext types?
 type ParentGetters = {
-  getParentNode: ContentNode<object>,
+  getParentNode: () => ContentNode<object>,
   getParentPeer: (path: string|string[]) => ContentNode<object>,
 };
 type SlateNodeWithParentGetters<T> = {
@@ -199,8 +198,8 @@ const asDisabledPageLink: Token = Component => props => {
   const { isEdit } = useEditContext();
   const href = useGetLinkHref(node);
   if (!isEdit && href && node.path && node.path[0] === 'slatenode') {
-    const { disabledPages = {} }: PageDisabledData = node.getGetters()
-      .getParentPeer(['Site', 'disabled-pages']).data;
+    const parentNode = node.getGetters().getParentNode();
+    const disabledPages = useGetDisabledPages(parentNode);
     if (disabledPages?.[href]?.contentLinksDisabled === true) {
       return <Fragment />;
     }
