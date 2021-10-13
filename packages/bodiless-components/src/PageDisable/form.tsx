@@ -84,7 +84,7 @@ const FormBodyBase = () => {
   };
 
   const toggleOffPageCheckbox = () => {
-    setValue('Page', false);
+    setValue('pageDisabled', false);
   };
 
   const FeaturesSelectForm = useCallback(() => {
