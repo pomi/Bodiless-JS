@@ -17,6 +17,7 @@ import React, {
   useCallback, useEffect,
 } from 'react';
 import { useFormApi, useFormState } from 'informed';
+import { observer } from 'mobx-react-lite';
 import {
   withNode,
   useNode,
@@ -30,6 +31,9 @@ import {
 } from '@bodiless/core';
 import {
   asToken,
+  withOnlyProps,
+  HOC,
+  Token,
 } from '@bodiless/fclasses';
 import { ComponentFormDescription } from '@bodiless/ui';
 import type {
@@ -214,13 +218,31 @@ const useMenuOptions = (): TMenuOption[] => {
   return menuOptions$;
 };
 
+const withNodeObserver: Token = Component => observer(props => {
+  const { node } = useNode();
+  const isPageDisabledActive = useIsAnyPageOptionDisabled(node);
+  // Update component's prop on data change to force re-rendering.
+  return <Component {...props} page-disabled={isPageDisabledActive.toString()} />;
+});
+
+// Remove temporary props before rendering.
+// Fix "Invalid prop `...` supplied to `React.Fragment`.
+// React.Fragment can only have `key` and `children` props.
+const withPropsCleanUp = withOnlyProps('key', 'children') as HOC;
+
 const menuOptions: MenuOptionsDefinition<object> = {
   useMenuOptions,
   name: 'PageDisable',
   root: true,
 };
 
-const withPageDisableButton = withMenuOptions(menuOptions);
+const withPageDisableButton = asToken(
+  withPropsCleanUp,
+  withMenuOptions(menuOptions),
+  withNodeObserver,
+);
+
+// const withPageDisableButton = withMenuOptions(menuOptions);
 
 export {
   withPageDisableButton,

@@ -1,10 +1,10 @@
 {
   "disabledPages": {
     "/disabled-page/": {
-      "pageDisabled": false,
-      "menuLinksDisabled": false,
+      "pageDisabled": true,
+      "menuLinksDisabled": true,
       "contentLinksDisabled": true,
-      "indexingDisabled": false
+      "indexingDisabled": true
     }
   }
 }
