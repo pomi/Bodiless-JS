@@ -20,7 +20,23 @@
         ]
       },
       {
-        "text": " some text"
+        "text": " "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "some text"
       }
     ]
   },

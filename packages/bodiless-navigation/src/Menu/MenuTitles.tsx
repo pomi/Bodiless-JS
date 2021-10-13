@@ -15,9 +15,9 @@
 import React, { ComponentType, FC } from 'react';
 import { flow } from 'lodash';
 import {
-  withSidecarNodes, withNode, withNodeKey, useNode, useEditContext,
+  withSidecarNodes, withNode, withNodeKey,
 } from '@bodiless/core';
-import { asEditable, withBodilessLinkToggle, LinkData } from '@bodiless/components';
+import { asEditable, withBodilessLinkToggle } from '@bodiless/components';
 import { asBodilessLink } from '@bodiless/components-ui';
 import { CardClean } from '@bodiless/card';
 import {
