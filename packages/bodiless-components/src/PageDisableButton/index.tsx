@@ -35,7 +35,7 @@ import type {
 } from '@bodiless/core';
 import { ComponentFormDescription } from '@bodiless/ui';
 import { useFormApi, useFormState } from 'informed';
-import { PageDisabledData, PageDisabledDataItem, PageDisabledDataItems } from './types';
+import { PageDisabledData, PageDisabledDataItem } from './types';
 
 type FormValues = PageDisabledDataItem;
 
