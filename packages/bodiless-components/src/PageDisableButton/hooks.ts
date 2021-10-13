@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /**
  * Copyright © 2021 Johnson & Johnson
  *
@@ -12,17 +13,10 @@
  * limitations under the License.
  */
 
-export type PageDisabledDataItem = {
-  pageDisabled: boolean,
-  menuLinksDisabled: boolean,
-  contentLinksDisabled: boolean,
-  indexingDisabled: boolean,
-};
+import { ContentNode } from '@bodiless/core';
+import { PageDisabledDataItems, PageDisabledData } from './types';
 
-export type PageDisabledDataItems = {
-  [path: string]: PageDisabledDataItem,
-} | {};
-
-export type PageDisabledData = {
-  disabledPages?: PageDisabledDataItems,
+export const useGetDisabledPages = (node: ContentNode<any>): PageDisabledDataItems => {
+  const { disabledPages } = node.peer<PageDisabledData>(['Site', 'disabled-pages']).data;
+  return disabledPages || {};
 };

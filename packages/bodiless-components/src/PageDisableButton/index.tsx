@@ -35,7 +35,7 @@ import type {
 } from '@bodiless/core';
 import { ComponentFormDescription } from '@bodiless/ui';
 import { useFormApi, useFormState } from 'informed';
-import { PageDisabledData, PageDisabledDataItem } from './types';
+import { PageDisabledData, PageDisabledDataItem, PageDisabledDataItems } from './types';
 
 type FormValues = PageDisabledDataItem;
 
@@ -217,7 +217,9 @@ const menuOptions: MenuOptionsDefinition<object> = {
 
 const withPageDisableButton = withMenuOptions(menuOptions);
 
-export type { PageDisabledData, PageDisabledDataItem };
+export * from './hooks';
+export * from './types';
+
 export {
   withPageDisableButton,
 };
