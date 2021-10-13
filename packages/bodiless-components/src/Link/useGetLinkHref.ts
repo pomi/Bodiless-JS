@@ -27,6 +27,9 @@ const ensureTrailingSlash = (href: string) => (href.endsWith('/') ? href : `${hr
  * @returns href: sting or undefined.
  */
 const useGetLinkHref = (node: ContentNode<any>) => {
+  if (node.data === undefined) {
+    return undefined;
+  }
   if (typeof node.data.href === 'string') {
     return ensureTrailingSlash(node.data.href);
   }

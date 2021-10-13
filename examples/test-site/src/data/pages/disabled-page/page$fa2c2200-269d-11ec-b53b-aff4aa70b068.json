@@ -7,20 +7,17 @@
       },
       {
         "data": {
-          "openModal": true,
-          "slatenode": {
-            "href": "/disabled-page/"
-          }
+          "openModal": true
         },
         "type": "Link",
         "children": [
           {
-            "text": "Link to disabled page 1"
+            "text": "Link to disabled page 1 "
           }
         ]
       },
       {
-        "text": " "
+        "text": ""
       }
     ]
   }
