@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-module.exports = {
-  extends: ['../../.eslintrc.js'],
-  ignorePatterns: ['.eslintrc.js'],
-};
+// module.exports = {
+//   extends: ['../../.eslintrc.js'],
+//   ignorePatterns: ['.eslintrc.js'],
+// };
