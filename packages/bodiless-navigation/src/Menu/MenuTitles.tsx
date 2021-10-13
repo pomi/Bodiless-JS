@@ -72,7 +72,6 @@ const asMenuLink = (asEditableLink: typeof asBodilessLink) => asToken(
 const withDefaultMenuTitleEditors = withDesign({
   Link: asToken(
     asMenuLink(withBodilessLinkToggle(asBodilessLink, startWith(A), true)),
-    // asDisabledPageLink,
   ),
   Title: asToken(
     startWith(Fragment),

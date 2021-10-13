@@ -38,7 +38,7 @@ import { withFieldApi } from 'informed';
 import DefaultNormalHref from './NormalHref';
 import withGoToLinkButton from './withGoToLinkButton';
 import useEmptyLinkToggle from './useEmptyLinkToggle';
-import type { PageDisabledData } from '../PageDisableButton';
+import type { PageDisabledData } from '../PageDisable';
 import {
   LinkData,
   UseLinkOverrides,

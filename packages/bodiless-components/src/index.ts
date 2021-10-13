@@ -121,7 +121,7 @@ export * from './Image';
 export * from './List';
 export * from './Link';
 export * from './FileUpload';
-export * from './PageDisableButton';
+export * from './PageDisable';
 
 export type {
   MetaFormFieldType,

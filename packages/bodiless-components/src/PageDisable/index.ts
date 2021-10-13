@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /**
  * Copyright © 2021 Johnson & Johnson
  *
@@ -13,10 +12,6 @@
  * limitations under the License.
  */
 
-import { ContentNode } from '@bodiless/core';
-import { PageDisabledDataItems, PageDisabledData } from './types';
-
-export const useGetDisabledPages = (node: ContentNode<any>): PageDisabledDataItems => {
-  const { disabledPages } = node.peer<PageDisabledData>(['Site', 'disabled-pages']).data;
-  return disabledPages || {};
-};
+export * from './types';
+export * from './hooks';
+export * from './form';

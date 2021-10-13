@@ -4,7 +4,7 @@
       "pageDisabled": true,
       "menuLinksDisabled": true,
       "contentLinksDisabled": true,
-      "indexingDisabled": true
+      "indexingDisabled": false
     }
   }
 }

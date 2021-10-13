@@ -21,7 +21,7 @@ export type PageDisabledDataItem = {
 
 export type PageDisabledDataItems = {
   [path: string]: PageDisabledDataItem,
-} | {};
+};
 
 export type PageDisabledData = {
   disabledPages?: PageDisabledDataItems,

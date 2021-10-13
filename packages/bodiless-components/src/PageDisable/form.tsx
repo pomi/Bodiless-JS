@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /**
  * Copyright © 2021 Johnson & Johnson
  *
@@ -15,6 +16,7 @@
 import React, {
   useCallback, useEffect,
 } from 'react';
+import { useFormApi, useFormState } from 'informed';
 import {
   withNode,
   useNode,
@@ -29,13 +31,13 @@ import {
 import {
   asToken,
 } from '@bodiless/fclasses';
-
+import { ComponentFormDescription } from '@bodiless/ui';
 import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
-import { ComponentFormDescription } from '@bodiless/ui';
-import { useFormApi, useFormState } from 'informed';
-import { PageDisabledData, PageDisabledDataItem } from './types';
+
+import { useGetDisabledPages } from './hooks';
+import type { PageDisabledData, PageDisabledDataItem } from './types';
 
 type FormValues = PageDisabledDataItem;
 
@@ -51,11 +53,12 @@ enum Steps { FeaturesSelect, Confirmation }
 
 const FormBodyBase = () => {
   const { node } = useNode<PageDisabledData>();
+  const disabledPages = useGetDisabledPages(node);
   const { pagePath, data } = node;
-  const { disabledPages = {} } = data;
+  const disabledItems = disabledPages[pagePath] || {};
   const pageData = {
     ...defaultFormValues,
-    ...disabledPages[pagePath],
+    ...disabledItems,
   };
   const {
     ComponentFormTitle,
@@ -216,9 +219,6 @@ const menuOptions: MenuOptionsDefinition<object> = {
 };
 
 const withPageDisableButton = withMenuOptions(menuOptions);
-
-export * from './hooks';
-export * from './types';
 
 export {
   withPageDisableButton,
