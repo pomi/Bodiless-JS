@@ -2,7 +2,7 @@
   "disabledPages": {
     "/disabled-page/": {
       "pageDisabled": false,
-      "menuLinksDisabled": false,
+      "menuLinksDisabled": true,
       "contentLinksDisabled": false,
       "indexingDisabled": false
     }

@@ -15,16 +15,15 @@
 import asBodilessMenu from './asBodilessMenu';
 import withMenuDesign from './withMenuDesign';
 import asTopNav, {
-  isMenuContextActive, isMenuContextNotActive, useIsHoverEnabled,
+  isMenuContextActive,
+  isMenuContextNotActive,
+  useIsHoverEnabled,
+  useIsSubmenuExpanded,
 } from './Menu.token';
 import { useIsMenuOpen, useMenuContext } from './withMenuContext';
 import { useSubmenuContext } from './withMenuItemContext';
 import { withListSubMenu, withCardsSubMenu, withColumnSubMenu } from './withSubMenu';
-import {
-  withMenuTitleEditors,
-  withDefaultMenuTitleEditors,
-  asMenuLink,
-} from './MenuTitles';
+import { withMenuTitleEditors, withDefaultMenuTitleEditors, asMenuTitle } from './MenuTitles';
 
 export {
   asBodilessMenu,
@@ -32,16 +31,17 @@ export {
   useSubmenuContext,
   useIsMenuOpen,
   useIsHoverEnabled,
+  useIsSubmenuExpanded,
   withListSubMenu,
   withCardsSubMenu,
   withColumnSubMenu,
   withMenuDesign,
   asTopNav,
+  asMenuTitle,
   isMenuContextActive,
   isMenuContextNotActive,
   withMenuTitleEditors,
   withDefaultMenuTitleEditors,
-  asMenuLink,
 };
 
 export * from './asAccessibleMenu';
