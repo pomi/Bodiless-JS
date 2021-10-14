@@ -22,7 +22,9 @@
 * [amend](backendclient.md#amend)
 * [commit](backendclient.md#commit)
 * [delete](backendclient.md#delete)
+* [deletePage](backendclient.md#deletepage)
 * [deletePath](backendclient.md#deletepath)
+* [directoryChild](backendclient.md#directorychild)
 * [get](backendclient.md#get)
 * [getChanges](backendclient.md#getchanges)
 * [getConflicts](backendclient.md#getconflicts)
@@ -45,7 +47,7 @@
 
 \+ **new BackendClient**(`backendClientConf?`: [BackendClientConf](../globals.md#backendclientconf)): *[BackendClient](backendclient.md)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L28)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L28)*
 
 **Parameters:**
 
@@ -61,7 +63,7 @@ Name | Type |
 
 • **prefix**: *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L28)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L28)*
 
 ___
 
@@ -69,7 +71,7 @@ ___
 
 • **root**: *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L26)*
 
 ## Methods
 
@@ -77,7 +79,7 @@ ___
 
 ▸ **amend**(`paths`: string[], `files`: string[]): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:124](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L124)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:136](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L136)*
 
 **Parameters:**
 
@@ -94,7 +96,7 @@ ___
 
 ▸ **commit**(`message`: string, `directories`: string[], `paths`: string[], `files`: string[], `author?`: undefined | string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:92](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L92)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:104](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L104)*
 
 **Parameters:**
 
@@ -114,13 +116,29 @@ ___
 
 ▸ **delete**(`resourcePath`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L53)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L53)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `resourcePath` | string |
+
+**Returns:** *Promise‹AxiosResponse‹any››*
+
+___
+
+###  deletePage
+
+▸ **deletePage**(`path$`: string): *Promise‹AxiosResponse‹any››*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:94](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L94)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`path$` | string |
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -130,7 +148,7 @@ ___
 
 ▸ **deletePath**(`resourcePath`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L62)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L62)*
 
 **Parameters:**
 
@@ -142,11 +160,27 @@ Name | Type |
 
 ___
 
+###  directoryChild
+
+▸ **directoryChild**(`path$`: string): *Promise‹AxiosResponse‹any››*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:99](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L99)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`path$` | string |
+
+**Returns:** *Promise‹AxiosResponse‹any››*
+
+___
+
 ###  get
 
 ▸ **get**(`resourcePath`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L45)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L45)*
 
 **Parameters:**
 
@@ -162,7 +196,7 @@ ___
 
 ▸ **getChanges**(): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:142](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L142)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:154](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L154)*
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -172,7 +206,7 @@ ___
 
 ▸ **getConflicts**(`target?`: undefined | string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:146](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L146)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:158](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L158)*
 
 **Parameters:**
 
@@ -188,7 +222,7 @@ ___
 
 ▸ **getLatestCommits**(): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:112](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L112)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:124](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L124)*
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -198,7 +232,7 @@ ___
 
 ▸ **getPath**(`resourcePath`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:72](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L72)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:72](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L72)*
 
 **Parameters:**
 
@@ -214,7 +248,7 @@ ___
 
 ▸ **getSetList**(): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:138](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L138)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:150](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L150)*
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -224,7 +258,7 @@ ___
 
 ▸ **log**(`data`: any): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:67](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L67)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:67](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L67)*
 
 **Parameters:**
 
@@ -240,7 +274,7 @@ ___
 
 ▸ **mergeMaster**(): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:151](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L151)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:163](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L163)*
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -250,7 +284,7 @@ ___
 
 ▸ **post**(`resourcePath`: string, `data`: any): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L49)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L49)*
 
 **Parameters:**
 
@@ -267,7 +301,7 @@ ___
 
 ▸ **pull**(): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:116](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L116)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:128](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L128)*
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -277,7 +311,7 @@ ___
 
 ▸ **reset**(): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:120](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L120)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:132](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L132)*
 
 **Returns:** *Promise‹AxiosResponse‹any››*
 
@@ -287,7 +321,7 @@ ___
 
 ▸ **saveFile**(`file`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L77)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L77)*
 
 **Parameters:**
 
@@ -303,7 +337,7 @@ ___
 
 ▸ **savePage**(`path$`: string, `template?`: undefined | string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:84](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L84)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:84](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L84)*
 
 **Parameters:**
 
@@ -320,7 +354,7 @@ ___
 
 ▸ **savePath**(`resourcePath`: string, `data`: any): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L57)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L57)*
 
 **Parameters:**
 
@@ -337,7 +371,7 @@ ___
 
 ▸ **setCurrent**(`name`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:134](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L134)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:146](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L146)*
 
 **Parameters:**
 

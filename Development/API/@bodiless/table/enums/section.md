@@ -16,7 +16,7 @@
 
 • **body**: = "body"
 
-*Defined in [packages/bodiless-table/src/types.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/bodiless-table/src/types.ts#L20)*
+*Defined in [packages/bodiless-table/src/types.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/bodiless-table/src/types.ts#L20)*
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 • **foot**: = "foot"
 
-*Defined in [packages/bodiless-table/src/types.ts:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/bodiless-table/src/types.ts#L21)*
+*Defined in [packages/bodiless-table/src/types.ts:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/bodiless-table/src/types.ts#L21)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 • **head**: = "head"
 
-*Defined in [packages/bodiless-table/src/types.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/60fd5c7f/packages/bodiless-table/src/types.ts#L19)*
+*Defined in [packages/bodiless-table/src/types.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/8f52447c/packages/bodiless-table/src/types.ts#L19)*
