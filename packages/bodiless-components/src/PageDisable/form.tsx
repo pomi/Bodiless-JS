@@ -225,11 +225,6 @@ const withNodeObserver: Token = Component => observer(props => {
   return <Component {...props} page-disabled={isPageDisabledActive.toString()} />;
 });
 
-// Remove temporary props before rendering.
-// Fix "Invalid prop `...` supplied to `React.Fragment`.
-// React.Fragment can only have `key` and `children` props.
-const withPropsCleanUp = withOnlyProps('key', 'children') as HOC;
-
 const menuOptions: MenuOptionsDefinition<object> = {
   useMenuOptions,
   name: 'PageDisable',
@@ -237,12 +232,10 @@ const menuOptions: MenuOptionsDefinition<object> = {
 };
 
 const withPageDisableButton = asToken(
-  withPropsCleanUp,
+  withOnlyProps('key', 'children') as HOC,
   withMenuOptions(menuOptions),
   withNodeObserver,
 );
-
-// const withPageDisableButton = withMenuOptions(menuOptions);
 
 export {
   withPageDisableButton,
