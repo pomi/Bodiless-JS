@@ -33,6 +33,7 @@ import {
   withoutProps,
   asToken,
   Token,
+  Span,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
@@ -196,12 +197,18 @@ type SlateNodeWithParentGetters<T> = {
 const asDisabledPageLink: Token = Component => props => {
   const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
   const { isEdit } = useEditContext();
+  if (isEdit) {
+    return <Component {...props} />;
+  }
+  if (!node.path || node.path[0] !== 'slatenode') {
+    return <Component {...props} />;
+  }
   const href = useGetLinkHref(node);
-  if (!isEdit && href && node.path && node.path[0] === 'slatenode') {
+  if (href) {
     const parentNode = node.getGetters().getParentNode();
     const disabledPages = useGetDisabledPages(parentNode);
     if (disabledPages?.[href]?.contentLinksDisabled === true) {
-      return <Fragment />;
+      return <Span {...props} />;
     }
   }
   return <Component {...props} />;
