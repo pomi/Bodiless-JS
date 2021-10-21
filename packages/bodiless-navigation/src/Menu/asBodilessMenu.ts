@@ -11,19 +11,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import React from 'react';
 import {
-  WithNodeKeyProps, withNode, useNode, useEditContext,
+  WithNodeKeyProps, withNode,
 } from '@bodiless/core';
 import {
-  asBodilessList, asStylableList, asChameleonSubList, useGetDisabledPages,
-  useGetLinkHref,
+  asBodilessList, asStylableList, asChameleonSubList,
 } from '@bodiless/components';
 import {
-  withDesign, asToken, Token, Fragment,
+  withDesign, asToken,
 } from '@bodiless/fclasses';
 
-import type { UseListOverrides, ListData, PageDisabledDataItems } from '@bodiless/components';
+import type { UseListOverrides, ListData } from '@bodiless/components';
 
 import { withMenuEditContext } from './withMenuContext';
 import { asMenuTitle, DEFAULT_NODE_KEYS } from './MenuTitles';
@@ -32,21 +30,6 @@ import { asBreadcrumbSource, asBreadcrumb } from '../Breadcrumbs';
 const withChameleonSublist = withDesign({
   Item: asChameleonSubList(() => ({ formTitle: 'Sub-Menu Type' })),
 });
-
-/**
- * Don't render the menu item and it's sub-items if the target page
- * is disabled by a user.
- */
-const asDisabledPageMenuItem: Token = Component => props => {
-  const { isEdit } = useEditContext();
-  const { node } = useNode();
-  const disabledPages: PageDisabledDataItems = useGetDisabledPages(node);
-  const href = useGetLinkHref(node);
-  if (!isEdit && href && disabledPages[href]?.menuLinksDisabled) {
-    return <Fragment />;
-  }
-  return <Component {...props} />;
-};
 
 /**
  * Bodiless HOC generator which creates the basic structure of the Bodiless Menu.
@@ -76,7 +59,6 @@ const asBodilessMenu = <P extends object>(
     withDesign({ Title: asMenuTitle }),
     withDesign({
       Item: asToken(
-        asDisabledPageMenuItem,
         asBreadcrumb(DEFAULT_NODE_KEYS),
       ),
     }),
