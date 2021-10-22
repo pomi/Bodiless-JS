@@ -90,7 +90,9 @@ const SubListWrapper = designable(sublistWrapperComponents, 'SubList')(SubListWr
 const asDisabledListItem: Token = Component => props => {
   const { node } = useNode();
   const { isEdit } = useEditContext();
-  if (isEdit) {
+  // Let's consider the lists stored at site level as menu lists.
+  // Disabled links at page level will be handled differently.
+  if (isEdit || node.path?.[0] !== 'Site') {
     return <Component {...props} />;
   }
   const disabledPages: PageDisabledDataItems = useGetDisabledPages(node);
