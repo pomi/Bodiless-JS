@@ -23,6 +23,7 @@ import {
   useEditContext,
   useNode,
   ContentNode,
+  NodeProvider,
 } from '@bodiless/core';
 import type { BodilessOptions } from '@bodiless/core';
 import { flowRight, identity } from 'lodash';
@@ -33,6 +34,7 @@ import {
   withoutProps,
   asToken,
   Token,
+  Span,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
@@ -196,12 +198,38 @@ type SlateNodeWithParentGetters<T> = {
 const asDisabledPageLink: Token = Component => props => {
   const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
   const { isEdit } = useEditContext();
+  if (
+    isEdit || !node.path
+    || (node.path[0] !== 'slatenode' && node.path[0] !== 'Page')
+  ) {
+    return <Component {...props} />;
+  }
   const href = useGetLinkHref(node);
-  if (!isEdit && href && node.path && node.path[0] === 'slatenode') {
-    const parentNode = node.getGetters().getParentNode();
-    const disabledPages = useGetDisabledPages(parentNode);
-    if (disabledPages?.[href]?.contentLinksDisabled === true) {
-      return <Fragment />;
+  if (href) {
+    // If the link is stored at page level
+    // let's consider it non-menu link.
+    if (node.path[0] === 'Page') {
+      const disabledPages = useGetDisabledPages(node);
+      if (disabledPages?.[href]?.contentLinksDisabled === true) {
+        const proxyNode = node.proxy({
+          getData: () => ({
+            href: '',
+          }),
+        });
+        return (
+          <NodeProvider node={proxyNode}>
+            <Component {...props} />
+          </NodeProvider>
+        );
+      }
+    }
+    // If the link is inside RichText editor.
+    if (node.path[0] === 'slatenode') {
+      const parentNode = node.getGetters().getParentNode();
+      const disabledPages = useGetDisabledPages(parentNode);
+      if (disabledPages?.[href]?.contentLinksDisabled === true) {
+        return <Span {...props} />;
+      }
     }
   }
   return <Component {...props} />;
