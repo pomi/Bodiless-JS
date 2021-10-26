@@ -212,7 +212,8 @@ const asDisabledPageLink: Token = Component => props => {
       const disabledPages = useGetDisabledPages(node);
       if (disabledPages?.[href]?.contentLinksDisabled === true) {
         const proxyNode = node.proxy({
-          getData: () => ({
+          getData: data => ({
+            ...data,
             href: '',
           }),
         });
