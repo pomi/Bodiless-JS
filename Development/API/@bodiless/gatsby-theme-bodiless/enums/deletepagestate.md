@@ -17,7 +17,7 @@
 
 • **Complete**:
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:43](https://github.com/johnsonandjohnson/Bodiless-JS/blob/bab4629a/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L43)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L46)*
 
 ___
 
@@ -25,7 +25,7 @@ ___
 
 • **Errored**:
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/bab4629a/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L44)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L47)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **Init**:
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/bab4629a/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L41)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L44)*
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 • **Pending**:
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:42](https://github.com/johnsonandjohnson/Bodiless-JS/blob/bab4629a/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L42)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L45)*
