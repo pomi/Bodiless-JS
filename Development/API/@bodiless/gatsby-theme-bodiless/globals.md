@@ -15,7 +15,7 @@
 * [ItemState](enums/itemstate.md)
 * [ItemStateEvent](enums/itemstateevent.md)
 * [MessageCode](enums/messagecode.md)
-* [NewPageState](enums/newpagestate.md)
+* [PageState](enums/pagestate.md)
 * [ResetState](enums/resetstate.md)
 * [SaveState](enums/savestate.md)
 
@@ -54,7 +54,6 @@
 * [GitClient](globals.md#gitclient)
 * [LocateFilesProps](globals.md#locatefilesprops)
 * [MessageProps](globals.md#messageprops)
-* [NewPageProps](globals.md#newpageprops)
 * [Package](globals.md#package)
 * [PageData](globals.md#pagedata)
 * [PageProps](globals.md#pageprops)
@@ -77,6 +76,7 @@
 
 * [BASE_PATH_EMPTY_VALUE](globals.md#const-base_path_empty_value)
 * [BASE_PATH_FIELD_NAME](globals.md#const-base_path_field_name)
+* [ClonePageButton](globals.md#const-clonepagebutton)
 * [DEFAULT_PAGE_TEMPLATE](globals.md#const-default_page_template)
 * [DEFAULT_REQUEST_DELAY](globals.md#const-default_request_delay)
 * [DeletePageButton](globals.md#const-deletepagebutton)
@@ -94,6 +94,7 @@
 * [Page](globals.md#const-page)
 * [ShowDesignKeys](globals.md#const-showdesignkeys)
 * [SwitcherButton](globals.md#const-switcherbutton)
+* [VALIDATEMSG](globals.md#const-validatemsg)
 * [actualState](globals.md#let-actualstate)
 * [asGatsbyImage](globals.md#const-asgatsbyimage)
 * [asGatsbyLink](globals.md#const-asgatsbylink)
@@ -106,10 +107,12 @@
 * [defaultClient](globals.md#const-defaultclient)
 * [dotenv](globals.md#const-dotenv)
 * [nodeChildDelimiter](globals.md#const-nodechilddelimiter)
+* [pagePathReg](globals.md#const-pagepathreg)
 * [readFilePromise](globals.md#const-readfilepromise)
 * [template](globals.md#const-template)
 * [templateWrap](globals.md#const-templatewrap)
 * [withActivatorWrapperDefaultStyles](globals.md#const-withactivatorwrapperdefaultstyles)
+* [withClonePageButton](globals.md#const-withclonepagebutton)
 * [withDeletePageButton](globals.md#const-withdeletepagebutton)
 * [withNewPageButton](globals.md#const-withnewpagebutton)
 * [withoutGatsbyImageProps](globals.md#const-withoutgatsbyimageprops)
@@ -123,8 +126,8 @@
 * [FormMessages](globals.md#const-formmessages)
 * [GatsbyPageProvider](globals.md#const-gatsbypageprovider)
 * [GitButtons](globals.md#const-gitbuttons)
-* [NewPageComp](globals.md#const-newpagecomp)
-* [NewPageURLField](globals.md#const-newpageurlfield)
+* [PageForm](globals.md#const-pageform)
+* [PageURLField](globals.md#const-pageurlfield)
 * [PullChanges](globals.md#const-pullchanges)
 * [RemoteChanges](globals.md#const-remotechanges)
 * [Reset](globals.md#const-reset)
@@ -134,6 +137,7 @@
 * [asDesignableGatsbyImage](globals.md#const-asdesignablegatsbyimage)
 * [asGatsbyLink$](globals.md#const-asgatsbylink)
 * [clear](globals.md#const-clear)
+* [clonePage](globals.md#const-clonepage)
 * [configureEnvFileFor](globals.md#const-configureenvfilefor)
 * [createPage](globals.md#const-createpage)
 * [createPageDataUrl](globals.md#const-createpagedataurl)
@@ -150,6 +154,7 @@
 * [formGitPull](globals.md#const-formgitpull)
 * [formGitReset](globals.md#const-formgitreset)
 * [formPageAdd](globals.md#const-formpageadd)
+* [formPageClone](globals.md#const-formpageclone)
 * [formPageDel](globals.md#const-formpagedel)
 * [getBodilessTailwindConfig](globals.md#const-getbodilesstailwindconfig)
 * [getConfig](globals.md#const-getconfig)
@@ -192,6 +197,7 @@
 * [log](globals.md#const-log)
 * [mapResponse](globals.md#const-mapresponse)
 * [mergeConfigs](globals.md#const-mergeconfigs)
+* [pagePathvalidate](globals.md#const-pagepathvalidate)
 * [redirectPage](globals.md#const-redirectpage)
 * [renderSelectableList](globals.md#const-renderselectablelist)
 * [stripSurroundingSlashes](globals.md#const-stripsurroundingslashes)
@@ -225,7 +231,7 @@
 
 Ƭ **BackendClientConf**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L20)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L20)*
 
 #### Type declaration:
 
@@ -239,7 +245,7 @@ ___
 
 Ƭ **BodilessFixedObject**: *FixedObject*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:54](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L54)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:54](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L54)*
 
 ___
 
@@ -247,7 +253,7 @@ ___
 
 Ƭ **BodilessFluidObject**: *FluidObject & object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L49)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L49)*
 
 ___
 
@@ -255,7 +261,7 @@ ___
 
 Ƭ **BodilessGatsbyImageProps**: *HTMLProps‹HTMLImageElement› & [GatsbyPluginImageData](globals.md#gatsbypluginimagedata) & DesignableComponentsProps‹[BodilessImageComponents](globals.md#bodilessimagecomponents)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:70](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L70)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:70](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L70)*
 
 ___
 
@@ -263,7 +269,7 @@ ___
 
 Ƭ **BodilessImageComponents**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L44)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L44)*
 
 #### Type declaration:
 
@@ -277,7 +283,7 @@ ___
 
 Ƭ **BranchUpdateType**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L22)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L22)*
 
 #### Type declaration:
 
@@ -293,7 +299,7 @@ ___
 
 Ƭ **ChangeNotifier**: *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:176](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L176)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:176](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L176)*
 
 #### Type declaration:
 
@@ -305,11 +311,11 @@ ___
 
 Ƭ **Client**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L49)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L49)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:40](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L40)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/types.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/types.ts#L27)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L39)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L41)*
 
 #### Type declaration:
 
@@ -323,7 +329,7 @@ ___
 
 Ƭ **Commit**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L19)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L19)*
 
 #### Type declaration:
 
@@ -341,7 +347,7 @@ ___
 
 Ƭ **Components**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L31)*
 
 #### Type declaration:
 
@@ -355,7 +361,7 @@ ___
 
 Ƭ **ConflictsResponseType**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/types.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/types.ts#L27)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/types.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/types.ts#L27)*
 
 #### Type declaration:
 
@@ -369,7 +375,7 @@ ___
 
 Ƭ **DataSource**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L26)*
 
 #### Type declaration:
 
@@ -381,7 +387,7 @@ ___
 
 Ƭ **DeletePageProps**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:50](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L50)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:52](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L52)*
 
 #### Type declaration:
 
@@ -395,12 +401,12 @@ ___
 
 Ƭ **FieldProps**: *Omit‹BaseFieldProps, "field"›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:84](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L84)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:99](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L99)*
 
-props that can be passed to NewPageURLField
+props that can be passed to PageURLField
 disallow overriding field prop
 if we decide to allow overriding it in the future
-then also we need to allow overriding the second NewPageURLField input
+then also we need to allow overriding the second PageURLField input
 
 ___
 
@@ -408,7 +414,7 @@ ___
 
 Ƭ **FieldValidate**: *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:85](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L85)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:100](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L100)*
 
 #### Type declaration:
 
@@ -427,7 +433,7 @@ ___
 
 Ƭ **FinalUI**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L36)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L37)*
 
 #### Type declaration:
 
@@ -441,7 +447,7 @@ ___
 
 Ƭ **GatsbyData**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L37)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L37)*
 
 #### Type declaration:
 
@@ -455,7 +461,7 @@ ___
 
 Ƭ **GatsbyImageData**: *ImageData & object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:56](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L56)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:56](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L56)*
 
 ___
 
@@ -463,7 +469,7 @@ ___
 
 Ƭ **GatsbyImageProps**: *HTMLProps‹HTMLImageElement› & [GatsbyImageData](globals.md#gatsbyimagedata) & GatsbyImageOptionalProps & DesignableComponentsProps‹[BodilessImageComponents](globals.md#bodilessimagecomponents)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:66](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L66)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:66](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L66)*
 
 ___
 
@@ -471,7 +477,7 @@ ___
 
 Ƭ **GatsbyNode**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L30)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L30)*
 
 #### Type declaration:
 
@@ -487,7 +493,7 @@ ___
 
 Ƭ **GatsbyPage**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L17)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L17)*
 
 #### Type declaration:
 
@@ -503,7 +509,7 @@ ___
 
 Ƭ **GatsbyPluginImageData**: *Omit‹GatsbyPluginImageProps, "image" | "alt"› & object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:61](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L61)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:61](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L61)*
 
 ___
 
@@ -511,7 +517,7 @@ ___
 
 Ƭ **GetImageContentFrom**: *GetContentFrom‹[GatsbyImageData](globals.md#gatsbyimagedata)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts#L19)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts#L19)*
 
 ___
 
@@ -519,7 +525,7 @@ ___
 
 Ƭ **GitClient**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/types.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/types.ts#L32)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/types.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/types.ts#L32)*
 
 #### Type declaration:
 
@@ -553,7 +559,7 @@ ___
 
 Ƭ **LocateFilesProps**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts#L25)*
 
 The LocateFilesProps describes a structure of the `locateFiles` props.
 
@@ -569,7 +575,7 @@ ___
 
 Ƭ **MessageProps**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L46)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L46)*
 
 #### Type declaration:
 
@@ -579,19 +585,11 @@ ___
 
 ___
 
-###  NewPageProps
-
-Ƭ **NewPageProps**: *[PageStatus](globals.md#pagestatus)*
-
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:59](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L59)*
-
-___
-
 ###  Package
 
 Ƭ **Package**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L26)*
 
 #### Type declaration:
 
@@ -605,7 +603,7 @@ ___
 
 Ƭ **PageData**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L18)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L18)*
 
 #### Type declaration:
 
@@ -619,7 +617,7 @@ ___
 
 Ƭ **PageProps**: *NodeProviderProps & [PageProviderProps](globals.md#pageproviderprops) & object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:42](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L42)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:43](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L43)*
 
 ___
 
@@ -627,7 +625,7 @@ ___
 
 Ƭ **PageProviderProps**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L29)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L29)*
 
 #### Type declaration:
 
@@ -639,15 +637,25 @@ ___
 
 Ƭ **PageStatus**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L53)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/types.ts:16](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/types.ts#L16)*
 
 #### Type declaration:
 
+* **FormFields**? : *undefined | function*
+
+* **completeMessage**? : *undefined | string*
+
 * **errorMessage**? : *undefined | string*
 
-* **newPagePath**? : *undefined | string*
+* **formTitle**? : *undefined | string*
 
-* **status**: *[NewPageState](enums/newpagestate.md)*
+* **linkId**? : *undefined | string*
+
+* **pagePath**? : *undefined | string*
+
+* **status**: *[PageState](enums/pagestate.md)*
+
+* **titlePending**? : *undefined | string*
 
 ___
 
@@ -655,15 +663,15 @@ ___
 
 Ƭ **Props**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx#L25)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:92](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L92)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:92](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L92)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Reset.tsx:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Reset.tsx#L20)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Reset.tsx:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Reset.tsx#L20)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L22)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L22)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx#L21)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx#L21)*
 
 #### Type declaration:
 
@@ -675,7 +683,7 @@ ___
 
 Ƭ **PropsWithFormApi**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:38](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L38)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:38](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L38)*
 
 #### Type declaration:
 
@@ -687,7 +695,7 @@ ___
 
 Ƭ **PropsWithGitClient**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L34)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L34)*
 
 #### Type declaration:
 
@@ -699,7 +707,7 @@ ___
 
 Ƭ **PropsWithNotify**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:42](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L42)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:42](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L42)*
 
 #### Type declaration:
 
@@ -711,7 +719,7 @@ ___
 
 Ƭ **PullStatus**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:328](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L328)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:328](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L328)*
 
 #### Type declaration:
 
@@ -725,7 +733,7 @@ ___
 
 Ƭ **ResetStatus**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Reset.tsx:15](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Reset.tsx#L15)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Reset.tsx:15](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Reset.tsx#L15)*
 
 #### Type declaration:
 
@@ -739,9 +747,9 @@ ___
 
 Ƭ **ResponseData**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L26)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L28)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L28)*
 
 #### Type declaration:
 
@@ -757,7 +765,7 @@ ___
 
 Ƭ **SaveStatus**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L17)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L17)*
 
 #### Type declaration:
 
@@ -771,7 +779,7 @@ ___
 
 Ƭ **State**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx#L21)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyNodeProvider.tsx#L21)*
 
 #### Type declaration:
 
@@ -783,7 +791,7 @@ ___
 
 Ƭ **TailwindConfig**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L19)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L19)*
 
 #### Type declaration:
 
@@ -801,7 +809,7 @@ ___
 
 Ƭ **Tree**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts#L18)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/type.ts#L18)*
 
 The Tree describes a structure of env config files.
 
@@ -815,7 +823,7 @@ ___
 
 Ƭ **UI**: *Partial‹[FinalUI](globals.md#finalui)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:40](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L40)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L41)*
 
 ## Variables
 
@@ -823,7 +831,7 @@ ___
 
 • **BASE_PATH_EMPTY_VALUE**: *"/"* = "/"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L28)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L28)*
 
 ___
 
@@ -831,7 +839,15 @@ ___
 
 • **BASE_PATH_FIELD_NAME**: *"basePath"* = "basePath"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L26)*
+
+___
+
+### `Const` ClonePageButton
+
+• **ClonePageButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = withClonePageButton(Fragment)
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:59](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L59)*
 
 ___
 
@@ -839,7 +855,7 @@ ___
 
 • **DEFAULT_PAGE_TEMPLATE**: *"_default"* = "_default"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L44)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/types.ts:7](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/types.ts#L7)*
 
 ___
 
@@ -847,7 +863,7 @@ ___
 
 • **DEFAULT_REQUEST_DELAY**: *2000* = 2000
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts#L30)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts#L30)*
 
 ___
 
@@ -855,7 +871,7 @@ ___
 
 • **DeletePageButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = withDeletePageButton(Fragment)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:56](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L56)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L57)*
 
 ___
 
@@ -863,7 +879,7 @@ ___
 
 • **DisablePageButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = withPageDisableButton(Fragment)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L57)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:58](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L58)*
 
 ___
 
@@ -871,7 +887,7 @@ ___
 
 • **GatsbyLink**: *any* = asGatsbyLink(A)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L77)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L77)*
 
 ___
 
@@ -879,7 +895,7 @@ ___
 
 • **GatsbyPageContext**: *Context‹object›* = React.createContext<GatsbyPage>(defaultGatsbyPage)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L33)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L33)*
 
 ___
 
@@ -887,7 +903,7 @@ ___
 
 • **INPUT_FIELD_BLOCK_CLASSES**: *string* = INPUT_FIELD_DEFAULT_CLASSES.concat(' bl-block bl-w-full')
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L31)*
 
 ___
 
@@ -895,7 +911,7 @@ ___
 
 • **INPUT_FIELD_DEFAULT_CLASSES**: *"bl-text-gray-900 bl-bg-gray-100 bl-text-xs bl-min-w-xl-grid-1 bl-my-grid-2 bl-p-grid-1"* = "bl-text-gray-900 bl-bg-gray-100 bl-text-xs bl-min-w-xl-grid-1 bl-my-grid-2 bl-p-grid-1"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L29)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L29)*
 
 ___
 
@@ -903,7 +919,7 @@ ___
 
 • **INPUT_FIELD_INLINE_CLASSES**: *string* = INPUT_FIELD_DEFAULT_CLASSES.concat(' bl-inline')
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L30)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L30)*
 
 ___
 
@@ -911,7 +927,7 @@ ___
 
 • **LOG_FILE**: *"gatsby_error.log"* = "gatsby_error.log"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L25)*
 
 ___
 
@@ -919,7 +935,7 @@ ___
 
 • **MAXIMUM_REQUEST_DELAY**: *number* = 5 * 60 * 1000
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStoreItem.ts#L31)*
 
 ___
 
@@ -927,7 +943,7 @@ ___
 
 • **NewPageButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = withNewPageButton(Fragment)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L55)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:56](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L56)*
 
 ___
 
@@ -935,7 +951,7 @@ ___
 
 • **NotificationButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = withNotificationButton(Fragment)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L53)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:54](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L54)*
 
 ___
 
@@ -943,7 +959,7 @@ ___
 
 • **PAGE_URL_FIELD_NAME**: *"pagePath"* = "pagePath"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L27)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L27)*
 
 ___
 
@@ -963,6 +979,7 @@ ___
                 <OnNodeErrorNotification />
                 <NewPageButton />
                 <DisablePageButton />
+                <ClonePageButton />
                 <GitButtons />
                 <Wrapper clickable>
                   {children}
@@ -984,7 +1001,7 @@ ___
   );
 })
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:68](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L68)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:70](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L70)*
 
 ___
 
@@ -994,7 +1011,7 @@ ___
   process.env.NODE_ENV === 'development' || process.env.BODILESS_SHOWDESIGNKEYS === '1'
 ) ? withShowDesignKeys()(Fragment) : Fragment
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:64](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L64)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:66](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L66)*
 
 ___
 
@@ -1002,7 +1019,15 @@ ___
 
 • **SwitcherButton**: *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object* = withSwitcherButton(Fragment)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:54](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L54)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L55)*
+
+___
+
+### `Const` VALIDATEMSG
+
+• **VALIDATEMSG**: *"No special characters, capital letters or spaces allowed, no beginning or ending with - or _"* = "No special characters, capital letters or spaces allowed, no beginning or ending with - or _"
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L62)*
 
 ___
 
@@ -1010,7 +1035,7 @@ ___
 
 • **actualState**: *number* = -1
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L55)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L57)*
 
 ___
 
@@ -1028,7 +1053,7 @@ ___
   }),
 )
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:230](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L230)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:230](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L230)*
 
 #### Type declaration:
 
@@ -1053,7 +1078,7 @@ ___
   ),
 )
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L63)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L63)*
 
 #### Type declaration:
 
@@ -1074,7 +1099,7 @@ ___
   Link: addProps({ 'data-link-type': 'plain-link' }),
 })
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:72](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L72)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:72](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L72)*
 
 ___
 
@@ -1082,7 +1107,7 @@ ___
 
 • **backendFilePath**: *string* = process.env.BODILESS_BACKEND_DATA_FILE_PATH || ''
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L29)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L29)*
 
 ___
 
@@ -1090,7 +1115,7 @@ ___
 
 • **backendPort**: *string | 8001* = process.env.GATSBY_BODILESS_BACKEND_PORT || 8001
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L18)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/BackendClient.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/BackendClient.ts#L18)*
 
 ___
 
@@ -1098,7 +1123,7 @@ ___
 
 • **backendStaticPath**: *string* = process.env.BODILESS_BACKEND_STATIC_PATH || ''
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L30)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:30](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L30)*
 
 ___
 
@@ -1106,7 +1131,7 @@ ___
 
 • **canAlertOnLoad**: *string | 1* = process.env.BODILESS_ALERT_ON_PAGE_LOAD_ENABLED || 1
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L46)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L46)*
 
 ___
 
@@ -1114,7 +1139,7 @@ ___
 
 • **canCommit**: *boolean* = (process.env.BODILESS_BACKEND_COMMIT_ENABLED || '0') === '1'
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L45)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L45)*
 
 DefinePlugin env var.
 
@@ -1130,11 +1155,13 @@ ___
 
 • **defaultClient**: *[BackendClient](classes/backendclient.md)‹›* = new BackendClient()
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:128](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L128)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:128](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L128)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:210](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L210)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:126](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L126)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:239](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L239)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx:110](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx#L110)*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:241](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L241)*
 
 ___
 
@@ -1142,7 +1169,7 @@ ___
 
 • **dotenv**: *any* = require('dotenv')
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L21)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L21)*
 
 ___
 
@@ -1150,7 +1177,15 @@ ___
 
 • **nodeChildDelimiter**: *"$"* = "$"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L47)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyMobxStore.ts#L47)*
+
+___
+
+### `Const` pagePathReg
+
+• **pagePathReg**: *RegExp‹›* = /^[a-z0-9](?:[_-]?[a-z0-9]+)*$/
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L63)*
 
 ___
 
@@ -1158,7 +1193,7 @@ ___
 
 • **readFilePromise**: *__promisify__* = promisify(readFile)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L23)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L23)*
 
 ___
 
@@ -1174,7 +1209,7 @@ ___
     tailwindConfig: require('#pkg/site.tailwind.config'),
   }`
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts#L36)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts#L36)*
 
 ___
 
@@ -1204,7 +1239,7 @@ const bodilessCanvasxConfigs = [#pkgs];
 module.exports = mergeConfigs(siteConfig, bodilessCanvasxConfigs);
 `
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts#L24)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts#L24)*
 
 ___
 
@@ -1212,7 +1247,35 @@ ___
 
 • **withActivatorWrapperDefaultStyles**: *function & object* = addClasses('bl-w-full')
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:228](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L228)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:228](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L228)*
+
+___
+
+### `Const` withClonePageButton
+
+• **withClonePageButton**: *function* = withMenuOptions({
+  useMenuOptions,
+  name: 'ClonePage',
+  root: true,
+})
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx:128](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx#L128)*
+
+#### Type declaration:
+
+▸ ‹**P**, **Q**›(`C`: ComponentOrTag‹P›): *ComponentWithMeta‹Q›*
+
+**Type parameters:**
+
+▪ **P**: *B*
+
+▪ **Q**: *Omit‹P & A, keyof R›*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`C` | ComponentOrTag‹P› |
 
 ___
 
@@ -1224,7 +1287,7 @@ ___
   root: true,
 })
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:262](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L262)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:264](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L264)*
 
 #### Type declaration:
 
@@ -1252,7 +1315,7 @@ ___
   root: true,
 })
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:234](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L234)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:150](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L150)*
 
 #### Type declaration:
 
@@ -1279,7 +1342,7 @@ ___
   'gatsbyImg',
 ])
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:251](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L251)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:251](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L251)*
 
 hoc to remove props configured for GatsbyImage in image data
 and to remove props added during image gatsby nodes creation
@@ -1309,7 +1372,7 @@ ___
 
 • **writeFilePromise**: *__promisify__* = promisify(writeFile)
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L23)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L23)*
 
 ## Functions
 
@@ -1317,7 +1380,7 @@ ___
 
 ▸ **CommitsList**(`__namedParameters`: object): *any*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:103](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L103)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:103](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L103)*
 
 **Parameters:**
 
@@ -1336,7 +1399,7 @@ ___
 
 ▸ **DeletePageForm**(`props`: [DeletePageProps](globals.md#deletepageprops)): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:76](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L76)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:78](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L78)*
 
 **Parameters:**
 
@@ -1352,7 +1415,7 @@ ___
 
 ▸ **FetchChanges**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:215](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L215)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:215](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L215)*
 
 Component for fetching & showing remote changes.
 
@@ -1376,7 +1439,7 @@ ___
 
 ▸ **FormMessages**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:107](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L107)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:107](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L107)*
 
 **Parameters:**
 
@@ -1395,7 +1458,7 @@ ___
 
 ▸ **GatsbyPageProvider**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L35)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L35)*
 
 **Parameters:**
 
@@ -1414,33 +1477,33 @@ ___
 
 ▸ **GitButtons**(): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:59](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L59)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:61](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L61)*
 
 **Returns:** *Element‹›*
 
 ___
 
-### `Const` NewPageComp
+### `Const` PageForm
 
-▸ **NewPageComp**(`props`: [NewPageProps](globals.md#newpageprops)): *Element‹›*
+▸ **PageForm**(`props`: [PageStatus](globals.md#pagestatus)): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:82](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L82)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageForm.tsx:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageForm.tsx#L19)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`props` | [NewPageProps](globals.md#newpageprops) |
+`props` | [PageStatus](globals.md#pagestatus) |
 
 **Returns:** *Element‹›*
 
 ___
 
-### `Const` NewPageURLField
+### `Const` PageURLField
 
-▸ **NewPageURLField**(`props`: [FieldProps](globals.md#fieldprops)): *null | Element‹›*
+▸ **PageURLField**(`props`: [FieldProps](globals.md#fieldprops)): *null | Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:112](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L112)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:127](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L127)*
 
 informed custom field that provides ability to enter new page path
 the field contains 2 inputs: base path and page path
@@ -1461,7 +1524,7 @@ ___
 
 ▸ **PullChanges**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:341](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L341)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:341](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L341)*
 
 Component for pulling remote changes.
 
@@ -1485,7 +1548,7 @@ ___
 
 ▸ **RemoteChanges**(`__namedParameters`: object): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:73](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L73)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:73](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L73)*
 
 Component for showing and pulling remote changes.
 
@@ -1508,7 +1571,7 @@ ___
 
 ▸ **Reset**(`props`: [Props](globals.md#props)): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Reset.tsx:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Reset.tsx#L34)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Reset.tsx:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Reset.tsx#L34)*
 
 Form component for reverting local changes.
 
@@ -1528,7 +1591,7 @@ ___
 
 ▸ **SaveChanges**(`props`: [Props](globals.md#props)): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:65](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L65)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:65](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L65)*
 
 Form component for saving local changes.
 
@@ -1548,7 +1611,7 @@ ___
 
 ▸ **WrappedSpinner**(): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:97](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L97)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:97](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L97)*
 
 **Returns:** *Element‹›*
 
@@ -1558,7 +1621,7 @@ ___
 
 ▸ **addPageLeaver**(`getPendingRequests`: function): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/addPageLeaver.ts:15](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/addPageLeaver.ts#L15)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/addPageLeaver.ts:15](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/addPageLeaver.ts#L15)*
 
 Copyright © 2020 Johnson & Johnson
 
@@ -1586,7 +1649,7 @@ ___
 
 ▸ **asDesignableGatsbyImage**(`ImageComponent`: CT‹any›): *ComponentClass‹object & object, any› & object | FunctionComponent‹object & object› & object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:189](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L189)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:189](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L189)*
 
 **Parameters:**
 
@@ -1602,7 +1665,7 @@ ___
 
 ▸ **asGatsbyLink$**(`Component`: "symbol" | "object" | "data" | "title" | "form" | "pattern" | "slot" | "style" | "mask" | "article" | "button" | "dialog" | "figure" | "img" | "link" | "main" | "menu" | "menuitem" | "option" | "switch" | "table" | "text" | "time" | "a" | "abbr" | "address" | "area" | "aside" | "audio" | "b" | "base" | "bdi" | "bdo" | "big" | "blockquote" | "body" | "br" | "canvas" | "caption" | "cite" | "code" | "col" | "colgroup" | "datalist" | "dd" | "del" | "details" | "dfn" | "div" | "dl" | "dt" | "em" | "embed" | "fieldset" | "figcaption" | "footer" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "head" | "header" | "hgroup" | "hr" | "html" | "i" | "iframe" | "input" | "ins" | "kbd" | "keygen" | "label" | "legend" | "li" | "map" | "mark" | "meta" | "meter" | "nav" | "noindex" | "noscript" | "ol" | "optgroup" | "output" | "p" | "param" | "picture" | "pre" | "progress" | "q" | "rp" | "rt" | "ruby" | "s" | "samp" | "script" | "section" | "select" | "small" | "source" | "span" | "strong" | "sub" | "summary" | "sup" | "template" | "tbody" | "td" | "textarea" | "tfoot" | "th" | "thead" | "tr" | "track" | "u" | "ul" | "var" | "video" | "wbr" | "webview" | "svg" | "animate" | "animateMotion" | "animateTransform" | "circle" | "clipPath" | "defs" | "desc" | "ellipse" | "feBlend" | "feColorMatrix" | "feComponentTransfer" | "feComposite" | "feConvolveMatrix" | "feDiffuseLighting" | "feDisplacementMap" | "feDistantLight" | "feDropShadow" | "feFlood" | "feFuncA" | "feFuncB" | "feFuncG" | "feFuncR" | "feGaussianBlur" | "feImage" | "feMerge" | "feMergeNode" | "feMorphology" | "feOffset" | "fePointLight" | "feSpecularLighting" | "feSpotLight" | "feTile" | "feTurbulence" | "filter" | "foreignObject" | "g" | "image" | "line" | "linearGradient" | "marker" | "metadata" | "mpath" | "path" | "polygon" | "polyline" | "radialGradient" | "rect" | "stop" | "textPath" | "tspan" | "use" | "view" | ComponentClass‹P, any› & object | FunctionComponent‹P› & object): *ComponentClass‹Q, any› & object | FunctionComponent‹Q› & object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L46)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L46)*
 
 **Parameters:**
 
@@ -1618,9 +1681,29 @@ ___
 
 ▸ **clear**(): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L63)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:63](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L63)*
 
 **Returns:** *void*
+
+___
+
+### `Const` clonePage
+
+▸ **clonePage**(`__namedParameters`: object): *Promise‹any›*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx#L36)*
+
+**Parameters:**
+
+▪ **__namedParameters**: *object*
+
+Name | Type |
+------ | ------ |
+`client` | any |
+`destination` | any |
+`origin` | any |
+
+**Returns:** *Promise‹any›*
 
 ___
 
@@ -1628,7 +1711,7 @@ ___
 
 ▸ **configureEnvFileFor**(`appEnv`: string): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts#L22)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts#L22)*
 
 **Parameters:**
 
@@ -1644,7 +1727,7 @@ ___
 
 ▸ **createPage**(`__namedParameters`: object): *Promise‹any›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:61](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L61)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L41)*
 
 **Parameters:**
 
@@ -1664,7 +1747,7 @@ ___
 
 ▸ **createPageDataUrl**(`path`: string): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L29)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:29](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L29)*
 
 **Parameters:**
 
@@ -1680,7 +1763,7 @@ ___
 
 ▸ **createPlugins**(...`paths`: string[]): *object[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts#L20)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts#L20)*
 
 **Parameters:**
 
@@ -1696,7 +1779,7 @@ ___
 
 ▸ **deletePage**(`__namedParameters`: object): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:65](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L65)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:67](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L67)*
 
 **Parameters:**
 
@@ -1715,7 +1798,7 @@ ___
 
 ▸ **doFetch**(`url`: string): *Promise‹AxiosResponse‹any››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L34)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L34)*
 
 **Parameters:**
 
@@ -1731,7 +1814,7 @@ ___
 
 ▸ **envToJson**(`filePath`: string): *Promise‹[Tree](globals.md#tree)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L25)*
 
 **Parameters:**
 
@@ -1747,7 +1830,7 @@ ___
 
 ▸ **fieldValueToUrl**(`value`: FormValue): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:101](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L101)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:116](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L116)*
 
 **Parameters:**
 
@@ -1763,7 +1846,7 @@ ___
 
 ▸ **findGitFolder**(): *Promise‹string›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L41)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L41)*
 
 **Returns:** *Promise‹string›*
 
@@ -1773,7 +1856,7 @@ ___
 
 ▸ **findTailwindConfigPaths**(): *Promise‹string[]›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:50](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L50)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:50](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L50)*
 
 Finds all tailwindcss configuration files.
 
@@ -1785,7 +1868,7 @@ ___
 
 ▸ **flush**(`message`: string): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L36)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:36](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L36)*
 
 flush logs to a file and clear global object
 
@@ -1803,7 +1886,7 @@ ___
 
 ▸ **formGetCommitsList**(`client`: [GitClient](globals.md#gitclient)): *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L48)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L48)*
 
 **Parameters:**
 
@@ -1827,7 +1910,7 @@ ___
 
 ▸ **formGitCommit**(`client`: [GitClient](globals.md#gitclient)): *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:64](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L64)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:64](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L64)*
 
 **Parameters:**
 
@@ -1851,7 +1934,7 @@ ___
 
 ▸ **formGitPull**(`client`: [GitClient](globals.md#gitclient), `notifyOfChanges`: [ChangeNotifier](globals.md#changenotifier)): *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:79](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L79)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:79](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L79)*
 
 **Parameters:**
 
@@ -1876,7 +1959,7 @@ ___
 
 ▸ **formGitReset**(`client`: [GitClient](globals.md#gitclient)): *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:103](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L103)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:103](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L103)*
 
 **Parameters:**
 
@@ -1900,7 +1983,31 @@ ___
 
 ▸ **formPageAdd**(`client`: [Client](globals.md#client)): *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:162](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L162)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L62)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`client` | [Client](globals.md#client) |
+
+**Returns:** *function*
+
+▸ (`props`: Omit‹ContextMenuFormProps, "children"›): *Element*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`props` | Omit‹ContextMenuFormProps, "children"› |
+
+___
+
+### `Const` formPageClone
+
+▸ **formPageClone**(`client`: [Client](globals.md#client)): *function*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx:58](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx#L58)*
 
 **Parameters:**
 
@@ -1924,7 +2031,7 @@ ___
 
 ▸ **formPageDel**(`client`: [Client](globals.md#client)): *function*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:176](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L176)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:178](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L178)*
 
 **Parameters:**
 
@@ -1948,7 +2055,7 @@ ___
 
 ▸ **getBodilessTailwindConfig**(`siteName`: string, `siteDeps`: string[]): *Promise‹string[]›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:60](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L60)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:60](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L60)*
 
 Combination of all available tailwind configs.
 
@@ -1967,7 +2074,7 @@ ___
 
 ▸ **getConfig**(): *string[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/DefaultContent/getSampleConfig.ts:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/DefaultContent/getSampleConfig.ts#L17)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/DefaultContent/getSampleConfig.ts:17](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/DefaultContent/getSampleConfig.ts#L17)*
 
 **Returns:** *string[]*
 
@@ -1977,7 +2084,7 @@ ___
 
 ▸ **getCurrentGitBranch**(): *Promise‹string›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L53)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:53](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L53)*
 
 **Returns:** *Promise‹string›*
 
@@ -1987,7 +2094,7 @@ ___
 
 ▸ **getDefaults**(`appEnv`: string): *Promise‹[Tree](globals.md#tree)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L41)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L41)*
 
 **Parameters:**
 
@@ -2003,7 +2110,7 @@ ___
 
 ▸ **getDependenciesFromPackageJson**(`packageJsonPath`: string): *string[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L39)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L39)*
 
 **Parameters:**
 
@@ -2019,7 +2126,7 @@ ___
 
 ▸ **getGatsbyPluginImageProps**(`props`: [GatsbyImageProps](globals.md#gatsbyimageprops)): *[BodilessGatsbyImageProps](globals.md#bodilessgatsbyimageprops)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:86](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L86)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:86](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L86)*
 
 props GatsbyImageProps is defined for legacy GatsbyImage package
 https://www.gatsbyjs.com/plugins/gatsby-image/
@@ -2045,7 +2152,7 @@ ___
 
 ▸ **getGitRepository**(`repositoryPath`: string): *Promise‹Repository›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:43](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L43)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:43](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L43)*
 
 **Parameters:**
 
@@ -2061,7 +2168,7 @@ ___
 
 ▸ **getImageContentFrom**(`path`: Path): *[GetImageContentFrom](globals.md#getimagecontentfrom)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts#L28)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/getImageContentFrom.ts#L28)*
 
 helper to provide image data from a different content node
 when node data is empty in store, then it returns default data
@@ -2081,7 +2188,7 @@ ___
 
 ▸ **getMenuOptions**(`client`: [GitClient](globals.md#gitclient), `context`: any, `notifyOfChanges`: [ChangeNotifier](globals.md#changenotifier)): *TMenuOption[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:130](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L130)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:130](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L130)*
 
 **Parameters:**
 
@@ -2099,7 +2206,7 @@ ___
 
 ▸ **getPackageNameFromPackageJson**(`packageJsonPath`: string): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:43](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L43)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:43](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L43)*
 
 **Parameters:**
 
@@ -2115,7 +2222,7 @@ ___
 
 ▸ **getPackageRoot**(`packagePath`: string | number): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/getPackageRoot.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/tailwindcss/getPackageRoot.ts#L19)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/getPackageRoot.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/tailwindcss/getPackageRoot.ts#L19)*
 
 **Parameters:**
 
@@ -2131,7 +2238,7 @@ ___
 
 ▸ **getPackagesEnvConfig**(`defaultConfig`: [Tree](globals.md#tree), `appEnv`: string): *Promise‹[Tree](globals.md#tree)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getPackagesEnvConfig.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getPackagesEnvConfig.ts#L22)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getPackagesEnvConfig.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getPackagesEnvConfig.ts#L22)*
 
 **Parameters:**
 
@@ -2148,7 +2255,7 @@ ___
 
 ▸ **getPagePathValidator**(`validate?`: [FieldValidate](globals.md#fieldvalidate)): *(Anonymous function)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:93](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L93)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:108](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L108)*
 
 **Parameters:**
 
@@ -2164,7 +2271,7 @@ ___
 
 ▸ **getPageUrlValidator**(`validate?`: [FieldValidate](globals.md#fieldvalidate)): *(Anonymous function)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:87](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L87)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:102](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L102)*
 
 **Parameters:**
 
@@ -2180,11 +2287,11 @@ ___
 
 ▸ **getPathValue**(`values`: FormValues): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:207](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L207)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:222](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L222)*
 
 function that can be used to get new page path value
 this function should usually be invoked after an informed form
-containing NewPageURLField field is submitted
+containing PageURLField field is submitted
 
 **Parameters:**
 
@@ -2202,7 +2309,7 @@ ___
 
 ▸ **getRemoteStatus**(`responseData`: [ResponseData](globals.md#responsedata)): *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:99](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L99)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:99](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L99)*
 
 **Parameters:**
 
@@ -2236,7 +2343,7 @@ ___
 
 ▸ **getSiteEnvConfig**(`appEnv`: string): *Promise‹[Tree](globals.md#tree)›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L27)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getSiteEnvConfig.ts#L27)*
 
 **Parameters:**
 
@@ -2252,7 +2359,7 @@ ___
 
 ▸ **getTailwindConfigs**(`packages`: [Package](globals.md#package)[]): *object[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L31)*
 
 **Parameters:**
 
@@ -2268,7 +2375,7 @@ ___
 
 ▸ **getUI**(`ui`: [UI](globals.md#ui)): *[FinalUI](globals.md#finalui)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:51](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L51)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:52](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L52)*
 
 **Parameters:**
 
@@ -2284,7 +2391,7 @@ ___
 
 ▸ **getVauleFromPackageJson**(`packageJsonPath`: string, `key`: string): *any*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/getTailwindConfigs.ts#L25)*
 
 reads package.json and returns content of key of the package
 returns undefined if package.json does not exist or if there is a file parsing error
@@ -2304,7 +2411,7 @@ ___
 
 ▸ **handle**(`promise`: AxiosPromise‹any›, `callback?`: undefined | function): *Promise‹string›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L35)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/SaveChanges.tsx#L35)*
 
 **Parameters:**
 
@@ -2317,7 +2424,7 @@ Name | Type |
 
 ▸ **handle**(`promise`: AxiosPromise‹any›): *Promise‹object | object›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts#L24)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts#L24)*
 
 **Parameters:**
 
@@ -2333,7 +2440,7 @@ ___
 
 ▸ **handleDetachedState**(`repo`: Repository): *Repository*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L45)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:45](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L45)*
 
 **Parameters:**
 
@@ -2349,7 +2456,7 @@ ___
 
 ▸ **handleResponse**(`responseData`: [ResponseData](globals.md#responsedata)): *string | Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:70](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L70)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:70](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L70)*
 
 **Parameters:**
 
@@ -2365,7 +2472,7 @@ ___
 
 ▸ **hasLogs**(): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:74](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L74)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:74](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L74)*
 
 **Returns:** *boolean*
 
@@ -2375,7 +2482,7 @@ ___
 
 ▸ **hasPageChild**(`__namedParameters`: object): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L57)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:59](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L59)*
 
 **Parameters:**
 
@@ -2394,7 +2501,7 @@ ___
 
 ▸ **hash**(`name`: string): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts#L18)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts:18](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/DefaultContent/createPlugins.ts#L18)*
 
 **Parameters:**
 
@@ -2410,13 +2517,13 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/index.ts#L31)*
 
 **Returns:** *Promise‹void›*
 
 ▸ **init**(): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts#L46)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-tailwind-configs/index.ts#L46)*
 
 **Returns:** *Promise‹void›*
 
@@ -2426,7 +2533,7 @@ ___
 
 ▸ **isChangeset**(`branchName`: string): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L39)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L39)*
 
 **Parameters:**
 
@@ -2442,7 +2549,7 @@ ___
 
 ▸ **isContentOnly**(`files`: string[]): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:105](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L105)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:105](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L105)*
 
 **Parameters:**
 
@@ -2458,7 +2565,7 @@ ___
 
 ▸ **isEmptyValue**(`value`: FormValue): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L55)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:55](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L55)*
 
 **Parameters:**
 
@@ -2474,7 +2581,7 @@ ___
 
 ▸ **isFile**(`path`: string): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L44)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L44)*
 
 **Parameters:**
 
@@ -2490,7 +2597,7 @@ ___
 
 ▸ **isGatsbyImage**(`__namedParameters`: object): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:242](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L242)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx:242](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/asGatsbyImage.tsx#L242)*
 
 **Parameters:**
 
@@ -2508,7 +2615,7 @@ ___
 
 ▸ **isLocalLink**(`path`: string): *false | true | ""*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L39)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx:39](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyLink/asGatsbyLink.tsx#L39)*
 
 leveraging logic form gatsby
 
@@ -2526,7 +2633,7 @@ ___
 
 ▸ **isResponseSuccessful**(`res`: AxiosResponse‹any›): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts#L20)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/ResponseHandler.ts#L20)*
 
 **Parameters:**
 
@@ -2542,7 +2649,7 @@ ___
 
 ▸ **joinPath**(`path1`: string, `path2`: string): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:99](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L99)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:114](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L114)*
 
 **Parameters:**
 
@@ -2559,7 +2666,7 @@ ___
 
 ▸ **jsonToEnv**(`envConfig`: [Tree](globals.md#tree), `appEnv`: string): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L33)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L33)*
 
 **Parameters:**
 
@@ -2576,7 +2683,7 @@ ___
 
 ▸ **loadPageDataJson**(`loadObj`: [PageData](globals.md#pagedata)): *Promise‹boolean›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:40](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L40)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:40](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L40)*
 
 **Parameters:**
 
@@ -2592,7 +2699,7 @@ ___
 
 ▸ **locateFiles**‹**T**›(`props`: [LocateFilesProps](globals.md#locatefilesprops)‹T›): *Promise‹string[]›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/locateFiles.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/locateFiles.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/locateFiles.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/locateFiles.ts#L25)*
 
 locateFiles is a Promise, that walks a path finding files matching the filePattern,
 then resolves with an array of file paths.
@@ -2615,7 +2722,7 @@ ___
 
 ▸ **log**(`message`: string): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L27)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L27)*
 
 **Parameters:**
 
@@ -2631,7 +2738,7 @@ ___
 
 ▸ **mapResponse**(`response`: [BranchUpdateType](globals.md#branchupdatetype)): *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:94](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L94)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx:94](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/RemoteChanges.tsx#L94)*
 
 **Parameters:**
 
@@ -2651,7 +2758,7 @@ ___
 
 ▸ **mergeConfigs**(`siteConfig`: [TailwindConfig](globals.md#tailwindconfig), `packages`: [Package](globals.md#package)[]): *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L44)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts:44](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/tailwindcss/mergeConfigs.ts#L44)*
 
 **Parameters:**
 
@@ -2680,11 +2787,27 @@ Name | Type |
 
 ___
 
+### `Const` pagePathvalidate
+
+▸ **pagePathvalidate**(`url`: string): *boolean*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:64](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L64)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`url` | string |
+
+**Returns:** *boolean*
+
+___
+
 ### `Const` redirectPage
 
 ▸ **redirectPage**(`values`: object): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:154](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L154)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:156](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L156)*
 
 **Parameters:**
 
@@ -2703,7 +2826,7 @@ ___
 
 ▸ **renderSelectableList**(`commits`: Array‹[Commit](globals.md#commit)›): *Element‹›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/CommitsList.tsx#L31)*
 
 **Parameters:**
 
@@ -2719,7 +2842,7 @@ ___
 
 ▸ **stripSurroundingSlashes**(`path`: string): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L23)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L23)*
 
 **Parameters:**
 
@@ -2735,7 +2858,7 @@ ___
 
 ▸ **useBasePathField**(): *any*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L35)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:35](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L35)*
 
 **Returns:** *any*
 
@@ -2745,7 +2868,7 @@ ___
 
 ▸ **useGatsbyPageContext**(): *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L41)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:41](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L41)*
 
 **Returns:** *object*
 
@@ -2761,7 +2884,7 @@ ___
 
 ▸ **useGitButtons**(`__namedParameters`: object): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:178](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L178)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx:178](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/useGitButtons.tsx#L178)*
 
 **Parameters:**
 
@@ -2779,13 +2902,19 @@ ___
 
 ▸ **useMenuOptions**(): *(object | object)[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:212](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L212)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx:128](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withNewPageButton.tsx#L128)*
 
 **Returns:** *(object | object)[]*
 
+▸ **useMenuOptions**(): *object[]*
+
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx:112](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withClonePageButton.tsx#L112)*
+
+**Returns:** *object[]*
+
 ▸ **useMenuOptions**(): *(object | object)[]*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:241](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L241)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx:243](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/withDeletePageButton.tsx#L243)*
 
 **Returns:** *(object | object)[]*
 
@@ -2795,7 +2924,7 @@ ___
 
 ▸ **usePagePath**(): *string*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L33)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L33)*
 
 **Returns:** *string*
 
@@ -2805,7 +2934,7 @@ ___
 
 ▸ **validNodeEnv**(`val`: string): *boolean*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L37)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:37](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L37)*
 
 **Parameters:**
 
@@ -2821,7 +2950,7 @@ ___
 
 ▸ **validate**(): *void*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:51](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L51)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts:51](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/fsLogHandler.ts#L51)*
 
 **Returns:** *void*
 
@@ -2831,7 +2960,7 @@ ___
 
 ▸ **validateEmptyField**(`value`: FormValue): *undefined | "Field can not be empty"*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L57)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:57](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L57)*
 
 **Parameters:**
 
@@ -2845,9 +2974,9 @@ ___
 
 ### `Const` validatePagePath
 
-▸ **validatePagePath**(`value`: FormValue): *undefined | "No special characters or spaces allowed"*
+▸ **validatePagePath**(`value`: FormValue): *undefined | "No special characters, capital letters or spaces allowed, no beginning or ending with - or _"*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:70](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L70)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:85](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L85)*
 
 **Parameters:**
 
@@ -2855,15 +2984,15 @@ Name | Type |
 ------ | ------ |
 `value` | FormValue |
 
-**Returns:** *undefined | "No special characters or spaces allowed"*
+**Returns:** *undefined | "No special characters, capital letters or spaces allowed, no beginning or ending with - or _"*
 
 ___
 
 ### `Const` validatePageUrl
 
-▸ **validatePageUrl**(`value`: FormValue): *undefined | "No special characters or spaces allowed"*
+▸ **validatePageUrl**(`value`: FormValue): *undefined | "No special characters, capital letters or spaces allowed, no beginning or ending with - or _"*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx:62](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/NewPageURLField.tsx#L62)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx:77](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageOperations/PageURLField.tsx#L77)*
 
 **Parameters:**
 
@@ -2871,7 +3000,7 @@ Name | Type |
 ------ | ------ |
 `value` | FormValue |
 
-**Returns:** *undefined | "No special characters or spaces allowed"*
+**Returns:** *undefined | "No special characters, capital letters or spaces allowed, no beginning or ending with - or _"*
 
 ___
 
@@ -2879,7 +3008,7 @@ ___
 
 ▸ **verifyPage**(`pagePath`: string): *Promise‹boolean›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:69](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L69)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/PageVerification.ts:69](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/PageVerification.ts#L69)*
 
 **Parameters:**
 
@@ -2895,7 +3024,7 @@ ___
 
 ▸ **withGatsbyImageLibrary**(`preset`: [GatsbyImagePresets](enums/gatsbyimagepresets.md)): *(Anonymous function)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLibrary.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLibrary.ts#L22)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLibrary.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLibrary.ts#L22)*
 
 **Parameters:**
 
@@ -2911,7 +3040,7 @@ ___
 
 ▸ **withGatsbyImageLogger**(`preset?`: [GatsbyImagePresets](enums/gatsbyimagepresets.md)): *Token*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageLogger.tsx#L25)*
 
 **Parameters:**
 
@@ -2927,7 +3056,7 @@ ___
 
 ▸ **withGatsbyImageNode**(`preset`: [GatsbyImagePresets](enums/gatsbyimagepresets.md)): *Token*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageNode.tsx:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageNode.tsx#L24)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageNode.tsx:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImageNode.tsx#L24)*
 
 **Parameters:**
 
@@ -2943,7 +3072,7 @@ ___
 
 ▸ **withGatsbyImagePreset**(`preset`: [GatsbyImagePresets](enums/gatsbyimagepresets.md)): *(Anonymous function)*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImagePreset.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImagePreset.ts#L24)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImagePreset.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyImage/withGatsbyImagePreset.ts#L24)*
 
 **Parameters:**
 
@@ -2959,7 +3088,7 @@ ___
 
 ▸ **writeToFile**(`filePath`: string, `content`: string): *Promise‹void›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/utils.ts#L25)*
 
 **Parameters:**
 
@@ -2976,21 +3105,21 @@ Name | Type |
 
 ### ▪ **defaultEnvConfig**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L31)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:31](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L31)*
 
 ▪ **changeset**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L33)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:33](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L33)*
 
 * **BODILESS_BACKEND_COMMIT_ENABLED**: *string* = "1"
 
 ▪ **default**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L34)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:34](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L34)*
 
 ▪ **production**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L32)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:32](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L32)*
 
 * **BODILESS_BACKEND_SAVE_ENABLED**: *string* = "0"
 
@@ -3000,61 +3129,61 @@ ___
 
 ### ▪ **defaultEnvValues**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L19)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:19](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L19)*
 
 ###  APP_GIT_PATH
 
 • **APP_GIT_PATH**: *string* = "."
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L27)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:27](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L27)*
 
 ###  BODILESS_ALERT_ON_PAGE_LOAD_ENABLED
 
 • **BODILESS_ALERT_ON_PAGE_LOAD_ENABLED**: *string* = "0"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L25)*
 
 ###  BODILESS_BACKEND_COMMIT_ENABLED
 
 • **BODILESS_BACKEND_COMMIT_ENABLED**: *string* = "0"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L23)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L23)*
 
 ###  BODILESS_BACKEND_DATA_FILE_PATH
 
 • **BODILESS_BACKEND_DATA_FILE_PATH**: *string* = "src/data"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L21)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:21](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L21)*
 
 ###  BODILESS_BACKEND_PORT
 
 • **BODILESS_BACKEND_PORT**: *string* = "8006"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L26)*
 
 ###  BODILESS_BACKEND_SAVE_ENABLED
 
 • **BODILESS_BACKEND_SAVE_ENABLED**: *string* = "1"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L24)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L24)*
 
 ###  BODILESS_BACKEND_STATIC_PATH
 
 • **BODILESS_BACKEND_STATIC_PATH**: *string* = "static"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L22)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:22](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L22)*
 
 ###  BODILESS_DOCS_URL
 
 • **BODILESS_DOCS_URL**: *string* = "/___docs"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L28)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:28](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L28)*
 
 ###  BODILESS_TAILWIND_THEME_ENABLED
 
 • **BODILESS_TAILWIND_THEME_ENABLED**: *string* = "1"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L20)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts:20](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/generate-env-vars/getDefaults.ts#L20)*
 
 ___
 
@@ -3062,25 +3191,25 @@ ___
 
 ### ▪ **defaultGatsbyPage**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L23)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:23](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L23)*
 
 ###  slug
 
 • **slug**: *string* = "/"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L24)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:24](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L24)*
 
 ###  subPageTemplate
 
 • **subPageTemplate**: *string* = "_default"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L25)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:25](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L25)*
 
 ###  template
 
 • **template**: *string* = "_default"
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L26)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx:26](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/GatsbyPageProvider.tsx#L26)*
 
 ___
 
@@ -3088,16 +3217,16 @@ ___
 
 ### ▪ **defaultUI**: *object*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:46](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L46)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L47)*
 
 ###  ContextWrapper
 
 • **ContextWrapper**: *FunctionComponent‹object & HTMLProps‹HTMLDivElement››*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:47](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L47)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L48)*
 
 ###  PageEditor
 
 • **PageEditor**: *FunctionComponent‹object›*
 
-*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:48](https://github.com/johnsonandjohnson/Bodiless-JS/blob/768414c0/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L48)*
+*Defined in [packages/gatsby-theme-bodiless/src/dist/Page.tsx:49](https://github.com/johnsonandjohnson/Bodiless-JS/blob/6aa65c14/packages/gatsby-theme-bodiless/src/dist/Page.tsx#L49)*
