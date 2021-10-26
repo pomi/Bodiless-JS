@@ -23,7 +23,6 @@ import {
   useEditContext,
   useNode,
   ContentNode,
-  NodeProvider,
 } from '@bodiless/core';
 import type { BodilessOptions } from '@bodiless/core';
 import { flowRight, identity } from 'lodash';
@@ -34,7 +33,6 @@ import {
   withoutProps,
   asToken,
   Token,
-  Span,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
@@ -206,31 +204,13 @@ const asDisabledPageLink: Token = Component => props => {
   }
   const href = useGetLinkHref(node);
   if (href) {
-    // If the link is stored at page level
-    // let's consider it non-menu link.
-    if (node.path[0] === 'Page') {
-      const disabledPages = useGetDisabledPages(node);
-      if (disabledPages?.[href]?.contentLinksDisabled === true) {
-        const proxyNode = node.proxy({
-          getData: data => ({
-            ...data,
-            href: '',
-          }),
-        });
-        return (
-          <NodeProvider node={proxyNode}>
-            <Component {...props} />
-          </NodeProvider>
-        );
-      }
-    }
-    // If the link is inside RichText editor.
-    if (node.path[0] === 'slatenode') {
-      const parentNode = node.getGetters().getParentNode();
-      const disabledPages = useGetDisabledPages(parentNode);
-      if (disabledPages?.[href]?.contentLinksDisabled === true) {
-        return <Span {...props} />;
-      }
+    const node$ = node.path[0] === 'slatenode' ? node.getGetters().getParentNode() : node;
+    const disabledPages = useGetDisabledPages(node$);
+    const { href: href$, ...rest }: any = props;
+    if (disabledPages?.[href]?.contentLinksDisabled === true) {
+      return (
+        <Component {...rest} />
+      );
     }
   }
   return <Component {...props} />;
@@ -239,7 +219,6 @@ const asDisabledPageLink: Token = Component => props => {
 const asBodilessLink: AsBodilessLink = (
   nodeKeys, defaultData, useOverrides,
 ) => flowRight(
-  asDisabledPageLink,
   asBodilessComponent<Props, LinkData>(options)(
     nodeKeys, defaultData, useLinkOverrides(useOverrides),
   ),
@@ -254,6 +233,7 @@ const asBodilessLink: AsBodilessLink = (
   withoutProps(['unwrap']),
   withNormalHref(useLinkOverrides(useOverrides) as () => ExtraLinkOptions),
   withLinkTarget(useLinkOverrides(useOverrides) as () => ExtraLinkOptions),
+  asDisabledPageLink,
 );
 
 export default asBodilessLink;
