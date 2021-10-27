@@ -5,6 +5,7 @@
     - [Page Menu](/ContentEditorUserGuide/PageMenu/)
       - [New](/ContentEditorUserGuide/PageMenu/New/)
       - [Disable](/ContentEditorUserGuide/PageMenu/Disable/)
+      - [Delete](/ContentEditorUserGuide/PageMenu/Delete/)
       - [SEO](/ContentEditorUserGuide/PageMenu/SEO/)
     - [File Menu](/ContentEditorUserGuide/FileMenu/)
   - [Design](/Design/)
