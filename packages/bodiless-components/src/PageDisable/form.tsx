@@ -40,7 +40,7 @@ import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
 
-import { useGetDisabledPages, useIsAnyPageOptionDisabled } from './hooks';
+import { useGetDisabledPages, useIsAnyPageOptionDisabled, getCleanedUpData } from './hooks';
 import type { PageDisabledData, PageDisabledDataItem } from './types';
 
 type FormValues = PageDisabledDataItem;
@@ -139,8 +139,9 @@ const FormBodyBase = () => {
 
   const ConfirmationForm = () => {
     useEffect(() => {
-      // Save form values in node.
-      node.setData({
+      // Prepare data - add current form values and
+      // remove items where all optons are enabled.
+      const updatedData = getCleanedUpData({
         ...data,
         disabledPages: {
           ...disabledPages,
@@ -150,6 +151,8 @@ const FormBodyBase = () => {
           },
         },
       });
+      // Save form values in node.
+      node.setData(updatedData);
     }, []);
 
     const mapKeysToLabels = (key: string) => {

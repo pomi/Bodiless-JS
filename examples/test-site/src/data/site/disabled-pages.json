@@ -1,0 +1,10 @@
+{
+  "disabledPages": {
+    "/accordion/": {
+      "pageDisabled": true,
+      "menuLinksDisabled": true,
+      "contentLinksDisabled": true,
+      "indexingDisabled": true
+    }
+  }
+}

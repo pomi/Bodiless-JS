@@ -23,7 +23,8 @@ import { PageDisabledDataItems, PageDisabledData, PageDisabledDataItem } from '.
  */
 export const useGetDisabledPages = (node: ContentNode<any>): PageDisabledDataItems => {
   const { disabledPages } = node.peer<PageDisabledData>(['Site', 'disabled-pages']).data;
-  return disabledPages || {};
+  const disabledPages$ = node.data.disabled || disabledPages;
+  return disabledPages$ || {};
 };
 
 /**
@@ -38,4 +39,27 @@ export const useIsAnyPageOptionDisabled = (node: ContentNode<any>): boolean => {
   }
   const options: PageDisabledDataItem = disabledPages[node.pagePath];
   return Object.values(options).some(value => value === true);
+};
+
+/**
+ * Removes items that don't contain any disabled options.
+ * Returns updated data object.
+ */
+export const getCleanedUpData = (data: PageDisabledData): PageDisabledData => {
+  if (data.disabledPages !== undefined && Object.keys(data.disabledPages).length > 0) {
+    const activeItems = Object.entries(data.disabledPages)
+      .reduce((prev, [key, value]) => {
+        if (Object.values(value).some(option => option === true)) {
+          return {
+            ...prev,
+            [key]: value,
+          };
+        }
+        return prev;
+      }, {});
+    return {
+      disabledPages: activeItems,
+    };
+  }
+  return data;
 };
