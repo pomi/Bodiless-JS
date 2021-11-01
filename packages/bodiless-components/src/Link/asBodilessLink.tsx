@@ -196,10 +196,7 @@ type SlateNodeWithParentGetters<T> = {
 const asDisabledPageLink: Token = Component => props => {
   const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
   const { isEdit } = useEditContext();
-  if (
-    isEdit || !node.path
-    || (node.path[0] !== 'slatenode' && node.path[0] !== 'Page')
-  ) {
+  if (!node.path || (node.path[0] !== 'slatenode' && node.path[0] !== 'Page')) {
     return <Component {...props} />;
   }
   const href = useGetLinkHref(node);
@@ -208,6 +205,21 @@ const asDisabledPageLink: Token = Component => props => {
     const disabledPages = useGetDisabledPages(node$);
     const { href: href$, ...rest }: any = props;
     if (disabledPages?.[href]?.contentLinksDisabled === true) {
+      if (isEdit) {
+        return (
+          // outline: #ff00d1 dashed;
+          // background-color: #ff00d166;
+          // .link-disabled className
+          // @TODO add .link-disabled class with fclasses instead direct styles.
+          <Component
+            {...rest}
+            style={{
+              outline: '#ff00d1 dashed',
+              'background-color': '#ff00d166',
+            }}
+          />
+        );
+      }
       return (
         <Component {...rest} />
       );
