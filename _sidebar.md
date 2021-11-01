@@ -81,7 +81,7 @@
     - [Platform.sh](/Development/Platform.sh)
     - [API](/Development/API/)
   - [Api](/api/)
-    - [Globals](/api/globals)
+    - [Modules](/api/modules)
     - Classes
-      - [Breadcrumbitem](/api/classes/breadcrumbitem)
-      - [Breadcrumbstore](/api/classes/breadcrumbstore)
+      - [Breadcrumb Item](/api/classes/BreadcrumbItem)
+      - [Breadcrumb Store](/api/classes/BreadcrumbStore)
