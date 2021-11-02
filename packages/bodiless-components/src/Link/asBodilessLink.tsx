@@ -32,7 +32,8 @@ import {
   replaceWith,
   withoutProps,
   asToken,
-  Token,
+  flowIf,
+  addClassesIf,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
@@ -191,42 +192,33 @@ type SlateNodeWithParentGetters<T> = {
 };
 
 /**
- * Allows to disable non-menu links on the page.
+ * Hook that returns true if the current link is Disabled, false otherwise.
  */
-const asDisabledPageLink: Token = Component => props => {
+const useIsLinkDisabled = () => {
   const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
-  const { isEdit } = useEditContext();
   if (!node.path || (node.path[0] !== 'slatenode' && node.path[0] !== 'Page')) {
-    return <Component {...props} />;
+    return false;
   }
+
   const href = useGetLinkHref(node);
   if (href) {
     const node$ = node.path[0] === 'slatenode' ? node.getGetters().getParentNode() : node;
     const disabledPages = useGetDisabledPages(node$);
-    const { href: href$, ...rest }: any = props;
     if (disabledPages?.[href]?.contentLinksDisabled === true) {
-      if (isEdit) {
-        return (
-          // outline: #ff00d1 dashed;
-          // background-color: #ff00d166;
-          // .link-disabled className
-          // @TODO add .link-disabled class with fclasses instead direct styles.
-          <Component
-            {...rest}
-            style={{
-              outline: '#ff00d1 dashed',
-              'background-color': '#ff00d166',
-            }}
-          />
-        );
-      }
-      return (
-        <Component {...rest} />
-      );
+      return true;
     }
   }
-  return <Component {...props} />;
+
+  return false;
 };
+
+/**
+ * Token that disables non-menu links on the page.
+ */
+const asDisabledPageLink = flowIf(useIsLinkDisabled)(
+  withoutProps('href'),
+  addClassesIf(() => useEditContext().isEdit)('bl-link-disabled'),
+);
 
 const asBodilessLink: AsBodilessLink = (
   nodeKeys, defaultData, useOverrides,
@@ -249,4 +241,4 @@ const asBodilessLink: AsBodilessLink = (
 );
 
 export default asBodilessLink;
-export { withoutLinkWhenLinkDataEmpty };
+export { withoutLinkWhenLinkDataEmpty, useIsLinkDisabled };
