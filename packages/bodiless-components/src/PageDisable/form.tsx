@@ -35,7 +35,6 @@ import {
   HOC,
   Token,
 } from '@bodiless/fclasses';
-import { ComponentFormDescription } from '@bodiless/ui';
 import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
@@ -66,6 +65,7 @@ const FormBodyBase = () => {
   };
   const {
     ComponentFormTitle,
+    ComponentFormDescription,
     ComponentFormFieldWrapper,
     ComponentFormLabel,
     ComponentFormCheckBox,
