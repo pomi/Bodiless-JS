@@ -34,6 +34,7 @@ import {
   asToken,
   flowIf,
   addClassesIf,
+  addPropsIf,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
@@ -217,6 +218,9 @@ const useIsLinkDisabled = () => {
  */
 const asDisabledPageLink = flowIf(useIsLinkDisabled)(
   withoutProps('href'),
+  addProps({
+    title: 'Link Disabled'
+  }),
   addClassesIf(() => useEditContext().isEdit)('bl-link-disabled'),
 );
 
