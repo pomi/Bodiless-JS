@@ -217,10 +217,6 @@ const useIsLinkDisabled = () => {
  * Token that disables non-menu links on the page.
  */
 const asDisabledPageLink = flowIf(useIsLinkDisabled)(
-  // C => (p: any) => {
-  //   console.log('isEdit', useEditContext().isEdit);
-  //   return <C {...p} />;
-  // },
   withoutProps('href'),
   addProps({
     title: 'Link Disabled'
