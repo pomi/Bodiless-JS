@@ -1,0 +1,106 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "type": "Link",
+        "data": {
+          "slatenode": {
+            "href": "/test-disable/"
+          }
+        },
+        "children": [
+          {
+            "text": "link to disabled page"
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "type": "Link",
+        "data": {
+          "slatenode": {
+            "href": "/test-disable/"
+          }
+        },
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": ""
+      },
+      {
+        "type": "Link",
+        "data": {
+          "slatenode": {
+            "href": "/disabled-links/"
+          }
+        },
+        "children": [
+          {
+            "text": "link to disabled links"
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "type": "Link",
+        "data": {
+          "slatenode": {
+            "href": "/disabled-links/"
+          }
+        },
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": "\n"
+      },
+      {
+        "type": "Link",
+        "data": {
+          "slatenode": {
+            "href": "/disabled-menu/"
+          }
+        },
+        "children": [
+          {
+            "text": "link to disabled menu"
+          }
+        ]
+      },
+      {
+        "text": "\n\n"
+      }
+    ]
+  }
+]

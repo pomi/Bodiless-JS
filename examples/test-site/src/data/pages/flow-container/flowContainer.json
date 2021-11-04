@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "uuid": "832de4e0-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "EditorBasic"
+    },
+    {
+      "uuid": "95bf28d0-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "EditorFullFeatured"
+    },
+    {
+      "uuid": "a335d090-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "Table"
+    },
+    {
+      "uuid": "ade3bb60-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/2"
+      },
+      "type": "SquareLinkableImage"
+    },
+    {
+      "uuid": "b04c7e00-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/2"
+      },
+      "type": "LandscapeLinkableImage"
+    },
+    {
+      "uuid": "bf265f40-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/2"
+      },
+      "type": "CardHorizontalWithTitleBodyWithCTA"
+    },
+    {
+      "uuid": "d2272de0-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/2"
+      },
+      "type": "CardVerticalNoBodyWithCTA"
+    },
+    {
+      "uuid": "ea747e20-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "SingleAccordionBasic"
+    },
+    {
+      "uuid": "f6b42c80-3d4a-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "ChameleonList"
+    },
+    {
+      "uuid": "1bf7f800-3d4b-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "Carousel"
+    },
+    {
+      "uuid": "1d6877f0-3d4b-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "Carousel"
+    },
+    {
+      "uuid": "69c9b0f0-3d4b-11ec-9582-795a1633697f",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/3"
+      },
+      "type": "CardVerticalWithTitleBodyWithCTA"
+    }
+  ]
+}

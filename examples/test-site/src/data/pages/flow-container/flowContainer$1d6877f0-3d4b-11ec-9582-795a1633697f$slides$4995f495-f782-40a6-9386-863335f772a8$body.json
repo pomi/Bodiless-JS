@@ -1,0 +1,27 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "/disabled-menu/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "disabled menu"
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  }
+]

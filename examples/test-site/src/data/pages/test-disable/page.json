@@ -1,0 +1,11 @@
+{
+  "items": [
+    {
+      "uuid": "31ea2190-3d48-11ec-8340-2f5c30c42425",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/4"
+      },
+      "type": "SquareImage"
+    }
+  ]
+}

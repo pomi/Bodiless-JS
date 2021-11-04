@@ -1,0 +1,22 @@
+{
+  "disabledPages": {
+    "/test-disable/": {
+      "pageDisabled": true,
+      "menuLinksDisabled": true,
+      "contentLinksDisabled": true,
+      "indexingDisabled": true
+    },
+    "/disabled-links/": {
+      "pageDisabled": false,
+      "menuLinksDisabled": false,
+      "contentLinksDisabled": true,
+      "indexingDisabled": false
+    },
+    "/disabled-menu/": {
+      "pageDisabled": false,
+      "menuLinksDisabled": true,
+      "contentLinksDisabled": false,
+      "indexingDisabled": false
+    }
+  }
+}

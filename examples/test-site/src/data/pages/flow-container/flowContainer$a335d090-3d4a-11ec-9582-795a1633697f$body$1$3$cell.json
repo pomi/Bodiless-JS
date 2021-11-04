@@ -1,0 +1,26 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "\n"
+      },
+      {
+        "type": "Link",
+        "data": {
+          "slatenode": {
+            "href": "/disabled-menu/"
+          }
+        },
+        "children": [
+          {
+            "text": "link to disabled menu"
+          }
+        ]
+      },
+      {
+        "text": "\n\n"
+      }
+    ]
+  }
+]
