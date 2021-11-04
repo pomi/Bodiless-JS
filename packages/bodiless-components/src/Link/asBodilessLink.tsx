@@ -34,7 +34,6 @@ import {
   asToken,
   flowIf,
   addClassesIf,
-  addPropsIf,
 } from '@bodiless/fclasses';
 import { withFieldApi } from 'informed';
 import { useGetDisabledPages } from '../PageDisable';
