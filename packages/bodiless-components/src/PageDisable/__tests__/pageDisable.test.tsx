@@ -13,7 +13,7 @@
  */
 
 import React from 'react';
-import { shallow, render, mount } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { PageEditContext } from '@bodiless/core';
 import { asToken, A, HOC } from '@bodiless/fclasses';
 import { asBodilessLink } from '../../Link';
