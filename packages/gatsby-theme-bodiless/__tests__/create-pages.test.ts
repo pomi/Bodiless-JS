@@ -12,30 +12,30 @@
  * limitations under the License.
  */
 
-import { validatePageUrl, validatePagePath } from '../src/dist/PageOperations/PageURLField';
+import { validatePageUrl } from '../src/dist/PageOperations/PageURLField';
 
 describe('validatePath', () => {
   it('Should return undefined when the path is valid.', () => {
     const path = 'shampoo_1';
-    expect(validatePagePath(path)).toBeUndefined();
+    expect(validatePageUrl(path)).toBeUndefined();
   });
   it('Should return a string warning when the path contains special chars', () => {
-    const path = '/shampoo';
-    expect(typeof validatePagePath(path)).toBe('string');
+    const path = 'sha##mpoo';
+    expect(typeof validatePageUrl(path)).toBe('string');
   });
   it('Should return a string warning when the path contains uppercase letters', () => {
     const path = 'Shampoo';
-    expect(typeof validatePagePath(path)).toBe('string');
+    expect(typeof validatePageUrl(path)).toBe('string');
   });
   it('Should return a string warning when the path contains spaces', () => {
     const path = 'shampo o1';
-    expect(typeof validatePagePath(path)).toBe('string');
+    expect(typeof validatePageUrl(path)).toBe('string');
   });
   it('Should return a string warning when the path starts/ends with _ or -', () => {
     const path1 = 'shampoo_';
     const path2 = '-shampoo';
-    expect(typeof validatePagePath(path1)).toBe('string');
-    expect(typeof validatePagePath(path2)).toBe('string');
+    expect(typeof validatePageUrl(path1)).toBe('string');
+    expect(typeof validatePageUrl(path2)).toBe('string');
   });
 });
 
