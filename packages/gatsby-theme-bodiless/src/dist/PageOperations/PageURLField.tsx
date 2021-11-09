@@ -76,11 +76,11 @@ const pagePathvalidate = (url: string) => {
 
 export const validatePageUrl = (
   value: FormValue,
-) => {
-  return typeof value === 'string' && (pagePathvalidate(value) || !RegExp(/^[a-z0-9_/-]+$/).test(value))
+) => (
+  typeof value === 'string' && (pagePathvalidate(value) || !RegExp(/^[a-z0-9_/-]+$/).test(value))
     ? VALIDATEMSG
-    : undefined;
-};
+    : undefined
+);
 
 /**
  * props that can be passed to PageURLField
