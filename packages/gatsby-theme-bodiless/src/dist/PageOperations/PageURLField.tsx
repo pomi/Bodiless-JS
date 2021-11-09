@@ -77,7 +77,6 @@ const pagePathvalidate = (url: string) => {
 export const validatePageUrl = (
   value: FormValue,
 ) => {
-  console.log('url_value', value);
   return typeof value === 'string' && (pagePathvalidate(value) || !RegExp(/^[a-z0-9_/-]+$/).test(value))
     ? VALIDATEMSG
     : undefined;
@@ -123,12 +122,8 @@ const PageURLField = (props: FieldProps) => {
     ...restBasePathProps
   } = useBasePathField();
 
-  console.log('basePathValue', basePathValue);
-
   const isBasePathEmpty = isEmptyValue(basePathValue) || basePathValue === BASE_PATH_EMPTY_VALUE;
   const isFullUrl = isBasePathEmpty;
-
-  console.log('isFullUrl', isFullUrl);
 
   const { validate, hidden, ...rest } = props;
   const {
