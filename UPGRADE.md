@@ -2,7 +2,7 @@
 This is a non-exhaustive list of packages that need to be upgraded on Bodiless as soon as possible.
 
 ## informed
-- Locked at: ~3.13.1
+- Locked at: ^3.34.0
 - Reason: upgrading to `informed` 3.14+ breaks some custom validation functions used 
 throughout Bodiless.
 - Issue: https://github.com/johnsonandjohnson/Bodiless-JS/issues/1171
