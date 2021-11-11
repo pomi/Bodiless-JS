@@ -196,17 +196,19 @@ type SlateNodeWithParentGetters<T> = {
  */
 const useIsLinkDisabled = () => {
   const { node } = useNode() as SlateNodeWithParentGetters<LinkData>;
-  if (!node.path || (node.path[0] !== 'slatenode' && node.path[0] !== 'Page')) {
+  const href = useGetLinkHref(node);
+  if (!href) {
     return false;
   }
-
-  const href = useGetLinkHref(node);
-  if (href) {
-    const node$ = node.path[0] === 'slatenode' ? node.getGetters().getParentNode() : node;
-    const disabledPages = useGetDisabledPages(node$);
-    if (disabledPages?.[href]?.contentLinksDisabled === true) {
-      return true;
-    }
+  const node$ = node.path[0] === 'slatenode' ? node.getGetters().getParentNode() : node;
+  const disabledPages = useGetDisabledPages(node$);
+  // Content links
+  if (disabledPages?.[href]?.contentLinksDisabled === true && node.path[0] !== 'Site') {
+    return true;
+  }
+  // Menu links
+  if (disabledPages?.[href]?.menuLinksDisabled === true && node.path[0] === 'Site') {
+    return true;
   }
 
   return false;
