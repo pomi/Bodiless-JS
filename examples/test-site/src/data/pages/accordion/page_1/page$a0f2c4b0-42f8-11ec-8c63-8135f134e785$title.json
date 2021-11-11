@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "lorem "
+      },
+      {
+        "text": "ipsum",
+        "SuperScript": true
+      },
+      {
+        "text": " test title"
+      }
+    ]
+  }
+]

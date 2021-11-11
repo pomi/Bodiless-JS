@@ -1,0 +1,27 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "lorem "
+      },
+      {
+        "data": {
+          "openModal": true,
+          "slatenode": {
+            "href": "/page_1/"
+          }
+        },
+        "type": "Link",
+        "children": [
+          {
+            "text": "ipsum"
+          }
+        ]
+      },
+      {
+        "text": " test body"
+      }
+    ]
+  }
+]
