@@ -92,6 +92,7 @@
     "docs": "run-s build:doc docs:serve",
     "psh-update": "node ./lib/scripts/bodiless-psh-update",
     "psh-validate": "node ./lib/scripts/bodiless-psh-validate",
+    "psh-start": "rimraf ./.cache && gatsby develop",
     "search-index": "create-search-index"
   },
   "devDependencies": {

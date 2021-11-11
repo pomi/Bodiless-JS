@@ -6,8 +6,8 @@ module.exports = {
     {
       name: 'frontend',
       cwd: `${appVolume()}/root/examples/test-site`,
-      script: `${appVolume()}/root/node_modules/.bin/gatsby`,
-      args: `develop --port ${gatsbyPort()}`,
+      script: 'npm',
+      args: `run psh-start --port ${gatsbyPort()}`,
     },
     {
       name: 'backend',
