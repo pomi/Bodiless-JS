@@ -47,11 +47,11 @@
       - [Building Sites](/Development/Guides/BuildingSites/)
         - [Building Overview](/Development/Guides/BuildingSites/BuildingOverview)
         - [Components Starter Kit](/Development/Guides/BuildingSites/ComponentsStarterKit)
-        - [Fonts](/Development/Guides/BuildingSites/Fonts)
         - [Identifying Components Guide](/Development/Guides/BuildingSites/IdentifyingComponentsGuide)
+        - [Fonts](/Development/Guides/BuildingSites/Fonts)
         - [Image Configurations](/Development/Guides/BuildingSites/ImageConfigurations)
-        - [Responsiveness](/Development/Guides/BuildingSites/Responsiveness)
         - [Tailwind Guide](/Development/Guides/BuildingSites/TailwindGuide)
+        - [Responsiveness](/Development/Guides/BuildingSites/Responsiveness)
         - Building Components
           - [Building Contentful](/Development/Guides/BuildingSites/BuildingComponents/BuildingContentful)
         - [Templates](/Development/Guides/BuildingSites/Templates/)
