@@ -29,6 +29,7 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
         plugins: [new TsconfigPathsPlugin()],
         alias: reactAlias,
       },
+      cache: process.env.BODILESS_DISABLE_DEVELOP_CACHE === '1' ? false : undefined,
     });
   }
 };

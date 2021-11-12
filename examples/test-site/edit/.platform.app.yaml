@@ -61,3 +61,4 @@ variables:
     env:
         APP_VOLUME: '/app/volume'
         CHOKIDAR_USEPOLLING: true
+        BODILESS_DISABLE_DEVELOP_CACHE: '1'
