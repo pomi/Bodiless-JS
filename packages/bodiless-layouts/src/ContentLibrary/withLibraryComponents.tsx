@@ -17,6 +17,7 @@ import {
 import type { Design } from '@bodiless/fclasses';
 import { withFacet, withTitle, withDesc } from '../meta';
 import { childKeys } from './withContentLibrary';
+import { withLibraryItemContext, CONTENT_LIBRARY_TYPE_PREFIX } from './withLibraryContext';
 import type { FlowContainerItem } from '../FlowContainer/types';
 import type { FlowContainerDataHandlers } from '../FlowContainer/model';
 
@@ -40,7 +41,6 @@ type LibraryMetaValues = {
 };
 
 export const DEFAULT_CONTENT_LIBRARY_PATH = ['Site', 'default-library'];
-export const CONTENT_LIBRARY_TYPE_PREFIX = 'ContentLibrary';
 
 const moveNode = (
   source: ContentNode<any>,
@@ -53,7 +53,14 @@ const moveNode = (
   }
   source.delete();
 };
-const isLibraryItem = (item: FlowContainerItem) => (
+
+/**
+ * Check if the current Flow Container Item is Library Item
+ *
+ * @param item FlowContainerItem
+ * @return boolean
+ */
+export const isLibraryItem = (item: FlowContainerItem) => (
   item && item.type.startsWith(CONTENT_LIBRARY_TYPE_PREFIX));
 
 /**
@@ -298,6 +305,7 @@ const withLibraryComponents = (
   withDesign({
     ComponentWrapper: flowIf(() => useEditContext().isEdit)(
       withLibraryMenuOptions(path),
+      withLibraryItemContext,
     ),
   }),
   withDesignFromLibrary(path),
