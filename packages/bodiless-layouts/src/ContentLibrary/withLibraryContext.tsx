@@ -66,6 +66,13 @@ export const LibraryItemContext = createContext<LibraryItemContextProps>({
 export const useLibraryItemContext = () => useContext(LibraryItemContext);
 
 /**
+ * Hook to check if the current Flow Container Item is Library Item
+ * Must only be used on `FlowContainerItem`.
+ * @return boolean
+ */
+export const useIsLibraryItem = () => useLibraryItemContext().isLibraryItem;
+
+/**
  * A `LibraryItemProvider` indicates whether the current Flow Container Item is a Library Item.
  * @see LibraryItemProviderProps.
  */
