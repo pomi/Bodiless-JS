@@ -26,7 +26,10 @@ import {
   DesignableComponentsProps,
 } from '@bodiless/fclasses';
 
-type LibraryItemIndicatorComponentsType = {
+/**
+ * Type for the Designable LibraryItemIndicator Components.
+ */
+export type LibraryItemIndicatorComponentsType = {
   Wrapper: ComponentType<any>,
   Icon: ComponentType<any>,
   Label: ComponentType<any>,
@@ -50,6 +53,10 @@ const LibraryIndicatorBase: FC<LibraryIndicatorProps> = ({ components: C, ...res
   </C.Wrapper>
 );
 
+/**
+ * Clean Library Item Indicator component.
+ * It has Library `Icon`, `Label` and `InfoIcon` designable components.
+ */
 export const LibraryItemIndicatorClean = designable(LibraryItemIndicatorComponents, 'LibraryItemIndicator')(LibraryIndicatorBase);
 
 const asDefaultLibraryItemIndicator = withDesign({
@@ -61,10 +68,14 @@ const asDefaultLibraryItemIndicator = withDesign({
   Label: addProps({ children: 'Library Item' }),
   InfoIcon: asToken(
     addClasses('material-icons bl-ml-3'),
-    addProps({ children: 'info', href: '/___docs/', target: 'blank' }),
+    addProps({ children: 'info', href: '/___docs/', target: '_blank' }),
   ),
 });
 
+/**
+ * HOC that may be applied to a `ComponentWrapper` component of a Flow Container.
+ * It Prepends a designable `LibraryItemIndicator` child component that appears on the `ComponentWrapper` hover.
+ */
 export const withLibraryItemIndicator = asToken(
   addClasses('group'),
   withPrependChild(LibraryItemIndicatorClean, 'LibraryItemIndicator'),

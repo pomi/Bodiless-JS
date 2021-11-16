@@ -54,7 +54,7 @@ export type LibraryItemContextProps = {
  * @see LibraryItemContextProps
  */
 export const LibraryItemContext = createContext<LibraryItemContextProps>({
-  isLibraryItem: true,
+  isLibraryItem: false,
   setIsLibraryItem: () => null,
 });
 
@@ -92,13 +92,9 @@ export const LibraryItemProvider: FC<LibraryItemProviderProps> = ({ isLibrary, c
  * is actually a Library Item by checking its `FlowContainerItem.type` prefix.
  * @see LibraryItemContextProps
  */
-export const withLibraryItemContext: HOC<any> = Component => props => {
-  const { flowContainerItem } = props;
-
-  return (
-    <LibraryItemProvider isLibrary={isLibraryItem(flowContainerItem)}>
-      <Component {...props} />
-    </LibraryItemProvider>
-  );
-};
+export const withLibraryItemContext: HOC<any> = Component => props => (
+  <LibraryItemProvider isLibrary={isLibraryItem(props.flowContainerItem)}>
+    <Component {...props} />
+  </LibraryItemProvider>
+);
 
