@@ -22,6 +22,7 @@
     - [List](/Components/List)
     - [Link](/Components/Link)
     - [Image](/Components/Image)
+    - [Social Wall](/Components/SocialWall)
     - [Flow Container](/Components/FlowContainer)
     - [Navigation](/Components/Navigation/)
       - [Breadcrumbs](/Components/Navigation/Breadcrumbs)
@@ -52,12 +53,12 @@
         - [Image Configurations](/Development/Guides/BuildingSites/ImageConfigurations)
         - [Responsiveness](/Development/Guides/BuildingSites/Responsiveness)
         - [Tailwind Guide](/Development/Guides/BuildingSites/TailwindGuide)
-        - Building Components
-          - [Building Contentful](/Development/Guides/BuildingSites/BuildingComponents/BuildingContentful)
         - [Templates](/Development/Guides/BuildingSites/Templates/)
           - [Types](/Development/Guides/BuildingSites/Templates/Types/)
             - [Product Detail Page](/Development/Guides/BuildingSites/Templates/Types/ProductDetailPage)
             - [Product Listing Page](/Development/Guides/BuildingSites/Templates/Types/ProductListingPage)
+        - Building Components
+          - [Building Contentful](/Development/Guides/BuildingSites/BuildingComponents/BuildingContentful)
       - [Tokens And Typescript](/Development/Guides/TokensAndTypescript)
     - [Packages](/Development/Packages)
     - [Architecture](/Development/Architecture/)
