@@ -49,7 +49,7 @@ type LibraryMetaValues = {
 
 export const DEFAULT_CONTENT_LIBRARY_PATH = ['Site', 'default-library'];
 
-const moveNode = (
+const copyNode = (
   source: ContentNode<any>,
   dest: ContentNode<any>,
   copyChildren: boolean,
@@ -58,6 +58,14 @@ const moveNode = (
   if (copyChildren) {
     childKeys(source).forEach(key => moveNode(source.child(key), dest.child(key), true));
   }
+};
+
+const moveNode = (
+  source: ContentNode<any>,
+  dest: ContentNode<any>,
+  copyChildren: boolean,
+) => {
+  copyNode(source, dest, copyChildren);
   source.delete();
 };
 
