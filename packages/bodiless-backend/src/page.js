@@ -172,7 +172,7 @@ class Page {
           const oldPath = item.split(' ')[1].replace(/'|"/g, '');
           const from = path.dirname(filePath);
           const to = path.normalize(`${originPath}/${oldPath}`);
-          const newPath = path.relative(from, to);
+          const newPath = path.relative(from, to).replace(/\\/g, '/');
 
           newContent = newContent.replace(
             `${delimiter}${oldPath}${delimiter}`,
