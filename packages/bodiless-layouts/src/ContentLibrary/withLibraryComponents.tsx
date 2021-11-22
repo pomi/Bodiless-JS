@@ -49,7 +49,7 @@ type LibraryMetaValues = {
 
 export const DEFAULT_CONTENT_LIBRARY_PATH = ['Site', 'default-library'];
 
-const copyNode = (
+const moveNode = (
   source: ContentNode<any>,
   dest: ContentNode<any>,
   copyChildren: boolean,
@@ -58,15 +58,18 @@ const copyNode = (
   if (copyChildren) {
     childKeys(source).forEach(key => moveNode(source.child(key), dest.child(key), true));
   }
+  source.delete();
 };
 
-const moveNode = (
+const copyNode = (
   source: ContentNode<any>,
   dest: ContentNode<any>,
   copyChildren: boolean,
 ) => {
-  copyNode(source, dest, copyChildren);
-  source.delete();
+  dest.setData(source.data);
+  if (copyChildren) {
+    childKeys(source).forEach(key => copyNode(source.child(key), dest.child(key), true));
+  }
 };
 
 /**
@@ -142,6 +145,20 @@ const withLibraryMenuOptions = (
       const destPath$ = Array.isArray(libPath) ? libPath : [libPath];
 
       if (isLibraryItem(item)) {
+        console.log('keke', sourceNode);
+
+        const destNodePath = [
+          ...destPath$,
+          item.uuid,
+        ];
+        const destNodeDataPath = [
+          ...destNodePath,
+          'data',
+        ];
+        const destNodeData = sourceNode.peer(destNodeDataPath.join('$'));
+
+        copyNode(destNodeData, sourceNode, true);
+
         const newItemType = item.type.split(':')[1];
         updateFlowContainerItem({ ...item, type: newItemType });
       } else {
