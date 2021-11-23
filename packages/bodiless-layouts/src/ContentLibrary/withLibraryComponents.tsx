@@ -17,7 +17,7 @@ import {
 import type { Design } from '@bodiless/fclasses';
 
 import { withFacet, withTitle, withDesc } from '../meta';
-import { childKeys } from './withContentLibrary';
+import { copyNode, childKeys } from './withContentLibrary';
 import {
   withLibraryItemContext,
   CONTENT_LIBRARY_TYPE_PREFIX,
@@ -59,17 +59,6 @@ const moveNode = (
     childKeys(source).forEach(key => moveNode(source.child(key), dest.child(key), true));
   }
   source.delete();
-};
-
-const copyNode = (
-  source: ContentNode<any>,
-  dest: ContentNode<any>,
-  copyChildren: boolean,
-) => {
-  dest.setData(source.data);
-  if (copyChildren) {
-    childKeys(source).forEach(key => copyNode(source.child(key), dest.child(key), true));
-  }
 };
 
 /**
@@ -145,19 +134,15 @@ const withLibraryMenuOptions = (
       const destPath$ = Array.isArray(libPath) ? libPath : [libPath];
 
       if (isLibraryItem(item)) {
-        console.log('keke', sourceNode);
-
-        const destNodePath = [
+        const uuid = item.type.split(':')[2];
+        const sourceNodeDataPath = [
           ...destPath$,
-          item.uuid,
-        ];
-        const destNodeDataPath = [
-          ...destNodePath,
+          uuid,
           'data',
         ];
-        const destNodeData = sourceNode.peer(destNodeDataPath.join('$'));
+        const sourceNodeData = sourceNode.peer(sourceNodeDataPath.join('$'));
 
-        copyNode(destNodeData, sourceNode, true);
+        copyNode(sourceNodeData, sourceNode, true);
 
         const newItemType = item.type.split(':')[1];
         updateFlowContainerItem({ ...item, type: newItemType });
