@@ -134,6 +134,7 @@ const withLibraryMenuOptions = (
       const destPath$ = Array.isArray(libPath) ? libPath : [libPath];
 
       if (isLibraryItem(item)) {
+        /* Copy the library item to current node */
         const uuid = item.type.split(':')[2];
         const sourceNodeDataPath = [
           ...destPath$,
