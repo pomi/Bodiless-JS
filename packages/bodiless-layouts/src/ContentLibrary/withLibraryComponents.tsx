@@ -23,6 +23,7 @@ import {
   CONTENT_LIBRARY_TYPE_PREFIX,
   isLibraryItem,
   useIsLibraryItem,
+  useLibraryItemContext,
 } from './withLibraryContext';
 import { withLibraryItemIndicator } from './ContentLibraryIndicator';
 import type { FlowContainerItem } from '../FlowContainer/types';
@@ -98,6 +99,8 @@ const withLibraryMenuOptions = (
     sourceNode: ContentNode<any>,
     handlers: FlowContainerDataHandlers,
   ) => {
+    const { setIsLibraryItem } = useLibraryItemContext();
+
     const renderForm = () => {
       const {
         ComponentFormLabel,
@@ -147,6 +150,7 @@ const withLibraryMenuOptions = (
 
         const newItemType = item.type.split(':')[1];
         updateFlowContainerItem({ ...item, type: newItemType });
+        setIsLibraryItem(false);
       } else {
         /**
          * Move the original flow container node to content library node,
