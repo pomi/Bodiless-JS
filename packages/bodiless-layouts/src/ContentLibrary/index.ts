@@ -20,4 +20,3 @@ export {
   withContentLibrary,
   withLibraryComponents,
 };
-
