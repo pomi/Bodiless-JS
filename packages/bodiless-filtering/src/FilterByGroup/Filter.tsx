@@ -58,6 +58,7 @@ import { useFilterByGroupContext, withTagProps } from './FilterByGroupContext';
 import { useTagsAccessors } from './FilterModel';
 import { withCategoryListContextProvider, useCategoryListContext } from './CategoryListContext';
 import withTagButton from '../TagButton/withTagButton';
+import withFilterSelection from './withFilterSelection';
 
 const tagTitleComponentsStart: TagTitleComponents = {
   FilterInputWrapper: Div,
@@ -250,6 +251,7 @@ const withFilterDesignTransformer = <P extends object>(Component: ComponentOrTag
 };
 
 const FilterClean = asToken(
+  withFilterSelection,
   asFilter,
   withFilterDesignTransformer as HOC,
   withNodeKey('filter'),
