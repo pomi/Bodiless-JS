@@ -2,4 +2,8 @@
   "fromPath": "/cards",
   "toPath": "/carousel",
   "statusCode": 301
+}, {
+  "fromPath": "/page-a",
+  "toPath": "/carousel",
+  "statusCode": 301
 }]

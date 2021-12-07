@@ -14,20 +14,19 @@
 
 const { getRedirectAliases } = require('@bodiless/components/node-api');
 
-module.exports = async ({ actions }) => {
+module.exports = async ({ actions }, logger) => {
   const { createRedirect } = actions;
   const aliases = await getRedirectAliases();
 
   if (aliases && aliases.length) {
     aliases.forEach(item => {
+      logger.log('Creating redirect ', item.fromPath);
       createRedirect({
         fromPath: item.fromPath,
         toPath: item.toPath,
         statusCode: item.statusCode,
+        redirectInBrowser: true,
       });
     });
-    return aliases;
   }
-
-  return [];
 };

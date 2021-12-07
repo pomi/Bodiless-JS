@@ -238,7 +238,7 @@ const createPreviewPagesForTemplates = async ({ actions, graphql, getNode }) => 
 };
 
 exports.createPages = async ({ actions, graphql, getNode }) => {
-  await createRedirectAlias({ actions });
+  await createRedirectAlias({ actions }, logger);
   await createPagesFromFS({ actions, graphql, getNode });
   if (process.env.NODE_ENV === 'development') {
     await createPreviewPagesForTemplates({ actions, graphql, getNode });
