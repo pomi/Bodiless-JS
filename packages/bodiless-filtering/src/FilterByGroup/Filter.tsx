@@ -251,10 +251,10 @@ const withFilterDesignTransformer = <P extends object>(Component: ComponentOrTag
 };
 
 const FilterClean = asToken(
-  withFilterSelection,
   asFilter,
   withFilterDesignTransformer as HOC,
   withNodeKey('filter'),
+  withFilterSelection(),
 )('ul');
 
 export default FilterClean;

@@ -21,105 +21,91 @@ import {
   withNode,
   withNodeKey,
   ifEditable,
-  ifReadOnly,
   withLocalContextMenu,
   withContextActivator,
+  useNode,
 } from '@bodiless/core';
-import { withoutProps, } from '@bodiless/fclasses';
+import {
+  asToken,
+  withoutProps,
+} from '@bodiless/fclasses';
 import { useFilterByGroupContext } from './FilterByGroupContext';
-import type { TagsNodeType } from '../TagButton/types';
+import { Tag } from './FilterByGroupStore';
+import type { NodeTagType, FilterTagType } from './types';
 
-// @todo: option type
-const renderForm = (componentProps: any) => {
-  return (<></>);
-};
-const filterSelectionMenuOptions: EditButtonOptions<any, TagsNodeType> = {
-  name: 'filter-page',
-  label: 'Page',
-  groupLabel: 'Filter',
-  groupMerge: 'none',
-  icon: 'filter_alt',
-  local: true,
-  global: false,
-  formTitle: 'Filter Page',
-  formDescription: true ? `Clicking the check will save the current Local 
+const renderForm = () => (<></>);
+const useFilterSelectionMenuOptions = () => {
+  const { getSelectedTags } = useFilterByGroupContext();
+  console.log(getSelectedTags(), 'getSelectedTags');
+  const tags = getSelectedTags();
+  const filterSelectionMenuOptions: EditButtonOptions<any, NodeTagType> = {
+    name: 'filter-page',
+    label: 'Page',
+    groupLabel: 'Filter',
+    groupMerge: 'none',
+    icon: 'filter_alt',
+    local: true,
+    global: false,
+    formTitle: 'Filter Page',
+    formDescription: true ? `Clicking the check will save the current Local 
   Filter UI selections to this Page, creating a Save State.` : `Page now filtered by Saved 
   State on page load.`,
-  isHidden: false,
-  renderForm,
-  submitValueHandler: (values: any) => {
-    // @todo: 
-    const submitValues = {
-      tags: [],
-    };
-    return submitValues;
-  },
+    isHidden: false,
+    renderForm,
+    submitValueHandler: (values: any) => {
+      const submitValues = { tags };
+      return submitValues;
+    },
+  };
+  return filterSelectionMenuOptions;
+};
+
+const withFilterDefaultSelection = (Component: any) => {
+  const WithFilterDefaultSelection = (props: any) => {
+    const { node } = useNode();
+    const { selectTag } = useFilterByGroupContext();
+    const { tags } = node.peer(['Page', 'default-filters']).data as {tags: FilterTagType[]};
+    if (tags) {
+      tags.forEach((tag) => {
+        console.log(tag, selectTag, 'Tag');
+        // selectTag(new Tag(tag.id, tag.name, tag.categoryId.toString(), tag.categoryName));
+      });
+    }
+    return (
+      <Component {...props} />
+    );
+  };
+  return WithFilterDefaultSelection;
 };
 
 /**
  * @todo: add comments
  */
 /**
- * HOC add default filter form and data to filter list.
+ * HOC adds default filter form and data to filter list.
  * 
  * @todo: type HOC component.
  * 
  * @param Component 
  * @returns 
  */
-const withFilterSelection = (Component: any) => {
-  // @todo: do i need this default data?
-  const defaultData: TagsNodeType = {
-    tags: [],
-  };
-  const WithFilterSelectionMenuOptions = (props: any) => {
-    // get tags
-    const { getSelectedTags } = useFilterByGroupContext();
-    return (
-      <Component {...props} getSelectedTags={getSelectedTags} />
-    );
-  };
-  return withSidecarNodes(
+const withFilterSelection = (
+  nodeKey = 'default-filters',
+  defaultData = { tags: [] },
+) => asToken(
+  withoutProps(['componentData']),
+  withSidecarNodes(
+    withNodeKey(nodeKey),
     withNode,
-    withNodeKey('default-filters'),
     withNodeDataHandlers(defaultData),
+    withFilterDefaultSelection,
     ifEditable(
-      withEditButton(filterSelectionMenuOptions),
+      withEditButton(() => useFilterSelectionMenuOptions()),
       withContextActivator('onClick'),
       withLocalContextMenu,
     ),
-    ifReadOnly(
-      withoutProps('setComponentData'),
-    ),
-  )(WithFilterSelectionMenuOptions);
-};
-
-// const withFilterSelection: HOC<{}, ListProps> = (Component: any) => {
-//   const WithFilterSelection: FC<any> = (props: ListProps) => {
-
-//     console.log(props, 'WithFilterSelection Props');
-//     return (
-//       <Component {...props} />
-//     );
-//   };
-//   return withSidecarNodes(
-//     withNodeDataHandlers(defaultData),
-//     withNode,
-//     withNodeKey('default-filters'),
-//     ifEditable(
-//       withFilterSelectionMenuOptions,
-//     ),
-//     ifReadOnly(
-//       withoutProps('setComponentData'),
-//     ),
-//   )(WithFilterSelection);
-// };
-
-// asToken(
-//   withFilterSelectionMenuOptions,
-//   withSelectedTags,
-// );
-
-
+  ),
+  // withoutProps(['componentData']),
+);
 
 export default withFilterSelection;
