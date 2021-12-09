@@ -28,6 +28,7 @@
     "src/no-scroll-settings.json",
     "build-css.js",
     "create-node.js",
+    "create-redirect-alias.js",
     "tailwind.base.config.js",
     "/doc",
     "bodiless.content.json"
