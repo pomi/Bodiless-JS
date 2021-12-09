@@ -1,0 +1,22 @@
+{
+  "src": "/images/pages/flow-container/0ad77e8c66d050c3131f0d8b170da3a9/support_for_eyes_with_sensitivities.jpg",
+  "alt": "",
+  "title": "",
+  "preset": "fluid_withWebp",
+  "gatsbyImg": {
+    "fluid": {
+      "base64": "data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgP/xAAWAQEBAQAAAAAAAAAAAAAAAAADAQL/2gAMAwEAAhADEAAAAbCDeD1wIAs//8QAHBAAAgICAwAAAAAAAAAAAAAAAQIDEQQSEyEy/9oACAEBAAEFAgepWkLJkrQXYcQt/f8A/8QAFREBAQAAAAAAAAAAAAAAAAAAECH/2gAIAQMBAT8Bh//EABYRAQEBAAAAAAAAAAAAAAAAABECEP/aAAgBAgEBPwFpz//EABwQAAIBBQEAAAAAAAAAAAAAAAABEQIDECEjMf/aAAgBAQAGPwIi20oOmqke4Z//xAAcEAABBQADAAAAAAAAAAAAAAABABEhMUFRcYH/2gAIAQEAAT8hBvUGhXLSiiEoxalYl4ia3cWptvel1//aAAwDAQACAAMAAAAQ2M//xAAXEQEBAQEAAAAAAAAAAAAAAAABABFB/9oACAEDAQE/EA7Zy//EABYRAQEBAAAAAAAAAAAAAAAAAAEAIf/aAAgBAgEBPxBxhkF//8QAHRABAQABBQEBAAAAAAAAAAAAAREAITFBUYFhwf/aAAgBAQABPxA1IN2TqvU3sJ0fuKQKGNU5PjkWCt4YpZm/J6xGlAZuPXP/2Q==",
+      "aspectRatio": 1.5,
+      "src": "/static/f6835e0a62e7bb0347494d4c93d69f8a/5fd6b/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.jpg",
+      "srcSet": "/static/f6835e0a62e7bb0347494d4c93d69f8a/1ff7f/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.jpg 360w,\n/static/f6835e0a62e7bb0347494d4c93d69f8a/5fd6b/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.jpg 800w,\n/static/f6835e0a62e7bb0347494d4c93d69f8a/adef4/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.jpg 834w,\n/static/f6835e0a62e7bb0347494d4c93d69f8a/b5d18/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.jpg 864w",
+      "srcSetType": "image/jpeg",
+      "sizes": "(max-width: 800px) 100vw, 800px",
+      "originalImg": "/static/f6835e0a62e7bb0347494d4c93d69f8a/b5d18/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.jpg",
+      "density": 72,
+      "presentationWidth": 800,
+      "presentationHeight": 533,
+      "srcWebp": "/static/f6835e0a62e7bb0347494d4c93d69f8a/47a22/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.webp",
+      "srcSetWebp": "/static/f6835e0a62e7bb0347494d4c93d69f8a/e1989/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.webp 360w,\n/static/f6835e0a62e7bb0347494d4c93d69f8a/47a22/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.webp 800w,\n/static/f6835e0a62e7bb0347494d4c93d69f8a/bad98/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.webp 834w,\n/static/f6835e0a62e7bb0347494d4c93d69f8a/97652/flowContainerWithLibrary%2499983fe0-58cb-11ec-8f10-85109a81577f%24image.webp 864w"
+    }
+  }
+}

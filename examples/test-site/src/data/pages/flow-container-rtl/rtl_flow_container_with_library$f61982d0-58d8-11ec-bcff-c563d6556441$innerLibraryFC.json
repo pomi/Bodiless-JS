@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "uuid": "74853cd0-58d5-11ec-88b8-79e72f576963",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/4"
+      },
+      "type": "SquareImage"
+    },
+    {
+      "uuid": "891732c0-58d5-11ec-88b8-79e72f576963",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/2"
+      },
+      "type": "YouTube"
+    },
+    {
+      "uuid": "ac879dd0-58d5-11ec-88b8-79e72f576963",
+      "wrapperProps": {
+        "className": "w-full"
+      },
+      "type": "Carousel"
+    },
+    {
+      "uuid": "152ba760-58da-11ec-bcff-c563d6556441",
+      "wrapperProps": {
+        "className": "w-full lg:w-1/2"
+      },
+      "type": "CardHorizontalWithTitleBodyWithCTA"
+    }
+  ]
+}
