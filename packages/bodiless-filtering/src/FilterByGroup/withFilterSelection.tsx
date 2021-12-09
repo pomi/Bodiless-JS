@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   withEditButton,
   withNodeDataHandlers,
@@ -63,7 +63,9 @@ const withFilterDefaultSelection = (Component: any) => {
     const { node } = useNode();
     const { updateSelectedTags } = useFilterByGroupContext();
     const { tags = [] } = node.peer(['Page', 'default-filters']).data as {tags: FilterTagType[]};
-    updateSelectedTags(tags);
+    useEffect(() => {
+      updateSelectedTags(tags);
+    }, []);
     return (
       <Component {...props} />
     );
@@ -86,7 +88,7 @@ const withFilterSelection = (
   nodeKey = 'default-filters',
   defaultData = { tags: [] },
 ) => asToken(
-  withoutProps(['componentData']),
+  withoutProps(['componentData', 'setComponentData']),
   withSidecarNodes(
     withNodeKey(nodeKey),
     withNode,
@@ -98,6 +100,7 @@ const withFilterSelection = (
       withLocalContextMenu,
     ),
   ),
+  // withoutProps(['componentData']),
 );
 
 export default withFilterSelection;
