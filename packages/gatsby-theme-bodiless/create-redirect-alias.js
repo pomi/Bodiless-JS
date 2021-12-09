@@ -21,12 +21,31 @@ module.exports = async ({ actions }, logger) => {
   if (aliases && aliases.length) {
     aliases.forEach(item => {
       logger.log('Creating redirect ', item.fromPath);
-      createRedirect({
-        fromPath: item.fromPath,
+
+      const hasTrailingSlash = item.fromPath.substr(-1) === '/';
+      const baseItem = {
         toPath: item.toPath,
         statusCode: item.statusCode,
         redirectInBrowser: true,
+      };
+
+      if (hasTrailingSlash) {
+        createRedirect({
+          fromPath: item.fromPath.replace(/\/$/, ''),
+          ...baseItem,
+        });
+      } else {
+        createRedirect({
+          fromPath: `${item.fromPath}/`,
+          ...baseItem,
+        });
+      }
+
+      createRedirect({
+        fromPath: item.fromPath,
+        ...baseItem,
       });
+
     });
   }
 };
