@@ -124,6 +124,8 @@ export type FBGContextType = {
    * Tests whetherthe specified tag is currently selected.
    */
   isTagSelected: (tag: FilterTagType) => boolean,
+
+  updateSelectedTags: (tags: FilterTagType[]) => void,
   /**
    * Removes all selected tags.  All filters will be cleared.
    */

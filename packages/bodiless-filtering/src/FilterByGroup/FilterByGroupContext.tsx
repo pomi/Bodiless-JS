@@ -52,6 +52,7 @@ const FilterByGroupContext = createContext<FBGContextType>({
   getSelectedTags: () => [],
   unSelectTag: () => { },
   isTagSelected: () => false,
+  updateSelectedTags: () => { },
   clearSelectedTags: () => { },
   multipleAllowedTags: false,
   getFilteredItems: () => [],
@@ -94,6 +95,7 @@ const FilterByGroupProvider: FC<FBGContextOptions> = ({
     getSelectedTags,
     isTagSelected,
     clearSelectedTags,
+    updateSelectedTags,
     filtersInitialized,
   } = useFilterByGroupStore({ multipleAllowedTags });
 
@@ -131,6 +133,7 @@ const FilterByGroupProvider: FC<FBGContextOptions> = ({
     isTagSelected,
     multipleAllowedTags: multipleAllowedTags || false,
     clearSelectedTags,
+    updateSelectedTags,
     getFilteredItems: () => items,
     filtersInitialized,
   };

@@ -45,36 +45,6 @@ type FilterByGroupStoreSettings = {
   multipleAllowedTags?: boolean,
 };
 
-const readTagsFromQueryParams = () => {
-  if (typeof window === 'undefined') return [];
-  const tags: Tag[] = [];
-  const params = new URLSearchParams(window.location.search);
-  params.forEach((tag, categoryId) => {
-    const [tagId, tagName = 'N/A', categoryName = 'N/A'] = tag.split('~');
-    tags.push(new Tag(tagId, tagName, categoryId, categoryName));
-  });
-  return tags;
-};
-
-const updateUrlQueryParams = (tags: FilterTagType[]) => {
-  if (typeof window === 'undefined') return;
-  const {
-    protocol,
-    host,
-    pathname,
-  } = window.location;
-  const queryParams = new URLSearchParams();
-  tags.forEach(tag => {
-    const {
-      categoryId, id, name, categoryName,
-    } = tag;
-    queryParams.append(categoryId || '', `${id}~${name}~${categoryName}`);
-  });
-  const query = tags.length > 0 ? `?${queryParams}` : '';
-  const newurl = `${protocol}//${host}${pathname}${query}`;
-  window.history.pushState({ path: newurl }, '', newurl);
-};
-
 const useStateCallback = (initialState: any) => {
   const [state, setState] = useState(initialState);
   const cbRef = useRef<Function | null>(null); // init mutable ref container for callbacks
@@ -101,15 +71,12 @@ const useFilterByGroupStore = (settings: FilterByGroupStoreSettings) => {
   const [filtersInitialized, setFiltersInitialized] = useState<boolean>(false);
 
   useEffect(() => {
-    const tags = readTagsFromQueryParams();
-    setSelectedTags(tags);
     setFiltersInitialized(true);
   }, []);
 
   const { multipleAllowedTags = false } = settings;
 
   const updateSelectedTags = (tags: Tag[], callback?: Function) => {
-    updateUrlQueryParams(tags);
     setSelectedTags(tags, callback);
   };
 
@@ -149,6 +116,7 @@ const useFilterByGroupStore = (settings: FilterByGroupStoreSettings) => {
     getSelectedTags,
     isTagSelected,
     clearSelectedTags,
+    updateSelectedTags,
     filtersInitialized,
   };
 };

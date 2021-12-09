@@ -30,13 +30,11 @@ import {
   withoutProps,
 } from '@bodiless/fclasses';
 import { useFilterByGroupContext } from './FilterByGroupContext';
-import { Tag } from './FilterByGroupStore';
 import type { NodeTagType, FilterTagType } from './types';
 
 const renderForm = () => (<></>);
 const useFilterSelectionMenuOptions = () => {
   const { getSelectedTags } = useFilterByGroupContext();
-  console.log(getSelectedTags(), 'getSelectedTags');
   const tags = getSelectedTags();
   const filterSelectionMenuOptions: EditButtonOptions<any, NodeTagType> = {
     name: 'filter-page',
@@ -63,14 +61,9 @@ const useFilterSelectionMenuOptions = () => {
 const withFilterDefaultSelection = (Component: any) => {
   const WithFilterDefaultSelection = (props: any) => {
     const { node } = useNode();
-    const { selectTag } = useFilterByGroupContext();
-    const { tags } = node.peer(['Page', 'default-filters']).data as {tags: FilterTagType[]};
-    if (tags) {
-      tags.forEach((tag) => {
-        console.log(tag, selectTag, 'Tag');
-        // selectTag(new Tag(tag.id, tag.name, tag.categoryId.toString(), tag.categoryName));
-      });
-    }
+    const { updateSelectedTags } = useFilterByGroupContext();
+    const { tags = [] } = node.peer(['Page', 'default-filters']).data as {tags: FilterTagType[]};
+    updateSelectedTags(tags);
     return (
       <Component {...props} />
     );
@@ -105,7 +98,6 @@ const withFilterSelection = (
       withLocalContextMenu,
     ),
   ),
-  // withoutProps(['componentData']),
 );
 
 export default withFilterSelection;
