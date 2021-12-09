@@ -1,8 +1,4 @@
 [{
-  "fromPath": "/cards/",
-  "toPath": "/carousel",
-  "statusCode": 301
-}, {
   "fromPath": "/menu",
   "toPath": "/carousel",
   "statusCode": 301
