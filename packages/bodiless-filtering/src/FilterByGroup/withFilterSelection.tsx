@@ -21,15 +21,18 @@ import {
   withNode,
   withNodeKey,
   ifEditable,
+  ifReadOnly,
   withLocalContextMenu,
   withContextActivator,
   useNode,
 } from '@bodiless/core';
 import {
   asToken,
+  withDesign,
   withoutProps,
+  addProps,
 } from '@bodiless/fclasses';
-import { useFilterByGroupContext } from './FilterByGroupContext';
+import { useFilterByGroupContext, useIsFilterTagSelected } from './FilterByGroupContext';
 import type { NodeTagType, FilterTagType } from './types';
 
 const renderForm = () => (<></>);
@@ -58,11 +61,24 @@ const useFilterSelectionMenuOptions = () => {
   return filterSelectionMenuOptions;
 };
 
+const withTagListDesign = withDesign({
+  Title: asToken(
+    withDesign({
+      FilterGroupItemInput: ifReadOnly(
+        addProps({ disabled: true }),
+      )
+    }),
+  ),
+});
+export const asDefaultFilter = withDesign({
+  TagList: withTagListDesign,
+});
+
 const withFilterDefaultSelection = (Component: any) => {
   const WithFilterDefaultSelection = (props: any) => {
     const { node } = useNode();
     const { updateSelectedTags } = useFilterByGroupContext();
-    const { tags = [] } = node.peer(['Page', 'default-filters']).data as {tags: FilterTagType[]};
+    const { tags = [] } = node.peer(['Page', 'default-filters']).data as { tags: FilterTagType[] };
     useEffect(() => {
       updateSelectedTags(tags);
     }, []);
@@ -73,9 +89,6 @@ const withFilterDefaultSelection = (Component: any) => {
   return WithFilterDefaultSelection;
 };
 
-/**
- * @todo: add comments
- */
 /**
  * HOC adds default filter form and data to filter list.
  * 
@@ -100,7 +113,7 @@ const withFilterSelection = (
       withLocalContextMenu,
     ),
   ),
-  // withoutProps(['componentData']),
+  asDefaultFilter,
 );
 
 export default withFilterSelection;
