@@ -25,6 +25,8 @@ import {
   withLocalContextMenu,
   withContextActivator,
   useNode,
+  ContextMenuFormProps,
+  getUI,
 } from '@bodiless/core';
 import {
   asToken,
@@ -32,13 +34,74 @@ import {
   withoutProps,
   addProps,
 } from '@bodiless/fclasses';
-import { useFilterByGroupContext, useIsFilterTagSelected } from './FilterByGroupContext';
+import { useFilterByGroupContext } from './FilterByGroupContext';
 import type { NodeTagType, FilterTagType } from './types';
 
-const renderForm = () => (<></>);
-const useFilterSelectionMenuOptions = () => {
+enum FilterSelectionAction {
+  reset = 'SELECTION_RESET',
+  clear = 'SELECTION_CLEAR',
+  save = 'SELECTION_SAVE',
+}
+
+const defaultFiltersPath = [
+  'Page',
+  'default-filters',
+];
+
+const useDefaultFiltersData = () => {
+  const { node } = useNode();
+  return node.peer(defaultFiltersPath).data as { tags: FilterTagType[] };
+};
+
+/**
+ * Renders default filter form in different use cases:
+ * 
+ * - No existing default filter set yet.
+ *   submit form to save the selected tags.
+ * 
+ * - Has saved default filter.
+ *    - Clear/remove saved default filter
+ *    - Reset current selection to default filter selection.
+ * 
+ * @returns void
+ */
+const renderForm = (props: ContextMenuFormProps) => {
+  const { ui } = props;
   const { getSelectedTags } = useFilterByGroupContext();
-  const tags = getSelectedTags();
+  console.log(props, getSelectedTags(), 'AAAAAAAAAAAA');
+  const { tags = [] } = useDefaultFiltersData();
+  console.log(tags, tags.length, 'BBBBBBBBBB');
+  if (!tags.length) {
+    const { ComponentFormText } = getUI(ui);
+    return (<>
+      <ComponentFormText type="hidden" field="filterSelectionAction" initialValue={FilterSelectionAction.save} />
+    </>);
+  }
+  const {
+    ComponentFormLabel,
+    ComponentFormRadioGroup,
+    ComponentFormRadio,
+  } = getUI(ui);
+  return (
+    <>
+      <ComponentFormRadioGroup field="filterSelectionAction">
+        <ComponentFormLabel id={FilterSelectionAction.reset} key={FilterSelectionAction.reset}>
+          <ComponentFormRadio value={FilterSelectionAction.reset} /> Reset Local Filter UI to Saved State
+        </ComponentFormLabel>
+        <ComponentFormLabel id={FilterSelectionAction.clear} key={FilterSelectionAction.clear}>
+          <ComponentFormRadio value={FilterSelectionAction.clear} /> Clear Saved State from Page
+        </ComponentFormLabel>
+      </ComponentFormRadioGroup>
+    </>
+  );
+};
+const useFilterSelectionMenuOptions = () => {
+  const { getSelectedTags, clearSelectedTags } = useFilterByGroupContext();
+  const { tags: defaultTags = [] } = useDefaultFiltersData();
+  const formDescription = (!defaultTags.length) ? `Clicking the check will save the current Local
+      Filter UI selections to this Page, creating a Save State.` : `Page now filtered by Saved
+      State on page load.`;
+
   const filterSelectionMenuOptions: EditButtonOptions<any, NodeTagType> = {
     name: 'filter-page',
     label: 'Page',
@@ -48,14 +111,25 @@ const useFilterSelectionMenuOptions = () => {
     local: true,
     global: false,
     formTitle: 'Filter Page',
-    formDescription: true ? `Clicking the check will save the current Local 
-  Filter UI selections to this Page, creating a Save State.` : `Page now filtered by Saved 
-  State on page load.`,
     isHidden: false,
+    formDescription,
     renderForm,
     submitValueHandler: (values: any) => {
-      const submitValues = { tags };
-      return submitValues;
+      const { filterSelectionAction = '' } = values;
+      switch (filterSelectionAction) {
+        case FilterSelectionAction.clear: {
+          const submitValues = { tags: [] };
+          return submitValues;
+        }
+        case FilterSelectionAction.reset: {
+          clearSelectedTags();
+        }
+        case FilterSelectionAction.save: {
+          const tags = getSelectedTags();
+          const submitValues = { tags };
+          return submitValues;
+        }
+      }
     },
   };
   return filterSelectionMenuOptions;
@@ -76,9 +150,10 @@ export const asDefaultFilter = withDesign({
 
 const withFilterDefaultSelection = (Component: any) => {
   const WithFilterDefaultSelection = (props: any) => {
-    const { node } = useNode();
     const { updateSelectedTags } = useFilterByGroupContext();
-    const { tags = [] } = node.peer(['Page', 'default-filters']).data as { tags: FilterTagType[] };
+    // const {node} = useNode();
+    // const {tags = []} = node.peer(defaultFiltersPath).data as {tags: FilterTagType[] };
+    const { tags = [] } = useDefaultFiltersData();
     useEffect(() => {
       updateSelectedTags(tags);
     }, []);
