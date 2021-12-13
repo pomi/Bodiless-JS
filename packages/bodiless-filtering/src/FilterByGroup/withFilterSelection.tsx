@@ -33,6 +33,7 @@ import {
   withDesign,
   withoutProps,
   addProps,
+  ComponentOrTag,
 } from '@bodiless/fclasses';
 import { useFilterByGroupContext } from './FilterByGroupContext';
 import type { NodeTagType, FilterTagType } from './types';
@@ -48,6 +49,11 @@ const defaultFiltersPath = [
   'default-filters',
 ];
 
+/**
+ * Retrieves default filter data on current page.
+ * 
+ * @private
+ */
 const useDefaultFiltersData = () => {
   const { node } = useNode();
   return node.peer(defaultFiltersPath).data as { tags: FilterTagType[] };
@@ -55,26 +61,25 @@ const useDefaultFiltersData = () => {
 
 /**
  * Renders default filter form in different use cases:
- * 
  * - No existing default filter set yet.
  *   submit form to save the selected tags.
- * 
  * - Has saved default filter.
  *    - Clear/remove saved default filter
  *    - Reset current selection to default filter selection.
  * 
+ * @private
+ * @params props Default filter form properties.
  * @returns void
  */
 const renderForm = (props: ContextMenuFormProps) => {
   const { ui } = props;
-  const { getSelectedTags } = useFilterByGroupContext();
-  console.log(props, getSelectedTags(), 'AAAAAAAAAAAA');
   const { tags = [] } = useDefaultFiltersData();
-  console.log(tags, tags.length, 'BBBBBBBBBB');
   if (!tags.length) {
     const { ComponentFormText } = getUI(ui);
     return (<>
-      <ComponentFormText type="hidden" field="filterSelectionAction" initialValue={FilterSelectionAction.save} />
+      <ComponentFormText
+        type="hidden" field="filterSelectionAction" initialValue={FilterSelectionAction.save}
+      />
     </>);
   }
   const {
@@ -86,15 +91,24 @@ const renderForm = (props: ContextMenuFormProps) => {
     <>
       <ComponentFormRadioGroup field="filterSelectionAction">
         <ComponentFormLabel id={FilterSelectionAction.reset} key={FilterSelectionAction.reset}>
-          <ComponentFormRadio value={FilterSelectionAction.reset} /> Reset Local Filter UI to Saved State
+          <ComponentFormRadio value={FilterSelectionAction.reset} />
+          Reset Local Filter UI to Saved State
         </ComponentFormLabel>
         <ComponentFormLabel id={FilterSelectionAction.clear} key={FilterSelectionAction.clear}>
-          <ComponentFormRadio value={FilterSelectionAction.clear} /> Clear Saved State from Page
+          <ComponentFormRadio value={FilterSelectionAction.clear} />
+          Clear Saved State from Page
         </ComponentFormLabel>
       </ComponentFormRadioGroup>
     </>
   );
 };
+
+/**
+ * Custom hook to generate a default filter button menu options.
+ * 
+ * @private
+ * @returns Default filter button menu option.
+ */
 const useFilterSelectionMenuOptions = () => {
   const { getSelectedTags, clearSelectedTags } = useFilterByGroupContext();
   const { tags: defaultTags = [] } = useDefaultFiltersData();
@@ -136,23 +150,26 @@ const useFilterSelectionMenuOptions = () => {
 };
 
 const withTagListDesign = withDesign({
-  Title: asToken(
-    withDesign({
-      FilterGroupItemInput: ifReadOnly(
-        addProps({ disabled: true }),
-      )
-    }),
-  ),
+  Title: withDesign({
+    FilterGroupItemInput: ifReadOnly(
+      addProps({ disabled: true }),
+    )
+  }),
 });
 export const asDefaultFilter = withDesign({
   TagList: withTagListDesign,
 });
 
-const withFilterDefaultSelection = (Component: any) => {
-  const WithFilterDefaultSelection = (props: any) => {
+/**
+ * HOC applies page default filter to Filter component.
+ * 
+ * @private
+ * @param Component filter component.
+ * @returns 
+ */
+const withFilterDefaultSelection = <P extends object>(Component: ComponentOrTag<P>) => {
+  const WithFilterDefaultSelection = (props: P) => {
     const { updateSelectedTags } = useFilterByGroupContext();
-    // const {node} = useNode();
-    // const {tags = []} = node.peer(defaultFiltersPath).data as {tags: FilterTagType[] };
     const { tags = [] } = useDefaultFiltersData();
     useEffect(() => {
       updateSelectedTags(tags);
@@ -165,11 +182,11 @@ const withFilterDefaultSelection = (Component: any) => {
 };
 
 /**
- * HOC adds default filter form and data to filter list.
+ * HOC adds default filter form and data to filter list. Selected filter data has
+ * default nodekey as 'default-filters'.
  * 
- * @todo: type HOC component.
- * 
- * @param Component 
+ * @param nodeKey Default filter nodekey for page level storage.
+ * @param defaultData default data for default filter selection.
  * @returns 
  */
 const withFilterSelection = (
