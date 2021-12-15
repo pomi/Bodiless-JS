@@ -76,11 +76,9 @@ const renderForm = (props: ContextMenuFormProps) => {
   const { tags = [] } = useDefaultFiltersData();
   if (!tags.length) {
     const { ComponentFormText } = getUI(ui);
-    return (<>
-      <ComponentFormText
+    return (<ComponentFormText
         type="hidden" field="filterSelectionAction" initialValue={FilterSelectionAction.save}
-      />
-    </>);
+      />);
   }
   const {
     ComponentFormLabel,
@@ -169,10 +167,12 @@ export const asDefaultFilter = withDesign({
  */
 const withFilterDefaultSelection = <P extends object>(Component: ComponentOrTag<P>) => {
   const WithFilterDefaultSelection = (props: P) => {
-    const { updateSelectedTags } = useFilterByGroupContext();
+    const { updateSelectedTags, hasTagFromQueryParams } = useFilterByGroupContext();
     const { tags = [] } = useDefaultFiltersData();
     useEffect(() => {
-      updateSelectedTags(tags);
+      if (!hasTagFromQueryParams()) {
+        updateSelectedTags(tags);
+      }
     }, []);
     return (
       <Component {...props} />
