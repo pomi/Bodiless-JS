@@ -133,7 +133,7 @@ const FilterByGroupProvider: FC<FBGContextOptions> = ({
     getSelectedTags,
     unSelectTag,
     isTagSelected,
-    multipleAllowedTags: multipleAllowedTags || false,
+    multipleAllowedTags: Boolean(multipleAllowedTags),
     clearSelectedTags,
     updateSelectedTags,
     hasTagFromQueryParams,
