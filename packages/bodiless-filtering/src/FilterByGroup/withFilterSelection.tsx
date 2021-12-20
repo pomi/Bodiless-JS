@@ -108,7 +108,7 @@ const renderForm = (props: ContextMenuFormProps) => {
  * @returns Default filter button menu option.
  */
 const useFilterSelectionMenuOptions = () => {
-  const { getSelectedTags, clearSelectedTags } = useFilterByGroupContext();
+  const { getSelectedTags, updateSelectedTags } = useFilterByGroupContext();
   const { tags: defaultTags = [] } = useDefaultFiltersData();
   const formDescription = (!defaultTags.length) ? `Clicking the check will save the current Local
       Filter UI selections to this Page, creating a Save State.` : `Page now filtered by Saved
@@ -134,7 +134,8 @@ const useFilterSelectionMenuOptions = () => {
           return submitValues;
         }
         case FilterSelectionAction.reset: {
-          clearSelectedTags();
+          updateSelectedTags(defaultTags);
+          return { tags: defaultTags };
         }
         case FilterSelectionAction.save: {
           const tags = getSelectedTags();
