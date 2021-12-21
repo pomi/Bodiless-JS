@@ -215,4 +215,5 @@ export type ContextMenuFormProps = {
   description?: string,
   closeForm: (e: any) => void;
   'aria-label'?: string;
+  // hasSubmit?: boolean,
 };
