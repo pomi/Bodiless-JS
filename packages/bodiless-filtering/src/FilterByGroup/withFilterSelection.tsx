@@ -297,7 +297,6 @@ const withFilterSelection = (
       withLocalContextMenu,
     ),
   ),
-  asDefaultFilter,
 );
 
 export default withFilterSelection;
