@@ -40,14 +40,19 @@ import { useFilterByGroupContext } from './FilterByGroupContext';
 import type { NodeTagType, FilterTagType } from './types';
 
 enum FilterSelectionAction {
-  reset = 'SELECTION_RESET',
-  clear = 'SELECTION_CLEAR',
-  save = 'SELECTION_SAVE',
-  save_success = 'SELECTION_SAVE_SUCCESS',
+  reset,
+  reset_success,
+  clear,
+  clear_success,
+  save,
+  save_success,
 }
 
 const MSGSAVE = 'Clicking the check will save the current Local Filter UI selections to this Page, creating a Save State.';
-const MSGSUCCESS = 'Page now filtered by Saved State on page load.';
+const MSGSAVESUCCESS = 'Page now filtered by Saved State on page load.';
+const MSGRESETCLEAR = 'The Saved State is filtering this Page for the End User.';
+const MSGRESETSUCCESS = 'UI Filter reset to Saved State.';
+const MSGCLEARSUCCESS = 'The Saved State has been cleared.';
 
 const defaultFiltersPath = [
   'Page',
@@ -89,37 +94,56 @@ const renderForm = (props: ContextMenuFormProps) => {
     ComponentFormSubmitButton,
   } = getUI(ui);
   const { tags: defaultTags = [] } = useDefaultFiltersData();
-  const { setValue } = useFormApi();
-  const { values } = useFormState();
-  const { filterSelectionAction = '' } = values[Object.keys(values)[0]] as any || {};
+  const { setStep } = useFormApi();
+  const { values, step } = useFormState();
 
-  const hanldeSubmit = (e: any) => {
+  useEffect(() => {
+    if (!defaultTags.length) {
+      setStep(FilterSelectionAction.save);
+    } else {
+      setStep(FilterSelectionAction.reset);
+    }
+  }, []);
+
+  const hanldeSubmit = useCallback((e: any) => {
     e.preventDefault();
-    switch (filterSelectionAction) {
+    const v = values[Object.keys(values)[0]] as any;
+    switch (v.filterSelectionAction) {
       case FilterSelectionAction.clear: {
         const submitValues = { tags: [] };
+        updateSelectedTags(submitValues.tags);
+        node.peer(defaultFiltersPath).setData(submitValues);
+        setStep(FilterSelectionAction.clear_success);
         return submitValues;
       }
       case FilterSelectionAction.reset: {
-        return undefined;
-        // updateSelectedTags(defaultTags);
-        // return { tags: defaultTags };
+        updateSelectedTags(defaultTags);
+        setStep(FilterSelectionAction.reset_success);
+        return { tags: defaultTags };
       }
       case FilterSelectionAction.save: {
         const currentTags = getSelectedTags();
         updateSelectedTags(currentTags);
         node.peer(defaultFiltersPath).setData({ tags: currentTags });
-        setValue('filterSelectionAction', FilterSelectionAction.save_success);
+        setStep(FilterSelectionAction.save_success);
         return currentTags;
       }
     }
-  };
+  }, [values]);
 
   const SaveForm = useCallback(() => {
+    if (step === FilterSelectionAction.save_success) {
+      return (
+        <ComponentFormDescription>
+        { MSGSAVESUCCESS }
+        </ComponentFormDescription>
+      );
+    }
+
     return (
       <>
         <ComponentFormDescription>
-          { filterSelectionAction && filterSelectionAction === FilterSelectionAction.save_success ? MSGSUCCESS : MSGSAVE }
+          { MSGSAVE }
         </ComponentFormDescription>
         <ComponentFormText
           type="hidden"
@@ -127,33 +151,67 @@ const renderForm = (props: ContextMenuFormProps) => {
           keepState
           initialValue={FilterSelectionAction.save}
         />
+        <ComponentFormSubmitButton
+          aria-label="Submit"
+          onClick={hanldeSubmit}
+        />
       </>
     );
-  }, [filterSelectionAction]);
+  }, [step]);
 
-  const RestClearForm = () => (
-    <ComponentFormRadioGroup field="filterSelectionAction" keepState>
-      <ComponentFormLabel id={FilterSelectionAction.reset} key={FilterSelectionAction.reset}>
-        <ComponentFormRadio value={FilterSelectionAction.reset} />
-        Reset Local Filter UI to Saved State
-      </ComponentFormLabel>
-      <ComponentFormLabel id={FilterSelectionAction.clear} key={FilterSelectionAction.clear}>
-        <ComponentFormRadio value={FilterSelectionAction.clear} />
-        Clear Saved State from Page
-      </ComponentFormLabel>
-    </ComponentFormRadioGroup>
-  );
+  const RestClearForm = useCallback(() => {
+    if (step === FilterSelectionAction.clear_success) {
+      return (
+        <ComponentFormDescription>
+        { MSGCLEARSUCCESS }
+        </ComponentFormDescription>
+      );
+    }
 
-  console.log(defaultTags);
+    if (step === FilterSelectionAction.reset_success) {
+      return (
+        <ComponentFormDescription>
+        { MSGRESETSUCCESS }
+        </ComponentFormDescription>
+      );
+    }
+
+    return (
+      <>
+        <ComponentFormDescription>
+          { MSGRESETCLEAR }
+        </ComponentFormDescription>
+        <ComponentFormRadioGroup
+          field="filterSelectionAction"
+          keepState
+          initialValue={FilterSelectionAction.reset}>
+          <ComponentFormLabel key={FilterSelectionAction.reset}>
+            <ComponentFormRadio value={FilterSelectionAction.reset} />
+            Reset Local Filter UI to Saved State
+          </ComponentFormLabel>
+          <ComponentFormLabel key={FilterSelectionAction.clear}>
+            <ComponentFormRadio value={FilterSelectionAction.clear} />
+            Clear Saved State from Page
+          </ComponentFormLabel>
+        </ComponentFormRadioGroup>
+        <ComponentFormSubmitButton
+          aria-label="Submit"
+          onClick={hanldeSubmit}
+        />
+      </>
+    );
+  }, [step, values]);
 
   return (
     <>
-      { !defaultTags.length && <SaveForm /> }
-      {/* { defaultTags.length && <RestClearForm /> } */}
-      <ComponentFormSubmitButton
-        aria-label="Submit"
-        onClick={hanldeSubmit}
-      />
+      { (step === FilterSelectionAction.save
+        || step === FilterSelectionAction.save_success)
+        && <SaveForm /> }
+      { (step === FilterSelectionAction.reset
+        || step === FilterSelectionAction.reset_success
+        || step === FilterSelectionAction.clear
+        || step === FilterSelectionAction.clear_success)
+        && <RestClearForm /> }
     </>
   );
 };
@@ -165,9 +223,6 @@ const renderForm = (props: ContextMenuFormProps) => {
  * @returns Default filter button menu option.
  */
 const useFilterSelectionMenuOptions = () => {
-  // const { tags: defaultTags = [] } = useDefaultFiltersData();
-  // const formDescription = (!defaultTags.length) ? MSGSAVE : MSGSUCCESS;
-
   const filterSelectionMenuOptions: EditButtonOptions<any, NodeTagType> = {
     name: 'filter-page',
     label: 'Page',
@@ -178,27 +233,8 @@ const useFilterSelectionMenuOptions = () => {
     global: false,
     formTitle: 'Filter Page',
     isHidden: false,
-    // formDescription,
     renderForm,
     hasSubmit: false,
-    // submitValueHandler: (values: any) => {
-    //   const { filterSelectionAction = '' } = values;
-    //   switch (filterSelectionAction) {
-    //     case FilterSelectionAction.clear: {
-    //       const submitValues = { tags: [] };
-    //       return submitValues;
-    //     }
-    //     case FilterSelectionAction.reset: {
-    //       updateSelectedTags(defaultTags);
-    //       return { tags: defaultTags };
-    //     }
-    //     case FilterSelectionAction.save: {
-    //       const tags = getSelectedTags();
-    //       const submitValues = { tags };
-    //       return submitValues;
-    //     }
-    //   }
-    // },
   };
   return filterSelectionMenuOptions;
 };
