@@ -34,6 +34,7 @@ import {
   withoutProps,
   addProps,
   ComponentOrTag,
+  flowIf,
 } from '@bodiless/fclasses';
 import { useFormState, useFormApi } from 'informed';
 import { useFilterByGroupContext } from './FilterByGroupContext';
@@ -242,7 +243,9 @@ const useFilterSelectionMenuOptions = () => {
 const withTagListDesign = withDesign({
   Title: withDesign({
     FilterGroupItemInput: ifReadOnly(
-      addProps({ disabled: true }),
+      flowIf(() => useDefaultFiltersData().tags.length !== 0)(
+        addProps({ disabled: true })
+      ),
     )
   }),
 });
@@ -297,6 +300,7 @@ const withFilterSelection = (
       withLocalContextMenu,
     ),
   ),
+  asDefaultFilter,
 );
 
 export default withFilterSelection;
