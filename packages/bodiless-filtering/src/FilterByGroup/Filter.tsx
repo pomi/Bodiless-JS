@@ -254,7 +254,6 @@ const FilterClean = asToken(
   asFilter,
   withFilterDesignTransformer as HOC,
   withNodeKey('filter'),
-  withFilterSelection(),
 )('ul');
 
 export default FilterClean;

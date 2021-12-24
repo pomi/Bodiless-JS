@@ -24,6 +24,7 @@ import {
 import React from 'react';
 import { graphql } from 'gatsby';
 import flow from 'lodash/flow';
+import { withFilterSelection } from '@bodiless/filtering';
 import Layout from '../../../components/Layout';
 import { SectionContent, SectionMargin } from '../../../components/Product';
 import Page from '../../../components/Page';
@@ -41,6 +42,7 @@ export const withSingleAllowedTag = asToken(
     ResetButton: asToken(
       replaceWith(Fragment),
     ),
+    Filter: withFilterSelection(),
   }),
 );
 
