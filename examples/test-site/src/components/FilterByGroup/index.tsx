@@ -16,9 +16,13 @@ import {
   FilterByGroupClean,
   asTestableFilterByGroup,
   Tag,
+  withSingleAllowedTag,
+  //withMultipleAllowedTags,  
 } from '@bodiless/filtering';
-import { addProps, asToken } from '@bodiless/fclasses';
+import { addProps, asToken, withDesign } from '@bodiless/fclasses';
 import { asFilterByGroupResponsive, asFilterByGroupDefaultStyle } from './token';
+import { flow } from 'lodash';
+import { withNodeKey } from '@bodiless/core';
 
 const suggestions = [
   new Tag('1', 'DefaultTag 1'),
@@ -36,6 +40,14 @@ const asFilterByGroup = asToken(
 );
 
 const FilterByGroup = asFilterByGroup(FilterByGroupClean);
+
+export const FilterByGroupSingleSiteWide = flow(
+  asFilterByGroup,
+  withSingleAllowedTag,
+  withDesign({
+    Filter: withNodeKey({ nodeKey: 'filter', nodeCollection: 'site' }),
+  }),  
+)(FilterByGroupClean);
 
 export default FilterByGroup;
 export {

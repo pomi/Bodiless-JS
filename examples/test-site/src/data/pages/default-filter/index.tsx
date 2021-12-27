@@ -31,7 +31,7 @@ import Page from '../../../components/Page';
 import {
   ProductListingFlowContainer,
 } from '../../../components/ProductListing';
-import BaseFilterByGroup from '../../../components/FilterByGroup';
+import { FilterByGroupSingleSiteWide } from '../../../components/FilterByGroup';
 
 export const withSingleAllowedTag = asToken(
   addProps({
@@ -46,18 +46,14 @@ export const withSingleAllowedTag = asToken(
   }),
 );
 
-const FilterByGroup = flow(
-  withSingleAllowedTag,
-)(BaseFilterByGroup);
-
 const main = props => (
   <Page {...props}>
     <Layout>
       <SectionContent>
         <SectionMargin>
-          <FilterByGroup>
-            <ProductListingFlowContainer nodeKey="product_listing_cards" />
-          </FilterByGroup>
+          <FilterByGroupSingleSiteWide>
+            <ProductListingFlowContainer />
+          </FilterByGroupSingleSiteWide>
         </SectionMargin>
       </SectionContent>
     </Layout>
