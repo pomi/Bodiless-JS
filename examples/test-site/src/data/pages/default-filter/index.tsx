@@ -14,46 +14,25 @@
 
 // @ts-nocheck
 
-import {
-  withDesign,
-  asToken,
-  addProps,
-  replaceWith,
-  Fragment,
-} from '@bodiless/fclasses';
 import React from 'react';
 import { graphql } from 'gatsby';
-import flow from 'lodash/flow';
-import { withFilterSelection } from '@bodiless/filtering';
 import Layout from '../../../components/Layout';
 import { SectionContent, SectionMargin } from '../../../components/Product';
 import Page from '../../../components/Page';
 import {
   ProductListingFlowContainer,
 } from '../../../components/ProductListing';
-import { FilterByGroupSingleSiteWide } from '../../../components/FilterByGroup';
+import { FilterByGroupSingleSiteWideNoReset } from '../../../components/FilterByGroup';
 
-export const withSingleAllowedTag = asToken(
-  addProps({
-    multipleAllowedTags: false,
-    'resetButtonText': '',
-  }),
-  withDesign({
-    ResetButton: asToken(
-      replaceWith(Fragment),
-    ),
-    Filter: withFilterSelection(),
-  }),
-);
 
 const main = props => (
   <Page {...props}>
     <Layout>
       <SectionContent>
         <SectionMargin>
-          <FilterByGroupSingleSiteWide>
+          <FilterByGroupSingleSiteWideNoReset>
             <ProductListingFlowContainer />
-          </FilterByGroupSingleSiteWide>
+          </FilterByGroupSingleSiteWideNoReset>
         </SectionMargin>
       </SectionContent>
     </Layout>
