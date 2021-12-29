@@ -1,3 +1,4 @@
 {
-  "href": "/products/product-a"
+  "href": "/products/product-a/",
+  "aria-label": "produto"
 }

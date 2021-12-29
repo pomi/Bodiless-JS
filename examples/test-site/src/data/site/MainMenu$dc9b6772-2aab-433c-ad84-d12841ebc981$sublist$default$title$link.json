@@ -1,3 +1,4 @@
 {
-  "href": "/accordion"
+  "href": "/accordion/",
+  "aria-label": "AriaLabel"
 }
