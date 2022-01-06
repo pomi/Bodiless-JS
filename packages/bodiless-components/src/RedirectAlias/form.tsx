@@ -119,7 +119,7 @@ const FormBodyBase = () => {
   const { node } = useNode();
   const initialAliases = convertAliasJsonToText(useGetRedirectAliases(node));
 
-  const hanldeSubmit = (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const { aliases } = formValues;
@@ -156,7 +156,7 @@ const FormBodyBase = () => {
         <i>{ !formValues.isValidate && INVALIDATED }</i>
         <ComponentFormSubmitButton
           aria-label="Submit"
-          onClick={hanldeSubmit}
+          onClick={handleSubmit}
         />
       </>
     );
