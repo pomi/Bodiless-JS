@@ -42,7 +42,7 @@ import type { AliasItem } from './types';
 enum Steps { Edit, Confirmation }
 
 const REDIRECT_ALIASES = 'Redirect Aliases';
-const CONFIRMATION = 'Redirect Aliases file validated and saved.';
+const CONFIRMATION = 'Redirect aliases file validated and saved.';
 const INVALIDATED = 'The redirects are not valid, please correct.';
 const ALIASPARTSCOUNT = 3;
 
