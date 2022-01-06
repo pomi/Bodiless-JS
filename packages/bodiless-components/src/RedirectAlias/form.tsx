@@ -44,6 +44,7 @@ enum Steps { Edit, Confirmation }
 const REDIRECT_ALIASES = 'Redirect Aliases';
 const CONFIRMATION = 'Redirect aliases file validated and saved.';
 const INVALIDATED = 'The redirects are not valid, please correct.';
+const DEFAULT_REDIRECT_STATUS = '301';
 const ALIASPARTSCOUNT = 3;
 
 const isTextEmpty = (text: string) => (!text || text === '');
@@ -52,23 +53,28 @@ const isTextValidate = (text: string): boolean => {
   // Users must be able to save no redirects.
   if (isTextEmpty(text)) return true;
 
+  // Any double whitespaces are invalid.
+  if (text.indexOf('  ') >= 0) return false;
+
   try {
     const aliases = text.split('\n');
     const validatedAliases = aliases.filter(item => {
+      // For each item, first and last chars must not be whitespace.
+      if (item[0] == ' ' || item[item.length - 1] == ' ') {
+        return false;
+      }
+
       const items = item.split(' ');
-      if (items.length !== ALIASPARTSCOUNT) {
-        return false;
-      }
 
-      if (typeof items[0] !== 'string') {
-        return false;
-      }
-
-      if (typeof items[1] !== 'string') {
-        return false;
-      }
-
-      if (typeof parseInt(items[2]) !== 'number') {
+      // Items are valid if last value is not provided.
+      // First and second values can not be numbers.
+      // Last, if provided, must be validated as a number to represent status code.
+      if (
+        items.length !== ALIASPARTSCOUNT && items.length !== (ALIASPARTSCOUNT - 1)
+        || typeof items[0] !== 'string' || !isNaN(parseInt(items[0]))
+        || typeof items[1] !== 'string' || !isNaN(parseInt(items[1])) 
+        || typeof items[2] !== 'undefined' && isNaN(parseInt(items[2]))
+      ) {
         return false;
       }
 
@@ -97,7 +103,7 @@ const convertAliasTextToJson = (text: string) => {
     return {
       fromPath: items[0],
       toPath: items[1],
-      statusCode: items[2],
+      statusCode: (typeof items[2] !== 'undefined') ? items[2] : DEFAULT_REDIRECT_STATUS,
     };
   });
 };
