@@ -46,29 +46,11 @@ const CONFIRMATION = 'Redirect Aliases file validated and saved.';
 const INVALIDATED = 'The redirects are not valid, please correct.';
 const ALIASPARTSCOUNT = 3;
 
-const convertAliasJsonToText = (aliases: [AliasItem]): string => {
-  if (!(aliases && aliases.length)) {
-    return '';
-  }
-  return aliases.map((e: AliasItem) => {
-    return `${e.fromPath} ${e.toPath} ${e.statusCode}`;
-  }).join('\n');
-};
-
-const convertAliasTextToJson = (text: string) => {
-  if (text === '') return [];
-  return text.split('\n').map(item => {
-    const items = item.split(' ');
-    return {
-      fromPath: items[0],
-      toPath: items[1],
-      statusCode: items[2],
-    };
-  });
-};
+const isTextEmpty = (text: string) => (!text || text === '');
 
 const isTextValidate = (text: string): boolean => {
-  if (text === '') return true;
+  // Users must be able to save no redirects.
+  if (isTextEmpty(text)) return true;
 
   try {
     const aliases = text.split('\n');
@@ -97,6 +79,27 @@ const isTextValidate = (text: string): boolean => {
   } catch (error) {
     return false;
   }
+};
+
+const convertAliasJsonToText = (aliases: [AliasItem]): string => {
+  if (!(aliases && aliases.length)) {
+    return '';
+  }
+  return aliases.map((e: AliasItem) => {
+    return `${e.fromPath} ${e.toPath} ${e.statusCode}`;
+  }).join('\n');
+};
+
+const convertAliasTextToJson = (text: string) => {
+  if (isTextEmpty(text)) return [];
+  return text.split('\n').map(item => {
+    const items = item.split(' ');
+    return {
+      fromPath: items[0],
+      toPath: items[1],
+      statusCode: items[2],
+    };
+  });
 };
 
 const FormBodyBase = () => {
