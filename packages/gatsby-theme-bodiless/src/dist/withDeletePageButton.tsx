@@ -34,9 +34,6 @@ import { ComponentFormSpinner } from '@bodiless/ui';
 import flow from 'lodash/flow';
 import BackendClient from './BackendClient';
 import handle from './ResponseHandler';
-import {
-  PageURLField as NewPageURLField,
-} from './PageOperations';
 
 type Client = {
   deletePage: (path: string) => AxiosPromise<any>;
@@ -69,6 +66,11 @@ const deletePage = async ({ path, client } : any) => {
   if (result.response) {
     if (result.message !== 'Success' && typeof (result.message) === 'string') {
       return Promise.reject(new Error(result.message));
+    }
+    try {
+      await handle(client.deleteStaticAssets(path));
+    } catch (e: any) {
+      return Promise.reject(new Error(e.message));
     }
     return Promise.resolve();
   }
@@ -108,7 +110,6 @@ const DeletePageForm = (props : DeletePageProps) => {
             <CustomComponentFormLabel>
               Are you sure you want to delete the current page?
             </CustomComponentFormLabel>
-            <NewPageURLField hidden />
           </ContextMenuProvider>
         </>
       );
