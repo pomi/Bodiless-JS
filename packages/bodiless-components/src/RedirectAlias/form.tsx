@@ -113,6 +113,9 @@ const FormBodyBase = () => {
   const ComponentFormIsValidate = flow(
     addClasses('hidden')
   )(ComponentFormCheckBox);
+  const CustomComponentFormTextArea = flow(
+    addClasses('bl-min-w-xl-grid-2 bl-h-xl-grid-1'),
+  )(ComponentFormTextArea);
   const {
     setValue,
     setValues,
@@ -150,7 +153,7 @@ const FormBodyBase = () => {
 
     return (
       <>
-        <ComponentFormTextArea
+        <CustomComponentFormTextArea
           keepState
           field="aliases"
           placeholder={REDIRECT_ALIASES}
