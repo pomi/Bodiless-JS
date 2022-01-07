@@ -243,5 +243,6 @@ const withRedirectAliasButton = asToken(
 
 export {
   convertAliasJsonToText,
+  convertAliasTextToJson,
   withRedirectAliasButton,
 };
