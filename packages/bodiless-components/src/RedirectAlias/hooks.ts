@@ -15,7 +15,7 @@
 import { ContentNode } from '@bodiless/core';
 
 /**
- * Get list of redirect aliases.
+ * Gets a list of redirect aliases.
  * @param node - the content node of the current component of its child/peer.
  * @returns key/value collection of disabled items or an empty object.
  */

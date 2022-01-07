@@ -66,6 +66,7 @@ const isTextValidate = (text: string): boolean => {
         return false;
       }
 
+      // Now, split the item values so we can validate each one individually.
       const items = item.split(' ');
 
       // Items are valid if last value is not provided.
@@ -147,20 +148,21 @@ const FormBodyBase = () => {
     }
 
     setValue('isValidate', true);
+
+    // Saves json file.
     node.setData(convertAliasTextToJson(aliases as string));
     setStep(Steps.Confirmation);
   };
 
   const EditForm = useCallback(() => {
     useEffect(() => {
-      // Get initial values from node.
+      // Gets initial values from node.
       const values = {
         aliases: initialAliases,
         isValidate: true,
       };
     
       setValues(values);
-
     }, []);
 
     return (
