@@ -211,3 +211,10 @@ export const ComponentFormLink = flow(
   addClassesIf(isDisabled)('bl-text-gray-600'),
   removeClassesIf(isDisabled)('bl-cursor-pointer bl-text-gray-100 '),
 )(Anchor);
+
+export const ComponentFormDefaultPanelWidth = addClasses('bl-w-xl-grid-2');
+export const ComponentFormDefaultPanelHeight = addClasses('bl-h-xl-grid-1');
+export const ComponentFormDefaultPanelSize = flow(
+  ComponentFormDefaultPanelWidth,
+  ComponentFormDefaultPanelHeight,
+);

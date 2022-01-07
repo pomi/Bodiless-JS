@@ -31,10 +31,12 @@ import {
   withOnlyProps,
   HOC,
   addClasses,
+  removeClasses,
 } from '@bodiless/fclasses';
 import type {
   ContextMenuFormProps,
 } from '@bodiless/core';
+import { ComponentFormDefaultPanelSize } from '@bodiless/ui';
 import { withToolsButton } from '../Tools';
 import { useGetRedirectAliases } from './hooks';
 import type { AliasItem } from './types';
@@ -119,8 +121,12 @@ const FormBodyBase = () => {
   const ComponentFormIsValidate = flow(
     addClasses('hidden')
   )(ComponentFormCheckBox);
+  const ComponentFormTextAreaSize = flow(
+    removeClasses('bl-w-full bl-min-w-xl-grid-1 bl-min-h-grid-16'),
+    ComponentFormDefaultPanelSize,
+  );
   const CustomComponentFormTextArea = flow(
-    addClasses('bl-min-w-xl-grid-2 bl-h-xl-grid-1'),
+    ComponentFormTextAreaSize,
   )(ComponentFormTextArea);
   const {
     setValue,
