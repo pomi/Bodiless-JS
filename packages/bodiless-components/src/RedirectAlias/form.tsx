@@ -86,6 +86,7 @@ const isTextValid = (text: string): boolean => {
 
     return validatedAliases.length === aliases.length;
   } catch (error) {
+    console.error(error);
     return false;
   }
 };
