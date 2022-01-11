@@ -51,7 +51,7 @@ const ALIASPARTSCOUNT = 3;
 
 const isTextEmpty = (text: string) => (!text || text === '');
 
-const isTextValidate = (text: string): boolean => {
+const isTextValid = (text: string): boolean => {
   // Users must be able to save no redirects.
   if (isTextEmpty(text)) return true;
 
@@ -119,7 +119,7 @@ const FormBodyBase = () => {
     ComponentFormSubmitButton,
     ComponentFormCheckBox,
   } = useMenuOptionUI();
-  const ComponentFormIsValidate = flow(
+  const ComponentFormIsValid = flow(
     addClasses('hidden')
   )(ComponentFormCheckBox);
   const ComponentFormTextAreaSize = flow(
@@ -142,12 +142,12 @@ const FormBodyBase = () => {
     e.preventDefault();
 
     const { aliases } = formValues;
-    if (!isTextValidate(aliases as string)) {
-      setValue('isValidate', false);
+    if (!isTextValid(aliases as string)) {
+      setValue('isValid', false);
       return;
     }
 
-    setValue('isValidate', true);
+    setValue('isValid', true);
 
     // Saves json file.
     node.setData(convertAliasTextToJson(aliases as string));
@@ -159,7 +159,7 @@ const FormBodyBase = () => {
       // Gets initial values from node.
       const values = {
         aliases: initialAliases,
-        isValidate: true,
+        isValid: true,
       };
     
       setValues(values);
@@ -172,8 +172,8 @@ const FormBodyBase = () => {
           field="aliases"
           placeholder={REDIRECT_ALIASES}
         />
-        <ComponentFormIsValidate keepState field="isValidate" />
-        <i>{ !formValues.isValidate && INVALIDATED }</i>
+        <ComponentFormIsValid keepState field="isValid" />
+        <i>{ !formValues.isValid && INVALIDATED }</i>
         <ComponentFormSubmitButton
           aria-label="Submit"
           onClick={handleSubmit}
