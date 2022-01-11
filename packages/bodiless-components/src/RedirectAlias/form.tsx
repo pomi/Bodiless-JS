@@ -56,7 +56,7 @@ const isTextValid = (text: string): boolean => {
   if (isTextEmpty(text)) return true;
 
   // Any double whitespaces are invalid.
-  if (text.indexOf('  ') >= 0) return false;
+  if (text.match(/\s{2,}/m)) return false;
 
   try {
     const aliases = text.split('\n');
