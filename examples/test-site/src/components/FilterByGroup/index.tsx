@@ -12,18 +12,20 @@
  * limitations under the License.
  */
 
+import { flow } from 'lodash';
 import {
   FilterByGroupClean,
   asTestableFilterByGroup,
   Tag,
   withSingleAllowedTag,
   withFilterSelection,
-  //withMultipleAllowedTags,
+  // withMultipleAllowedTags,
 } from '@bodiless/filtering';
-import { addProps, asToken, withDesign, Fragment, replaceWith } from '@bodiless/fclasses';
-import { asFilterByGroupResponsive, asFilterByGroupDefaultStyle } from './token';
-import { flow } from 'lodash';
+import {
+  addProps, asToken, withDesign, Fragment, replaceWith,
+} from '@bodiless/fclasses';
 import { withNodeKey } from '@bodiless/core';
+import { asFilterByGroupResponsive, asFilterByGroupDefaultStyle } from './token';
 
 const suggestions = [
   new Tag('1', 'DefaultTag 1'),
@@ -45,7 +47,7 @@ const FilterByGroup = asFilterByGroup(FilterByGroupClean);
 const withSingleAllowedTagNoReset = asToken(
   addProps({
     multipleAllowedTags: false,
-    'resetButtonText': '',
+    resetButtonText: '',
   }),
   withDesign({
     ResetButton: asToken(
@@ -55,7 +57,7 @@ const withSingleAllowedTagNoReset = asToken(
   }),
 );
 
-const withSiteWideFilter =   withDesign({
+const withSiteWideFilter = withDesign({
   Filter: withNodeKey({ nodeKey: 'filter', nodeCollection: 'site' }),
 });
 
@@ -67,10 +69,9 @@ export const FilterByGroupSingleSiteWide = flow(
 
 export const FilterByGroupSingleSiteWideNoReset = flow(
   asFilterByGroup,
-  withSiteWideFilter,  
+  withSiteWideFilter,
   withSingleAllowedTagNoReset,
 )(FilterByGroupClean);
-
 
 export default FilterByGroup;
 export {

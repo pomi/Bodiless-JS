@@ -13,6 +13,7 @@
  */
 
 import React, { useCallback, useEffect } from 'react';
+import { useFormState, useFormApi } from 'informed';
 import {
   withEditButton,
   withNodeDataHandlers,
@@ -36,7 +37,6 @@ import {
   ComponentOrTag,
   flowIf,
 } from '@bodiless/fclasses';
-import { useFormState, useFormApi } from 'informed';
 import { useFilterByGroupContext } from './FilterByGroupContext';
 import type { NodeTagType, FilterTagType } from './types';
 
@@ -49,11 +49,11 @@ enum FilterSelectionAction {
   save_success,
 }
 
-const MSGSAVE = 'Clicking the check will save the current Local Filter UI selections to this Page, creating a Save State.';
-const MSGSAVESUCCESS = 'Page now filtered by Saved State on page load.';
-const MSGRESETCLEAR = 'The Saved State is filtering this Page for the End User.';
-const MSGRESETSUCCESS = 'UI Filter reset to Saved State.';
-const MSGCLEARSUCCESS = 'The Saved State has been cleared.';
+const MSG_SAVE = 'Clicking the check will save the current Local Filter UI selections to this Page, creating a Save State.';
+const MSG_SAVE_SUCCESS = 'Page now filtered by Saved State on page load.';
+const MSG_RESET_CLEAR = 'The Saved State is filtering this Page for the End User.';
+const MSG_RESET_SUCCESS = 'UI Filter reset to Saved State.';
+const MSG_CLEAR_SUCCESS = 'The Saved State has been cleared.';
 
 const defaultFiltersPath = [
   'Page',
@@ -61,13 +61,15 @@ const defaultFiltersPath = [
 ];
 
 /**
- * Retrieves default filter data on current page.
- * 
+ * Custom hook to retrieves default filter data on current page.
+ *
  * @private
  */
 const useDefaultFiltersData = () => {
   const { node } = useNode();
-  return node.peer(defaultFiltersPath).data as { tags: FilterTagType[] };
+  const defaultFilters = node.peer(defaultFiltersPath);
+  const { tags = [] } = defaultFilters.data as { tags?: FilterTagType[] };
+  return { tags };
 };
 
 /**
@@ -77,7 +79,7 @@ const useDefaultFiltersData = () => {
  * - Has saved default filter.
  *    - Clear/remove saved default filter
  *    - Reset current selection to default filter selection.
- * 
+ *
  * @private
  * @params props Default filter form properties.
  * @returns void
@@ -106,7 +108,7 @@ const renderForm = (props: ContextMenuFormProps) => {
     }
   }, []);
 
-  const hanldeSubmit = useCallback((e: any) => {
+  const handleSubmit = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault();
     const v = values[Object.keys(values)[0]] as any;
     switch (v.filterSelectionAction) {
@@ -136,7 +138,7 @@ const renderForm = (props: ContextMenuFormProps) => {
     if (step === FilterSelectionAction.save_success) {
       return (
         <ComponentFormDescription>
-        { MSGSAVESUCCESS }
+          {MSG_SAVE_SUCCESS}
         </ComponentFormDescription>
       );
     }
@@ -144,7 +146,7 @@ const renderForm = (props: ContextMenuFormProps) => {
     return (
       <>
         <ComponentFormDescription>
-          { MSGSAVE }
+          {MSG_SAVE}
         </ComponentFormDescription>
         <ComponentFormText
           type="hidden"
@@ -154,7 +156,7 @@ const renderForm = (props: ContextMenuFormProps) => {
         />
         <ComponentFormSubmitButton
           aria-label="Submit"
-          onClick={hanldeSubmit}
+          onClick={handleSubmit}
         />
       </>
     );
@@ -164,7 +166,7 @@ const renderForm = (props: ContextMenuFormProps) => {
     if (step === FilterSelectionAction.clear_success) {
       return (
         <ComponentFormDescription>
-        { MSGCLEARSUCCESS }
+          {MSG_CLEAR_SUCCESS}
         </ComponentFormDescription>
       );
     }
@@ -172,7 +174,7 @@ const renderForm = (props: ContextMenuFormProps) => {
     if (step === FilterSelectionAction.reset_success) {
       return (
         <ComponentFormDescription>
-        { MSGRESETSUCCESS }
+          {MSG_RESET_SUCCESS}
         </ComponentFormDescription>
       );
     }
@@ -180,12 +182,13 @@ const renderForm = (props: ContextMenuFormProps) => {
     return (
       <>
         <ComponentFormDescription>
-          { MSGRESETCLEAR }
+          {MSG_RESET_CLEAR}
         </ComponentFormDescription>
         <ComponentFormRadioGroup
           field="filterSelectionAction"
           keepState
-          initialValue={FilterSelectionAction.reset}>
+          initialValue={FilterSelectionAction.reset}
+        >
           <ComponentFormLabel key={FilterSelectionAction.reset}>
             <ComponentFormRadio value={FilterSelectionAction.reset} />
             Reset Local Filter UI to Saved State
@@ -197,7 +200,7 @@ const renderForm = (props: ContextMenuFormProps) => {
         </ComponentFormRadioGroup>
         <ComponentFormSubmitButton
           aria-label="Submit"
-          onClick={hanldeSubmit}
+          onClick={handleSubmit}
         />
       </>
     );
@@ -205,21 +208,21 @@ const renderForm = (props: ContextMenuFormProps) => {
 
   return (
     <>
-      { (step === FilterSelectionAction.save
+      {(step === FilterSelectionAction.save
         || step === FilterSelectionAction.save_success)
-        && <SaveForm /> }
-      { (step === FilterSelectionAction.reset
+        && <SaveForm />}
+      {(step === FilterSelectionAction.reset
         || step === FilterSelectionAction.reset_success
         || step === FilterSelectionAction.clear
         || step === FilterSelectionAction.clear_success)
-        && <RestClearForm /> }
+        && <RestClearForm />}
     </>
   );
 };
 
 /**
  * Custom hook to generate a default filter button menu options.
- * 
+ *
  * @private
  * @returns Default filter button menu option.
  */
@@ -255,10 +258,10 @@ export const asDefaultFilter = withDesign({
 
 /**
  * HOC applies page default filter to Filter component.
- * 
+ *
  * @private
  * @param Component filter component.
- * @returns 
+ * @return HOC
  */
 const withFilterDefaultSelection = <P extends object>(Component: ComponentOrTag<P>) => {
   const WithFilterDefaultSelection = (props: P) => {
@@ -278,11 +281,12 @@ const withFilterDefaultSelection = <P extends object>(Component: ComponentOrTag<
 
 /**
  * HOC adds default filter form and data to filter list. Selected filter data has
- * default nodekey as 'default-filters'.
- * 
- * @param nodeKey Default filter nodekey for page level storage.
+ * default nodeKey as 'default-filters'.
+ *
+ * @param nodeKey Default filter nodeKey for page level storage.
  * @param defaultData default data for default filter selection.
- * @returns 
+ * @return
+ * A composed token.
  */
 const withFilterSelection = (
   nodeKey = 'default-filters',
