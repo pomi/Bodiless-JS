@@ -51,7 +51,7 @@ const REDIRECT_ALIASES_PLACEHOLDER = '/page-1/ /page-2/ 301'
 const CONFIRMATION = 'Redirect aliases file validated and saved.';
 const INVALIDATED = 'The redirects are not valid, please correct.';
 const DEFAULT_REDIRECT_STATUS = '301';
-const ALIASPARTSCOUNT = 3;
+const ALIAS_PARTS_COUNT = 3;
 const PATTERN_MULTILINE_MULTIPLE_SPACES = /\s{2,}/m;
 
 const isTextEmpty = (text: string) => (!text || text === '');
@@ -79,7 +79,7 @@ const isTextValid = (text: string): boolean => {
       // First and second values can not be numbers.
       // Last value, if provided, must be validated as a number to represent status code.
       if (
-        items.length !== ALIASPARTSCOUNT && items.length !== (ALIASPARTSCOUNT - 1)
+        items.length !== ALIAS_PARTS_COUNT && items.length !== (ALIAS_PARTS_COUNT - 1)
         || typeof items[0] !== 'string' || !isNaN(parseInt(items[0]))
         || typeof items[1] !== 'string' || !isNaN(parseInt(items[1])) 
         || typeof items[2] !== 'undefined' && isNaN(parseInt(items[2]))
