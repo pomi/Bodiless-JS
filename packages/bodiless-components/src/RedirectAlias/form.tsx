@@ -44,6 +44,10 @@ import type { AliasItem } from './types';
 enum Steps { Edit, Confirmation }
 
 const REDIRECT_ALIASES = 'Redirect Aliases';
+const REDIRECT_ALIASES_PLACEHOLDER = '/page-1/ /page-2/ 301'
+  + '\n/example/contact-us/ /contact-us/ 302'
+  + '\n/example/campaign/special / 301'
+  + '\n/page-3/ https://example.com 301';
 const CONFIRMATION = 'Redirect aliases file validated and saved.';
 const INVALIDATED = 'The redirects are not valid, please correct.';
 const DEFAULT_REDIRECT_STATUS = '301';
@@ -173,7 +177,7 @@ const FormBodyBase = () => {
         <CustomComponentFormTextArea
           keepState
           field="aliases"
-          placeholder={REDIRECT_ALIASES}
+          placeholder={REDIRECT_ALIASES_PLACEHOLDER}
         />
         <ComponentFormIsValid keepState field="isValid" />
         <i>{ !formValues.isValid && INVALIDATED }</i>
