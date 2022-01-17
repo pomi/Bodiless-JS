@@ -172,11 +172,14 @@ const FormBodyBase = () => {
       setValues(values);
     }, []);
 
+    // If validation fails, clears error message when the user focus
+    // on the form to type again.
     return (
       <>
         <CustomComponentFormTextArea
           keepState
           field="aliases"
+          onFocus={() => setValue('isValid', true)}
           placeholder={REDIRECT_ALIASES_PLACEHOLDER}
         />
         <ComponentFormIsValid keepState field="isValid" />
