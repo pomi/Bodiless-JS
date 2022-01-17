@@ -48,6 +48,7 @@ const CONFIRMATION = 'Redirect aliases file validated and saved.';
 const INVALIDATED = 'The redirects are not valid, please correct.';
 const DEFAULT_REDIRECT_STATUS = '301';
 const ALIASPARTSCOUNT = 3;
+const PATTERN_MULTILINE_MULTIPLE_SPACES = /\s{2,}/m;
 
 const isTextEmpty = (text: string) => (!text || text === '');
 
@@ -55,8 +56,9 @@ const isTextValid = (text: string): boolean => {
   // Users must be able to save no redirects.
   if (isTextEmpty(text)) return true;
 
-  // Any double whitespaces are invalid.
-  if (text.match(/\s{2,}/m)) return false;
+  // Only single whitespace is allowed to separate the values in the text,
+  // Therefore, any multiple whitespaces are invalid.
+  if (text.match(PATTERN_MULTILINE_MULTIPLE_SPACES)) return false;
 
   try {
     const aliases = text.split('\n');
@@ -71,7 +73,7 @@ const isTextValid = (text: string): boolean => {
 
       // Items are valid if last value is not provided.
       // First and second values can not be numbers.
-      // Last, if provided, must be validated as a number to represent status code.
+      // Last value, if provided, must be validated as a number to represent status code.
       if (
         items.length !== ALIASPARTSCOUNT && items.length !== (ALIASPARTSCOUNT - 1)
         || typeof items[0] !== 'string' || !isNaN(parseInt(items[0]))
