@@ -40,6 +40,7 @@ import { ComponentFormDefaultPanelSize } from '@bodiless/ui';
 import { withToolsButton } from '../Tools';
 import { useGetRedirectAliases } from './hooks';
 import type { AliasItem } from './types';
+import { DefaultNormalHref } from '../Link';
 
 enum Steps { Edit, Confirmation }
 
@@ -111,8 +112,8 @@ const convertAliasTextToJson = (text: string) => {
   return text.split('\n').map(item => {
     const items = item.split(' ');
     return {
-      fromPath: items[0],
-      toPath: items[1],
+      fromPath: new DefaultNormalHref(items[0]).toString(),
+      toPath: new DefaultNormalHref(items[1]).toString(),
       statusCode: (typeof items[2] !== 'undefined') ? items[2] : DEFAULT_REDIRECT_STATUS,
     };
   });
