@@ -1,13 +1,52 @@
-[{
-  "fromPath": "/menu",
-  "toPath": "/carousel",
-  "statusCode": 301
-}, {
-  "fromPath": "/page-a",
-  "toPath": "/carousel",
-  "statusCode": 301
-}, {
-  "fromPath": "/page-b/",
-  "toPath": "https://www.google.com",
-  "statusCode": 301
-}]
+[
+  {
+    "fromPath": "/page_1/",
+    "toPath": "/page_2-non-ex/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/list2/",
+    "toPath": "/anchor/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/page-1/",
+    "toPath": "/page-2/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/forms/",
+    "toPath": "/images/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/page_5/",
+    "toPath": "/page_6/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/products/product-a/",
+    "toPath": "/products/product-b/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/page_7/",
+    "toPath": "/page_8/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/compound-form/",
+    "toPath": "/content-library/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/chameleon/",
+    "toPath": "/page-11-non-ex/",
+    "statusCode": "301"
+  },
+  {
+    "fromPath": "/menu/",
+    "toPath": "/",
+    "statusCode": "301"
+  }
+]
