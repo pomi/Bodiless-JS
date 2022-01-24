@@ -24,6 +24,7 @@
     - [Link](/Components/Link)
     - [Image](/Components/Image)
     - [Social Wall](/Components/SocialWall)
+    - [GTM](/Components/GTM)
     - [Flow Container](/Components/FlowContainer)
     - [Navigation](/Components/Navigation/)
       - [Breadcrumbs](/Components/Navigation/Breadcrumbs)
