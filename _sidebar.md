@@ -10,6 +10,8 @@
       - [Delete](/ContentEditorUserGuide/PageMenu/Delete/)
       - [SEO](/ContentEditorUserGuide/PageMenu/SEO/)
     - [File Menu](/ContentEditorUserGuide/FileMenu/)
+    - [Tools Menu](/ContentEditorUserGuide/ToolsMenu/)
+      - [Aliases](/ContentEditorUserGuide/ToolsMenu/Aliases/)
   - [Design](/Design/)
     - [Design System](/Design/DesignSystem)
     - [Image Guidelines](/Design/ImageGuidelines)
