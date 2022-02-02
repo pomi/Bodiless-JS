@@ -45,7 +45,7 @@ const addProps = <P extends object>(propsToAdd: P): Injector<Partial<P>> => Comp
  *
  * @see addProps
  */
-export const addPropsIf = <A extends object>(
+const addPropsIf = <A extends object>(
   conditionHook: Condition<A>,
 ) => <I extends NotAFunction>(
     propsToAdd: I | ((props: A) => I),
@@ -59,4 +59,32 @@ export const addPropsIf = <A extends object>(
       return AddPropsIf;
     };
 
+/**
+ * Creates an HOC that removes a set of specified props from the base component.
+ *
+ * @param propsToRemove
+ * Array of strings containing props to removed from base component props.
+ *
+ * @return
+ * A component which renders the base component with the remaining props.
+ */
+const removeProps = <P extends Array<string>>(
+  propsToRemove: P,
+): Injector<Partial<P>> => Component => {
+    const RemoveProps = (props: any) => {
+      let remainingProps = props;
+      propsToRemove.forEach((propToRemove: string) => {
+        const { [propToRemove]: removedValue, ...diffProps } = remainingProps;
+        remainingProps = diffProps;
+      });
+      return <Component {...remainingProps} />;
+    };
+    return RemoveProps;
+  };
+
 export default addProps;
+
+export {
+  addPropsIf,
+  removeProps,
+};

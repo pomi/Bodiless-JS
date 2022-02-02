@@ -17,6 +17,7 @@ import {
   addClasses,
   asToken,
   addProps,
+  removeProps,
   replaceWith,
   addPropsIf,
   Span,
@@ -39,8 +40,19 @@ const asResponsiveAccordionTitle = asToken(
   }),
 );
 
-const asExpandedOnDesktopBody = asToken(
+/**
+ * asAccordionBodyFilter extends asAccordionBody to remove tabIndex prop
+ * for accessibility purporses.
+ */
+const asAccordionBodyFilter = asToken(
   asAccordionBody,
+  withDesign({
+    Wrapper: removeProps(['tabIndex']),
+  }),
+);
+
+const asExpandedOnDesktopBody = asToken(
+  asAccordionBodyFilter,
   withDesign({
     Wrapper: addClasses('lg:block'),
   }),
