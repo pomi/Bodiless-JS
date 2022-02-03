@@ -68,9 +68,9 @@ const addPropsIf = <A extends object>(
  * @return
  * A component which renders the base component with the remaining props.
  */
-const removeProps = <P extends Array<string>>(
+const removeProps = <P extends Array<string>, Q extends object>(
   propsToRemove: P,
-): Injector<Partial<P>> => Component => {
+): Injector<Partial<Q>> => Component => {
     const RemoveProps = (props: any) => {
       let remainingProps = props;
       propsToRemove.forEach((propToRemove: string) => {
