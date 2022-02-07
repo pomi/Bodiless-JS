@@ -22,7 +22,7 @@ import type {
   StylableProps,
 } from './FClasses';
 
-import addProps, { addPropsIf, removeProps } from './addProps';
+import addProps, { addPropsIf } from './addProps';
 import {
   asComponent,
   applyDesign,
@@ -64,7 +64,6 @@ export { withShowDesignKeys } from './Context';
 export {
   addProps,
   addPropsIf,
-  removeProps,
   stylable,
   addClasses,
   removeClasses,

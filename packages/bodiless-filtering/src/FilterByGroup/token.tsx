@@ -17,10 +17,10 @@ import {
   addClasses,
   asToken,
   addProps,
-  removeProps,
   replaceWith,
   addPropsIf,
   Span,
+  withoutProps,
 } from '@bodiless/fclasses';
 import { ifViewportIsNot, ifViewportIs } from '@bodiless/components';
 import {
@@ -47,7 +47,7 @@ const asResponsiveAccordionTitle = asToken(
 const asAccordionBodyFilter = asToken(
   asAccordionBody,
   withDesign({
-    Wrapper: removeProps(['tabIndex']),
+    Wrapper: withoutProps('tabIndex'),
   }),
 );
 
