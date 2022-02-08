@@ -42,7 +42,7 @@ const asResponsiveAccordionTitle = asToken(
 
 /**
  * asAccordionBodyFilter extends asAccordionBody to remove tabIndex prop
- * for accessibility purporses.
+ * for accessibility purposes.
  */
 const asAccordionBodyFilter = asToken(
   asAccordionBody,
