@@ -58,6 +58,13 @@ const asExpandedOnDesktopBody = asToken(
   }),
 );
 
+const asExpandedOnDesktopResetButtonBody = asToken(
+  asExpandedOnDesktopBody,
+  withDesign({
+    Wrapper: withoutProps(['role', 'aria-labelledby']),
+  }),
+);
+
 const useRefineButtonProps = () => {
   const { setExpanded } = useAccordionContext();
   return {
@@ -66,13 +73,22 @@ const useRefineButtonProps = () => {
   };
 };
 
+const asAccessibleFilterByGroup = asToken(
+  withDesign({
+    FilterWrapper: addProps({
+      role: 'region',
+      'aria-label': 'Product filters'
+    })
+  }),
+);
+
 const asResponsiveFilterByGroup = asToken(
   ifViewportIsNot(['lg', 'xl', '2xl'])(
     withDesign({
       FilterWrapper: asAccordionWrapper,
       FilterTitle: asResponsiveAccordionTitle,
       FilterBody: asExpandedOnDesktopBody,
-      ResetButton: asExpandedOnDesktopBody,
+      ResetButton: asExpandedOnDesktopResetButtonBody,
       RefineButton: addPropsIf(() => true)(useRefineButtonProps),
     }),
   ),
@@ -109,4 +125,5 @@ export const withSingleAllowedTag = asToken(
 export {
   asExpandedOnDesktopBody,
   asResponsiveFilterByGroup,
+  asAccessibleFilterByGroup,
 };
