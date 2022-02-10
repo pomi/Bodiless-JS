@@ -1,16 +1,16 @@
 {
   "tags": [
     {
-      "id": "20f010db-b6d6-4065-a0b3-0022115c5ded",
-      "categoryId": "215b5721-a4b8-46ec-b46e-747696ee738d",
-      "name": "penaten original",
-      "categoryName": "cat 2"
+      "id": "3d3c2090-7b0f-4971-90c9-108994f70ab1",
+      "categoryId": "default",
+      "name": "diaper rash",
+      "categoryName": "cat 1"
     },
     {
-      "id": "4fe8534b-3b95-4c4a-853c-adefcc2aa81d",
-      "categoryId": "default",
-      "name": "adult diaper rash",
-      "categoryName": "cat 1"
+      "id": "51cc73ef-25b2-4749-adc0-6aa8c262a103",
+      "categoryId": "215b5721-a4b8-46ec-b46e-747696ee738d",
+      "name": "creamy",
+      "categoryName": "cat 2"
     },
     {
       "id": "05d3e101-8b40-432c-ae6a-9d0777d1edb1",
