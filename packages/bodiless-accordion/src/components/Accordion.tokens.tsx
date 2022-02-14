@@ -88,6 +88,7 @@ const asAccordionIconSvg = asToken(
  */
 const asAccordionTitleWrapper = asToken(
   addClasses('flex items-center justify-between relative'),
+  addProps({ 'aria-label': 'Filter' }),
 );
 
 /**
