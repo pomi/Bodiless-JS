@@ -34,8 +34,7 @@ import {
   isAccordionContracted,
   isAccordionFocusedOut,
 } from './AccordionContext';
-import AddIcon from '../icons/Add';
-import RemoveIcon from '../icons/Remove';
+import { AddIcon, RemoveIcon } from '../icons';
 
 const OpenAccordionIcon = addClasses('fill-current')(AddIcon);
 const CloseAccordionIcon = addClasses('fill-current')(RemoveIcon);
