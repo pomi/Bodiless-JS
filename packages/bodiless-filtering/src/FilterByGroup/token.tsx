@@ -37,6 +37,8 @@ const asResponsiveAccordionTitle = asToken(
   asAccordionTitle,
   withDesign({
     Icon: addClasses('lg:hidden'),
+    OpenIcon: addClasses('fill-current'),
+    CloseIcon: addClasses('fill-current'),
   }),
 );
 
