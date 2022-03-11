@@ -17,7 +17,7 @@ import React, {
 } from 'react';
 import {
   Design, DesignableComponents, DesignableComponentsProps,
-  designable, DesignableProps, Enhancer,
+  designable, DesignableProps, Enhancer, as,
 } from '@bodiless/fclasses';
 import flow from 'lodash/flow';
 import { withPageDimensionsContext, PageDimensionsProviderProps, usePageDimensionsContext } from './PageDimensionsProvider';
@@ -28,7 +28,7 @@ type FinalComponents = {
 };
 
 /**
- * Generates an HOC which makes the underlying component designable at diferent
+ * Generates an HOC which makes the underlying component designable at different
  * breakpoints. This allows responsive rendering or swapping a component entirely
  * depending on viewport size.
  *
@@ -53,7 +53,7 @@ const withResponsiveVariants = (
   const applyDesign = (design: Design<DesignableComponents>) => {
     const components: DesignableComponents = Object.keys(design).reduce((comps, key) => ({
       ...comps,
-      [key]: design[key]!(Component),
+      [key]: as(design[key])(Component),
     }), { _default: Component });
 
     // During SSR we render all the variants

@@ -32,7 +32,7 @@ import {
   Label,
   withDesign,
   stylable,
-  asToken,
+  flowHoc,
   HOC,
   withoutProps,
   startWith,
@@ -45,9 +45,7 @@ import {
   asBodilessList,
   asSubList, withDeleteNodeOnUnwrap,
   withSubLists,
-  ifViewportIsNot,
 } from '@bodiless/components';
-import { asAccordionBody, asAccordionTitle, asAccordionWrapper } from '@bodiless/accordion';
 import { TAG_ANY_KEY } from './FilterByGroupStore';
 import {
   TagTitleProps,
@@ -168,41 +166,27 @@ const TagTitle = flow(
   designable(tagTitleComponentsStart, 'TagTitle'),
 )(TagTitleBase);
 
-const asResponsiveFilter = ifViewportIsNot(['lg', 'xl', '2xl'])(
-  withDesign({
-    Item: asToken(
-      asAccordionWrapper,
-      withDesign({
-        SubList: withDesign({
-          Wrapper: asAccordionBody,
-        }),
-      }),
-    ),
-    Title: asAccordionTitle,
-  }),
-);
-
-const asFilter = asToken(
+const asFilter = flowHoc(
   asBodilessList(undefined, undefined, () => ({ groupLabel: 'Category' })),
   withDesign({
-    Title: asToken(
+    Title: flowHoc(
       startWith(CategoryTitleClean),
       asEditable('category_name', 'Category Name'),
     ),
-    Item: asToken(
+    Item: flowHoc(
       stylable,
       withCategoryListContextProvider,
     ),
     Wrapper: stylable,
   }),
   withSubLists(1)(
-    asToken(
+    flowHoc(
       asSubList(() => ({ groupLabel: 'Group' })),
       withDeleteNodeOnUnwrap('sublist'),
       withUnselectOnDelete,
       withDesign({
         Title: startWith(TagTitle),
-        Wrapper: flow(
+        Wrapper: flowHoc(
           startWith(Fieldset),
           stylable,
           asFilterCategoryRegion
@@ -239,10 +223,10 @@ const withFilterDesignTransformer = <P extends object>(Component: ComponentOrTag
         design: restDesignProps,
       };
       // @ts-ignore
-      this.Filter = asToken(
+      this.Filter = flowHoc(
         withCategoryListDesign,
         withDesign({
-          Item: asToken(
+          Item: flowHoc(
             withDesign({
               SubList: withTagListDesign,
             }),
@@ -259,7 +243,7 @@ const withFilterDesignTransformer = <P extends object>(Component: ComponentOrTag
   return WithFilterDesignTransformer;
 };
 
-const FilterClean = asToken(
+const FilterClean = flowHoc(
   asFilter,
   withFilterDesignTransformer as HOC,
   // This probably should not be in Clean...
@@ -267,6 +251,3 @@ const FilterClean = asToken(
 )('ul');
 
 export default FilterClean;
-export {
-  asResponsiveFilter,
-};

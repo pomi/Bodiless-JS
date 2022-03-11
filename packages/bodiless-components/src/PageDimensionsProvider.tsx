@@ -20,7 +20,7 @@ import React, {
   useContext,
 } from 'react';
 import throttle from 'lodash/throttle';
-import { Token } from '@bodiless/fclasses';
+import { HOC } from '@bodiless/fclasses';
 
 type PageDimensions = {
   width: number,
@@ -42,9 +42,22 @@ const PageDimensionsContext = createContext<PageDimensions>({
   size: 'sm',
 });
 
-const mapBreakpointsSize = (breakpoints: BreakpointsType = {}, width: number) => (
-  Object.keys(breakpoints).slice().reverse().find(item => width >= breakpoints[item]) || '_default'
-);
+/**
+ * From large to small, find the first matching breakpoint from BreakpointsType
+ * using given width value.
+ *
+ * @param breakpoints BreakpointsType set of user defined screen breakpoints.
+ * @param width number current screen width
+ * @returns string screen size
+ */
+const mapBreakpointsSize = (breakpoints: BreakpointsType = {}, width: number = 0): string => {
+  const breakpointSorted = Object.keys(breakpoints)
+    .filter(v => (!Number.isNaN(breakpoints[v])))
+    .map(breakpoint => ({ name: breakpoint, value: Number(breakpoints[breakpoint]) }))
+    .sort((prev, next) => (next.value > prev.value ? 1 : -1))
+    .map(item => item.name);
+  return breakpointSorted.find(item => (width >= breakpoints[item])) || '_default';
+};
 
 const usePageDimensionsContext = () => useContext(PageDimensionsContext);
 
@@ -94,7 +107,7 @@ const PageDimensionsProvider: FC<PageDimensionsProviderProps> = ({ children, bre
  */
 const withPageDimensionsContext = (
   { breakpoints }: PageDimensionsProviderProps,
-): Token => Component => {
+): HOC => Component => {
   const WithPageDimensionsContext: FC<any> = props => (
     <PageDimensionsProvider breakpoints={breakpoints}>
       <Component {...props} />
@@ -107,4 +120,5 @@ export default PageDimensionsProvider;
 export {
   withPageDimensionsContext,
   usePageDimensionsContext,
+  mapBreakpointsSize,
 };
