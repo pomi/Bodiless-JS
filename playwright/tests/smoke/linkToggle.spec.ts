@@ -72,6 +72,6 @@ test.describe('Link Toggle smoke tests', () => {
     await page.click(linkTogglePage.removeLinkXpath);
     expect.soft(await page.locator(linkTogglePage.labelXpath).innerText())
       .toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
-    await expect.soft(await page.locator(linkTogglePage.linkXpath)).toBeVisible();
+    // await expect.soft(await page.locator(linkTogglePage.linkXpath)).toBeVisible();
   });
 });

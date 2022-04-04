@@ -1,3 +1,16 @@
+/**
+ * Copyright © 2021 Johnson & Johnson
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 // file-submenu-page.ts
 import { expect, Page } from '@playwright/test';
 import { BasePage } from './base-page';
@@ -65,55 +78,40 @@ export class FileSubmenuPage extends BasePage {
 
   async checkFileSubMenuButtonsPreviewMode() {
     await this.page.click(this.fileFormButton);
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.historyButton).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.pushButton).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.pullButton).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.revertButton).isVisible()).toBeFalsy();
     await this.page.click(this.fileFormCloseButton);
   }
 
   async checkHistoryForm() {
-    // await this.page.click(this.historyButton);
     await Promise.all([
       this.page.waitForResponse(response => response.url()
           .includes('commits') && response.status() === 200),
       this.page.click(this.historyButton),
       this.page.waitForSelector('#global-tooltip-container > div > div > div > div > div.rc-tooltip-inner'),
     ]);
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.historyFormTitle).isVisible()).toBeTruthy();
     const historyItems = await this.page.$$(this.historyFormItems);
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(historyItems.length).toBeGreaterThan(3);
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.historyFormSubmitButton).isVisible()).toBeFalsy();
     await this.page.click(this.historyFormCloseButton);
   }
 
   async checkFileSubMenuButtonsEditMode() {
     await this.page.click(this.fileFormButton);
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.historyButton).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.pushButton).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.pullButton).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.revertButton).isVisible()).toBeTruthy();
     await this.page.click(this.fileFormCloseButton);
   }
 
   async checkRevertForm() {
     await this.page.click(this.revertButton);
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.revertFormTitle).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.revertFormDescription).isVisible()).toBeTruthy();
-    // eslint-disable-next-line jest/no-standalone-expect
     expect(await this.page.locator(this.revertFormSubmitButton).isVisible()).toBeTruthy();
     await this.page.click(this.revertFormCloseButton);
   }
