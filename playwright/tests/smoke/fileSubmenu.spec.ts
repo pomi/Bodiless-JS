@@ -15,6 +15,42 @@
 import { expect, Page, test } from '@playwright/test';
 import { FileSubmenuPage } from '../../pages/file-submenu-page';
 
+async function checkFileSubMenuButtons(mode: 'preview' | 'edit', page: Page, fileSubmenuPage: FileSubmenuPage) {
+  await page.click(fileSubmenuPage.fileFormButton);
+  expect(await page.locator(fileSubmenuPage.historyButton).isVisible()).toBeTruthy();
+  expect(await page.locator(fileSubmenuPage.pushButton).isVisible()).toBeTruthy();
+  expect(await page.locator(fileSubmenuPage.pullButton).isVisible()).toBeTruthy();
+  if (mode === 'preview') {
+    expect(await page.locator(fileSubmenuPage.revertButton).isVisible()).toBeFalsy();
+  }
+  if (mode === 'edit') {
+    expect(await page.locator(fileSubmenuPage.revertButton).isVisible()).toBeTruthy();
+  }
+  await page.click(fileSubmenuPage.fileFormCloseButton);
+}
+
+async function checkHistoryForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
+  await Promise.all([
+    page.waitForResponse(response => response.url()
+      .includes('commits') && response.status() === 200),
+    page.click(fileSubmenuPage.historyButton),
+    page.waitForSelector('#global-tooltip-container > div > div > div > div > div.rc-tooltip-inner'),
+  ]);
+  expect(await page.locator(fileSubmenuPage.historyFormTitle).isVisible()).toBeTruthy();
+  const historyItems = await page.$$(fileSubmenuPage.historyFormItems);
+  expect(historyItems.length).toBeGreaterThan(3);
+  expect(await page.locator(fileSubmenuPage.historyFormSubmitButton).isVisible()).toBeFalsy();
+  await page.click(fileSubmenuPage.historyFormCloseButton);
+}
+
+async function checkRevertForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
+  await page.click(fileSubmenuPage.revertButton);
+  expect(await page.locator(fileSubmenuPage.revertFormTitle).isVisible()).toBeTruthy();
+  expect(await page.locator(fileSubmenuPage.revertFormDescription).isVisible()).toBeTruthy();
+  expect(await page.locator(fileSubmenuPage.revertFormSubmitButton).isVisible()).toBeTruthy();
+  await page.click(fileSubmenuPage.revertFormCloseButton);
+}
+
 test.describe.parallel('Editor Menu (left and right)', () => {
   let page: Page;
   test.beforeEach(async ({ browser }) => {
@@ -30,13 +66,13 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   test('File Submenu: 1 - Checking file submenu buttons in preview mode', async () => {
     const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.togglePreviewMode();
-    await fileSubmenuPage.checkFileSubMenuButtonsPreviewMode();
+    await checkFileSubMenuButtons('preview', page, fileSubmenuPage);
   });
 
   test('File Submenu: 2 - Checking History button in Preview Mode (left)', async () => {
     const fileSubmenuPage = new FileSubmenuPage(page);
     await page.click(fileSubmenuPage.fileFormButton);
-    await fileSubmenuPage.checkHistoryForm();
+    await checkHistoryForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
@@ -45,7 +81,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);
-    await fileSubmenuPage.checkHistoryForm();
+    await checkHistoryForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
@@ -54,7 +90,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   test('File Submenu: 4 - Checking file submenu buttons in Edit Mode', async () => {
     const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
-    await fileSubmenuPage.checkFileSubMenuButtonsEditMode();
+    await checkFileSubMenuButtons('edit', page, fileSubmenuPage);
   });
 
   // eslint-disable-next-line jest/expect-expect
@@ -62,7 +98,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await page.click(fileSubmenuPage.fileFormButton);
-    await fileSubmenuPage.checkHistoryForm();
+    await checkHistoryForm(page, fileSubmenuPage);
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 
@@ -70,7 +106,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await page.click(fileSubmenuPage.fileFormButton);
-    await fileSubmenuPage.checkRevertForm();
+    await checkRevertForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
@@ -80,7 +116,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     await fileSubmenuPage.toggleEditMode();
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);
-    await fileSubmenuPage.checkRevertForm();
+    await checkRevertForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
@@ -91,7 +127,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     await fileSubmenuPage.toggleEditMode();
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);
-    await fileSubmenuPage.checkHistoryForm();
+    await checkHistoryForm(page, fileSubmenuPage);
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 });

@@ -17,33 +17,19 @@ import { BasePage } from './base-page';
 
 export class CardsPage extends BasePage {
   readonly page:Page;
-
   readonly pathToImages: string;
-
   readonly imageOneName: string;
-
   readonly imageTwoName: string;
-
   readonly linkCTA: string;
-
   readonly CTAUrl: string;
-
   readonly submitCTAUrlButton: string;
-
   readonly editButton: string;
-
   readonly titleText: string;
-
   readonly bodyText: string;
-
   readonly ctaText: string;
-
   readonly imageAltText: string;
-
   readonly postfix: string;
-
   readonly ctaLinkValue: string;
-
   readonly card: {
     id:string,
     image:string,

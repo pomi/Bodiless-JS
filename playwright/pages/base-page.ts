@@ -16,17 +16,11 @@ import { Page } from '@playwright/test';
 
 export class BasePage {
   readonly page: Page;
-
   readonly switcherIcon: string;
-
   readonly editIcon: string;
-
   readonly submitButton: string;
-
   readonly pathToImages: string;
-
   readonly imageOneName: string;
-
   readonly imageTwoName: string;
 
   constructor(page: Page) {

@@ -13,38 +13,7 @@
  */
 // pdp.spec.ts
 import { expect, Page, test } from '@playwright/test';
-
-const editIcon = '//*[@aria-label="Edit"]';
-const pagePath = '/products/';
-const productBase = 'pdp-autotest';
-const pdpURL = productBase + Math.floor(Math.random() * 10000).toString();
-const pdpPagePath = pagePath + pdpURL;
-const title = 'AT - PDD title';
-const accordionBody = 'AT - Overview';
-const pathToImages = './cypress/fixtures/images/';
-const imageOneName = 'img_615x500.jpg';
-const imageName = 'img_615x500.jpg';
-const pageIconXpath = '//*[@aria-label="Page"]';
-const newPageIconXpath = '//*[@aria-label="New"]';
-const fieldAddPageFormXpath = '//*[@aria-label="Context Submenu Form"]//input[@name="new-page-path"]';
-const checkmarkIconAddPageFormXpath = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Submit"]';
-const newPageLinkXpath = '//*[@id="new-page-link"]';
-const titleXpath = '//*[@data-product-element="title"]//*[@data-slate-editor="true"]';
-const accordionOverviewBodyXpath = '//*[@data-accordion-element="accordion"][@aria-label="Overview"]//*[@data-accordion-element="accordion-body"]//*[@data-slate-editor="true"]';
-const accordionDirectionsExpandXpath = '//*[@data-accordion-element="accordion"][@aria-label="Directions"]//*[@data-accordion-icon="expand"]';
-const accordionDirectionsBodyExpandedXpath = '//*[@data-accordion-element="accordion"][@aria-label="Directions"]//*[@data-accordion-element="accordion-body"]';
-const accordionDirectionsBodyPlaceholderXpath = '//*[@data-accordion-element="accordion"][@aria-label="Directions"]//*[@data-accordion-element="accordion-body"]//*[text()="Enter Product Information"]';
-const bvTextXpath = '//*[@data-product-element="ratings-summary"][text()="Please hover and click to enter Bazaarvoice Product External ID: "]';
-const editBVIconXpath = '//*[@aria-label="Local Context Menu"]//*[@aria-label="Settings Reviews"]';
-const closeBVFormXpath = '//*[@aria-label="Context Menu Settings Reviews Form"]//*[@aria-label="Cancel"]';
-const imagePlaceholderXpath = '//*[@data-product-element="image"]';
-const imageIconXpath = '//*[@role="toolbar" and @aria-label="Local Context Menu"]//*[@aria-label="Select Image"]';
-const checkmarkIconImageFormXpath = '//form[@aria-label="Context Menu Select Image Form"]//button[@aria-label="Submit"]';
-const flexboxXpath = '//*[@data-product-element="flow-container"]';
-const addComponentIconXpath = '//button[@aria-label="Add Flow Container"]';
-const imagesBase = 'images/pages';
-const productRegexp = '/[a-zA-Z0-9]+/';
-const imagePathRegex = new RegExp(imagesBase + pdpPagePath + productRegexp + imageName, '');
+import { PdpPage } from '../../pages/pdp-page';
 
 // tslint:disable-next-line:max-line-length
 async function typeText(page:Page, locator:string, text:string, request:string, confirmButton?:string) {
@@ -80,41 +49,42 @@ test.describe('PDP smoke tests', () => {
   });
 
   test('PDP: 1 - creating a page from /products/', async ({ baseURL }) => {
-    await page.click(pageIconXpath);
-    await page.click(newPageIconXpath);
+    const pdpPage = new PdpPage(page);
+    await page.click(pdpPage.pageIconXpath);
+    await page.click(pdpPage.newPageIconXpath);
     // tslint:disable-next-line:max-line-length
-    await typeText(page, fieldAddPageFormXpath, pdpURL, 'page-data.json', checkmarkIconAddPageFormXpath);
-    await page.click(newPageLinkXpath);
-    expect.soft(page.url()).toEqual(baseURL + pdpPagePath);
-    await page.click(editIcon);
-    await typeText(page, titleXpath, title, 'product_title');
-    expect.soft(await page.locator(titleXpath).innerText()).toEqual(title);
-    await typeText(page, accordionOverviewBodyXpath, accordionBody, 'accordion-1$body');
-    await page.click(accordionDirectionsExpandXpath);
-    expect(await page.locator(accordionDirectionsBodyExpandedXpath).isVisible()).toBeTruthy();
-    expect(await page.locator(accordionDirectionsBodyPlaceholderXpath).isVisible()).toBeTruthy();
-    expect.soft(await page.locator(accordionOverviewBodyXpath).innerText()).toEqual(accordionBody);
-    await page.click(bvTextXpath);
-    await page.click(editBVIconXpath);
-    await page.click(closeBVFormXpath);
+    await typeText(page, pdpPage.fieldAddPageFormXpath, pdpPage.pdpURL, 'page-data.json', pdpPage.checkmarkIconAddPageFormXpath);
+    await page.click(pdpPage.newPageLinkXpath);
+    expect.soft(page.url()).toEqual(baseURL + pdpPage.pdpPagePath);
+    await page.click(pdpPage.editIcon);
+    await typeText(page, pdpPage.titleXpath, pdpPage.title, 'product_title');
+    expect.soft(await page.locator(pdpPage.titleXpath).innerText()).toEqual(pdpPage.title);
+    await typeText(page, pdpPage.accordionOverviewBodyXpath, pdpPage.accordionBody, 'accordion-1$body');
+    await page.click(pdpPage.accordionDirectionsExpandXpath);
+    expect(await page.locator(pdpPage.accordionDirectionsBodyExpandedXpath).isVisible()).toBeTruthy();
+    expect(await page.locator(pdpPage.accordionDirectionsBodyPlaceholderXpath).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
+    await page.click(pdpPage.bvTextXpath);
+    await page.click(pdpPage.editBVIconXpath);
+    await page.click(pdpPage.closeBVFormXpath);
     // FlowContainer
-    await page.click(flexboxXpath);
-    expect(await page.locator(addComponentIconXpath).isVisible()).toBeTruthy();
+    await page.click(pdpPage.flexboxXpath);
+    expect(await page.locator(pdpPage.addComponentIconXpath).isVisible()).toBeTruthy();
     // upload image
-    await page.click(imagePlaceholderXpath);
-    await page.click(imageIconXpath);
-    await page.setInputFiles('input[type=file]', pathToImages + imageOneName);
-    await page.click(checkmarkIconImageFormXpath);
-    expect(await page.locator(imagePlaceholderXpath).getAttribute('src')).toMatch(imagePathRegex);
+    await page.click(pdpPage.imagePlaceholderXpath);
+    await page.click(pdpPage.imageIconXpath);
+    await page.setInputFiles('input[type=file]', pdpPage.pathToImages + pdpPage.imageOneName);
+    await page.click(pdpPage.checkmarkIconImageFormXpath);
+    expect(await page.locator(pdpPage.imagePlaceholderXpath).getAttribute('src')).toMatch(pdpPage.imagePathRegex);
     // check in preview mode
-    await page.click(editIcon);
-    expect.soft(await page.locator(titleXpath).innerText()).toEqual(title);
-    expect.soft(await page.locator(accordionOverviewBodyXpath).innerText()).toEqual(accordionBody);
-    expect(await page.locator(imagePlaceholderXpath).getAttribute('src')).toMatch(imagePathRegex);
+    await page.click(pdpPage.editIcon);
+    expect.soft(await page.locator(pdpPage.titleXpath).innerText()).toEqual(pdpPage.title);
+    expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
+    expect(await page.locator(pdpPage.imagePlaceholderXpath).getAttribute('src')).toMatch(pdpPage.imagePathRegex);
     // check in edit mode
-    await page.click(editIcon);
-    expect.soft(await page.locator(titleXpath).innerText()).toEqual(title);
-    expect.soft(await page.locator(accordionOverviewBodyXpath).innerText()).toEqual(accordionBody);
-    expect(await page.locator(imagePlaceholderXpath).getAttribute('src')).toMatch(imagePathRegex);
+    await page.click(pdpPage.editIcon);
+    expect.soft(await page.locator(pdpPage.titleXpath).innerText()).toEqual(pdpPage.title);
+    expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
+    expect(await page.locator(pdpPage.imagePlaceholderXpath).getAttribute('src')).toMatch(pdpPage.imagePathRegex);
   });
 });

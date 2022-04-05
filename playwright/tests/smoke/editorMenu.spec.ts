@@ -15,7 +15,30 @@
 import { expect, Page, test } from '@playwright/test';
 import { EditorMenuPage } from '../../pages/editor-menu-page';
 
-const docsIcon = '//*[@aria-label="Docs"]';
+async function checkEditorMenuButtonsPreviewMode(page: Page, editorMenuPage: EditorMenuPage) {
+  expect.soft(await page.locator(editorMenuPage.switcherIcon).isVisible).toBeTruthy();
+  expect.soft(await page.locator(editorMenuPage.docsIcon).isVisible).toBeTruthy();
+  expect.soft(await page.locator(editorMenuPage.editIcon).isVisible).toBeTruthy();
+  expect.soft(await page.locator(editorMenuPage.pageIcon).isVisible).toBeTruthy();
+}
+
+async function checkSwitcherAndMenuIcons(page: Page, editorMenuPage: EditorMenuPage) {
+  await editorMenuPage.toggleMenuRight();
+  expect(await page.locator(editorMenuPage.menuBarRight).isVisible()).toBeTruthy();
+  await checkEditorMenuButtonsPreviewMode(page, editorMenuPage);
+  await editorMenuPage.toggleMenuLeft();
+  expect(await page.locator(editorMenuPage.menuBarLeft).isVisible()).toBeTruthy();
+  await checkEditorMenuButtonsPreviewMode(page, editorMenuPage);
+}
+
+async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage) {
+  await page.click(editorMenuPage.pageIcon);
+  await page.click(editorMenuPage.newPageIcon);
+  expect(await page.locator(editorMenuPage.headerAddPageForm).isVisible()).toBeTruthy();
+  expect(await page.locator(editorMenuPage.fieldAddPageForm).isVisible()).toBeTruthy();
+  expect(await page.locator(editorMenuPage.checkmarkIconAddPageForm).isVisible()).toBeTruthy();
+  await page.click(editorMenuPage.closeIconAddPageForm);
+}
 
 test.describe.parallel('Editor Menu (left and right)', () => {
   let page: Page;
@@ -34,28 +57,29 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   // eslint-disable-next-line jest/expect-expect
   test('editorMenu: 1 - checking Switcher button in Preview Mode', async () => {
     const editorMenuPage = new EditorMenuPage(page);
-    await editorMenuPage.checkSwitcherAndMenuIcons();
+    await checkSwitcherAndMenuIcons(page, editorMenuPage);
   });
 
   // eslint-disable-next-line jest/expect-expect
   test('editorMenu: 4 - checking Switcher button in Edit Mode (left and right)', async () => {
     const editorMenuPage = new EditorMenuPage(page);
     await editorMenuPage.toggleEditMode();
-    await editorMenuPage.checkSwitcherAndMenuIcons();
+    await checkSwitcherAndMenuIcons(page, editorMenuPage);
   });
 
   // eslint-disable-next-line jest/expect-expect
   test('editorMenu: 7 - checking Add a New Page button in Edit Mode', async () => {
     const editorMenuPage = new EditorMenuPage(page);
     await editorMenuPage.toggleEditMode();
-    await editorMenuPage.checkAddNewPageButton();
+    await checkAddNewPageButton(page, editorMenuPage);
     await editorMenuPage.toggleMenuRight();
-    await editorMenuPage.checkAddNewPageButton();
+    await checkAddNewPageButton(page, editorMenuPage);
   });
 
   test('Check doc icon leads to documentation', async () => {
+    const editorMenuPage = new EditorMenuPage(page);
     const newPagePromise = new Promise(resolve => context.once('page', resolve));
-    await page.click(docsIcon);
+    await page.click(editorMenuPage.docsIcon);
     const newPage = await newPagePromise;
     // @ts-ignore
     expect(newPage.url()).toEqual('http://localhost:8005/___docs/');

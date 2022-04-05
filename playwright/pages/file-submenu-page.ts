@@ -12,44 +12,27 @@
  * limitations under the License.
  */
 // file-submenu-page.ts
-import { expect, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { BasePage } from './base-page';
 
 export class FileSubmenuPage extends BasePage {
   readonly page: Page;
-
   readonly editIcon: string;
-
   readonly fileForm: string;
-
   readonly fileFormButton: string;
-
   readonly fileFormCloseButton: string;
-
   readonly historyButton: string;
-
   readonly pushButton: string;
-
   readonly pullButton: string;
-
   readonly revertButton: string;
-
   readonly historyFormTitle: string;
-
   readonly historyFormItems: string;
-
   readonly historyFormSubmitButton: string;
-
   readonly historyFormCloseButton: string;
-
   readonly revertFormTitle: string;
-
   readonly revertFormDescription: string;
-
   readonly revertFormSubmitButton: string;
-
   readonly revertFormCloseButton: string;
-
   readonly switcherIcon: string;
 
   constructor(page: Page) {
@@ -74,45 +57,5 @@ export class FileSubmenuPage extends BasePage {
     this.revertFormSubmitButton = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Submit"]';
     this.revertFormCloseButton = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Cancel"]';
     this.switcherIcon = '//*[@aria-label="switcher"]';
-  }
-
-  async checkFileSubMenuButtonsPreviewMode() {
-    await this.page.click(this.fileFormButton);
-    expect(await this.page.locator(this.historyButton).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.pushButton).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.pullButton).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.revertButton).isVisible()).toBeFalsy();
-    await this.page.click(this.fileFormCloseButton);
-  }
-
-  async checkHistoryForm() {
-    await Promise.all([
-      this.page.waitForResponse(response => response.url()
-          .includes('commits') && response.status() === 200),
-      this.page.click(this.historyButton),
-      this.page.waitForSelector('#global-tooltip-container > div > div > div > div > div.rc-tooltip-inner'),
-    ]);
-    expect(await this.page.locator(this.historyFormTitle).isVisible()).toBeTruthy();
-    const historyItems = await this.page.$$(this.historyFormItems);
-    expect(historyItems.length).toBeGreaterThan(3);
-    expect(await this.page.locator(this.historyFormSubmitButton).isVisible()).toBeFalsy();
-    await this.page.click(this.historyFormCloseButton);
-  }
-
-  async checkFileSubMenuButtonsEditMode() {
-    await this.page.click(this.fileFormButton);
-    expect(await this.page.locator(this.historyButton).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.pushButton).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.pullButton).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.revertButton).isVisible()).toBeTruthy();
-    await this.page.click(this.fileFormCloseButton);
-  }
-
-  async checkRevertForm() {
-    await this.page.click(this.revertButton);
-    expect(await this.page.locator(this.revertFormTitle).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.revertFormDescription).isVisible()).toBeTruthy();
-    expect(await this.page.locator(this.revertFormSubmitButton).isVisible()).toBeTruthy();
-    await this.page.click(this.revertFormCloseButton);
   }
 }

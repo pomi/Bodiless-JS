@@ -13,21 +13,7 @@
  */
 // singleAccordion.spec.ts
 import { expect, Page, test } from '@playwright/test';
-
-const title = 'AT-Title1';
-const body = 'AT-Description1';
-const editedPostfix = '-edited';
-// const titleField = '#accordion__title-accordion-4 > div > div';
-const titleFirstXpath = '#accordion-4 div[data-accordion-element="accordion-title"] div[data-slate-editor="true"]';
-const bodyFirstXpath = '#accordion-4 div[data-accordion-element="accordion-body"] div[data-slate-editor="true"]';
-const plusIconFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-icon="expand"]';
-const minusIconFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-icon="collapse"]';
-const bodySecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-element="accordion-body"]';
-const plusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="expand"]';
-const minusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="collapse"]';
-const editButton = 'button[aria-label="Edit"]';
-const accordionBodyRequest = 'accordion-expanded$body';
-const accordionTitleRequest = 'accordion-expanded$title';
+import { AccordionPage } from '../../pages/accordion-page';
 
 async function typeText(page: Page, locator:string, text:string, request:string) {
   await page.click(locator);
@@ -50,49 +36,55 @@ test.describe('Single Accordion smoke tests', () => {
   });
 
   test('accordions: 1 - filling and editing in Title and Body in 1st accordion', async () => {
-    // given
-    await page.click(editButton);
-    // when
-    await typeText(page, bodyFirstXpath, body, accordionBodyRequest);
-    await typeText(page, titleFirstXpath, title, accordionTitleRequest);
-    // then
-    expect.soft(await page.locator(titleFirstXpath).innerText()).toEqual(title);
-    expect.soft(await page.locator(bodyFirstXpath).innerText()).toEqual(body);
+    const accordionPage = new AccordionPage(page);
+    await page.click(accordionPage.editButton);
+    await typeText(page, accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
+    await typeText(page, accordionPage.titleFirstXpath, accordionPage.title, accordionPage.accordionTitleRequest);
+    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
+    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
     // check in preview mode
-    await page.click(editButton);
-    expect.soft(await page.locator(titleFirstXpath).innerText()).toEqual(title);
-    expect.soft(await page.locator(bodyFirstXpath).innerText()).toEqual(body);
+    await accordionPage.togglePreviewMode();
+    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
+    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
     // check in edit mode again
-    await page.click(editButton);
-    expect.soft(await page.locator(titleFirstXpath).innerText()).toEqual(title);
-    expect.soft(await page.locator(bodyFirstXpath).innerText()).toEqual(body);
+    await accordionPage.toggleEditMode();
+    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
+    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
     // edit body and title
-    await typeText(page, bodyFirstXpath, editedPostfix, accordionBodyRequest);
-    await typeText(page, titleFirstXpath, editedPostfix, accordionTitleRequest);
+    await typeText(page, accordionPage.bodyFirstXpath, accordionPage.editedPostfix, accordionPage.accordionBodyRequest);
+    await typeText(page, accordionPage.titleFirstXpath, accordionPage.editedPostfix, accordionPage.accordionTitleRequest);
     // check edited fields
-    expect.soft(await page.locator(titleFirstXpath).innerText()).toEqual(title + editedPostfix);
-    expect.soft(await page.locator(bodyFirstXpath).innerText()).toEqual(body + editedPostfix);
+    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
+      .toEqual(accordionPage.title + accordionPage.editedPostfix);
+    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText())
+      .toEqual(accordionPage.body + accordionPage.editedPostfix);
     // check in preview mode
-    await page.click(editButton);
-    expect.soft(await page.locator(titleFirstXpath).innerText()).toEqual(title + editedPostfix);
-    expect.soft(await page.locator(bodyFirstXpath).innerText()).toEqual(body + editedPostfix);
+    await accordionPage.togglePreviewMode();
+    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
+      .toEqual(accordionPage.title + accordionPage.editedPostfix);
+    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText())
+      .toEqual(accordionPage.body + accordionPage.editedPostfix);
     // check in edit mode again
-    await page.click(editButton);
-    expect.soft(await page.locator(titleFirstXpath).innerText()).toEqual(title + editedPostfix);
-    expect.soft(await page.locator(bodyFirstXpath).innerText()).toEqual(body + editedPostfix);
+    await accordionPage.toggleEditMode();
+    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
+      .toEqual(accordionPage.title + accordionPage.editedPostfix);
+    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText())
+      .toEqual(accordionPage.body + accordionPage.editedPostfix);
   });
 
   test('accordions: 2 - collapsing and expanding the 1st accordion', async () => {
-    await page.click(minusIconFirstXpath);
-    await expect.soft(page.locator(bodyFirstXpath)).not.toBeVisible();
-    await page.click(plusIconFirstXpath);
-    await expect.soft(page.locator(bodyFirstXpath)).toBeVisible();
+    const accordionPage = new AccordionPage(page);
+    await page.click(accordionPage.minusIconFirstXpath);
+    await expect.soft(page.locator(accordionPage.bodyFirstXpath)).not.toBeVisible();
+    await page.click(accordionPage.plusIconFirstXpath);
+    await expect.soft(page.locator(accordionPage.bodyFirstXpath)).toBeVisible();
   });
 
   test('accordions: 3 - collapsing and expanding the 2st accordion', async () => {
-    await page.click(plusIconSecondXpath);
-    await expect.soft(page.locator(bodySecondXpath)).toBeVisible();
-    await page.click(minusIconSecondXpath);
-    await expect.soft(page.locator(bodySecondXpath)).not.toBeVisible();
+    const accordionPage = new AccordionPage(page);
+    await page.click(accordionPage.plusIconSecondXpath);
+    await expect.soft(page.locator(accordionPage.bodySecondXpath)).toBeVisible();
+    await page.click(accordionPage.minusIconSecondXpath);
+    await expect.soft(page.locator(accordionPage.bodySecondXpath)).not.toBeVisible();
   });
 });
