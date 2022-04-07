@@ -12,6 +12,6 @@
  * limitations under the License.
  */
 
-import tokens from './cxTypography';
+import cxTypography from './cxTypography';
 
-export default tokens;
+export default cxTypography;
