@@ -35,6 +35,15 @@ export class FlowContainerPage extends BasePage {
   readonly squareImageButton:string;
   readonly squareImageButtonInsideContainer: string;
   readonly selectImageButton: string;
+  readonly swapComponentButton: string;
+  readonly deleteComponentButton: string;
+  readonly accordionCheckbox: string;
+  readonly accordionInsideRestrictedContainer: string;
+  readonly accordionInPicker: string;
+  readonly accordionPlusButton: string;
+  readonly accordionBody: string;
+  readonly accordionMinusButton: string;
+  readonly contentfulCheckbox: string;
 
   constructor(page: Page) {
     super(page);
@@ -54,8 +63,17 @@ export class FlowContainerPage extends BasePage {
     this.flowContainerNestedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(36) > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > div > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > img';
     this.addFlowContainerButton = 'button[aria-label="Add Flow Container"]';
     this.imagesCheckbox = '#Image';
+    this.accordionCheckbox = '#Accordion';
+    this.swapComponentButton = 'button[aria-label="Swap Component"]';
+    this.deleteComponentButton = 'button[aria-label="Delete Component"]';
     this.selectImageButton = 'button[aria-label="Select Image"]';
     this.squareImageButton = '#gridlistboxinner > div:nth-child(1) > div > button';
+    this.accordionInPicker = 'button[type="Submit"]';
+    this.accordionPlusButton = 'span[aria-label="Expand Accordion"]';
+    this.accordionMinusButton = 'span[aria-label="Collapse Accordion"]';
+    this.contentfulCheckbox = '#Contentful';
+    this.accordionBody = 'div[data-bl-design-key="Accordion:Body"] div div div';
+    this.accordionInsideRestrictedContainer = 'div[id^="accordion-"]';
     this.squareImageButtonInsideContainer = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(4) > section > div > img';
   }
 }
