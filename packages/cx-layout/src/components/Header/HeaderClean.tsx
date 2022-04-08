@@ -13,7 +13,13 @@
  */
 
 import React, { FC } from 'react';
-import { Div, Fragment, designable } from '@bodiless/fclasses';
+import {
+  Div,
+  Fragment,
+  designable,
+  Header
+} from '@bodiless/fclasses';
+import { withoutHydration } from '@bodiless/hydration';
 import { asCxTokenSpec } from '@bodiless/cx-elements';
 import { LogoClean } from '../Logo';
 import { MenuTogglerClean } from '../MenuToggler';
@@ -21,7 +27,7 @@ import { SearchTogglerClean, DesktopSearchClean } from '../Search';
 import { HeaderComponents, HeaderProps } from './types';
 
 const headerComponents: HeaderComponents = {
-  Wrapper: Div,
+  Wrapper: Header,
   Container: Div,
   MenuContainer: Div,
   MenuToggler: MenuTogglerClean,
@@ -52,8 +58,11 @@ const HeaderCleanBase: FC<HeaderProps> = ({ components: C }) => (
   </C.Wrapper>
 );
 
-export const HeaderClean = designable(headerComponents, 'Header')(HeaderCleanBase);
+const HeaderClean = designable(headerComponents, 'Header')(HeaderCleanBase);
+const HeaderStatic = withoutHydration()(HeaderClean);
 
 const asHeaderToken = asCxTokenSpec<HeaderComponents>();
 
-export { asHeaderToken };
+export default HeaderClean;
+
+export { asHeaderToken, HeaderStatic };

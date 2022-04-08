@@ -12,21 +12,24 @@
  * limitations under the License.
  */
 
-import { cxTypography } from '@bodiless/cx-elements';
+import omit from 'lodash/omit';
+import { cxSpacing, cxTypography } from '@bodiless/cx-elements';
 import {
   EditorPlainClean, cxEditorPlain, RichTextClean, cxRichText
 } from '@bodiless/cx-editors';
 import { withNodeKey } from '@bodiless/core';
-import { on } from '@bodiless/fclasses';
+import {
+  on, replaceWith, Fragment, as
+} from '@bodiless/fclasses';
 import { cxLayout, LayoutClean } from '@bodiless/cx-layout';
 import { asStyleGuideTemplateToken } from '../StyleGuideTemplateClean';
 
-const Default = asStyleGuideTemplateToken({
-  Theme: {
-    TitleWrapper: cxTypography.H1,
-  },
+const Base = asStyleGuideTemplateToken({
   Components: {
     Wrapper: on(LayoutClean)(cxLayout.Default),
+  },
+  Theme: {
+    TitleWrapper: cxTypography.H1,
   },
   Editors: {
     Title: on(EditorPlainClean)(cxEditorPlain.Default),
@@ -39,30 +42,29 @@ const Default = asStyleGuideTemplateToken({
   },
 });
 
-const BordersLabels = asStyleGuideTemplateToken({
-  ...Default,
+const Default = asStyleGuideTemplateToken({
+  ...Base,
   Theme: {
-    Wrapper: cxLayout.WithBordersLabels,
+    ...Base.Theme,
+    Container: as(
+      cxSpacing.WithSiteMargin,
+      cxSpacing.WithSiteXLConstraint
+    ),
   },
 });
 
-const HeaderOnly = asStyleGuideTemplateToken({
-  ...Default,
-  Theme: {
-    Wrapper: cxLayout.Header,
+const NoLayout = asStyleGuideTemplateToken(omit(Base, 'Components'), {
+  Components: {
+    ...Base.Components,
+    Wrapper: replaceWith(Fragment),
   },
-});
-
-const FooterOnly = asStyleGuideTemplateToken({
-  ...Default,
-  Theme: {
-    Wrapper: cxLayout.Footer,
+  Layout: {
+    TitleWrapper: 'container mx-auto',
+    DescriptionWrapper: 'container mx-auto',
   },
 });
 
 export default {
   Default,
-  BordersLabels,
-  HeaderOnly,
-  FooterOnly
+  NoLayout,
 };

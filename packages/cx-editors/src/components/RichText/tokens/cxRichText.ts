@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+import pick from 'lodash/pick';
 import {
   replaceWith,
   P,
@@ -22,6 +23,7 @@ import {
   H4,
   H5,
   startWith,
+  removeClasses,
 } from '@bodiless/fclasses';
 import {
   asBlock,
@@ -42,7 +44,11 @@ import {
 } from '@bodiless/components';
 import { ifComponentSelector } from '@bodiless/layouts';
 import {
-  asCxTokenSpec, cxTextDecorationStatic, cxTypographyStatic,
+  asCxTokenSpec,
+  cxColor,
+  cxFontSize,
+  cxTextDecoration,
+  cxTypography,
 } from '@bodiless/cx-elements';
 import { LinkClean, cxLink } from '@bodiless/cx-link';
 
@@ -83,18 +89,18 @@ const Default = asCxTokenSpec()({
     ),
   },
   Content: {
-    _: addProps({ placeholder: 'Placeholder' }),
+    _: addProps({ placeholder: 'Text Area' }),
   },
-  Components: {
-    paragraph: cxTypographyStatic.Body,
-    Bold: cxTextDecorationStatic.Bold,
-    Underline: cxTextDecorationStatic.Underline,
-    SuperScript: cxTextDecorationStatic.Superscript,
-    H1: cxTypographyStatic.H1,
-    H2: cxTypographyStatic.H2,
-    H3: cxTypographyStatic.H3,
-    H4: cxTypographyStatic.H4,
-    H5: cxTypographyStatic.H5,
+  Theme: {
+    paragraph: cxTypography.Body,
+    Bold: cxTextDecoration.Bold,
+    Underline: cxTextDecoration.Underline,
+    SuperScript: cxTextDecoration.Superscript,
+    H1: cxTypography.H1,
+    H2: cxTypography.H2,
+    H3: cxTypography.H3,
+    H4: cxTypography.H4,
+    H5: cxTypography.H5,
     Link: cxLink.Default,
   },
   Behavior: {
@@ -105,4 +111,39 @@ const Default = asCxTokenSpec()({
   },
 });
 
-export default { Default, AsFlowContainerItem };
+const Basic = asCxTokenSpec()({
+  ...Default,
+  Core: pick(Default.Core, 'paragraph', 'Bold', 'Underline', 'Link', 'SuperScript'),
+  Theme: pick(Default.Theme, 'paragraph', 'Bold', 'Underline', 'Link', 'SuperScript'),
+});
+
+const Copyright = asCxTokenSpec()({
+  ...Basic,
+  Theme: {
+    ...Basic.Theme,
+    paragraph: as(
+      cxColor.TextPrimaryFooterCopy,
+      cxFontSize.XS,
+      cxTextDecoration.Normal,
+    ),
+    Link: as(
+      cxLink.Default,
+      cxColor.TextPrimaryFooterCopy,
+      cxColor.TextPrimaryInteractive,
+      cxFontSize.XS,
+      cxTextDecoration.Bold,
+      cxTextDecoration.Underline,
+      removeClasses('text-m-base lg:text-base'),
+    ),
+  },
+  Content: {
+    _: addProps({ placeholder: 'Insert Copyright' }),
+  },
+});
+
+export default {
+  Default,
+  Basic,
+  AsFlowContainerItem,
+  Copyright,
+};
