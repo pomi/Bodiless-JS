@@ -15,28 +15,6 @@
 import { expect, Page, test } from '@playwright/test';
 import { PdpPage } from '../../pages/pdp-page';
 
-// tslint:disable-next-line:max-line-length
-async function typeText(page:Page, locator:string, text:string, request:string, confirmButton?:string) {
-  if (typeof confirmButton !== 'undefined') {
-    await page.click(locator);
-    await page.keyboard.press('ArrowDown');
-    await page.type(locator, text);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes(request) && response.status() === 200),
-      page.click(confirmButton),
-    ]);
-  } else {
-    await page.click(locator);
-    await page.keyboard.press('ArrowDown');
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes(request) && response.status() === 200),
-      page.type(locator, text),
-    ]);
-  }
-}
-
 test.describe('PDP smoke tests', () => {
   let page: Page;
   test.beforeEach(async ({ browser }) => {
@@ -53,13 +31,13 @@ test.describe('PDP smoke tests', () => {
     await page.click(pdpPage.pageIconXpath);
     await page.click(pdpPage.newPageIconXpath);
     // tslint:disable-next-line:max-line-length
-    await typeText(page, pdpPage.fieldAddPageFormXpath, pdpPage.pdpURL, 'page-data.json', pdpPage.checkmarkIconAddPageFormXpath);
+    await pdpPage.typeText(pdpPage.fieldAddPageFormXpath, pdpPage.pdpURL, 'page-data.json', pdpPage.checkmarkIconAddPageFormXpath);
     await page.click(pdpPage.newPageLinkXpath);
     expect.soft(page.url()).toEqual(baseURL + pdpPage.pdpPagePath);
     await page.click(pdpPage.editIcon);
-    await typeText(page, pdpPage.titleXpath, pdpPage.title, 'product_title');
+    await pdpPage.typeText(pdpPage.titleXpath, pdpPage.title, 'product_title');
     expect.soft(await page.locator(pdpPage.titleXpath).innerText()).toEqual(pdpPage.title);
-    await typeText(page, pdpPage.accordionOverviewBodyXpath, pdpPage.accordionBody, 'accordion-1$body');
+    await pdpPage.typeText(pdpPage.accordionOverviewBodyXpath, pdpPage.accordionBody, 'accordion-1$body');
     await page.click(pdpPage.accordionDirectionsExpandXpath);
     expect(await page.locator(pdpPage.accordionDirectionsBodyExpandedXpath).isVisible()).toBeTruthy();
     expect(await page.locator(pdpPage.accordionDirectionsBodyPlaceholderXpath).isVisible()).toBeTruthy();
