@@ -3,6 +3,7 @@
     "rules": {
         "no-this-assignment": [true, { "allow-destructuring": true }],
         "import-name": false,
+        "max-line-length": false,
         "variable-name": [true, "allow-pascal-case"]
     }
 }
