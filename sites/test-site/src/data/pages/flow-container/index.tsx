@@ -113,7 +113,7 @@ const FlowContainerPage = (props: any) => (
     <Layout>
       <h1 className="text-3xl font-bold">FlowContainer Examples</h1>
 
-      <div className="default-fc-wrapper">
+      <div aria-label="default-fc-wrapper">
         <H2>Default FlowContainer</H2>
         <FlowContainerDefault
           id={FLOW_CONTAINER_PAGE_PATH}
@@ -123,7 +123,7 @@ const FlowContainerPage = (props: any) => (
         <NodeViewer nodeKey={FLOW_CONTAINER_PAGE_PATH} />
       </div>
 
-      <div className="content-library-fc-wrapper">
+      <div aria-label="content-library-fc-wrapper">
         <H2>Content Library FlowContainer</H2>
         <FlowContainerWithContentLibrary
           id="flowContainerWithLibrary"
@@ -133,7 +133,7 @@ const FlowContainerPage = (props: any) => (
         <NodeViewer nodeKey="flowContainerWithLibrary" />
       </div>
 
-      <div className="constrained-width-50/100-fc-wrapper">
+      <div aria-label="constrained-width-50/100-fc-wrapper">
         <H2>
           FlowContainer with constrained widths of 50% & 100% only
         </H2>
@@ -144,7 +144,7 @@ const FlowContainerPage = (props: any) => (
         />
       </div>
 
-      <div className="constrained-width-100-fc-wrapper">
+      <div aria-label="constrained-width-100-fc-wrapper">
         <H2>
           FlowContainer with constrained width of 100% only
         </H2>
@@ -156,7 +156,7 @@ const FlowContainerPage = (props: any) => (
         <NodeViewer nodeKey="constrained_widths" />
       </div>
 
-      <div className="restricted-items-number-fc-wrapper">
+      <div aria-label="restricted-items-number-fc-wrapper">
         <H2>FlowContainer restricted to 1 item</H2>
         <FlowContainerDefault
           id="restricted"
@@ -168,7 +168,7 @@ const FlowContainerPage = (props: any) => (
         <NodeViewer nodeKey="restricted" />
       </div>
 
-      <div className="default-width-25-fc-wrapper">
+      <div aria-label="default-width-25-fc-wrapper">
         <H2>Default Width of 25%</H2>
         <FlowContainerDefault
           id="width_25"
@@ -177,7 +177,7 @@ const FlowContainerPage = (props: any) => (
         />
       </div>
 
-      <div className="default-width-33-fc-wrapper">
+      <div aria-label="default-width-33-fc-wrapper">
         <H2>Default Width of 33% (should round up to 33.33%)</H2>
         <FlowContainerDefault
           id="width_33"
@@ -186,7 +186,7 @@ const FlowContainerPage = (props: any) => (
         />
       </div>
 
-      <div className="default-width-50-fc-wrapper">
+      <div aria-label="default-width-50-fc-wrapper">
         <H2>Default Width of 50%</H2>
         <FlowContainerDefault
           id="width_50"
@@ -195,7 +195,7 @@ const FlowContainerPage = (props: any) => (
         />
       </div>
 
-      <div className="default-width-66-fc-wrapper">
+      <div aria-label="default-width-66-fc-wrapper">
         <H2>Default Width of 66.66% </H2>
         <FlowContainerDefault
           id="width_66"
@@ -204,7 +204,7 @@ const FlowContainerPage = (props: any) => (
         />
       </div>
 
-      <div className="default-width-75-fc-wrapper">
+      <div aria-label="default-width-75-fc-wrapper">
         <H2>Default Width of 75%</H2>
         <FlowContainerDefault
           id="width_75"
@@ -213,7 +213,7 @@ const FlowContainerPage = (props: any) => (
         />
       </div>
 
-      <div className="contentful-fc-wrapper">
+      <div aria-label="contentful-fc-wrapper">
         <H2>Contentful Flow Container</H2>
         <ContentfulFlowContainer />
         <H2>Limited Flow Container</H2>
