@@ -112,115 +112,84 @@ const FlowContainerPage = (props: any) => (
   <Page {...props}>
     <Layout>
       <h1 className="text-3xl font-bold">FlowContainer Examples</h1>
+      <H2>Default FlowContainer</H2>
+      <FlowContainerDefault
+        id={FLOW_CONTAINER_PAGE_PATH}
+        nodeKey={FLOW_CONTAINER_PAGE_PATH}
+      />
+      <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
+      <NodeViewer nodeKey={FLOW_CONTAINER_PAGE_PATH} />
 
-      <div aria-label="default-fc-wrapper">
-        <H2>Default FlowContainer</H2>
-        <FlowContainerDefault
-          id={FLOW_CONTAINER_PAGE_PATH}
-          nodeKey={FLOW_CONTAINER_PAGE_PATH}
-        />
-        <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
-        <NodeViewer nodeKey={FLOW_CONTAINER_PAGE_PATH} />
-      </div>
+      <H2>Content Library FlowContainer</H2>
+      <FlowContainerWithContentLibrary
+        id="flowContainerWithLibrary"
+        nodeKey="flowContainerWithLibrary"
+      />
+      <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
+      <NodeViewer nodeKey="flowContainerWithLibrary" />
 
-      <div aria-label="content-library-fc-wrapper">
-        <H2>Content Library FlowContainer</H2>
-        <FlowContainerWithContentLibrary
-          id="flowContainerWithLibrary"
-          nodeKey="flowContainerWithLibrary"
-        />
-        <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
-        <NodeViewer nodeKey="flowContainerWithLibrary" />
-      </div>
-
-      <div aria-label="constrained-width-50/100-fc-wrapper">
-        <H2>
-          FlowContainer with constrained widths of 50% & 100% only
-        </H2>
-        <FlowContainerDefault
-          id="constrained_widths"
-          nodeKey="constrained_widths"
-          snapData={options}
-        />
-      </div>
-
-      <div aria-label="constrained-width-100-fc-wrapper">
-        <H2>
-          FlowContainer with constrained width of 100% only
-        </H2>
-        <FlowContainerConstrainedFullWidth
-          id="constrained_full_width"
-          nodeKey="constrained_full_width"
-        />
-        <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
-        <NodeViewer nodeKey="constrained_widths" />
-      </div>
-
-      <div aria-label="restricted-items-number-fc-wrapper">
-        <H2>FlowContainer restricted to 1 item</H2>
-        <FlowContainerDefault
-          id="restricted"
-          nodeKey="restricted"
-          maxComponents={1}
-          minComponents={1}
-        />
-        <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
-        <NodeViewer nodeKey="restricted" />
-      </div>
-
-      <div aria-label="default-width-25-fc-wrapper">
-        <H2>Default Width of 25%</H2>
-        <FlowContainerDefault
-          id="width_25"
-          nodeKey="width_25"
-          getDefaultWidth={() => 'w-full lg:w-1/4'}
-        />
-      </div>
-
-      <div aria-label="default-width-33-fc-wrapper">
-        <H2>Default Width of 33% (should round up to 33.33%)</H2>
-        <FlowContainerDefault
-          id="width_33"
-          nodeKey="width_33"
-          getDefaultWidth={() => 'w-full lg:w-1/3'}
-        />
-      </div>
-
-      <div aria-label="default-width-50-fc-wrapper">
-        <H2>Default Width of 50%</H2>
-        <FlowContainerDefault
-          id="width_50"
-          nodeKey="width_50"
-          getDefaultWidth={() => 'w-full lg:w-1/2'}
-        />
-      </div>
-
-      <div aria-label="default-width-66-fc-wrapper">
-        <H2>Default Width of 66.66% </H2>
-        <FlowContainerDefault
-          id="width_66"
-          nodeKey="width_66"
-          getDefaultWidth={() => 'w-full lg:w-2/3'}
-        />
-      </div>
-
-      <div aria-label="default-width-75-fc-wrapper">
-        <H2>Default Width of 75%</H2>
-        <FlowContainerDefault
-          id="width_75"
-          nodeKey="width_75"
-          getDefaultWidth={() => 'w-full lg:w-3/4'}
-        />
-      </div>
-
-      <div aria-label="contentful-fc-wrapper">
-        <H2>Contentful Flow Container</H2>
-        <ContentfulFlowContainer />
-        <H2>Limited Flow Container</H2>
-        <FlowContainerLimited nodeKey="limited" />
-        <H2>Nested Flow Container with Default Items</H2>
-        <RegionContainer nodeKey="region" />
-      </div>
+      <H2>
+        FlowContainer with constrained widths of 50% & 100% only
+      </H2>
+      <FlowContainerDefault
+        id="constrained_widths"
+        nodeKey="constrained_widths"
+        snapData={options}
+      />
+      <H2>
+        FlowContainer with constrained width of 100% only
+      </H2>
+      <FlowContainerConstrainedFullWidth
+        id="constrained_full_width"
+        nodeKey="constrained_full_width"
+      />
+      <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
+      <NodeViewer nodeKey="constrained_widths" />
+      <H2>FlowContainer restricted to 1 item</H2>
+      <FlowContainerDefault
+        id="restricted"
+        nodeKey="restricted"
+        maxComponents={1}
+        minComponents={1}
+      />
+      <h3 className="text-lg font-bold">This shows the json content of the grid:</h3>
+      <NodeViewer nodeKey="restricted" />
+      <H2>Default Width of 25%</H2>
+      <FlowContainerDefault
+        id="width_25"
+        nodeKey="width_25"
+        getDefaultWidth={() => 'w-full lg:w-1/4'}
+      />
+      <H2>Default Width of 33% (should round up to 33.33%)</H2>
+      <FlowContainerDefault
+        id="width_33"
+        nodeKey="width_33"
+        getDefaultWidth={() => 'w-full lg:w-1/3'}
+      />
+      <H2>Default Width of 50%</H2>
+      <FlowContainerDefault
+        id="width_50"
+        nodeKey="width_50"
+        getDefaultWidth={() => 'w-full lg:w-1/2'}
+      />
+      <H2>Default Width of 66.66% </H2>
+      <FlowContainerDefault
+        id="width_66"
+        nodeKey="width_66"
+        getDefaultWidth={() => 'w-full lg:w-2/3'}
+      />
+      <H2>Default Width of 75%</H2>
+      <FlowContainerDefault
+        id="width_75"
+        nodeKey="width_75"
+        getDefaultWidth={() => 'w-full lg:w-3/4'}
+      />
+      <H2>Contentful Flow Container</H2>
+      <ContentfulFlowContainer />
+      <H2>Limited Flow Container</H2>
+      <FlowContainerLimited nodeKey="limited" />
+      <H2>Nested Flow Container with Default Items</H2>
+      <RegionContainer nodeKey="region" />
     </Layout>
   </Page>
 );
