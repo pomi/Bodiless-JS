@@ -18,7 +18,7 @@ import { PdpPage } from '../../pages/pdp-page';
 test.describe('PDP smoke tests', () => {
   let page: Page;
   test.beforeEach(async ({ browser }) => {
-    page = await browser.newPage({ viewport: { width: 1200, height: 850 } });
+    page = await browser.newPage();
     await page.goto('/products/');
   });
 
