@@ -19,7 +19,7 @@ test.describe('Link Toggle smoke tests', () => {
   let page: Page;
   test.beforeEach(async ({ browser }) => {
     // { viewport: { width: 1200, height: 850 } }
-    page = await browser.newPage({ viewport: { width: 1200, height: 850 } });
+    page = await browser.newPage();
     await page.goto('/link-toggle/');
   });
 

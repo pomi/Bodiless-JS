@@ -29,25 +29,13 @@ async function checkCardData(page:Page, cardsPage:  CardsPage) {
 }
 
 async function checkEditedCardData(page:Page, cardsPage:  CardsPage) {
-  // tslint:disable-next-line:max-line-length
   expect(await page.locator(cardsPage.card.title).innerText()).toEqual(cardsPage.titleText + cardsPage.postfix);
-  // tslint:disable-next-line:max-line-length
   expect(await page.locator(cardsPage.card.body).innerText()).toEqual(cardsPage.bodyText + cardsPage.postfix);
-  // tslint:disable-next-line:max-line-length
   expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(cardsPage.ctaText + cardsPage.postfix);
   expect(await page.locator(cardsPage.card.image).isVisible()).toBeTruthy();
   expect(await page.locator(cardsPage.card.image).getAttribute('src')).toBeDefined();
   expect(await page.locator(cardsPage.card.image).getAttribute('alt')).toBeDefined();
   expect(await page.locator(cardsPage.card.image).getAttribute('href')).toBeDefined();
-
-  // expect(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-  // expect(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-  // expect(await page
-  //     .locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText + postfix);
-  // expect(await page.locator(card.image).isVisible()).toBeTruthy();
-  // expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-  // expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-  // expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
 }
 
 test.describe('Testing cards @smoke3', () => {

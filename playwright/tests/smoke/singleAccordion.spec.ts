@@ -15,14 +15,14 @@
 import { expect, Page, test } from '@playwright/test';
 import { AccordionPage } from '../../pages/accordion-page';
 
-async function typeText(page: Page, locator:string, text:string, request:string) {
+/*async function typeText(page: Page, locator:string, text:string, request:string) {
   await page.click(locator);
   await Promise.all([
     page.waitForResponse(response => response.url()
       .includes(request) && response.status() === 200),
     page.type(locator, text),
   ]);
-}
+}*/
 
 test.describe('Single Accordion smoke tests', () => {
   let page: Page;
@@ -38,8 +38,8 @@ test.describe('Single Accordion smoke tests', () => {
   test('accordions: 1 - filling and editing in Title and Body in 1st accordion', async () => {
     const accordionPage = new AccordionPage(page);
     await page.click(accordionPage.editButton);
-    await typeText(page, accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
-    await typeText(page, accordionPage.titleFirstXpath, accordionPage.title, accordionPage.accordionTitleRequest);
+    await accordionPage.typeText(accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
+    await accordionPage.typeText(accordionPage.titleFirstXpath, accordionPage.title, accordionPage.accordionTitleRequest);
     expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
     expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
     // check in preview mode
@@ -51,8 +51,8 @@ test.describe('Single Accordion smoke tests', () => {
     expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
     expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
     // edit body and title
-    await typeText(page, accordionPage.bodyFirstXpath, accordionPage.editedPostfix, accordionPage.accordionBodyRequest);
-    await typeText(page, accordionPage.titleFirstXpath, accordionPage.editedPostfix, accordionPage.accordionTitleRequest);
+    await accordionPage.typeText(accordionPage.bodyFirstXpath, accordionPage.editedPostfix, accordionPage.accordionBodyRequest);
+    await accordionPage.typeText(accordionPage.titleFirstXpath, accordionPage.editedPostfix, accordionPage.accordionTitleRequest);
     // check edited fields
     expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
       .toEqual(accordionPage.title + accordionPage.editedPostfix);

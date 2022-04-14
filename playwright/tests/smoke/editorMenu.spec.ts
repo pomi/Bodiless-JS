@@ -40,12 +40,12 @@ async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage)
   await page.click(editorMenuPage.closeIconAddPageForm);
 }
 
-test.describe.parallel('Editor Menu (left and right)', () => {
+test.describe('Editor Menu (left and right)', () => {
   let page: Page;
   let context:any;
   test.beforeEach(async ({ browser }) => {
     // { viewport: { width: 1200, height: 850 } }
-    context = await browser.newContext({ viewport: { width: 1200, height: 850 } });
+    context = await browser.newContext();
     page = await context.newPage();
     await page.goto('/');
   });
@@ -61,14 +61,14 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   });
 
   // eslint-disable-next-line jest/expect-expect
-  test('editorMenu: 4 - checking Switcher button in Edit Mode (left and right)', async () => {
+  test('editorMenu: 2 - checking Switcher button in Edit Mode (left and right)', async () => {
     const editorMenuPage = new EditorMenuPage(page);
     await editorMenuPage.toggleEditMode();
     await checkSwitcherAndMenuIcons(page, editorMenuPage);
   });
 
   // eslint-disable-next-line jest/expect-expect
-  test('editorMenu: 7 - checking Add a New Page button in Edit Mode', async () => {
+  test('editorMenu: 3 - checking Add a New Page button in Edit Mode', async () => {
     const editorMenuPage = new EditorMenuPage(page);
     await editorMenuPage.toggleEditMode();
     await checkAddNewPageButton(page, editorMenuPage);

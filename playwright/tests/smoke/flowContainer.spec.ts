@@ -31,7 +31,7 @@ import { FlowContainerPage } from '../../pages/flow-container-page';
 test.describe('Flow container', async () => {
   let page: Page;
   test.beforeEach(async ({ browser }) => {
-    const context = await browser.newContext({ viewport: { width: 1200, height: 850 } });
+    const context = await browser.newContext();
     page = await context.newPage();
     await page.goto('/flow-container');
   });
@@ -58,7 +58,7 @@ test.describe('Flow container', async () => {
     expect(await page.locator(flowContainerPage.flowContainerDefault).isVisible()).toBeTruthy();
   });
 
-  test.only('Flow container: 2 - checking adding and filling in a Square Image in the Default Flow Container', async () => {
+  test('Flow container: 2 - checking adding and filling in a Square Image in the Default Flow Container', async () => {
     const flowContainerPage = new FlowContainerPage(page);
     await flowContainerPage.toggleEditMode();
     await page.click(flowContainerPage.flowContainerDefault);
