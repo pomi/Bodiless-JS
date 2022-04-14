@@ -39,18 +39,9 @@ async function checkEditedCardData(page:Page, cardsPage:  CardsPage) {
   expect(await page.locator(cardsPage.card.image).getAttribute('src')).toBeDefined();
   expect(await page.locator(cardsPage.card.image).getAttribute('alt')).toBeDefined();
   expect(await page.locator(cardsPage.card.image).getAttribute('href')).toBeDefined();
-
-  // expect(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-  // expect(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-  // expect(await page
-  //     .locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText + postfix);
-  // expect(await page.locator(card.image).isVisible()).toBeTruthy();
-  // expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-  // expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-  // expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
 }
 
-test.describe('Testing cards @smoke3', () => {
+test.describe('Testing cards', () => {
   let page: Page;
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
@@ -138,7 +129,6 @@ test.describe('Testing cards @smoke3', () => {
     // Filling image alt text
     await page.click(cardsPage.card.image);
     await page.click(cardsPage.card.selectImageButton);
-    // tslint:disable-next-line:max-line-length
     await cardsPage.typeText('#image-alt', cardsPage.imageAltText  + cardsPage.postfix, 'horizontal', cardsPage.submitButton);
   });
 
