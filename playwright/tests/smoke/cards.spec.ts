@@ -13,207 +13,134 @@
  */
 // cards.spec.ts
 import { expect, test, Page } from '@playwright/test';
+import { CardsPage } from '../../pages/cards-page';
 
-const pathToImages = './cypress/fixtures/images/';
-const imageOneName = 'img_615x500.jpg';
-const imageTwoName = 'img_615x502.jpg';
-const card = {
-  id: 'card_horizontal',
-  image: '#card-horizontal img[data-card-element="image"]',
-  title: '#card-horizontal *[data-card-element="title"] div[data-slate-editor="true"]',
-  body: '#card-horizontal div[data-card-element="body"] div[data-slate-editor="true"]',
-  link: '#card-horizontal *[data-card-element="link"] div[role="textbox"]',
-  submitButton: 'button[aria-label="Submit"]',
-  imageAltText: 'input[name="alt"]',
-  selectImageButton: 'button[aria-label="Select Image"]',
-  linkClickable: '#card-horizontal div[data-card-element="content-wrapper"] a[data-card-element="link"]',
-};
+const slash = '/';
 
-const linkCTA = 'button[aria-label="Edit CTA"]';
-const CTAUrl = 'input[aria-describedby="description"]';
-const submitCTAUrlButton = 'button[aria-label="Submit"]';
-const editButton = 'button[aria-label="Edit"]';
-
-const titleText = 'AT - Title 1 -';
-const bodyText = 'AT - Description 1 -';
-const ctaText = 'AT - CTA Link 1 -';
-const imageAltText = 'AT-1stCardAltText';
-const postfix = 'edited';
-const ctaLinkValue = 'AT-cardUrl1';
-
-async function getEditor(page: Page, selector:string) {
-  await page.click(selector);
+async function checkCardData(page:Page, cardsPage:  CardsPage) {
+  expect(await page.locator(cardsPage.card.title).innerText()).toEqual(cardsPage.titleText);
+  expect(await page.locator(cardsPage.card.body).innerText()).toEqual(cardsPage.bodyText);
+  // tslint:disable-next-line:max-line-length
+  expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(cardsPage.ctaText);
+  expect(await page.locator(cardsPage.card.image).isVisible()).toBeTruthy();
+  expect(await page.locator(cardsPage.card.image).getAttribute('src')).toBeDefined();
+  expect(await page.locator(cardsPage.card.image).getAttribute('alt')).toBeDefined();
+  expect(await page.locator(cardsPage.card.image).getAttribute('href')).toBeDefined();
 }
 
-async function typeInSlate(page: Page, text: string) {
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.type(text);
-}
-
-async function fillCTALink(page: Page, text: string) {
-  await page.click(linkCTA);
-  await page.keyboard.press('ArrowDown');
-  await page.fill(CTAUrl, text);
-  await page.click(submitCTAUrlButton);
+async function checkEditedCardData(page:Page, cardsPage:  CardsPage) {
+  expect(await page.locator(cardsPage.card.title).innerText()).toEqual(cardsPage.titleText + cardsPage.postfix);
+  expect(await page.locator(cardsPage.card.body).innerText()).toEqual(cardsPage.bodyText + cardsPage.postfix);
+  expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(cardsPage.ctaText + cardsPage.postfix);
+  expect(await page.locator(cardsPage.card.image).isVisible()).toBeTruthy();
+  expect(await page.locator(cardsPage.card.image).getAttribute('src')).toBeDefined();
+  expect(await page.locator(cardsPage.card.image).getAttribute('alt')).toBeDefined();
+  expect(await page.locator(cardsPage.card.image).getAttribute('href')).toBeDefined();
 }
 
 test.describe('Testing cards @smoke3', () => {
   let page: Page;
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    await page.goto('http://localhost:8005/cards/');
-    await page.click(editButton);
+    await page.goto('/cards');
   });
 
   test('cards: 1 - filling first card', async () => {
+    const cardsPage = new CardsPage(page);
+    await cardsPage.toggleEditMode();
     // Filling title
-    await getEditor(page, card.title);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$title') && response.status() === 200),
-      typeInSlate(page, titleText),
-    ]);
-    expect.soft(await page.locator(card.title).innerText()).toEqual(titleText);
+    await cardsPage.typeText(cardsPage.card.title, cardsPage.titleText, 'horizontal$title');
+    expect.soft(await page.locator(cardsPage.card.title).innerText()).toEqual(cardsPage.titleText);
     // Filling body
-    await getEditor(page, card.body);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$body') && response.status() === 200),
-      typeInSlate(page, bodyText),
-    ]);
-    expect.soft(await page.locator(card.body).innerText()).toEqual(bodyText);
+    await cardsPage.typeText(cardsPage.card.body, cardsPage.bodyText, 'horizontal$body');
+    expect.soft(await page.locator(cardsPage.card.body).innerText()).toEqual(cardsPage.bodyText);
     // Filling CTA
-    await getEditor(page, card.link);
+    await cardsPage.typeText(cardsPage.card.link, cardsPage.ctaText, 'horizontal$ctatext');
+    expect.soft(await page.locator(cardsPage.card.link).innerText()).toEqual(cardsPage.ctaText);
+    // Filling CTA Link
+    await page.click(cardsPage.card.link);
+    await page.click(cardsPage.linkCTA);
+    await cardsPage.typeText('#link-href',
+      cardsPage.ctaLinkValue, 'horizontal$link', cardsPage.submitCTAUrlButton);
+    expect.soft(await page.locator(cardsPage.card.linkClickable)
+      .getAttribute('href')).toEqual(slash + cardsPage.ctaLinkValue + slash);
+    // Adding image
+    await page.click(cardsPage.card.image);
+    await page.click(cardsPage.card.selectImageButton);
+    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageOneName);
     await Promise.all([
       page.waitForResponse(response => response.url()
-        .includes('horizontal$ctatext') && response.status() === 200),
-      typeInSlate(page, ctaText),
-    ]);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText);
-    // Filling CTA url
-    // await getEditor(page, card.link);
-    await fillCTALink(page, ctaLinkValue);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText);
-    // Upload image
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await page.setInputFiles('input[type=file]', pathToImages + imageOneName);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
+        .includes('horizontal$image') && response.status() === 200),
+      page.click(cardsPage.submitButton),
     ]);
     // Filling image alt text
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await getEditor(page, card.imageAltText);
-    await page.fill(card.imageAltText, imageAltText);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
-    ]);
+    await page.click(cardsPage.card.image);
+    await page.click(cardsPage.card.selectImageButton);
+    await cardsPage
+      .typeText('#image-alt', cardsPage.imageAltText, 'horizontal', cardsPage.submitButton);
   });
 
   test('cards: 2 - checking data in Preview Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText);
-    expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
+    const cardsPage = new CardsPage(page);
+    await checkCardData(page, cardsPage);
     // await page.click('a[data-bl-design-key="Card:Link"]');
     // expect(page.url()).toContain(ctaLinkValue);
     // await page.goto('http://localhost:8005/cards/');
   });
 
   test('cards: 3 - checking that the data still present in Edit Mode after switching back from Preview Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText);
-    expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
+    const cardsPage = new CardsPage(page);
+    await cardsPage.toggleEditMode();
+    await checkCardData(page, cardsPage);
   });
 
   test('cards: 4 - editing first card', async () => {
+    const cardsPage = new CardsPage(page);
+    await cardsPage.toggleEditMode();
     // Filling title
-    await getEditor(page, card.title);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$title') && response.status() === 200),
-      typeInSlate(page, postfix),
-    ]);
-    expect.soft(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
+    await cardsPage.typeText(cardsPage.card.title, cardsPage.postfix, 'horizontal$title');
+    expect.soft(await page.locator(cardsPage.card.title).innerText())
+      .toEqual(cardsPage.titleText + cardsPage.postfix);
     // Filling body
-    await getEditor(page, card.body);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$body') && response.status() === 200),
-      typeInSlate(page, postfix),
-    ]);
-    expect.soft(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
+    await cardsPage.typeText(cardsPage.card.body, cardsPage.postfix, 'horizontal$body');
+    expect.soft(await page.locator(cardsPage.card.body).innerText())
+      .toEqual(cardsPage.bodyText + cardsPage.postfix);
     // Filling CTA
-    // await getEditor(page, card.link);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$ctatext') && response.status() === 200),
-      page.fill(card.link, ctaText + postfix),
-    ]);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText + postfix);
+    await cardsPage.typeText(cardsPage.card.link, cardsPage.postfix, 'horizontal$ctatext');
+    expect.soft(await page.locator(cardsPage.card.link).innerText())
+      .toEqual(cardsPage.ctaText + cardsPage.postfix);
     // Filling CTA url
-    await getEditor(page, card.link);
-    await fillCTALink(page, postfix);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText + postfix);
+    // tslint:disable-next-line:max-line-length
+    await cardsPage.typeText(cardsPage.linkCTA, cardsPage.postfix, 'horizontal$link', cardsPage.submitCTAUrlButton);
+    expect.soft(await page.locator(cardsPage.card.link).innerText())
+      .toEqual(cardsPage.ctaText + cardsPage.postfix);
     // Upload image
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await page.setInputFiles('input[type=file]', pathToImages + imageTwoName);
+    await page.click(cardsPage.card.image);
+    await page.click(cardsPage.card.selectImageButton);
+    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageTwoName);
     await Promise.all([
       page.waitForResponse(response => response.url()
         .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
+      page.click(cardsPage.submitButton),
     ]);
     // Filling image alt text
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await getEditor(page, card.imageAltText);
-    await page.fill(card.imageAltText, imageAltText);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
-    ]);
+    await page.click(cardsPage.card.image);
+    await page.click(cardsPage.card.selectImageButton);
+    // tslint:disable-next-line:max-line-length
+    await cardsPage.typeText('#image-alt', cardsPage.imageAltText  + cardsPage.postfix, 'horizontal', cardsPage.submitButton);
   });
 
   test('cards: 5 - checking edited data in Preview Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-    expect(await page
-      .locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText + postfix);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
+    const cardsPage = new CardsPage(page);
+    await checkEditedCardData(page, cardsPage);
     await page.click('a[data-bl-design-key="Card:Link"]');
     // expect(page.url()).toContain(postfix);
     await page.goto('http://localhost:8005/cards/');
   });
 
   test('cards: 6 - checking the edited data still present in Edit Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-    expect(await page
-      .locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText + postfix);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
+    const cardsPage = new CardsPage(page);
+    await cardsPage.toggleEditMode();
+    await checkEditedCardData(page, cardsPage);
   });
 });
