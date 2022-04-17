@@ -17,61 +17,84 @@ import { LinkTogglePage } from '../../pages/link-toggle-page';
 
 test.describe('Link Toggle smoke tests', () => {
   let page: Page;
-  test.beforeEach(async ({ browser }) => {
-    // { viewport: { width: 1200, height: 850 } }
-    page = await browser.newPage();
+  let linkTogglePage: LinkTogglePage;
+  test.beforeAll(async ({ browser }) => {
+    // { viewport: { width: 1200, height: 850 } } is needed here, it's not working from configuration
+    page = await browser.newPage({ viewport: { width: 1200, height: 850 } });
+    linkTogglePage = new LinkTogglePage(page);
     await page.goto('/link-toggle/');
   });
 
-  test.afterEach(async () => {
-    await page.close();
+  test('link toggle: 1 - checking the label without a url', async () => {
+    await linkTogglePage.toggleEditMode();
+    await linkTogglePage.typeText(linkTogglePage.labelXpath, linkTogglePage.label, 'linktoggle');
+    expect(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label);
   });
 
-  test('link toggle: 1 - checking the label without a url', async () => {
-    const linkTogglePage = new LinkTogglePage(page);
-    await page.click(linkTogglePage.editButton);
-    // await page.click(labelXpath);
-    await linkTogglePage
-      .typeText(linkTogglePage.labelXpath, linkTogglePage.label, linkTogglePage.linkTextRequest);
+  test('link toggle: 2 - checking the label without a url in Preview Mode', async () => {
+    await linkTogglePage.togglePreviewMode();
+    expect(await page.locator(linkTogglePage.labelPreviewXpath).innerText()).toEqual(linkTogglePage.label);
+    expect(await page.locator(linkTogglePage.linkXpath).isVisible()).toBeFalsy();
+  });
+
+  test('link toggle: 3 - checking the label with a url value', async () => {
+    await linkTogglePage.toggleEditMode();
+    await page.click(linkTogglePage.labelXpath);
     await page.click(linkTogglePage.linkIconAddXpath);
-    // tslint:disable-next-line:max-line-length
-    await linkTogglePage.typeText(linkTogglePage.urlFieldAddXpath, linkTogglePage.url, linkTogglePage.linkToggleRequest, linkTogglePage.submitButton);
-    expect.soft(await page.locator(linkTogglePage.labelXpath).innerText())
-      .toEqual(linkTogglePage.label);
-    const elem = await page.locator(linkTogglePage.labelXpath);
-    const parent = await elem.locator('xpath=..');
-    expect.soft(await parent.getAttribute('href')).toEqual(linkTogglePage.normalizedUrl);
+    await linkTogglePage.typeText(linkTogglePage.urlFieldAddXpath, linkTogglePage.url, 'linktoggle', linkTogglePage.checkmarkIconLinkAddFormXpath);
+    expect(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label);
+    expect(await page.locator(linkTogglePage.linkXpath).getAttribute('href')).toEqual(linkTogglePage.normalizedUrl);
+  });
 
-    await page.click(linkTogglePage.editButton);
-    expect.soft(await page.locator(linkTogglePage.labelPreviewXpath).innerText())
-      .toEqual(linkTogglePage.label);
-    const elem2 = await page.locator(linkTogglePage.labelPreviewXpath);
-    const parent2 = await elem2.locator('xpath=..');
-    expect.soft(await parent2.getAttribute('href')).toEqual(linkTogglePage.normalizedUrl);
+  test('link toggle: 4 - checking the label with a url value in Preview Mode', async () => {
+    await linkTogglePage.togglePreviewMode();
+    expect(await page.locator(linkTogglePage.labelPreviewXpath).innerText()).toEqual(linkTogglePage.label);
+    expect(await page.locator(linkTogglePage.linkXpath).getAttribute('href')).toEqual(linkTogglePage.normalizedUrl);
+  });
 
-    await page.click(linkTogglePage.editButton);
-    // tslint:disable-next-line:max-line-length
-    await linkTogglePage.typeText(linkTogglePage.labelXpath, linkTogglePage.editedPostfix, linkTogglePage.linkTextRequest);
-    await page.click('button[aria-label="Edit Link"]');
-    // tslint:disable-next-line:max-line-length
-    await linkTogglePage.typeText(linkTogglePage.urlFieldAddXpath, linkTogglePage.editedPostfix, linkTogglePage.linkRequest, linkTogglePage.submitButton);
-    expect.soft(await page.locator(linkTogglePage.labelXpath).innerText())
-      .toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
-    expect.soft(await parent.getAttribute('href'))
-      .toEqual(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix + linkTogglePage.slash);
+  test('link toggle: 5 - checking the label with a url value can be edited', async () => {
+    await linkTogglePage.toggleEditMode();
+    await linkTogglePage.typeText(linkTogglePage.labelXpath, linkTogglePage.editedPostfix, 'linktoggle');
+    expect(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
+    expect(await page.locator(linkTogglePage.linkXpath).getAttribute('href')).toEqual(linkTogglePage.normalizedUrl);
+  });
 
-    await page.click(linkTogglePage.editButton);
-    expect.soft(await page.locator(linkTogglePage.labelPreviewXpath).innerText())
-      .toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
-    expect.soft(await parent2.getAttribute('href'))
-      .toEqual(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix + linkTogglePage.slash);
+  test('link toggle: 6 - checking that a url value can be edited', async () => {
+    await page.click(linkTogglePage.labelXpath);
+    await page.click(linkTogglePage.linkIconEditXpath);
+    await linkTogglePage.typeText(linkTogglePage.urlFieldEditXpath, linkTogglePage.editedPostfix, 'linktoggle', linkTogglePage.checkmarkIconLinkEditFormXpath);
+    expect(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
+    expect(await page.locator(linkTogglePage.linkXpath).getAttribute('href')).toEqual(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix + '/');
+  });
 
-    await page.click(linkTogglePage.editButton);
+  test('link toggle: 7 - checking the edited link in Preview mode', async () => {
+    await linkTogglePage.togglePreviewMode();
+    expect(await page.locator(linkTogglePage.labelPreviewXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
+    expect(await page.locator(linkTogglePage.linkXpath).getAttribute('href')).toEqual(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix + '/');
+  });
+
+  test('link toggle: 8 - checking clicking the link in Preview mode', async () => {
     await page.click(linkTogglePage.linkXpath);
+    expect(page.url()).toContain(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix);
+    await page.goto('/link-toggle/');
+  });
+
+  test('link toggle: 9 - checking Remove Link feature in Edit Mode', async () => {
+    await linkTogglePage.toggleEditMode();
+    await page.click(linkTogglePage.labelXpath);
     await page.click(linkTogglePage.linkIconEditXpath);
     await page.click(linkTogglePage.removeLinkXpath);
-    expect.soft(await page.locator(linkTogglePage.labelXpath).innerText())
-      .toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
-    // await expect.soft(await page.locator(linkTogglePage.linkXpath)).toBeVisible();
+    const linkXpath = await page.locator(linkTogglePage.linkXpath);
+    expect(linkXpath).toBeTruthy();
+    expect(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
+  });
+
+  test('link toggle: 10 - checking that Remove Link removes a link in Preview mode', async () => {
+    await linkTogglePage.togglePreviewMode();
+    const linkXpath = await page.locator(linkTogglePage.linkXpath);
+    expect(linkXpath).toBeTruthy();
+    expect(await page.locator(linkTogglePage.labelPreviewXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
+    await page.click(linkTogglePage.labelPreviewXpath);
+    expect(page.url()).toContain('/link-toggle/');
   });
 });

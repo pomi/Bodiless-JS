@@ -54,7 +54,7 @@ export class CardsPage extends BasePage {
     this.normalizedUrl = '/' + this.cardUrl + '/';
     this.imageAltText = 'AT-1stCardAltText';
     this.editedPostfix = 'edited';
-    this.imagesFolderPath = "images";
+    this.imagesFolderPath = './playwright/images/';
     this.imageNameOriginal = 'img_615x500.jpg';
     this.imageNameUpdated = 'img_615x502.jpg';
     this.titleXpath = '//*[@id="card-horizontal"]//*[@data-card-element="title"]//div[@data-slate-editor="true"]';

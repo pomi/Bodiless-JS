@@ -37,7 +37,7 @@ export class BasePage {
     this.switcherIcon = '//*[@aria-label="switcher"]';
     this.editIcon = '//*[@aria-label="Edit"]';
     this.submitButton = 'button[aria-label="Submit"]';
-    this.pathToImages = './cypress/fixtures/images/';
+    this.pathToImages = './images/';
     this.imageOneName = 'img_615x500.jpg';
     this.imageTwoName = 'img_615x502.jpg';
     this.menuBarLeft = '//*[@aria-label="Global Context Menu Left"]';
