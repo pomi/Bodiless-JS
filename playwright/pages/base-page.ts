@@ -22,15 +22,33 @@ export class BasePage {
   readonly pathToImages: string;
   readonly imageOneName: string;
   readonly imageTwoName: string;
+  readonly menuBarLeft: string;
+  readonly menuBarRight: string;
+  readonly docsIcon: string;
+  readonly pageIcon: string;
+  readonly newPageIcon: string;
+  readonly headerAddPageForm: string;
+  readonly fieldAddPageForm: string;
+  readonly closeIconAddPageForm: string;
+  readonly checkmarkIconAddPageForm: string;
 
   constructor(page: Page) {
     this.page = page;
     this.switcherIcon = '//*[@aria-label="switcher"]';
     this.editIcon = '//*[@aria-label="Edit"]';
     this.submitButton = 'button[aria-label="Submit"]';
-    this.pathToImages = './cypress/fixtures/images/';
+    this.pathToImages = './images/';
     this.imageOneName = 'img_615x500.jpg';
     this.imageTwoName = 'img_615x502.jpg';
+    this.menuBarLeft = '//*[@aria-label="Global Context Menu Left"]';
+    this.menuBarRight = '//*[@aria-label="Global Context Menu Right"]';
+    this.docsIcon = '//*[@aria-label="Docs"]';
+    this.pageIcon = '//*[@aria-label="Page"]';
+    this.newPageIcon = '//*[@aria-label="New"]';
+    this.headerAddPageForm = '//*[@aria-label="Context Submenu Form"]//h3[text()="Add a Blank Page"]';
+    this.fieldAddPageForm = '//*[@aria-label="Context Submenu Form"]//input[@name="new-page-path"]';
+    this.closeIconAddPageForm = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Cancel"]';
+    this.checkmarkIconAddPageForm = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Submit"]';
   }
 
   async typeText(locator:string, text:string, request:string, confirmButton?:string) {

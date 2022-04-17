@@ -15,76 +15,107 @@
 import { expect, Page, test } from '@playwright/test';
 import { AccordionPage } from '../../pages/accordion-page';
 
-async function typeText(page: Page, locator:string, text:string, request:string) {
-  await page.click(locator);
-  await Promise.all([
-    page.waitForResponse(response => response.url()
-      .includes(request) && response.status() === 200),
-    page.type(locator, text),
-  ]);
-}
-
 test.describe('Single Accordion smoke tests', () => {
   let page: Page;
-  test.beforeEach(async ({ browser }) => {
+  let accordionPage: AccordionPage;
+  test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
+    accordionPage = new AccordionPage(page);
     await page.goto('/accordion');
   });
 
-  test.afterEach(async () => {
-    await page.close();
+  test('accordions: 1 - filling in Title in 1st accordion', async () => {
+    await accordionPage.toggleEditMode();
+    await accordionPage.typeText(accordionPage.titleFirstXpath, accordionPage.title, accordionPage.accordionTitleRequest);
+    expect(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
   });
 
-  test('accordions: 1 - filling and editing in Title and Body in 1st accordion', async () => {
-    const accordionPage = new AccordionPage(page);
-    await page.click(accordionPage.editButton);
-    await typeText(page, accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
-    await typeText(page, accordionPage.titleFirstXpath, accordionPage.title, accordionPage.accordionTitleRequest);
-    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
-    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
-    // check in preview mode
-    await accordionPage.togglePreviewMode();
-    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
-    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
-    // check in edit mode again
-    await accordionPage.toggleEditMode();
-    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
-    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
-    // edit body and title
-    await typeText(page, accordionPage.bodyFirstXpath, accordionPage.editedPostfix, accordionPage.accordionBodyRequest);
-    await typeText(page, accordionPage.titleFirstXpath, accordionPage.editedPostfix, accordionPage.accordionTitleRequest);
-    // check edited fields
-    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
-      .toEqual(accordionPage.title + accordionPage.editedPostfix);
-    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText())
-      .toEqual(accordionPage.body + accordionPage.editedPostfix);
-    // check in preview mode
-    await accordionPage.togglePreviewMode();
-    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
-      .toEqual(accordionPage.title + accordionPage.editedPostfix);
-    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText())
-      .toEqual(accordionPage.body + accordionPage.editedPostfix);
-    // check in edit mode again
-    await accordionPage.toggleEditMode();
-    expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText())
-      .toEqual(accordionPage.title + accordionPage.editedPostfix);
-    expect.soft(await page.locator(accordionPage.bodyFirstXpath).innerText())
-      .toEqual(accordionPage.body + accordionPage.editedPostfix);
+  test('accordions: 2 - filling in Body in 1st accordion', async () => {
+    await accordionPage.typeText(accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
+    expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
   });
 
-  test('accordions: 2 - collapsing and expanding the 1st accordion', async () => {
-    const accordionPage = new AccordionPage(page);
+  test('accordions: 3 - collapsing the 1st accordion', async () => {
     await page.click(accordionPage.minusIconFirstXpath);
-    await expect.soft(page.locator(accordionPage.bodyFirstXpath)).not.toBeVisible();
-    await page.click(accordionPage.plusIconFirstXpath);
-    await expect.soft(page.locator(accordionPage.bodyFirstXpath)).toBeVisible();
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
   });
 
-  test('accordions: 3 - collapsing and expanding the 2st accordion', async () => {
-    const accordionPage = new AccordionPage(page);
+  test('accordions: 4 - expanding the 1st accordion', async () => {
+    await page.click(accordionPage.plusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+  });
+
+  test('accordions: 5 - expanding an empty accordion', async () => {
     await page.click(accordionPage.plusIconSecondXpath);
-    await expect.soft(page.locator(accordionPage.bodySecondXpath)).toBeVisible();
+    expect(await page.locator(accordionPage.bodySecondXpath).isVisible()).toBeTruthy();
+  });
+
+  test('accordions: 6 - collapsing an empty accordion', async () => {
     await page.click(accordionPage.minusIconSecondXpath);
-    await expect.soft(page.locator(accordionPage.bodySecondXpath)).not.toBeVisible();
+    expect(await page.locator(accordionPage.bodySecondXpath).isVisible()).toBeFalsy();
+  });
+
+  test('accordions: 7 - checking the accordions in Preview Mode', async () => {
+    await accordionPage.togglePreviewMode();
+    expect(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
+    expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
+    await page.click(accordionPage.titleFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
+    await page.click(accordionPage.plusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+    await page.click(accordionPage.minusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
+    await page.click(accordionPage.titleFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+  });
+
+  test('accordions: 8 - checking that data is still present in Edit Mode', async () => {
+    await accordionPage.toggleEditMode();
+    expect(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);
+    expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
+    await page.click(accordionPage.minusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
+    await page.click(accordionPage.plusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+  });
+
+  test('accordions: 9 - editing Title in the 1st accordion', async () => {
+    await accordionPage.typeText(accordionPage.titleFirstXpath, accordionPage.editedPostfix, accordionPage.accordionTitleRequest);
+    expect(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title + accordionPage.editedPostfix);
+  });
+
+  test('accordions: 10 - editing Body in the 1st accordion', async () => {
+    await accordionPage.typeText(accordionPage.bodyFirstXpath, accordionPage.editedPostfix, accordionPage.accordionBodyRequest);
+    expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body + accordionPage.editedPostfix);
+  });
+
+  test('accordions: 11 - collapsing the 1st accordion', async () => {
+    await page.click(accordionPage.minusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
+  });
+
+  test('accordions: 12 - expanding the 1st accordion', async () => {
+    await page.click(accordionPage.plusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+  });
+
+  test('accordions: 13 - checking the edited data in Preview Mode', async () => {
+    await accordionPage.togglePreviewMode();
+    expect(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title + accordionPage.editedPostfix);
+    expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body + accordionPage.editedPostfix);
+    await page.click(accordionPage.minusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
+    await page.click(accordionPage.titleFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+    await page.click(accordionPage.titleFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeFalsy();
+    await page.click(accordionPage.plusIconFirstXpath);
+    expect(await page.locator(accordionPage.bodyFirstXpath).isVisible()).toBeTruthy();
+  });
+
+  test('accordions: 14 - checking that the edited data is still present in Edit Mode', async () => {
+    await accordionPage.toggleEditMode();
+    expect(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title + accordionPage.editedPostfix);
+    expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body + accordionPage.editedPostfix);
   });
 });

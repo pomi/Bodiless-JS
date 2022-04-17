@@ -51,26 +51,21 @@ async function checkRevertForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
   await page.click(fileSubmenuPage.revertFormCloseButton);
 }
 
-test.describe.parallel('Editor Menu (left and right)', () => {
+test.describe('Editor Menu (left and right)', () => {
   let page: Page;
-  test.beforeEach(async ({ browser }) => {
+  let fileSubmenuPage: FileSubmenuPage;
+  test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
+    fileSubmenuPage = new FileSubmenuPage(page);
     await page.goto('/');
   });
 
-  test.afterEach(async () => {
-    await page.close();
-  });
-
-  // eslint-disable-next-line jest/expect-expect
   test('File Submenu: 1 - Checking file submenu buttons in preview mode', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.togglePreviewMode();
     await checkFileSubMenuButtons('preview', page, fileSubmenuPage);
   });
 
   test('File Submenu: 2 - Checking History button in Preview Mode (left)', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await page.click(fileSubmenuPage.fileFormButton);
     await checkHistoryForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
@@ -78,7 +73,6 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   });
 
   test('File Submenu: 3 - Checking History button in Preview Mode (right)', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);
     await checkHistoryForm(page, fileSubmenuPage);
@@ -86,16 +80,12 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 
-  // eslint-disable-next-line jest/expect-expect
   test('File Submenu: 4 - Checking file submenu buttons in Edit Mode', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await checkFileSubMenuButtons('edit', page, fileSubmenuPage);
   });
 
-  // eslint-disable-next-line jest/expect-expect
   test('File Submenu: 5 - Checking History button in Edit Mode (left)', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await page.click(fileSubmenuPage.fileFormButton);
     await checkHistoryForm(page, fileSubmenuPage);
@@ -103,7 +93,6 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   });
 
   test('File Submenu: 6 - Checking Revert button in Edit Mode (left)', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await page.click(fileSubmenuPage.fileFormButton);
     await checkRevertForm(page, fileSubmenuPage);
@@ -112,7 +101,6 @@ test.describe.parallel('Editor Menu (left and right)', () => {
   });
 
   test('File Submenu: 7 - Checking Revert button in Edit Mode (right)', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);
@@ -121,9 +109,7 @@ test.describe.parallel('Editor Menu (left and right)', () => {
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 
-  // eslint-disable-next-line jest/expect-expect
   test('File Submenu: 8 - Checking History button in Edit Mode (right)', async () => {
-    const fileSubmenuPage = new FileSubmenuPage(page);
     await fileSubmenuPage.toggleEditMode();
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);

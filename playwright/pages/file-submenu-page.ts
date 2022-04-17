@@ -17,7 +17,6 @@ import { BasePage } from './base-page';
 
 export class FileSubmenuPage extends BasePage {
   readonly page: Page;
-  readonly editIcon: string;
   readonly fileForm: string;
   readonly fileFormButton: string;
   readonly fileFormCloseButton: string;
@@ -33,12 +32,10 @@ export class FileSubmenuPage extends BasePage {
   readonly revertFormDescription: string;
   readonly revertFormSubmitButton: string;
   readonly revertFormCloseButton: string;
-  readonly switcherIcon: string;
 
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.editIcon = '//*[@aria-label="Edit"]';
     this.fileForm = '//*[@aria-label="Context Submenu File form"]';
     this.fileFormButton = '//button[@aria-label="File"]';
     this.fileFormCloseButton = '//*[@aria-label="Context Submenu File form"]//*[@aria-label="Cancel"]';
@@ -49,13 +46,10 @@ export class FileSubmenuPage extends BasePage {
     this.historyFormTitle = '//*[@aria-label="Context Submenu Form"]//h3[text()="Latest Commits"]';
     this.historyFormItems = '//*[@aria-label="Context Submenu Form"]//input[@type="radio"][@name="commits"]';
     this.historyFormSubmitButton = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Submit"]';
-    // tslint:disable-next-line:max-line-length
     this.historyFormCloseButton = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Cancel"]';
     this.revertFormTitle = '//*[@aria-label="Context Submenu Form"]//h3[text()="Revert to saved"]';
     this.revertFormDescription = '//*[@aria-label="Context Submenu Form"]//label[text()="Discard local changes"]';
-    // tslint:disable-next-line:max-line-length
     this.revertFormSubmitButton = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Submit"]';
     this.revertFormCloseButton = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Cancel"]';
-    this.switcherIcon = '//*[@aria-label="switcher"]';
   }
 }

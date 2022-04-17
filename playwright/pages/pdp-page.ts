@@ -17,14 +17,13 @@ import { BasePage } from './base-page';
 
 export class PdpPage extends BasePage {
   readonly page: Page;
-  readonly editIcon: string;
   readonly pagePath: string;
   readonly productBase: string;
   readonly pdpURL: string;
   readonly pdpPagePath: string;
   readonly title: string;
   readonly accordionBody: string;
-  readonly pathToImages: string;
+  readonly imagesFolderPath: string;
   readonly imageOneName: string;
   readonly imageName: string;
   readonly pageIconXpath: string;
@@ -52,15 +51,12 @@ export class PdpPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.editIcon = '//*[@aria-label="Edit"]';
     this.pagePath = '/products/';
-    this.productBase = 'pdp-autotest';
-    this.pdpURL = this.productBase + Math.floor(Math.random() * 10000).toString();
+    this.pdpURL = 'pdp-autotest' + Math.floor(Math.random() * 10000).toString();
     this.pdpPagePath = this.pagePath + this.pdpURL;
     this.title = 'AT - PDD title';
     this.accordionBody = 'AT - Overview';
-    this.pathToImages = './cypress/fixtures/images/';
-    this.imageOneName = 'img_615x500.jpg';
+    this.imagesFolderPath = './cypress/fixtures/images/';
     this.imageName = 'img_615x500.jpg';
     this.pageIconXpath = '//*[@aria-label="Page"]';
     this.newPageIconXpath = '//*[@aria-label="New"]';
@@ -80,8 +76,6 @@ export class PdpPage extends BasePage {
     this.checkmarkIconImageFormXpath = '//form[@aria-label="Context Menu Select Image Form"]//button[@aria-label="Submit"]';
     this.flexboxXpath = '//*[@data-product-element="flow-container"]';
     this.addComponentIconXpath = '//button[@aria-label="Add Flow Container"]';
-    this.imagesBase = 'images/pages';
-    this.productRegexp = '/[a-zA-Z0-9]+/';
-    this.imagePathRegex = new RegExp(this.imagesBase + this.pdpPagePath + this.productRegexp + this.imageName, '');
+    this.imagePathRegex = new RegExp('images/pages' + this.pdpPagePath + '/[a-zA-Z0-9]+/' + this.imageName, '');
   }
 }

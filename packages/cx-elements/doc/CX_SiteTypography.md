@@ -6,7 +6,7 @@ The site typography consists of updating fonts, colors, font sizes, and basic to
 
 The CX Starter utilizes the [DM Sans](https://fonts.google.com/specimen/DM+Sans) font from the
 Google API. If your designs require a different font, please refer to the [fonts documentation
-guide](../../Development/Guides/BuildingSites/TypographySetup/Fonts).
+guide](/Development/Guides/BuildingSites/Typography/Fonts).
 
 ## Step 2: Font Size & Line Heights
 
@@ -24,9 +24,9 @@ Provide the Shadowing function as defined in [Shadow](./CX_Shadow).
 File to shadow:
 [`cxFontSize`](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/FontSize/tokens/cxFontSize.ts)
 
-### Option 2: Override in `site.tailwind.config.js` File
+### Option 2: Override in `tailwind.config.js` File
 
-Within your package/site's `site.tailwind.config.js`, you can replace the Tailwind elements with
+Within your package/site's `tailwind.config.js`, you can replace the Tailwind elements with
 your own font sizes, line height, and (optionally) spacing.
 
 ```js
@@ -64,7 +64,7 @@ Provide the Shadowing function as defined in [Shadow](./CX_Shadow).
 File to shadow:
 [`cxColor`](https://github.com/johnsonandjohnson/Bodiless-JS/blob/main/packages/cx-elements/src/components/Element/Color/tokens/cxColor.ts)
 
-### Option 2: Override in `site.tailwind.config.js` File
+### Option 2: Override in `tailwind.config.js` File
 
 ```js
 module.exports = {
@@ -92,7 +92,7 @@ module.exports = {
 ## Step 4: Override Other CX Tokens
 
 The CanvasX Design System provides header, body, eyebrow, link, and other specific text decoration
-tokens, which have their designs linked above. These tokens can be shadowed, which is the 
+tokens, which have their designs linked above. These tokens can be shadowed, which is the
 recommended way of changing, adding, or redefining tokens at a package/site level.
 
 ### Option 1: Shadowing (*Preferred Solution)
@@ -111,4 +111,4 @@ The Site Builder can define their own custom tokens at package level.
 ## Step 5: Apply Typography at Site Level
 
 Follow the instructions at [Applying Classes to Your Entire
-Site](../../Development/Guides/BuildingSites/TypographySetup/Typography#applying-classes-to-your-entire-site).
+Site](/Development/Guides/BuildingSites/Typography/Typography#applying-classes-to-your-entire-site).
