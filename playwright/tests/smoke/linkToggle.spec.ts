@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// singleAccordion.spec.ts
+// linkToggle.spec.ts
 import { expect, Page, test } from '@playwright/test';
 import { LinkTogglePage } from '../../pages/link-toggle-page';
 

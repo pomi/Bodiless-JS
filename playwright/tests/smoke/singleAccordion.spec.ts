@@ -37,7 +37,7 @@ test.describe('Single Accordion smoke tests', () => {
 
   test('accordions: 1 - filling and editing in Title and Body in 1st accordion', async () => {
     const accordionPage = new AccordionPage(page);
-    await page.click(accordionPage.editButton);
+    await accordionPage.toggleEditMode();
     await accordionPage.typeText(accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
     await accordionPage.typeText(accordionPage.titleFirstXpath, accordionPage.title, accordionPage.accordionTitleRequest);
     expect.soft(await page.locator(accordionPage.titleFirstXpath).innerText()).toEqual(accordionPage.title);

@@ -22,4 +22,21 @@ export class EditorMenuPage extends BasePage {
     super(page);
     this.page = page;
   }
+
+  async checkMenu(position: 'left' | 'right') {
+    let value;
+    if (position === 'left') {
+      const element = await this.page.locator(this.menuBarLeft);
+      value = await element.evaluate((el) => {
+        return window.getComputedStyle(el).left;
+      });
+    }
+    if (position === 'right') {
+      const element = await this.page.locator(this.menuBarRight);
+      value = await element.evaluate((el) => {
+        return window.getComputedStyle(el).right;
+      });
+    }
+    return value;
+  }
 }
