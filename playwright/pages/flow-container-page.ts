@@ -96,8 +96,8 @@ export class FlowContainerPage extends BasePage {
     this.flowContainerLimitedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(34) > section > div';
     this.flowContainerNestedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(36) > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > div > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > img';
     this.addFlowContainerButton = 'button[aria-label="Add Flow Container"]';
-    this.imagesCheckbox = '#Image';
     this.selectImageButton = 'button[aria-label="Select Image"]';
+    this.imagesCheckbox = '#Image';
     this.squareImageButton = '#gridlistboxinner > div:nth-child(1) > div > button';
     this.squareImageButtonInsideContainer = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(4) > section > div > img';
     this.component = {
