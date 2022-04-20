@@ -17,7 +17,6 @@ import { BasePage } from './base-page';
 
 export class LinkTogglePage extends BasePage {
   readonly page: Page;
-  readonly slash: string;
   readonly label: string;
   readonly url: string;
   readonly normalizedUrl: string;
@@ -33,25 +32,31 @@ export class LinkTogglePage extends BasePage {
   readonly linkTextRequest: string;
   readonly linkToggleRequest: string;
   readonly linkRequest: string;
+  readonly checkmarkIconLinkAddFormXpath: string;
+  readonly urlFieldEditXpath: string;
+  readonly checkmarkIconLinkEditFormXpath: string;
+  readonly slash: string;
 
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.slash = '/';
+    this.linkTextRequest = 'linktoggle1$text';
+    this.linkToggleRequest = 'linktoggle1$link-toggle';
+    this.linkRequest = 'linktoggle1$link';
     this.label = 'AT - Label -';
     this.url = 'AT-Url';
+    this.slash = '/';
     this.normalizedUrl = this.slash + this.url + this.slash;
     this.editedPostfix = 'edited';
     this.labelXpath = '//*[@data-linktoggle-element="link-toggle"]//*[@class="bodiless-inline-editable"]';
     this.labelPreviewXpath = '//*[@data-linktoggle-element="link-toggle"]//span';
     this.linkXpath = '//*[@data-linktoggle-element="link-toggle"]//a';
     this.linkIconAddXpath = '//*[@aria-label="Local Context Menu"]//*[@aria-label="Add Link"]';
-    this.urlFieldAddXpath = '#link-href';
+    this.urlFieldAddXpath = '//form[@aria-label="Context Menu Add Link Form"]//input[@id="link-href"]';
+    this.checkmarkIconLinkAddFormXpath = '//form[@aria-label="Context Menu Add Link Form"]//button[@aria-label="Submit"]';
     this.linkIconEditXpath = '//*[@aria-label="Local Context Menu"]//*[@aria-label="Edit Link"]';
+    this.urlFieldEditXpath = '//form[@aria-label="Context Menu Edit Link Form"]//input[@id="link-href"]';
+    this.checkmarkIconLinkEditFormXpath = '//form[@aria-label="Context Menu Edit Link Form"]//button[@aria-label="Submit"]';
     this.removeLinkXpath = '//form[@aria-label="Context Menu Edit Link Form"]//button[text()="Remove Link"]';
-    this.editButton = 'button[aria-label="Edit"]';
-    this.linkTextRequest = 'linktoggle1$text';
-    this.linkToggleRequest = 'linktoggle1$link-toggle';
-    this.linkRequest = 'linktoggle1$link';
   }
 }

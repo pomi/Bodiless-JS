@@ -15,7 +15,7 @@
 import { expect, Page, test } from '@playwright/test';
 import { EditorMenuPage } from '../../pages/editor-menu-page';
 
-async function checkEditorMenuButtonsPreviewMode(page: Page, editorMenuPage: EditorMenuPage) {
+async function checkEditorMenuButtons(page: Page, editorMenuPage: EditorMenuPage) {
   expect.soft(await page.locator(editorMenuPage.switcherIcon).isVisible).toBeTruthy();
   expect.soft(await page.locator(editorMenuPage.docsIcon).isVisible).toBeTruthy();
   expect.soft(await page.locator(editorMenuPage.editIcon).isVisible).toBeTruthy();
@@ -25,10 +25,10 @@ async function checkEditorMenuButtonsPreviewMode(page: Page, editorMenuPage: Edi
 async function checkSwitcherAndMenuIcons(page: Page, editorMenuPage: EditorMenuPage) {
   await editorMenuPage.toggleMenuRight();
   expect(await page.locator(editorMenuPage.menuBarRight).isVisible()).toBeTruthy();
-  await checkEditorMenuButtonsPreviewMode(page, editorMenuPage);
+  await checkEditorMenuButtons(page, editorMenuPage);
   await editorMenuPage.toggleMenuLeft();
   expect(await page.locator(editorMenuPage.menuBarLeft).isVisible()).toBeTruthy();
-  await checkEditorMenuButtonsPreviewMode(page, editorMenuPage);
+  await checkEditorMenuButtons(page, editorMenuPage);
 }
 
 async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage) {
@@ -40,43 +40,66 @@ async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage)
   await page.click(editorMenuPage.closeIconAddPageForm);
 }
 
-test.describe.parallel('Editor Menu (left and right)', () => {
+test.describe('Editor Menu (left and right)', () => {
   let page: Page;
   let context:any;
-  test.beforeEach(async ({ browser }) => {
+  let editorMenuPage: EditorMenuPage;
+  test.beforeAll(async ({ browser }) => {
     // { viewport: { width: 1200, height: 850 } }
-    context = await browser.newContext({ viewport: { width: 1200, height: 850 } });
+    context = await browser.newContext();
     page = await context.newPage();
+    editorMenuPage = new EditorMenuPage(page);
     await page.goto('/');
   });
 
-  test.afterEach(async () => {
-    await page.close();
+  test('editorMenu: 1 - checking Switcher button in Preview Mode (left and right)', async () => {
+    await editorMenuPage.toggleMenuRight();
+    expect(await editorMenuPage.checkMenu('right')).toEqual('0px');
+    await editorMenuPage.toggleMenuLeft();
+    expect(await editorMenuPage.checkMenu('left')).toEqual('0px');
   });
 
-  // eslint-disable-next-line jest/expect-expect
-  test('editorMenu: 1 - checking Switcher button in Preview Mode', async () => {
-    const editorMenuPage = new EditorMenuPage(page);
-    await checkSwitcherAndMenuIcons(page, editorMenuPage);
+  test('editorMenu: 2 - checking presence of Menu buttons in Preview Mode (left)', async () => {
+    await editorMenuPage.togglePreviewMode();
+    await checkEditorMenuButtons(page, editorMenuPage);
   });
 
-  // eslint-disable-next-line jest/expect-expect
+  test('editorMenu: 3 - checking presence of Menu buttons in Preview Mode (right)', async () => {
+    await editorMenuPage.toggleMenuRight();
+    await checkEditorMenuButtons(page, editorMenuPage);
+    await editorMenuPage.toggleMenuLeft();
+    await checkEditorMenuButtons(page, editorMenuPage);
+  });
+
   test('editorMenu: 4 - checking Switcher button in Edit Mode (left and right)', async () => {
-    const editorMenuPage = new EditorMenuPage(page);
     await editorMenuPage.toggleEditMode();
-    await checkSwitcherAndMenuIcons(page, editorMenuPage);
+    await editorMenuPage.toggleMenuRight();
+    expect(await editorMenuPage.checkMenu('right')).toEqual('0px');
+    await editorMenuPage.toggleMenuLeft();
+    expect(await editorMenuPage.checkMenu('left')).toEqual('0px');
   });
 
-  // eslint-disable-next-line jest/expect-expect
-  test('editorMenu: 7 - checking Add a New Page button in Edit Mode', async () => {
-    const editorMenuPage = new EditorMenuPage(page);
-    await editorMenuPage.toggleEditMode();
+  test('editorMenu: 5 - checking Menu buttons in Edit Mode (left)', async () => {
+    await checkEditorMenuButtons(page, editorMenuPage);
+  });
+
+  test('editorMenu: 6 - checking Menu buttons in Edit Mode (right)', async () => {
+    await editorMenuPage.toggleMenuRight();
+    await checkEditorMenuButtons(page, editorMenuPage);
+    await editorMenuPage.toggleMenuLeft();
+  });
+
+  test('editorMenu: 7 - checking Add a New Page button in Edit Mode (left)', async () => {
     await checkAddNewPageButton(page, editorMenuPage);
+  });
+
+  test('editorMenu: 8 - checking Add a New Page button in Edit Mode (right)', async () => {
     await editorMenuPage.toggleMenuRight();
     await checkAddNewPageButton(page, editorMenuPage);
+    await editorMenuPage.toggleMenuLeft();
   });
 
-  test('Check doc icon leads to documentation', async () => {
+  test('editorMenu: 9 - Check Docs page', async () => {
     const editorMenuPage = new EditorMenuPage(page);
     const newPagePromise = new Promise(resolve => context.once('page', resolve));
     await page.click(editorMenuPage.docsIcon);

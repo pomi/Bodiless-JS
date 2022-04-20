@@ -12,208 +12,161 @@
  * limitations under the License.
  */
 // cards.spec.ts
-import { expect, test, Page } from '@playwright/test';
+import {test, Page, expect} from '@playwright/test';
+import { CardsPage } from '../../pages/cards-page';
+import card from '../../../sites/test-site/src/components/Card';
 
-const pathToImages = './cypress/fixtures/images/';
-const imageOneName = 'img_615x500.jpg';
-const imageTwoName = 'img_615x502.jpg';
-const card = {
-  id: 'card_horizontal',
-  image: '#card-horizontal img[data-card-element="image"]',
-  title: '#card-horizontal *[data-card-element="title"] div[data-slate-editor="true"]',
-  body: '#card-horizontal div[data-card-element="body"] div[data-slate-editor="true"]',
-  link: '#card-horizontal *[data-card-element="link"] div[role="textbox"]',
-  submitButton: 'button[aria-label="Submit"]',
-  imageAltText: 'input[name="alt"]',
-  selectImageButton: 'button[aria-label="Select Image"]',
-  linkClickable: '#card-horizontal div[data-card-element="content-wrapper"] a[data-card-element="link"]',
-};
-
-const linkCTA = 'button[aria-label="Edit CTA"]';
-const CTAUrl = 'input[aria-describedby="description"]';
-const submitCTAUrlButton = 'button[aria-label="Submit"]';
-const editButton = 'button[aria-label="Edit"]';
-
-const titleText = 'AT - Title 1 -';
-const bodyText = 'AT - Description 1 -';
-const ctaText = 'AT - CTA Link 1 -';
-const imageAltText = 'AT-1stCardAltText';
-const postfix = 'edited';
-const ctaLinkValue = 'AT-cardUrl1';
-
-async function getEditor(page: Page, selector:string) {
-  await page.click(selector);
-}
-
-async function typeInSlate(page: Page, text: string) {
-  await page.keyboard.press('ArrowDown');
-  await page.keyboard.type(text);
-}
-
-async function fillCTALink(page: Page, text: string) {
-  await page.click(linkCTA);
-  await page.keyboard.press('ArrowDown');
-  await page.fill(CTAUrl, text);
-  await page.click(submitCTAUrlButton);
-}
-
-test.describe('Testing cards @smoke3', () => {
+test.describe('Testing cards', () => {
   let page: Page;
+  let cardsPage : CardsPage;
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
-    await page.goto('http://localhost:8005/cards/');
-    await page.click(editButton);
+    cardsPage = new CardsPage(page);
+    await page.goto('/cards');
   });
 
-  test('cards: 1 - filling first card', async () => {
-    // Filling title
-    await getEditor(page, card.title);
+  test('cards: 1 - filling in Title', async () => {
+    await cardsPage.toggleEditMode();
+    await cardsPage.typeText(cardsPage.titleXpath, cardsPage.title, 'horizontal$title');
+    expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title);
+  });
+
+  test('cards: 2 - filling in Body', async () => {
+    await cardsPage.typeText(cardsPage.descriptionXpath, cardsPage.description, 'horizontal$body');
+    expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description);
+  });
+
+  test('cards: 3 - filling in CTA text', async () => {
+    await cardsPage.typeText(cardsPage.ctaLabelXpath, cardsPage.ctaLabel, 'horizontal$ctatext');
+    expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel);
+  });
+
+  test('cards: 4 - filling in CTA url', async () => {
+    await page.click(cardsPage.linkIconCTAXpath);
+    await cardsPage.typeText(cardsPage.urlFieldCTAXpath, cardsPage.cardUrl, 'horizontal$link', cardsPage.checkmarkIconLinkCTAFormXpath);
+  });
+
+  test('cards: 5 - uploading an image', async () => {
+    await page.click(cardsPage.imagePlaceholderXpath);
+    await page.click(cardsPage.imageIconXpath);
+    await page.setInputFiles('input[type=file]', cardsPage.imagesFolderPath + cardsPage.imageNameOriginal);
     await Promise.all([
       page.waitForResponse(response => response.url()
-        .includes('horizontal$title') && response.status() === 200),
-      typeInSlate(page, titleText),
-    ]);
-    expect.soft(await page.locator(card.title).innerText()).toEqual(titleText);
-    // Filling body
-    await getEditor(page, card.body);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$body') && response.status() === 200),
-      typeInSlate(page, bodyText),
-    ]);
-    expect.soft(await page.locator(card.body).innerText()).toEqual(bodyText);
-    // Filling CTA
-    await getEditor(page, card.link);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$ctatext') && response.status() === 200),
-      typeInSlate(page, ctaText),
-    ]);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText);
-    // Filling CTA url
-    // await getEditor(page, card.link);
-    await fillCTALink(page, ctaLinkValue);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText);
-    // Upload image
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await page.setInputFiles('input[type=file]', pathToImages + imageOneName);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
-    ]);
-    // Filling image alt text
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await getEditor(page, card.imageAltText);
-    await page.fill(card.imageAltText, imageAltText);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
+        .includes('horizontal$image') && response.status() === 200),
+      page.click(cardsPage.checkmarkIconImageFormXpath),
     ]);
   });
 
-  test('cards: 2 - checking data in Preview Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText);
-    expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
-    // await page.click('a[data-bl-design-key="Card:Link"]');
-    // expect(page.url()).toContain(ctaLinkValue);
-    // await page.goto('http://localhost:8005/cards/');
+  test('cards: 6 - filling an image alt text', async () => {
+    await page.click(cardsPage.imagePlaceholderXpath);
+    await page.click(cardsPage.imageIconXpath);
+    await cardsPage.typeText(cardsPage.altFieldXpath, cardsPage.imageAltText, 'horizontal$image', cardsPage.checkmarkIconImageFormXpath);
   });
 
-  test('cards: 3 - checking that the data still present in Edit Mode after switching back from Preview Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText);
-    expect(await page.locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
+  test('cards: 7 - checking data in Preview Mode', async () => {
+    await cardsPage.togglePreviewMode();
+    expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title);
+    expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description);
+    expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageOrigPathRegex);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    const imageDimentions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
+    expect(imageDimentions.width).toBeGreaterThan(0);
+    expect(imageDimentions.height).toBeGreaterThan(0);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
+    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(cardsPage.normalizedUrl);
+    await Promise.all([
+      page.waitForNavigation(),
+      page.click(cardsPage.ctaButtonXpath),
+    ]);
+    expect(page.url()).toContain(cardsPage.normalizedUrl);
+    await page.goto(cardsPage.pagePath);
   });
 
-  test('cards: 4 - editing first card', async () => {
-    // Filling title
-    await getEditor(page, card.title);
+  test('cards: 8 - checking that the data still present in Edit Mode after switching back from Preview Mode', async () => {
+    await cardsPage.toggleEditMode();
+    expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title);
+    expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description);
+    expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageOrigPathRegex);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    const imageDimensions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
+    expect(imageDimensions.width).toBeGreaterThan(0);
+    expect(imageDimensions.height).toBeGreaterThan(0);
+    await page.waitForSelector(cardsPage.imagePlaceholderXpath);
+    // todo deal with inconsistent error
+    // expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
+    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(cardsPage.normalizedUrl);
+  });
+
+  test('cards: 9 - editing Title', async () => {
+    await cardsPage.typeText(cardsPage.titleXpath, cardsPage.editedPostfix, 'horizontal$title');
+    expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title + cardsPage.editedPostfix);
+  });
+
+  test('cards: 10 - editing Description', async () => {
+    await cardsPage.typeText(cardsPage.descriptionXpath, cardsPage.editedPostfix, 'horizontal$body');
+    expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description + cardsPage.editedPostfix);
+  });
+
+  test('cards: 11 - editing CTA label', async () => {
+    await cardsPage.typeText(cardsPage.ctaLabelXpath, cardsPage.editedPostfix, 'horizontal$ctatext');
+    expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel + cardsPage.editedPostfix);
+  });
+
+  test('cards: 12 - editing CTA url', async () => {
+    await page.click(cardsPage.linkIconCTAXpath);
+    await cardsPage.typeText(cardsPage.urlFieldCTAXpath, cardsPage.editedPostfix, 'horizontal$link', cardsPage.checkmarkIconLinkCTAFormXpath);
+  });
+
+  test('cards: 13 - uploading a new image and editing an image alt text', async () => {
+    await page.click(cardsPage.imagePlaceholderXpath);
+    await page.click(cardsPage.imageIconXpath);
+    await cardsPage.typeText(cardsPage.altFieldXpath, cardsPage.editedPostfix, 'horizontal$image', cardsPage.checkmarkIconImageFormXpath);
+    await page.click(cardsPage.imagePlaceholderXpath);
+    await page.click(cardsPage.imageIconXpath);
+    await page.setInputFiles('input[type=file]', cardsPage.imagesFolderPath + cardsPage.imageNameUpdated);
     await Promise.all([
       page.waitForResponse(response => response.url()
-        .includes('horizontal$title') && response.status() === 200),
-      typeInSlate(page, postfix),
-    ]);
-    expect.soft(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-    // Filling body
-    await getEditor(page, card.body);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$body') && response.status() === 200),
-      typeInSlate(page, postfix),
-    ]);
-    expect.soft(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-    // Filling CTA
-    // await getEditor(page, card.link);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal$ctatext') && response.status() === 200),
-      page.fill(card.link, ctaText + postfix),
-    ]);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText + postfix);
-    // Filling CTA url
-    await getEditor(page, card.link);
-    await fillCTALink(page, postfix);
-    expect.soft(await page.locator(card.link).innerText()).toEqual(ctaText + postfix);
-    // Upload image
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await page.setInputFiles('input[type=file]', pathToImages + imageTwoName);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
-    ]);
-    // Filling image alt text
-    await page.click(card.image);
-    await page.click(card.selectImageButton);
-    await getEditor(page, card.imageAltText);
-    await page.fill(card.imageAltText, imageAltText);
-    await Promise.all([
-      page.waitForResponse(response => response.url()
-        .includes('horizontal') && response.status() === 200),
-      page.click(card.submitButton),
+        .includes('horizontal$image') && response.status() === 200),
+      page.click(cardsPage.checkmarkIconImageFormXpath),
     ]);
   });
 
-  test('cards: 5 - checking edited data in Preview Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-    expect(await page
-      .locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText + postfix);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
-    await page.click('a[data-bl-design-key="Card:Link"]');
-    // expect(page.url()).toContain(postfix);
-    await page.goto('http://localhost:8005/cards/');
+  test('cards: 14 - checking edited data in Preview Mode', async () => {
+    await cardsPage.togglePreviewMode();
+    expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageUpdPathRegex);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    const imageDimentions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
+    expect(imageDimentions.width).toBeGreaterThan(0);
+    expect(imageDimentions.height).toBeGreaterThan(0);
+    // todo deal with inconsistent error
+    // expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
+    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toContain(cardsPage.normalizedUrl + cardsPage.editedPostfix);
+    await Promise.all([
+      page.waitForNavigation(),
+      page.click(cardsPage.ctaButtonXpath),
+    ]);
+    expect(page.url()).toContain(cardsPage.normalizedUrl + cardsPage.editedPostfix);
+    await page.goto(cardsPage.pagePath);
   });
 
-  test('cards: 6 - checking the edited data still present in Edit Mode', async () => {
-    await page.click(editButton);
-    expect(await page.locator(card.title).innerText()).toEqual(titleText + postfix);
-    expect(await page.locator(card.body).innerText()).toEqual(bodyText + postfix);
-    expect(await page
-      .locator('a:has-text("AT - CTA Link 1 -")').innerText()).toEqual(ctaText + postfix);
-    expect(await page.locator(card.image).isVisible()).toBeTruthy();
-    expect(await page.locator(card.image).getAttribute('src')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('alt')).toBeDefined();
-    expect(await page.locator(card.image).getAttribute('href')).toBeDefined();
+  test('cards: 15 - checking the edited data still present in Edit Mode', async () => {
+    await cardsPage.toggleEditMode();
+    expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageUpdPathRegex);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    const imageDimensions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
+    expect(imageDimensions.width).toBeGreaterThan(0);
+    expect(imageDimensions.height).toBeGreaterThan(0);
+    await page.waitForSelector(cardsPage.imagePlaceholderXpath);
+    // todo deal with inconsistent error
+    // expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
+    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toContain(cardsPage.normalizedUrl + cardsPage.editedPostfix);
   });
 });

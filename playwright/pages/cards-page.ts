@@ -16,58 +16,60 @@ import { Page } from '@playwright/test';
 import { BasePage } from './base-page';
 
 export class CardsPage extends BasePage {
-  readonly page:Page;
-  readonly pathToImages: string;
-  readonly imageOneName: string;
-  readonly imageTwoName: string;
-  readonly linkCTA: string;
-  readonly CTAUrl: string;
-  readonly submitCTAUrlButton: string;
-  readonly editButton: string;
-  readonly titleText: string;
-  readonly bodyText: string;
-  readonly ctaText: string;
+  readonly page: Page;
+  readonly pagePath: string;
+  readonly title: string;
+  readonly description: string;
+  readonly ctaLabel: string;
+  readonly cardUrl: string;
+  readonly normalizedUrl: string;
   readonly imageAltText: string;
-  readonly postfix: string;
-  readonly ctaLinkValue: string;
-  readonly card: {
-    id:string,
-    image:string,
-    title:string,
-    body:string,
-    link:string,
-    submitButton:string,
-    imageAltText:string,
-    selectImageButton:string,
-    linkClickable:string,
-  };
+  readonly editedPostfix: string;
+  readonly imagesFolderPath: string;
+  readonly imageNameOriginal: string;
+  readonly imageNameUpdated: string;
+  readonly titleXpath: string;
+  readonly descriptionXpath: string;
+  readonly ctaLabelXpath: string;
+  readonly imagePlaceholderXpath: string;
+  readonly urlFieldCTAXpath: string;
+  readonly linkIconCTAXpath: string;
+  readonly checkmarkIconLinkCTAFormXpath: string;
+  readonly altFieldXpath: string;
+  readonly checkmarkIconImageFormXpath: string;
+  readonly imageIconXpath: string;
+  readonly ctaButtonXpath: string;
+  readonly imageLinkXpath: string;
+  readonly imageOrigPathRegex: RegExp;
+  readonly imageUpdPathRegex: RegExp;
 
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.card = {
-      id: 'card_horizontal',
-      image: '#card-horizontal img[data-card-element="image"]',
-      title: '#card-horizontal *[data-card-element="title"] div[data-slate-editor="true"]',
-      body: '#card-horizontal div[data-card-element="body"] div[data-slate-editor="true"]',
-      link: '#card-horizontal *[data-card-element="link"] div[role="textbox"]',
-      submitButton: 'button[aria-label="Submit"]',
-      imageAltText: 'input[name="alt"]',
-      selectImageButton: 'button[aria-label="Select Image"]',
-      linkClickable: '#card-horizontal div[data-card-element="content-wrapper"] a[data-card-element="link"]',
-    };
-    this.pathToImages = './cypress/fixtures/images/';
-    this.imageOneName = 'img_615x500.jpg';
-    this.imageTwoName = 'img_615x502.jpg';
-    this.linkCTA = 'button[aria-label="Edit CTA"]';
-    this.CTAUrl = 'input[aria-describedby="description"]';
-    this.submitCTAUrlButton = 'button[aria-label="Submit"]';
-    this.editButton = 'button[aria-label="Edit"]';
-    this.titleText = 'AT - Title 1 -';
-    this.bodyText = 'AT - Description 1 -';
-    this.ctaText = 'AT - CTA Link 1 -';
+    this.pagePath = '/cards/';
+    this.title = 'AT - Title 1 -';
+    this.description = 'AT - Description 1 -';
+    this.ctaLabel = 'AT - CTA Link 1 -';
+    this.cardUrl = 'AT-cardUrl1';
+    this.normalizedUrl = '/' + this.cardUrl + '/';
     this.imageAltText = 'AT-1stCardAltText';
-    this.postfix = 'edited';
-    this.ctaLinkValue = 'AT-cardUrl1';
+    this.editedPostfix = 'edited';
+    this.imagesFolderPath = './playwright/images/';
+    this.imageNameOriginal = 'img_615x500.jpg';
+    this.imageNameUpdated = 'img_615x502.jpg';
+    this.titleXpath = '//*[@id="card-horizontal"]//*[@data-card-element="title"]//div[@data-slate-editor="true"]';
+    this.descriptionXpath = '//*[@id="card-horizontal"]//*[@data-card-element="body"]//div[@data-slate-editor="true"]';
+    this.ctaLabelXpath = '//*[@id="card-horizontal"]//*[@data-card-element="link"]//div[@data-slate-editor="true"]';
+    this.imagePlaceholderXpath = '//*[@id="card-horizontal"]//img[@data-card-element="image"]';
+    this.urlFieldCTAXpath = '//form[@aria-label="Context Menu Edit CTA Form"]//input[@id="link-href"]';
+    this.linkIconCTAXpath = '//*[@role="toolbar" and @aria-label="Local Context Menu"]//*[@aria-label="Edit CTA"]';
+    this.checkmarkIconLinkCTAFormXpath = '//form[@aria-label="Context Menu Edit CTA Form"]//button[@aria-label="Submit"]';
+    this.altFieldXpath = '//form[@aria-label="Context Menu Select Image Form"]//input[@id="image-alt"]';
+    this.checkmarkIconImageFormXpath = '//form[@aria-label="Context Menu Select Image Form"]//button[@aria-label="Submit"]';
+    this.imageIconXpath = '//*[@role="toolbar" and @aria-label="Local Context Menu"]//*[@aria-label="Select Image"]';
+    this.ctaButtonXpath = '//*[@id="card-horizontal"]//a[@data-card-element="link"]';
+    this.imageLinkXpath = '//div[@id="card-horizontal"]//a[@data-card-element="image-link"]';
+    this.imageOrigPathRegex = new RegExp("images\/pages" + this.pagePath + "[a-zA-Z0-9]+\/" + this.imageNameOriginal, "");
+    this.imageUpdPathRegex = new RegExp("images\/pages" + this.pagePath + "[a-zA-Z0-9]+\/" + this.imageNameUpdated, "");
   }
 }

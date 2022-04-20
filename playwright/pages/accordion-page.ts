@@ -27,7 +27,6 @@ export class AccordionPage extends BasePage {
   readonly bodySecondXpath: string;
   readonly plusIconSecondXpath: string;
   readonly minusIconSecondXpath: string;
-  readonly editButton: string;
   readonly accordionBodyRequest: string;
   readonly accordionTitleRequest: string;
 
@@ -36,15 +35,14 @@ export class AccordionPage extends BasePage {
     this.page = page;
     this.title = 'AT-Title1';
     this.body = 'AT-Description1';
-    this.editedPostfix = '-edited';
-    this.titleFirstXpath = '#accordion-4 div[data-accordion-element="accordion-title"] div[data-slate-editor="true"]';
-    this.bodyFirstXpath = '#accordion-4 div[data-accordion-element="accordion-body"] div[data-slate-editor="true"]';
+    this.editedPostfix = ' - edited';
+    this.titleFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-element="accordion-title"]//*[@data-slate-editor="true"]';
+    this.bodyFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-element="accordion-body"]//*[@data-slate-editor="true"]';
     this.plusIconFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-icon="expand"]';
     this.minusIconFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-icon="collapse"]';
     this.bodySecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-element="accordion-body"]';
     this.plusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="expand"]';
     this.minusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="collapse"]';
-    this.editButton = 'button[aria-label="Edit"]';
     this.accordionBodyRequest = 'accordion-expanded$body';
     this.accordionTitleRequest = 'accordion-expanded$title';
   }
