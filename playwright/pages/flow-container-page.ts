@@ -44,24 +44,26 @@ export class FlowContainerPage extends BasePage {
   readonly accordionBody: string;
   readonly accordionMinusButton: string;
   readonly contentfulCheckbox: string;
+  readonly addComponentButton: string;
 
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.flowContainerDefault = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(4) > section > div';
-    this.flowContainerLibrary = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(8) > section > div';
-    this.flowContainer50And100 = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(12) > section > div';
-    this.flowContainer100Only = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(14) > section > div';
-    this.flowContainer1Item = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(18) > section > div';
-    this.flowContainer25Width = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(22) > section > div';
-    this.flowContainer33Width = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div';
-    this.flowContainer50Width = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(26) > section > div';
-    this.flowContainer66Width = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(28) > section > div';
-    this.flowContainer75Width = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(30) > section > div';
+    this.flowContainerDefault = '#flowContainer';
+    this.flowContainerLibrary = '#flowContainerWithLibrary';
+    this.flowContainer50And100 = '#constrained_widths';
+    this.flowContainer100Only = '#constrained_full_width';
+    this.flowContainer1Item = '#restricted';
+    this.flowContainer25Width = '#width_25';
+    this.flowContainer33Width = '#width_33';
+    this.flowContainer50Width = '#width_50';
+    this.flowContainer66Width = '#width_66';
+    this.flowContainer75Width = '#width_75';
     this.flowContainerContentful = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(32) > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.md\\:p-5.bl-relative';
     this.flowContainerLimitedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(34) > section > div';
     this.flowContainerNestedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(36) > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > div > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > img';
     this.addFlowContainerButton = 'button[aria-label="Add Flow Container"]';
+    this.addComponentButton = 'button[aria-label="Add Component"]';
     this.imagesCheckbox = '#Image';
     this.accordionCheckbox = '#Accordion';
     this.swapComponentButton = 'button[aria-label="Swap Component"]';

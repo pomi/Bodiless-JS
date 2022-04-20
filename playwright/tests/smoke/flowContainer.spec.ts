@@ -83,7 +83,7 @@ test.describe('Flow container', async () => {
     expect(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeTruthy();
   });
 
-  test('Flow container: 3 - checking adding and filling in an Accordion in the Restricted to 1 item Flow Container', async () => {
+  test.only('Flow container: 3 - checking adding and filling in an Accordion in the Restricted to 1 item Flow Container', async () => {
     const flowContainerPage = new FlowContainerPage(page);
     await flowContainerPage.toggleEditMode();
     const restrictedTo1Container = page.locator(flowContainerPage.flowContainer1Item);
@@ -110,18 +110,14 @@ test.describe('Flow container', async () => {
     // looks like check below is not needed
     // expect.soft(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeTruthy();
 
-    await flowContainerPage.togglePreviewMode();
-    await page.click(flowContainerPage.accordionInsideRestrictedContainer);
-    expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeFalsy();
-    expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeFalsy();
-
-    await flowContainerPage.togglePreviewMode();
-    await page.click(flowContainerPage.accordionInsideRestrictedContainer);
-    expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
-    expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeTruthy();
+    // await flowContainerPage.toggleEditMode();
+    // await page.click(flowContainerPage.accordionInsideRestrictedContainer);
+    // expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
+    // expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeTruthy();
+    // expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeTruthy();
   });
 
-  test.only('Flow container: 3 - ', async () => {
+  test('Flow container: 4 - checking adding and filling in a Contentful Tout in Default Width of 33%', async () => {
     const flowContainerPage = new FlowContainerPage(page);
     await flowContainerPage.toggleEditMode();
     await page.click(flowContainerPage.flowContainer33Width);
@@ -137,12 +133,14 @@ test.describe('Flow container', async () => {
     const contentfulWidth = await page.locator('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div > div').boundingBox();
     // @ts-ignore
     const ratio = Math.floor((contentfulWidth.width + 40) / containerWidth.width * 100);
-    expect.soft(ratio).toBeCloseTo(33);
+    expect.soft(ratio).toBeCloseTo(32);
 
     await flowContainerPage.togglePreviewMode();
-    await page.waitForSelector('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > div');
+    expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeFalsy();
+    expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeFalsy();
+    expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeFalsy();
 
-    await flowContainerPage.toggleEditMode();
-    await page.waitForSelector('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div > div');
+    // await flowContainerPage.toggleEditMode();
+    // await page.waitForSelector('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div > div');
   });
 });
