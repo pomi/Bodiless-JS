@@ -43,7 +43,7 @@ export class AccordionPage extends BasePage {
     this.bodySecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-element="accordion-body"]';
     this.plusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="expand"]';
     this.minusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="collapse"]';
-    this.accordionBodyRequest = 'accordion-expanded$body';
     this.accordionTitleRequest = 'accordion-expanded$title';
+    this.accordionBodyRequest = 'accordion-expanded$body';
   }
 }
