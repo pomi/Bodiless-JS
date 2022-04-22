@@ -191,11 +191,13 @@ const FlowContainerPage = (props: any) => (
       <H2>Limited Flow Container</H2>
       <FlowContainerLimited
         id="flowContainerLimited"
-        nodeKey="limited" />
+        nodeKey="limited"
+      />
       <H2>Nested Flow Container with Default Items</H2>
       <RegionContainer
         id="regionContainer"
-        nodeKey="region" />
+        nodeKey="region"
+      />
     </Layout>
   </Page>
 );

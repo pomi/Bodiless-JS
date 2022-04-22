@@ -11,20 +11,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
-"3. click Deafult flow container
-4. click +
-5. select Square Image
-6.check that Component Picker is not open
-7. click an image placeholder of Square Image
-8. click Image icon
-9. modify Alt value
-10. upload in image
-11. check that Image uploaded
-12. check that Alt value is saved
-13. check that 'Add', 'Swap', 'Delete' icons are present in Admin Menu"
- */
-// flowContainer.spec.ts
 import { expect, Page, test } from '@playwright/test';
 import { FlowContainerPage } from '../../pages/flow-container-page';
 
@@ -138,17 +124,6 @@ test.describe('Flow container', async () => {
     expect.soft(await page.locator('#width_33 > div').isVisible()).toBeTruthy();
   });
 
-  /*
-  "34. switch to Edit Mode
-35. click Square Image
-36. click Swap in Admin Menu
-37. select Landscape Linkable
-38. check that Image and Alt text are present
-39. click the image
-40. click Link icon
-41. type Url value. click V
-42. check that Image has the href and corresponding value"
-   */
   test('checking swapping a component (Square Image to Landscape Linkable Image)', async () => {
     await flowContainerPage.toggleEditMode();
     await page.locator('#flowContainer > div > img').click();
