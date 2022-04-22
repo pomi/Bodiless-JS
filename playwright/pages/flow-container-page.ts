@@ -45,6 +45,7 @@ export class FlowContainerPage extends BasePage {
   readonly accordionMinusButton: string;
   readonly contentfulCheckbox: string;
   readonly addComponentButton: string;
+  readonly editImageButton: string;
 
   constructor(page: Page) {
     super(page);
@@ -69,6 +70,7 @@ export class FlowContainerPage extends BasePage {
     this.swapComponentButton = 'button[aria-label="Swap Component"]';
     this.deleteComponentButton = 'button[aria-label="Delete Component"]';
     this.selectImageButton = 'button[aria-label="Select Image"]';
+    this.editImageButton = 'button[aria-label="Edit Image"]';
     this.squareImageButton = '#gridlistboxinner > div:nth-child(1) > div > button';
     this.accordionInPicker = 'button[type="Submit"]';
     this.accordionPlusButton = 'span[aria-label="Expand Accordion"]';

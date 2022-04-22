@@ -30,18 +30,15 @@ import { FlowContainerPage } from '../../pages/flow-container-page';
 
 test.describe('Flow container', async () => {
   let page: Page;
-  test.beforeEach(async ({ browser }) => {
+  let flowContainerPage: FlowContainerPage;
+  test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext({ viewport: { width: 1200, height: 850 } });
     page = await context.newPage();
+    flowContainerPage = new FlowContainerPage(page);
     await page.goto('/flow-container');
   });
 
-  test.afterEach(async () => {
-    await page.close();
-  });
-
   test('Flow container: 1 - checking presence of all Flow Container sections', async () => {
-    const flowContainerPage = new FlowContainerPage(page);
     await flowContainerPage.toggleEditMode();
     expect(await page.locator(flowContainerPage.flowContainer1Item).isVisible()).toBeTruthy();
     expect(await page.locator(flowContainerPage.flowContainer25Width).isVisible()).toBeTruthy();
@@ -59,8 +56,6 @@ test.describe('Flow container', async () => {
   });
 
   test('Flow container: 2 - checking adding and filling in a Square Image in the Default Flow Container', async () => {
-    const flowContainerPage = new FlowContainerPage(page);
-    await flowContainerPage.toggleEditMode();
     await page.click(flowContainerPage.flowContainerDefault);
     await page.click(flowContainerPage.addFlowContainerButton);
     await page.click(flowContainerPage.imagesCheckbox);
@@ -76,19 +71,19 @@ test.describe('Flow container', async () => {
     ]);
     const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
     const img = defaultContainer.locator('img');
-    expect(await img.getAttribute('alt')).toEqual('alt-test');
-    expect(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
+    expect.soft(await img.getAttribute('alt')).toEqual('alt-test');
+    expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
     await img.click();
-    expect(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
-    expect(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeTruthy();
   });
 
-  test.only('Flow container: 3 - checking adding and filling in an Accordion in the Restricted to 1 item Flow Container', async () => {
-    const flowContainerPage = new FlowContainerPage(page);
-    await flowContainerPage.toggleEditMode();
+  test('Flow container: 3 - checking adding and filling in an Accordion in the Restricted to 1 item Flow Container', async () => {
     const restrictedTo1Container = page.locator(flowContainerPage.flowContainer1Item);
     await restrictedTo1Container.click();
     await page.click(flowContainerPage.addFlowContainerButton);
+    await page.click(flowContainerPage.imagesCheckbox);
     await page.click(flowContainerPage.accordionCheckbox);
     await page.click(flowContainerPage.accordionInPicker);
     await page.click(flowContainerPage.accordionInsideRestrictedContainer);
@@ -98,30 +93,20 @@ test.describe('Flow container', async () => {
       .innerText()).toEqual('text to check');
     await page.click(flowContainerPage.accordionPlusButton);
     expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeTruthy();
+    // text is not typed without this timeout, race condition
+    await page.waitForTimeout(300);
     await flowContainerPage
-      .typeText(flowContainerPage.accordionBody, 'accordion-body-text', 'restricted$');
-    // await page.click('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > pre:nth-child(20)');
-    // const accordionBody = await page.locator(flowContainerPage.accordionBody);
-    // todo fix expect - its not working now
-    // expect.soft(await accordionBody.innerText()).toEqual('accordion-body-text');
+      .typeText(flowContainerPage.accordionBody, 'accordion-body-text', '$body');
+    expect.soft(await page.locator(flowContainerPage.accordionBody).innerText()).toEqual('accordion-body-text');
     await page.click(flowContainerPage.accordionMinusButton);
     expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeFalsy();
     expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
-    // looks like check below is not needed
-    // expect.soft(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeTruthy();
-
-    // await flowContainerPage.toggleEditMode();
-    // await page.click(flowContainerPage.accordionInsideRestrictedContainer);
-    // expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
-    // expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeTruthy();
-    // expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeTruthy();
   });
 
   test('Flow container: 4 - checking adding and filling in a Contentful Tout in Default Width of 33%', async () => {
-    const flowContainerPage = new FlowContainerPage(page);
-    await flowContainerPage.toggleEditMode();
     await page.click(flowContainerPage.flowContainer33Width);
     await page.click(flowContainerPage.addFlowContainerButton);
+    await page.click(flowContainerPage.accordionCheckbox);
     await page.click(flowContainerPage.contentfulCheckbox);
     await Promise.all([
       page.waitForResponse(response => response.url()
@@ -129,18 +114,53 @@ test.describe('Flow container', async () => {
       await page.click(flowContainerPage.accordionInPicker),
     ]);
     const containerWidth = await page.locator('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section').boundingBox();
-    // '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div'
     const contentfulWidth = await page.locator('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div > div').boundingBox();
     // @ts-ignore
     const ratio = Math.floor((contentfulWidth.width + 40) / containerWidth.width * 100);
     expect.soft(ratio).toBeCloseTo(32);
+  });
 
+  test('checking the added components in Preview Mode', async () => {
     await flowContainerPage.togglePreviewMode();
-    expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeFalsy();
     expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeFalsy();
-    expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeFalsy();
+    expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeFalsy();
+    expect.soft(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeFalsy();
+    const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
+    const img = defaultContainer.locator('img');
+    expect.soft(await img.getAttribute('alt')).toEqual('alt-test');
+    expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
+    expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.accordionInsideRestrictedContainer)
+      .isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeFalsy();
+    await page.click(flowContainerPage.accordionPlusButton);
+    expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeTruthy();
+    expect.soft(await page.locator('#width_33 > div').isVisible()).toBeTruthy();
+  });
 
-    // await flowContainerPage.toggleEditMode();
-    // await page.waitForSelector('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div > div');
+  /*
+  "34. switch to Edit Mode
+35. click Square Image
+36. click Swap in Admin Menu
+37. select Landscape Linkable
+38. check that Image and Alt text are present
+39. click the image
+40. click Link icon
+41. type Url value. click V
+42. check that Image has the href and corresponding value"
+   */
+  test('checking swapping a component (Square Image to Landscape Linkable Image)', async () => {
+    await flowContainerPage.toggleEditMode();
+    await page.locator('#flowContainer > div > img').click();
+    await page.click(flowContainerPage.swapComponentButton);
+    await page.click(flowContainerPage.contentfulCheckbox);
+    await page.click('div[data-item-id="LandscapeLinkableImage"]');
+    const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
+    const img = defaultContainer.locator('img');
+    expect.soft(await img.getAttribute('alt')).toEqual('alt-test');
+    expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
+    await page.locator('#flowContainer > div a >> img').click();
+    await page.click(flowContainerPage.editImageButton);
+    await flowContainerPage.typeText('#link-href', 'new_link', 'flowContainer', flowContainerPage.checkmarkIconAddPageForm);
   });
 });
