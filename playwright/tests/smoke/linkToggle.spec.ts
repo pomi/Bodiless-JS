@@ -20,7 +20,7 @@ test.describe('Link Toggle smoke tests', () => {
   let linkTogglePage: LinkTogglePage;
   test.beforeAll(async ({ browser }) => {
     // { viewport: { width: 1200, height: 850 } } is needed here, it's not working from configuration
-    page = await browser.newPage({ viewport: { width: 1200, height: 850 } });
+    page = await browser.newPage();
     linkTogglePage = new LinkTogglePage(page);
     await page.goto('/link-toggle/');
   });
