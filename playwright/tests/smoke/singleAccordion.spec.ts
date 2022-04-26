@@ -21,7 +21,7 @@ test.describe('Single Accordion smoke tests', () => {
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     accordionPage = new AccordionPage(page);
-    await page.goto('/accordion');
+    await page.goto('/accordion/');
   });
 
   test('accordions: 1 - filling in Title in 1st accordion', async () => {
@@ -31,6 +31,8 @@ test.describe('Single Accordion smoke tests', () => {
   });
 
   test('accordions: 2 - filling in Body in 1st accordion', async () => {
+    await page.locator(accordionPage.plusIconFirstXpath).click();
+    await page.waitForTimeout(300);
     await accordionPage.typeText(accordionPage.bodyFirstXpath, accordionPage.body, accordionPage.accordionBodyRequest);
     expect(await page.locator(accordionPage.bodyFirstXpath).innerText()).toEqual(accordionPage.body);
   });

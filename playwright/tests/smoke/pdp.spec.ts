@@ -14,7 +14,6 @@
 // pdp.spec.ts
 import { expect, Page, test } from '@playwright/test';
 import { PdpPage } from '../../pages/pdp-page';
-import * as timers from 'timers';
 
 test.describe('PDP smoke tests', () => {
   let page: Page;

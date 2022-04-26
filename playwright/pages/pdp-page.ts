@@ -18,13 +18,11 @@ import { BasePage } from './base-page';
 export class PdpPage extends BasePage {
   readonly page: Page;
   readonly pagePath: string;
-  readonly productBase: string;
   readonly pdpURL: string;
   readonly pdpPagePath: string;
   readonly title: string;
   readonly accordionBody: string;
   readonly imagesFolderPath: string;
-  readonly imageOneName: string;
   readonly imageName: string;
   readonly pageIconXpath: string;
   readonly newPageIconXpath: string;
@@ -44,8 +42,6 @@ export class PdpPage extends BasePage {
   readonly checkmarkIconImageFormXpath: string;
   readonly flexboxXpath: string;
   readonly addComponentIconXpath: string;
-  readonly imagesBase: string;
-  readonly productRegexp: string;
   readonly imagePathRegex: RegExp;
 
   constructor(page: Page) {
@@ -54,7 +50,7 @@ export class PdpPage extends BasePage {
     this.pagePath = '/products/';
     this.pdpURL = 'pdp-autotest' + Math.floor(Math.random() * 10000).toString();
     this.pdpPagePath = this.pagePath + this.pdpURL;
-    this.title = 'AT - PDD title';
+    this.title = 'AT - PDP title';
     this.accordionBody = 'AT - Overview';
     this.imagesFolderPath = './cypress/fixtures/images/';
     this.imageName = 'img_615x500.jpg';

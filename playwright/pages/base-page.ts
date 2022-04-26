@@ -18,7 +18,6 @@ export class BasePage {
   readonly page: Page;
   readonly switcherIcon: string;
   readonly editIcon: string;
-  readonly submitButton: string;
   readonly pathToImages: string;
   readonly imageOneName: string;
   readonly imageTwoName: string;
@@ -36,8 +35,7 @@ export class BasePage {
     this.page = page;
     this.switcherIcon = '//*[@aria-label="switcher"]';
     this.editIcon = '//*[@aria-label="Edit"]';
-    this.submitButton = 'button[aria-label="Submit"]';
-    this.pathToImages = './images/';
+    this.pathToImages = './playwright/images/';
     this.imageOneName = 'img_615x500.jpg';
     this.imageTwoName = 'img_615x502.jpg';
     this.menuBarLeft = '//*[@aria-label="Global Context Menu Left"]';
@@ -54,6 +52,7 @@ export class BasePage {
   async typeText(locator:string, text:string, request:string, confirmButton?:string) {
     if (typeof confirmButton !== 'undefined') {
       await this.page.click(locator);
+      await this.page.waitForTimeout(300);
       await this.page.keyboard.press('ArrowDown');
       await this.page.type(locator, text);
       await Promise.all([
@@ -63,6 +62,7 @@ export class BasePage {
       ]);
     } else {
       await this.page.click(locator);
+      await this.page.waitForTimeout(300);
       await this.page.keyboard.press('ArrowDown');
       await Promise.all([
         this.page.waitForResponse(response => response.url()
