@@ -33,8 +33,8 @@ export class AccordionPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.title = 'AT-Title1';
-    this.body = 'AT-Description1';
+    this.title = 'AT - Title 1';
+    this.body = 'AT - Description 1';
     this.editedPostfix = ' - edited';
     this.titleFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-element="accordion-title"]//*[@data-slate-editor="true"]';
     this.bodyFirstXpath = '//*[@id="accordion-4"]//*[@data-accordion-element="accordion-body"]//*[@data-slate-editor="true"]';
@@ -43,7 +43,7 @@ export class AccordionPage extends BasePage {
     this.bodySecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-element="accordion-body"]';
     this.plusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="expand"]';
     this.minusIconSecondXpath = '//*[@id="accordion-5"]//*[@data-accordion-icon="collapse"]';
-    this.accordionBodyRequest = 'accordion-expanded$body';
     this.accordionTitleRequest = 'accordion-expanded$title';
+    this.accordionBodyRequest = 'accordion-expanded$body';
   }
 }

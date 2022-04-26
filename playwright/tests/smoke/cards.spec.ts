@@ -12,9 +12,8 @@
  * limitations under the License.
  */
 // cards.spec.ts
-import {test, Page, expect} from '@playwright/test';
+import { test, Page, expect } from '@playwright/test';
 import { CardsPage } from '../../pages/cards-page';
-import card from '../../../sites/test-site/src/components/Card';
 
 test.describe('Testing cards', () => {
   let page: Page;
@@ -22,7 +21,7 @@ test.describe('Testing cards', () => {
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     cardsPage = new CardsPage(page);
-    await page.goto('/cards');
+    await page.goto('/cards/');
   });
 
   test('cards: 1 - filling in Title', async () => {
@@ -49,7 +48,7 @@ test.describe('Testing cards', () => {
   test('cards: 5 - uploading an image', async () => {
     await page.click(cardsPage.imagePlaceholderXpath);
     await page.click(cardsPage.imageIconXpath);
-    await page.setInputFiles('input[type=file]', cardsPage.imagesFolderPath + cardsPage.imageNameOriginal);
+    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageNameOriginal);
     await Promise.all([
       page.waitForResponse(response => response.url()
         .includes('horizontal$image') && response.status() === 200),
@@ -125,7 +124,7 @@ test.describe('Testing cards', () => {
     await cardsPage.typeText(cardsPage.altFieldXpath, cardsPage.editedPostfix, 'horizontal$image', cardsPage.checkmarkIconImageFormXpath);
     await page.click(cardsPage.imagePlaceholderXpath);
     await page.click(cardsPage.imageIconXpath);
-    await page.setInputFiles('input[type=file]', cardsPage.imagesFolderPath + cardsPage.imageNameUpdated);
+    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageNameUpdated);
     await Promise.all([
       page.waitForResponse(response => response.url()
         .includes('horizontal$image') && response.status() === 200),

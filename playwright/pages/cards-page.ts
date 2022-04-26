@@ -25,7 +25,6 @@ export class CardsPage extends BasePage {
   readonly normalizedUrl: string;
   readonly imageAltText: string;
   readonly editedPostfix: string;
-  readonly imagesFolderPath: string;
   readonly imageNameOriginal: string;
   readonly imageNameUpdated: string;
   readonly titleXpath: string;
@@ -54,7 +53,6 @@ export class CardsPage extends BasePage {
     this.normalizedUrl = '/' + this.cardUrl + '/';
     this.imageAltText = 'AT-1stCardAltText';
     this.editedPostfix = 'edited';
-    this.imagesFolderPath = './playwright/images/';
     this.imageNameOriginal = 'img_615x500.jpg';
     this.imageNameUpdated = 'img_615x502.jpg';
     this.titleXpath = '//*[@id="card-horizontal"]//*[@data-card-element="title"]//div[@data-slate-editor="true"]';
@@ -69,7 +67,7 @@ export class CardsPage extends BasePage {
     this.imageIconXpath = '//*[@role="toolbar" and @aria-label="Local Context Menu"]//*[@aria-label="Select Image"]';
     this.ctaButtonXpath = '//*[@id="card-horizontal"]//a[@data-card-element="link"]';
     this.imageLinkXpath = '//div[@id="card-horizontal"]//a[@data-card-element="image-link"]';
-    this.imageOrigPathRegex = new RegExp("images\/pages" + this.pagePath + "[a-zA-Z0-9]+\/" + this.imageNameOriginal, "");
-    this.imageUpdPathRegex = new RegExp("images\/pages" + this.pagePath + "[a-zA-Z0-9]+\/" + this.imageNameUpdated, "");
+    this.imageOrigPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageNameOriginal, '');
+    this.imageUpdPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageNameUpdated, '');
   }
 }

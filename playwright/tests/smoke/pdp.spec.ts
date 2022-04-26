@@ -14,7 +14,6 @@
 // pdp.spec.ts
 import { expect, Page, test } from '@playwright/test';
 import { PdpPage } from '../../pages/pdp-page';
-import * as timers from 'timers';
 
 test.describe('PDP smoke tests', () => {
   let page: Page;
@@ -56,7 +55,7 @@ test.describe('PDP smoke tests', () => {
   test('PDP: 5 - checking uploading an image', async () => {
     await page.click(pdpPage.imagePlaceholderXpath);
     await page.click(pdpPage.imageIconXpath);
-    const imagePath = `${pdpPage.imagesFolderPath}/${pdpPage.imageName}`;
+    const imagePath = `${pdpPage.pathToImages}/${pdpPage.imageName}`;
     await page.setInputFiles('input[type=file]', imagePath);
     await Promise.all([
       page.waitForResponse(response => response.url()

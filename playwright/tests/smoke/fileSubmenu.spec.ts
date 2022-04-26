@@ -34,7 +34,7 @@ async function checkHistoryForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
     page.waitForResponse(response => response.url()
       .includes('commits') && response.status() === 200),
     page.click(fileSubmenuPage.historyButton),
-    page.waitForSelector('#global-tooltip-container > div > div > div > div > div.rc-tooltip-inner'),
+    page.waitForSelector(fileSubmenuPage.commitHistoryPanel),
   ]);
   expect(await page.locator(fileSubmenuPage.historyFormTitle).isVisible()).toBeTruthy();
   const historyItems = await page.$$(fileSubmenuPage.historyFormItems);
