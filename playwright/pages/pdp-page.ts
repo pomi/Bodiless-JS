@@ -22,7 +22,6 @@ export class PdpPage extends BasePage {
   readonly pdpPagePath: string;
   readonly title: string;
   readonly accordionBody: string;
-  readonly imagesFolderPath: string;
   readonly imageName: string;
   readonly pageIconXpath: string;
   readonly newPageIconXpath: string;
@@ -52,7 +51,6 @@ export class PdpPage extends BasePage {
     this.pdpPagePath = this.pagePath + this.pdpURL;
     this.title = 'AT - PDP title';
     this.accordionBody = 'AT - Overview';
-    this.imagesFolderPath = './cypress/fixtures/images/';
     this.imageName = 'img_615x500.jpg';
     this.pageIconXpath = '//*[@aria-label="Page"]';
     this.newPageIconXpath = '//*[@aria-label="New"]';
