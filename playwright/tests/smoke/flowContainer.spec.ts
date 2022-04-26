@@ -136,6 +136,13 @@ test.describe('Flow container', async () => {
     expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
     await page.locator('#flowContainer > div a >> img').click();
     await page.click(flowContainerPage.editImageButton);
-    await flowContainerPage.typeText('#link-href', 'new_link', 'flowContainer', flowContainerPage.checkmarkIconAddPageForm);
+    await flowContainerPage.typeText('#link-href', 'new_link', 'flowContainer', 'button[aria-label="Submit"]');
+    expect.soft(await page.locator('#flowContainer > div a').getAttribute('href')).toEqual('/' + 'new_link' + '/');
+  });
+
+  test('checking the swapped and deleted components in Preview Mode', async () => {
+    await flowContainerPage.togglePreviewMode();
+    await page.locator('#flowContainer > div a >> img').click();
+    expect.soft(page.url()).toContain('/' + 'new_link' + '/');
   });
 });
