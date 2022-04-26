@@ -22,15 +22,6 @@ async function checkEditorMenuButtons(page: Page, editorMenuPage: EditorMenuPage
   expect.soft(await page.locator(editorMenuPage.pageIcon).isVisible).toBeTruthy();
 }
 
-async function checkSwitcherAndMenuIcons(page: Page, editorMenuPage: EditorMenuPage) {
-  await editorMenuPage.toggleMenuRight();
-  expect(await page.locator(editorMenuPage.menuBarRight).isVisible()).toBeTruthy();
-  await checkEditorMenuButtons(page, editorMenuPage);
-  await editorMenuPage.toggleMenuLeft();
-  expect(await page.locator(editorMenuPage.menuBarLeft).isVisible()).toBeTruthy();
-  await checkEditorMenuButtons(page, editorMenuPage);
-}
-
 async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage) {
   await page.click(editorMenuPage.pageIcon);
   await page.click(editorMenuPage.newPageIcon);
@@ -40,12 +31,11 @@ async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage)
   await page.click(editorMenuPage.closeIconAddPageForm);
 }
 
-test.describe('Editor Menu (left and right)', () => {
+test.describe('File Submenu Smoke Tests', () => {
   let page: Page;
   let context:any;
   let editorMenuPage: EditorMenuPage;
   test.beforeAll(async ({ browser }) => {
-    // { viewport: { width: 1200, height: 850 } }
     context = await browser.newContext();
     page = await context.newPage();
     editorMenuPage = new EditorMenuPage(page);
@@ -68,7 +58,6 @@ test.describe('Editor Menu (left and right)', () => {
     await editorMenuPage.toggleMenuRight();
     await checkEditorMenuButtons(page, editorMenuPage);
     await editorMenuPage.toggleMenuLeft();
-    await checkEditorMenuButtons(page, editorMenuPage);
   });
 
   test('editorMenu: 4 - checking Switcher button in Edit Mode (left and right)', async () => {
