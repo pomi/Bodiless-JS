@@ -58,7 +58,6 @@ test.describe('File Submenu Smoke Tests', () => {
     await editorMenuPage.toggleMenuRight();
     await checkEditorMenuButtons(page, editorMenuPage);
     await editorMenuPage.toggleMenuLeft();
-    await checkEditorMenuButtons(page, editorMenuPage);
   });
 
   test('editorMenu: 4 - checking Switcher button in Edit Mode (left and right)', async () => {

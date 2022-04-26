@@ -30,12 +30,14 @@ export class BasePage {
   readonly fieldAddPageForm: string;
   readonly closeIconAddPageForm: string;
   readonly checkmarkIconAddPageForm: string;
+  readonly commitHistoryPanel: string;
 
   constructor(page: Page) {
     this.page = page;
     this.switcherIcon = '//*[@aria-label="switcher"]';
     this.editIcon = '//*[@aria-label="Edit"]';
     this.pathToImages = './playwright/images/';
+    this.commitHistoryPanel = '#global-tooltip-container > div > div > div > div > div.rc-tooltip-inner';
     this.imageOneName = 'img_615x500.jpg';
     this.imageTwoName = 'img_615x502.jpg';
     this.menuBarLeft = '//*[@aria-label="Global Context Menu Left"]';
