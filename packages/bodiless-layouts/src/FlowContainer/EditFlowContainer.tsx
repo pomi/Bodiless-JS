@@ -70,7 +70,7 @@ const withKeyFromDesign = (Component: ComponentOrTag<any>) => {
  */
 const EditFlowContainer: FC<EditFlowContainerProps> = (props: EditFlowContainerProps) => {
   const {
-    design, ui, snapData, getDefaultWidth, itemButtonGroupLabel, id
+    design, ui, snapData, getDefaultWidth, itemButtonGroupLabel,
   } = props;
   const items = useItemHandlers().getItems();
   const { components } = useSelectorComponents({
@@ -99,7 +99,6 @@ const EditFlowContainer: FC<EditFlowContainerProps> = (props: EditFlowContainerP
           setFlowContainerItems(arrayMove(items, oldIndex, newIndex));
         }}
         ui={ui}
-        id={id}
       >
         {items.map(
           (flowContainerItem: FlowContainerItem, index: number): React.ReactNode => {
