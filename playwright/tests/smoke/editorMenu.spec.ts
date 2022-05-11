@@ -31,7 +31,7 @@ async function checkAddNewPageButton(page: Page, editorMenuPage: EditorMenuPage)
   await page.click(editorMenuPage.closeIconAddPageForm);
 }
 
-test.describe('File Submenu Smoke Tests', () => {
+test.describe('Editor Menu (left and right)', () => {
   let page: Page;
   let context:any;
   let editorMenuPage: EditorMenuPage;
@@ -88,12 +88,12 @@ test.describe('File Submenu Smoke Tests', () => {
     await editorMenuPage.toggleMenuLeft();
   });
 
-  test('editorMenu: 9 - Check Docs page', async () => {
-    const editorMenuPage = new EditorMenuPage(page);
+  test('editorMenu: 9 - Check Docs page', async ({ baseURL }) => {
     const newPagePromise = new Promise(resolve => context.once('page', resolve));
     await page.click(editorMenuPage.docsIcon);
     const newPage = await newPagePromise;
-    // @ts-ignore
-    expect(newPage.url()).toEqual('http://localhost:8005/___docs/');
+    expect.soft(editorMenuPage.docsTitle);
+    await newPage.click(editorMenuPage.docsTitle);
+    expect.soft(newPage.url()).toEqual(baseURL + '/___docs/#/?id=bodilessjs');
   });
 });

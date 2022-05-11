@@ -62,23 +62,20 @@ test.describe('Testing cards', () => {
     await cardsPage.typeText(cardsPage.altFieldXpath, cardsPage.imageAltText, 'horizontal$image', cardsPage.checkmarkIconImageFormXpath);
   });
 
-  test('cards: 7 - checking data in Preview Mode', async () => {
+  test('cards: 7 - checking data in Preview Mode', async ({ baseURL }) => {
     await cardsPage.togglePreviewMode();
     expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title);
     expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description);
     expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel);
     expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageOrigPathRegex);
-    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
-    const imageDimentions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
-    expect(imageDimentions.width).toBeGreaterThan(0);
-    expect(imageDimentions.height).toBeGreaterThan(0);
+    await cardsPage.isImageVisible(cardsPage.imagePlaceholderXpath);
     expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
     expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(cardsPage.normalizedUrl);
     await Promise.all([
       page.waitForNavigation(),
       page.click(cardsPage.ctaButtonXpath),
     ]);
-    expect(page.url()).toContain(cardsPage.normalizedUrl);
+    expect(page.url()).toEqual(baseURL + cardsPage.normalizedUrl);
     await page.goto(cardsPage.pagePath);
   });
 
@@ -88,13 +85,11 @@ test.describe('Testing cards', () => {
     expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description);
     expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel);
     expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageOrigPathRegex);
-    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
-    const imageDimensions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
-    expect(imageDimensions.width).toBeGreaterThan(0);
-    expect(imageDimensions.height).toBeGreaterThan(0);
+    await cardsPage.isImageVisible(cardsPage.imagePlaceholderXpath);
     await page.waitForSelector(cardsPage.imagePlaceholderXpath);
     // todo deal with inconsistent error
-    // expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
     expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(cardsPage.normalizedUrl);
   });
 
@@ -132,40 +127,34 @@ test.describe('Testing cards', () => {
     ]);
   });
 
-  test('cards: 14 - checking edited data in Preview Mode', async () => {
+  test('cards: 14 - checking edited data in Preview Mode', async ({ baseURL }) => {
     await cardsPage.togglePreviewMode();
     expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title + cardsPage.editedPostfix);
     expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description + cardsPage.editedPostfix);
     expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel + cardsPage.editedPostfix);
     expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageUpdPathRegex);
-    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
-    const imageDimentions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
-    expect(imageDimentions.width).toBeGreaterThan(0);
-    expect(imageDimentions.height).toBeGreaterThan(0);
+    await cardsPage.isImageVisible(cardsPage.imagePlaceholderXpath);
     // todo deal with inconsistent error
-    // expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
-    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toContain(cardsPage.normalizedUrl + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(baseURL + cardsPage.normalizedUrl + cardsPage.editedPostfix + '/');
     await Promise.all([
       page.waitForNavigation(),
       page.click(cardsPage.ctaButtonXpath),
     ]);
-    expect(page.url()).toContain(cardsPage.normalizedUrl + cardsPage.editedPostfix);
+    expect(page.url()).toEqual(baseURL + cardsPage.normalizedUrl + cardsPage.editedPostfix);
     await page.goto(cardsPage.pagePath);
   });
 
-  test('cards: 15 - checking the edited data still present in Edit Mode', async () => {
+  test('cards: 15 - checking the edited data still present in Edit Mode', async ({ baseURL }) => {
     await cardsPage.toggleEditMode();
     expect(await page.locator(cardsPage.titleXpath).innerText()).toEqual(cardsPage.title + cardsPage.editedPostfix);
     expect(await page.locator(cardsPage.descriptionXpath).innerText()).toEqual(cardsPage.description + cardsPage.editedPostfix);
     expect(await page.locator(cardsPage.ctaLabelXpath).innerText()).toEqual(cardsPage.ctaLabel + cardsPage.editedPostfix);
     expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('src')).toMatch(cardsPage.imageUpdPathRegex);
-    expect(await page.locator(cardsPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
-    const imageDimensions = await page.locator(cardsPage.imagePlaceholderXpath).boundingBox();
-    expect(imageDimensions.width).toBeGreaterThan(0);
-    expect(imageDimensions.height).toBeGreaterThan(0);
+    await cardsPage.isImageVisible(cardsPage.imagePlaceholderXpath);
     await page.waitForSelector(cardsPage.imagePlaceholderXpath);
     // todo deal with inconsistent error
-    // expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText);
-    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toContain(cardsPage.normalizedUrl + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText + cardsPage.editedPostfix);
+    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(baseURL + cardsPage.normalizedUrl + cardsPage.editedPostfix);
   });
 });
