@@ -19,7 +19,6 @@ test.describe('Link Toggle smoke tests', () => {
   let page: Page;
   let linkTogglePage: LinkTogglePage;
   test.beforeAll(async ({ browser }) => {
-    // { viewport: { width: 1200, height: 850 } } is needed here, it's not working from configuration
     page = await browser.newPage();
     linkTogglePage = new LinkTogglePage(page);
     await page.goto('/link-toggle/');
@@ -73,9 +72,9 @@ test.describe('Link Toggle smoke tests', () => {
     expect(await page.locator(linkTogglePage.linkXpath).getAttribute('href')).toEqual(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix + '/');
   });
 
-  test('link toggle: 8 - checking clicking the link in Preview mode', async () => {
+  test('link toggle: 8 - checking clicking the link in Preview mode', async ({ baseURL }) => {
     await page.click(linkTogglePage.linkXpath);
-    expect(page.url()).toContain(linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix);
+    expect(page.url()).toEqual(baseURL + linkTogglePage.normalizedUrl + linkTogglePage.editedPostfix + '/');
     await page.goto('/link-toggle/');
   });
 
@@ -84,17 +83,15 @@ test.describe('Link Toggle smoke tests', () => {
     await page.click(linkTogglePage.labelXpath);
     await page.click(linkTogglePage.linkIconEditXpath);
     await page.click(linkTogglePage.removeLinkXpath);
-    const linkXpath = await page.locator(linkTogglePage.linkXpath);
-    expect(linkXpath).toBeTruthy();
-    expect(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
+    expect.soft(await page.locator(linkTogglePage.linkXpath).isVisible()).toBeFalsy();
+    expect.soft(await page.locator(linkTogglePage.labelXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
   });
 
-  test('link toggle: 10 - checking that Remove Link removes a link in Preview mode', async () => {
+  test('link toggle: 10 - checking that Remove Link removes a link in Preview mode', async ({ baseURL }) => {
     await linkTogglePage.togglePreviewMode();
-    const linkXpath = await page.locator(linkTogglePage.linkXpath);
-    expect(linkXpath).toBeTruthy();
+    expect(await page.locator(linkTogglePage.linkXpath).isVisible()).toBeFalsy();
     expect(await page.locator(linkTogglePage.labelPreviewXpath).innerText()).toEqual(linkTogglePage.label + linkTogglePage.editedPostfix);
     await page.click(linkTogglePage.labelPreviewXpath);
-    expect(page.url()).toContain('/link-toggle/');
+    expect(page.url()).toEqual(baseURL + '/link-toggle/');
   });
 });

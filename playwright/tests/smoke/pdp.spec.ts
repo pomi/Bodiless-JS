@@ -15,7 +15,7 @@
 import { expect, Page, test } from '@playwright/test';
 import { PdpPage } from '../../pages/pdp-page';
 
-test.describe('PDP smoke tests', () => {
+test.describe('PDP (Product Details Page) smoke tests', () => {
   let page: Page;
   let pdpPage: PdpPage;
   test.beforeAll(async ({ browser }) => {
@@ -30,7 +30,7 @@ test.describe('PDP smoke tests', () => {
     await page.click(pdpPage.newPageIconXpath);
     await pdpPage.typeText(pdpPage.fieldAddPageFormXpath, pdpPage.pdpURL, 'page-data', pdpPage.checkmarkIconAddPageFormXpath);
     await page.click(pdpPage.newPageLinkXpath);
-    expect.soft(page.url()).toContain(pdpPage.pdpPagePath);
+    expect.soft(page.url()).toEqual(baseURL + pdpPage.pdpPagePath);
   });
 
   test('PDP: 2 - filling in Title', async () => {
@@ -43,6 +43,7 @@ test.describe('PDP smoke tests', () => {
     expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
     await page.click(pdpPage.accordionDirectionsExpandXpath);
     expect.soft(await page.locator(pdpPage.accordionDirectionsBodyExpandedXpath).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(pdpPage.accordionDirectionsBodyPlaceholderXpath));
     expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
   });
 
@@ -55,7 +56,7 @@ test.describe('PDP smoke tests', () => {
   test('PDP: 5 - checking uploading an image', async () => {
     await page.click(pdpPage.imagePlaceholderXpath);
     await page.click(pdpPage.imageIconXpath);
-    const imagePath = `${pdpPage.pathToImages}/${pdpPage.imageName}`;
+    const imagePath = `${pdpPage.pathToImages}/${pdpPage.imageOneName}`;
     await page.setInputFiles('input[type=file]', imagePath);
     await Promise.all([
       page.waitForResponse(response => response.url()
@@ -63,8 +64,7 @@ test.describe('PDP smoke tests', () => {
       page.click(pdpPage.checkmarkIconImageFormXpath),
     ]);
     expect.soft(await page.locator(pdpPage.imagePlaceholderXpath).getAttribute('src')).toMatch(pdpPage.imagePathRegex);
-    // Test is failed here
-    // expect.soft(await page.locator(pdpPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    await pdpPage.isImageVisible(pdpPage.imagePlaceholderXpath);
   });
 
   test('PDP: 6 - checking a click in FlowContainer area', async () => {
@@ -78,7 +78,7 @@ test.describe('PDP smoke tests', () => {
     expect.soft(await page.locator(pdpPage.titleXpath).innerText()).toEqual(pdpPage.title);
     expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
     expect.soft(await page.locator(pdpPage.imagePlaceholderXpath).getAttribute('src')).toMatch(pdpPage.imagePathRegex);
-    expect.soft(await page.locator(pdpPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    await pdpPage.isImageVisible(pdpPage.imagePlaceholderXpath);
   });
 
   test('PDP: 8 - checking that the data still present in Edit Mode', async () => {
@@ -87,6 +87,7 @@ test.describe('PDP smoke tests', () => {
     expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
     expect.soft(await page.locator(pdpPage.titleXpath).innerText()).toEqual(pdpPage.title);
     expect.soft(await page.locator(pdpPage.imagePlaceholderXpath).getAttribute('src')).toMatch(pdpPage.imagePathRegex);
-    expect.soft(await page.locator(pdpPage.imagePlaceholderXpath).isVisible()).toBeTruthy();
+    await pdpPage.isImageVisible(pdpPage.imagePlaceholderXpath);
+    expect.soft(await page.locator(pdpPage.flexboxXpath).isVisible()).toBeTruthy();
   });
 });

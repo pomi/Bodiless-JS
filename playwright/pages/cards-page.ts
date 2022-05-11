@@ -25,8 +25,6 @@ export class CardsPage extends BasePage {
   readonly normalizedUrl: string;
   readonly imageAltText: string;
   readonly editedPostfix: string;
-  readonly imageNameOriginal: string;
-  readonly imageNameUpdated: string;
   readonly titleXpath: string;
   readonly descriptionXpath: string;
   readonly ctaLabelXpath: string;
@@ -53,8 +51,6 @@ export class CardsPage extends BasePage {
     this.normalizedUrl = '/' + this.cardUrl + '/';
     this.imageAltText = 'AT-1stCardAltText';
     this.editedPostfix = 'edited';
-    this.imageNameOriginal = 'img_615x500.jpg';
-    this.imageNameUpdated = 'img_615x502.jpg';
     this.titleXpath = '//*[@id="card-horizontal"]//*[@data-card-element="title"]//div[@data-slate-editor="true"]';
     this.descriptionXpath = '//*[@id="card-horizontal"]//*[@data-card-element="body"]//div[@data-slate-editor="true"]';
     this.ctaLabelXpath = '//*[@id="card-horizontal"]//*[@data-card-element="link"]//div[@data-slate-editor="true"]';
