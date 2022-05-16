@@ -18,10 +18,10 @@ test.describe('Flow container', async () => {
   let page: Page;
   let flowContainerPage: FlowContainerPage;
   test.beforeAll(async ({ browser }) => {
-    const context = await browser.newContext({ viewport: { width: 1200, height: 850 } });
+    const context = await browser.newContext();
     page = await context.newPage();
     flowContainerPage = new FlowContainerPage(page);
-    await page.goto('/flow-container');
+    await page.goto('/flow-container/');
   });
 
   test('Flow container: 1 - checking presence of all Flow Container sections', async () => {
@@ -49,7 +49,7 @@ test.describe('Flow container', async () => {
     await page.click(flowContainerPage.squareImageButtonInsideContainer);
     await page.click(flowContainerPage.selectImageButton);
     await page.setInputFiles('input[type=file]', flowContainerPage.pathToImages + flowContainerPage.imageTwoName);
-    await page.fill('#image-alt', 'alt-test');
+    await page.fill('#image-alt', flowContainerPage.altText);
     await Promise.all([
       page.waitForResponse(response => response.url()
         .includes('flowContainer') && response.status() === 200),
@@ -57,7 +57,7 @@ test.describe('Flow container', async () => {
     ]);
     const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
     const img = defaultContainer.locator('img');
-    expect.soft(await img.getAttribute('alt')).toEqual('alt-test');
+    expect.soft(await img.getAttribute('alt')).toEqual(flowContainerPage.altText);
     expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
     await img.click();
     expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
@@ -82,8 +82,8 @@ test.describe('Flow container', async () => {
     // text is not typed without this timeout, race condition
     await page.waitForTimeout(300);
     await flowContainerPage
-      .typeText(flowContainerPage.accordionBody, 'accordion-body-text', '$body');
-    expect.soft(await page.locator(flowContainerPage.accordionBody).innerText()).toEqual('accordion-body-text');
+      .typeText(flowContainerPage.accordionBody, flowContainerPage.accordionBodyText, '$body');
+    expect.soft(await page.locator(flowContainerPage.accordionBody).innerText()).toEqual(flowContainerPage.accordionBodyText);
     await page.click(flowContainerPage.accordionMinusButton);
     expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeFalsy();
     expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
@@ -106,14 +106,14 @@ test.describe('Flow container', async () => {
     expect.soft(ratio).toBeCloseTo(32);
   });
 
-  test('checking the added components in Preview Mode', async () => {
+  test('Flow container: 5 - checking the added components in Preview Mode', async () => {
     await flowContainerPage.togglePreviewMode();
     expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeFalsy();
     expect.soft(await page.locator(flowContainerPage.addComponentButton).isVisible()).toBeFalsy();
     expect.soft(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeFalsy();
     const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
     const img = defaultContainer.locator('img');
-    expect.soft(await img.getAttribute('alt')).toEqual('alt-test');
+    expect.soft(await img.getAttribute('alt')).toEqual(flowContainerPage.altText);
     expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
     expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeTruthy();
     expect.soft(await page.locator(flowContainerPage.accordionInsideRestrictedContainer)
@@ -124,15 +124,15 @@ test.describe('Flow container', async () => {
     expect.soft(await page.locator('#width_33 > div').isVisible()).toBeTruthy();
   });
 
-  test('checking swapping a component (Square Image to Landscape Linkable Image)', async () => {
+  test('Flow container: 6 -checking swapping a component (Square Image to Landscape Linkable Image)', async () => {
     await flowContainerPage.toggleEditMode();
-    await page.locator('#flowContainer > div > img').click();
+    await page.locator(flowContainerPage.squareImageButtonInsideContainer).click();
     await page.click(flowContainerPage.swapComponentButton);
     await page.click(flowContainerPage.contentfulCheckbox);
-    await page.click('div[data-item-id="LandscapeLinkableImage"]');
+    await page.click(flowContainerPage.landscapeLinkableImage);
     const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
     const img = defaultContainer.locator('img');
-    expect.soft(await img.getAttribute('alt')).toEqual('alt-test');
+    expect.soft(await img.getAttribute('alt')).toEqual(flowContainerPage.altText);
     expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
     await page.locator('#flowContainer > div a >> img').click();
     await page.click(flowContainerPage.editImageButton);
@@ -140,9 +140,9 @@ test.describe('Flow container', async () => {
     expect.soft(await page.locator('#flowContainer > div a').getAttribute('href')).toEqual('/' + 'new_link' + '/');
   });
 
-  test('checking the swapped and deleted components in Preview Mode', async () => {
+  test('Flow container: 7 - checking the swapped and deleted components in Preview Mode', async ({ baseURL }) => {
     await flowContainerPage.togglePreviewMode();
     await page.locator('#flowContainer > div a >> img').click();
-    expect.soft(page.url()).toContain('/' + 'new_link' + '/');
+    expect.soft(page.url()).toEqual(baseURL + '/' + 'new_link' + '/');
   });
 });

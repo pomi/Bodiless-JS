@@ -46,6 +46,9 @@ export class FlowContainerPage extends BasePage {
   readonly contentfulCheckbox: string;
   readonly addComponentButton: string;
   readonly editImageButton: string;
+  readonly altText: string;
+  readonly accordionBodyText: string;
+  readonly landscapeLinkableImage: string;
 
   constructor(page: Page) {
     super(page);
@@ -60,9 +63,9 @@ export class FlowContainerPage extends BasePage {
     this.flowContainer50Width = '#width_50';
     this.flowContainer66Width = '#width_66';
     this.flowContainer75Width = '#width_75';
-    this.flowContainerContentful = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(32) > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.md\\:p-5.bl-relative';
-    this.flowContainerLimitedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(34) > section > div';
-    this.flowContainerNestedFlow = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(36) > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > div > section > div.bl-resizable.bl-relative.bl-border-transparent.bl-border-2.bl-border-dashed.hover\\:bl-border-primary.w-full.lg\\:w-full.bl-relative > img';
+    this.flowContainerContentful = '#contentfulFlowContainer > div:nth-child(1)';
+    this.flowContainerLimitedFlow = '#flowContainerLimited > div';
+    this.flowContainerNestedFlow = '#regionContainer > div:nth-child(1)';
     this.addFlowContainerButton = 'button[aria-label="Add Flow Container"]';
     this.addComponentButton = 'button[aria-label="Add Component"]';
     this.imagesCheckbox = '#Image';
@@ -78,6 +81,9 @@ export class FlowContainerPage extends BasePage {
     this.contentfulCheckbox = '#Contentful';
     this.accordionBody = 'div[data-bl-design-key="Accordion:Body"] div div div';
     this.accordionInsideRestrictedContainer = 'div[id^="accordion-"]';
-    this.squareImageButtonInsideContainer = '#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(4) > section > div > img';
+    this.squareImageButtonInsideContainer = '#flowContainer > div > img';
+    this.altText = 'alt-test';
+    this.accordionBodyText = 'accordion-body-text';
+    this.landscapeLinkableImage = 'div[data-item-id="LandscapeLinkableImage"]';
   }
 }
