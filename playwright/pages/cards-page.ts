@@ -63,7 +63,7 @@ export class CardsPage extends BasePage {
     this.imageIconXpath = '//*[@role="toolbar" and @aria-label="Local Context Menu"]//*[@aria-label="Select Image"]';
     this.ctaButtonXpath = '//*[@id="card-horizontal"]//a[@data-card-element="link"]';
     this.imageLinkXpath = '//div[@id="card-horizontal"]//a[@data-card-element="image-link"]';
-    this.imageOrigPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageNameOriginal, '');
-    this.imageUpdPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageNameUpdated, '');
+    this.imageOrigPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageOneName, '');
+    this.imageUpdPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageTwoName, '');
   }
 }

@@ -43,6 +43,7 @@ export class BasePage {
   readonly addSubMenuListItem: string;
   readonly docsPath: string;
   readonly docsTitle: string;
+  readonly bodilessDocUrl: string;
 
   constructor(page: Page) {
     this.page = page;
@@ -73,6 +74,7 @@ export class BasePage {
     this.firstMenuItem = '#content-wrapper > div:nth-child(5) > nav > ul > li:nth-child(1) > a > span';
     this.addSubMenuItem = 'button[aria-label="Sub Main Menu Item"]';
     this.addSubMenuListItem = '#bl-component-form-chameleon-radio-List';
+    this.bodilessDocUrl = '/___docs/#/?id=bodilessjs';
   }
 
   async typeText(locator:string, text:string, request:string, confirmButton?:string) {
@@ -129,7 +131,7 @@ export class BasePage {
   async isImageVisible(imageXpath: string) {
     expect(await this.page.locator(imageXpath).isVisible()).toBeTruthy();
     const imageDimentions = await this.page.locator(imageXpath).boundingBox();
-    expect(imageDimentions.width).toBeGreaterThan(0);
-    expect(imageDimentions.height).toBeGreaterThan(0);
+    expect(imageDimentions!.width).toBeGreaterThan(0);
+    expect(imageDimentions!.height).toBeGreaterThan(0);
   }
 }

@@ -48,7 +48,7 @@ test.describe('Testing cards', () => {
   test('cards: 5 - uploading an image', async () => {
     await page.click(cardsPage.imagePlaceholderXpath);
     await page.click(cardsPage.imageIconXpath);
-    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageNameOriginal);
+    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageOneName);
     await Promise.all([
       page.waitForResponse(response => response.url()
         .includes('horizontal$image') && response.status() === 200),
@@ -119,7 +119,7 @@ test.describe('Testing cards', () => {
     await cardsPage.typeText(cardsPage.altFieldXpath, cardsPage.editedPostfix, 'horizontal$image', cardsPage.checkmarkIconImageFormXpath);
     await page.click(cardsPage.imagePlaceholderXpath);
     await page.click(cardsPage.imageIconXpath);
-    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageNameUpdated);
+    await page.setInputFiles('input[type=file]', cardsPage.pathToImages + cardsPage.imageTwoName);
     await Promise.all([
       page.waitForResponse(response => response.url()
         .includes('horizontal$image') && response.status() === 200),
@@ -136,10 +136,10 @@ test.describe('Testing cards', () => {
     await cardsPage.isImageVisible(cardsPage.imagePlaceholderXpath);
     // todo deal with inconsistent error
     expect(await page.locator(cardsPage.imagePlaceholderXpath).getAttribute('alt')).toEqual(cardsPage.imageAltText + cardsPage.editedPostfix);
-    expect(await page.locator(cardsPage.imageLinkXpath).getAttribute('href')).toEqual(baseURL + cardsPage.normalizedUrl + cardsPage.editedPostfix + '/');
+    expect(await page.locator(cardsPage.ctaButtonXpath).getAttribute('href')).toEqual(baseURL + cardsPage.normalizedUrl + cardsPage.editedPostfix + '/');
     await Promise.all([
       page.waitForNavigation(),
-      page.click(cardsPage.ctaButtonXpath),
+      page.click(cardsPage.imagePlaceholderXpath),
     ]);
     expect(page.url()).toEqual(baseURL + cardsPage.normalizedUrl + cardsPage.editedPostfix);
     await page.goto(cardsPage.pagePath);

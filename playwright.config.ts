@@ -51,7 +51,7 @@ const config: PlaywrightTestConfig = {
         viewport: { width: 1200, height: 850 },
       },
     },
-
+    /*
     {
       name: 'firefox',
       use: {
@@ -65,7 +65,7 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Safari'],
       },
     },
-
+*/
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
