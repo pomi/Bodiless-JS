@@ -31,7 +31,6 @@ export class BasePage {
   readonly closeIconAddPageForm: string;
   readonly checkmarkIconAddPageForm: string;
   readonly commitHistoryPanel: string;
-  readonly componentMenuItem: string;
   readonly addMainMenuItemButton: string;
   readonly firstMenuItem: string;
   readonly editMenuLinkButton: string;
@@ -64,7 +63,6 @@ export class BasePage {
     this.fieldAddPageForm = '//*[@aria-label="Context Submenu Form"]//input[@name="new-page-path"]';
     this.closeIconAddPageForm = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Cancel"]';
     this.checkmarkIconAddPageForm = '//*[@aria-label="Context Submenu Form"]//*[@aria-label="Submit"]';
-    this.componentMenuItem = 'button[aria-label="Components"]';
     this.editMenuLinkButton = 'button[aria-label="Edit Menu Link"]';
     this.linkInput = '#link-href';
     this.firstMenuTitle = 'Menu1';

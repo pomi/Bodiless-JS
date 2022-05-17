@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 // editorMenu.spec.ts
+'use strict';
 import { expect, Page, test } from '@playwright/test';
 import { EditorMenuPage } from '../../pages/editor-menu-page';
 

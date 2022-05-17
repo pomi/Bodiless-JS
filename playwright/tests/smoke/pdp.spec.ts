@@ -43,7 +43,7 @@ test.describe('PDP (Product Details Page) smoke tests', () => {
     expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
     await page.click(pdpPage.accordionDirectionsExpandXpath);
     expect.soft(await page.locator(pdpPage.accordionDirectionsBodyExpandedXpath).isVisible()).toBeTruthy();
-    expect.soft(await page.locator(pdpPage.accordionDirectionsBodyPlaceholderXpath));
+    expect.soft(await page.locator(pdpPage.accordionDirectionsBodyPlaceholderXpath).isVisible()).toBeTruthy();
     expect.soft(await page.locator(pdpPage.accordionOverviewBodyXpath).innerText()).toEqual(pdpPage.accordionBody);
   });
 
