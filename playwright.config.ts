@@ -51,6 +51,7 @@ const config: PlaywrightTestConfig = {
         viewport: { width: 1200, height: 850 },
       },
     },
+    // remove to add firefox and webkit browsers support
     /*
     {
       name: 'firefox',
