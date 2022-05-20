@@ -106,8 +106,9 @@ export class FlowContainerPage extends BasePage {
     this.accordionText = 'text_to_check';
     this.imageLink = '#flowContainer > div a';
     this.flowContainerImage = '#flowContainer > div a >> img';
-    this.pagePath = '';
-    this.imagePathRegex = new RegExp(`images/pages${this.pagePath}[a-zA-Z0-9]+/${this.imageName}`);
-    this.imageName = 'img_615x500.jpg';
+    this.pagePath = '/flow-container/';
+    this.imageName = 'img_615x502.jpg';
+    // tslint:disable-next-line:prefer-template
+    this.imagePathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageName, '');
   }
 }
