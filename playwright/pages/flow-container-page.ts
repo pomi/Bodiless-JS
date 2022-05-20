@@ -38,7 +38,7 @@ export class FlowContainerPage extends BasePage {
   readonly swapComponentButton: string;
   readonly deleteComponentButton: string;
   readonly accordionCheckbox: string;
-  readonly accordionInsideRestrictedContainer: string;
+  readonly accordionTitle: string;
   readonly accordionInPicker: string;
   readonly accordionPlusButton: string;
   readonly accordionBody: string;
@@ -46,9 +46,21 @@ export class FlowContainerPage extends BasePage {
   readonly contentfulCheckbox: string;
   readonly addComponentButton: string;
   readonly editImageButton: string;
+  readonly imageAlt: string;
   readonly altText: string;
   readonly accordionBodyText: string;
   readonly landscapeLinkableImage: string;
+  readonly accordionText: string;
+  readonly accordionBodyPreview: string;
+  readonly accordionTitlePreview: string;
+  readonly elementInside33Width: string;
+  readonly imageLinkField: string;
+  readonly imageLinkText: string;
+  readonly imageLink: string;
+  readonly flowContainerImage: string;
+  readonly imagePathRegex: RegExp;
+  readonly pagePath: string;
+  readonly imageName: string;
 
   constructor(page: Page) {
     super(page);
@@ -63,6 +75,9 @@ export class FlowContainerPage extends BasePage {
     this.flowContainer50Width = '#width_50';
     this.flowContainer66Width = '#width_66';
     this.flowContainer75Width = '#width_75';
+    this.elementInside33Width = '#width_33 > div > div';
+    this.imageLinkField = '#link-href';
+    this.imageLinkText = 'new_link';
     this.flowContainerContentful = '#contentfulFlowContainer > div:nth-child(1)';
     this.flowContainerLimitedFlow = '#flowContainerLimited > div';
     this.flowContainerNestedFlow = '#regionContainer > div:nth-child(1)';
@@ -74,16 +89,25 @@ export class FlowContainerPage extends BasePage {
     this.deleteComponentButton = 'button[aria-label="Delete Component"]';
     this.selectImageButton = 'button[aria-label="Select Image"]';
     this.editImageButton = 'button[aria-label="Edit Image"]';
-    this.squareImageButton = '#gridlistboxinner > div:nth-child(1) > div > button';
+    this.squareImageButton = 'div[data-item-id="SquareImage"] button';
     this.accordionInPicker = 'button[type="Submit"]';
     this.accordionPlusButton = 'span[aria-label="Expand Accordion"]';
     this.accordionMinusButton = 'span[aria-label="Collapse Accordion"]';
     this.contentfulCheckbox = '#Contentful';
-    this.accordionBody = 'div[data-bl-design-key="Accordion:Body"] div div div';
-    this.accordionInsideRestrictedContainer = 'div[id^="accordion-"]';
+    this.accordionBody = 'div[data-bl-design-key="AccordionBody:Content"] div[role="textbox"]';
+    this.accordionBodyPreview = 'div[data-bl-design-key="AccordionBody:Content"]';
+    this.accordionTitle = 'div[aria-label="Filter"] div[role="textbox"]';
+    this.accordionTitlePreview = 'div[data-bl-design-key="AccordionTitle:Label"]';
     this.squareImageButtonInsideContainer = '#flowContainer > div > img';
     this.altText = 'alt-test';
+    this.imageAlt = '#image-alt';
     this.accordionBodyText = 'accordion-body-text';
     this.landscapeLinkableImage = 'div[data-item-id="LandscapeLinkableImage"]';
+    this.accordionText = 'text_to_check';
+    this.imageLink = '#flowContainer > div a';
+    this.flowContainerImage = '#flowContainer > div a >> img';
+    this.pagePath = '';
+    this.imagePathRegex = new RegExp(`images/pages${this.pagePath}[a-zA-Z0-9]+/${this.imageName}`);
+    this.imageName = 'img_615x500.jpg';
   }
 }
