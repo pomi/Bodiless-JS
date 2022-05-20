@@ -17,6 +17,7 @@ import { FlowContainerPage } from '../../pages/flow-container-page';
 test.describe('Flow container', async () => {
   let page: Page;
   let flowContainerPage: FlowContainerPage;
+  // tslint:disable-next-line:ter-arrow-parens
   test.beforeAll(async ({ browser }) => {
     const context = await browser.newContext();
     page = await context.newPage();
@@ -49,16 +50,16 @@ test.describe('Flow container', async () => {
     await page.click(flowContainerPage.squareImageButtonInsideContainer);
     await page.click(flowContainerPage.selectImageButton);
     await page.setInputFiles('input[type=file]', flowContainerPage.pathToImages + flowContainerPage.imageTwoName);
-    await page.fill('#image-alt', flowContainerPage.altText);
+    await page.fill(flowContainerPage.imageAlt, flowContainerPage.altText);
     await Promise.all([
-      page.waitForResponse(response => response.url()
+      page.waitForResponse((response) => response.url()
         .includes('flowContainer') && response.status() === 200),
       page.click(flowContainerPage.submitButton),
     ]);
     const defaultContainer = page.locator(flowContainerPage.flowContainerDefault);
     const img = defaultContainer.locator('img');
     expect.soft(await img.getAttribute('alt')).toEqual(flowContainerPage.altText);
-    expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
+    expect.soft(await img.getAttribute('src')).toMatch(flowContainerPage.imagePathRegex);
     await img.click();
     expect.soft(await page.locator(flowContainerPage.swapComponentButton).isVisible()).toBeTruthy();
     expect.soft(await page.locator(flowContainerPage.deleteComponentButton).isVisible()).toBeTruthy();
@@ -72,11 +73,11 @@ test.describe('Flow container', async () => {
     await page.click(flowContainerPage.imagesCheckbox);
     await page.click(flowContainerPage.accordionCheckbox);
     await page.click(flowContainerPage.accordionInPicker);
-    await page.click(flowContainerPage.accordionInsideRestrictedContainer);
+    await page.click(flowContainerPage.accordionTitle);
     await flowContainerPage
-      .typeText(flowContainerPage.accordionInsideRestrictedContainer, 'text to check', 'restricted');
-    expect.soft(await page.locator(flowContainerPage.accordionInsideRestrictedContainer)
-      .innerText()).toEqual('text to check');
+      .typeText(flowContainerPage.accordionTitle, flowContainerPage.accordionText, 'restricted');
+    expect.soft(await page.locator(flowContainerPage.accordionTitle)
+      .innerText()).toEqual(flowContainerPage.accordionText);
     await page.click(flowContainerPage.accordionPlusButton);
     expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeTruthy();
     // text is not typed without this timeout, race condition
@@ -95,13 +96,12 @@ test.describe('Flow container', async () => {
     await page.click(flowContainerPage.accordionCheckbox);
     await page.click(flowContainerPage.contentfulCheckbox);
     await Promise.all([
-      page.waitForResponse(response => response.url()
+      page.waitForResponse((response) => response.url()
         .includes('width_33') && response.status() === 200),
       await page.click(flowContainerPage.accordionInPicker),
     ]);
-    const containerWidth = await page.locator('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section').boundingBox();
-    const contentfulWidth = await page.locator('#gatsby-focus-wrapper > div:nth-child(1) > div.my-2.container.mx-auto > div:nth-child(24) > section > div > div').boundingBox();
-    // @ts-ignore
+    const containerWidth = await page.locator(flowContainerPage.flowContainer33Width).boundingBox();
+    const contentfulWidth = await page.locator(flowContainerPage.elementInside33Width).boundingBox();
     const ratio = Math.floor((contentfulWidth.width + 40) / containerWidth.width * 100);
     expect.soft(ratio).toBeCloseTo(32);
   });
@@ -116,12 +116,12 @@ test.describe('Flow container', async () => {
     expect.soft(await img.getAttribute('alt')).toEqual(flowContainerPage.altText);
     expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
     expect.soft(await page.locator(flowContainerPage.accordionPlusButton).isVisible()).toBeTruthy();
-    expect.soft(await page.locator(flowContainerPage.accordionInsideRestrictedContainer)
+    expect.soft(await page.locator(flowContainerPage.accordionTitlePreview)
       .isVisible()).toBeTruthy();
-    expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeFalsy();
+    expect.soft(await page.locator(flowContainerPage.accordionBodyPreview).isVisible()).toBeFalsy();
     await page.click(flowContainerPage.accordionPlusButton);
-    expect.soft(await page.locator(flowContainerPage.accordionBody).isVisible()).toBeTruthy();
-    expect.soft(await page.locator('#width_33 > div').isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.accordionBodyPreview).isVisible()).toBeTruthy();
+    expect.soft(await page.locator(flowContainerPage.elementInside33Width).isVisible()).toBeTruthy();
   });
 
   test('Flow container: 6 -checking swapping a component (Square Image to Landscape Linkable Image)', async () => {
@@ -134,15 +134,16 @@ test.describe('Flow container', async () => {
     const img = defaultContainer.locator('img');
     expect.soft(await img.getAttribute('alt')).toEqual(flowContainerPage.altText);
     expect.soft(await img.getAttribute('src')).toContain(flowContainerPage.imageTwoName);
-    await page.locator('#flowContainer > div a >> img').click();
+    await page.locator(flowContainerPage.flowContainerImage).click();
     await page.click(flowContainerPage.editImageButton);
-    await flowContainerPage.typeText('#link-href', 'new_link', 'flowContainer', 'button[aria-label="Submit"]');
-    expect.soft(await page.locator('#flowContainer > div a').getAttribute('href')).toEqual('/' + 'new_link' + '/');
+    await flowContainerPage.typeText(flowContainerPage.imageLinkField, flowContainerPage.imageLinkText, 'flowContainer', 'button[aria-label="Submit"]');
+    expect.soft(await page.locator(flowContainerPage.imageLink).getAttribute('href')).toEqual(`/${flowContainerPage.imageLinkText}/`);
   });
 
+  // tslint:disable-next-line:ter-arrow-parens
   test('Flow container: 7 - checking the swapped and deleted components in Preview Mode', async ({ baseURL }) => {
     await flowContainerPage.togglePreviewMode();
-    await page.locator('#flowContainer > div a >> img').click();
-    expect.soft(page.url()).toEqual(baseURL + '/' + 'new_link' + '/');
+    await page.locator(flowContainerPage.flowContainerImage).click();
+    expect.soft(page.url()).toEqual(`${baseURL}/new_link/`);
   });
 });
