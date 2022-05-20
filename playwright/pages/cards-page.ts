@@ -48,7 +48,7 @@ export class CardsPage extends BasePage {
     this.description = 'AT - Description 1 -';
     this.ctaLabel = 'AT - CTA Link 1 -';
     this.cardUrl = 'AT-cardUrl1';
-    this.normalizedUrl = '/' + this.cardUrl + '/';
+    this.normalizedUrl = `/${this.cardUrl}/`;
     this.imageAltText = 'AT-1stCardAltText';
     this.editedPostfix = 'edited';
     this.titleXpath = '//*[@id="card-horizontal"]//*[@data-card-element="title"]//div[@data-slate-editor="true"]';
@@ -63,7 +63,9 @@ export class CardsPage extends BasePage {
     this.imageIconXpath = '//*[@role="toolbar" and @aria-label="Local Context Menu"]//*[@aria-label="Select Image"]';
     this.ctaButtonXpath = '//*[@id="card-horizontal"]//a[@data-card-element="link"]';
     this.imageLinkXpath = '//div[@id="card-horizontal"]//a[@data-card-element="image-link"]';
+    // tslint:disable-next-line:prefer-template
     this.imageOrigPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageOneName, '');
+    // tslint:disable-next-line:prefer-template
     this.imageUpdPathRegex = new RegExp('images\\/pages' + this.pagePath + '[a-zA-Z0-9]+\\/' + this.imageTwoName, '');
   }
 }
