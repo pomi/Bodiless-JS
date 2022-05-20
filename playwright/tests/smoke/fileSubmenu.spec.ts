@@ -31,14 +31,14 @@ async function checkFileSubMenuButtons(mode: 'preview' | 'edit', page: Page, fil
 
 async function checkHistoryForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
   await Promise.all([
-    page.waitForResponse(response => response.url()
+    page.waitForResponse((response) => response.url()
       .includes('commits') && response.status() === 200),
     page.click(fileSubmenuPage.historyButton),
     page.waitForSelector(fileSubmenuPage.commitHistoryPanel),
   ]);
   expect(await page.locator(fileSubmenuPage.historyFormTitle).isVisible()).toBeTruthy();
   const historyItems = await page.$$(fileSubmenuPage.historyFormItems);
-  expect(historyItems.length).toBeGreaterThan(3);
+  expect(historyItems.length).toBeGreaterThan(1);
   expect(await page.locator(fileSubmenuPage.historyFormSubmitButton).isVisible()).toBeFalsy();
   await page.click(fileSubmenuPage.historyFormCloseButton);
 }
@@ -54,6 +54,7 @@ async function checkRevertForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
 test.describe('File Submenu Smoke Tests', () => {
   let page: Page;
   let fileSubmenuPage: FileSubmenuPage;
+  // tslint:disable-next-line:ter-arrow-parens
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     fileSubmenuPage = new FileSubmenuPage(page);
