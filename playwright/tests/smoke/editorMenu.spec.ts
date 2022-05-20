@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 // editorMenu.spec.ts
+'use strict';
 import { expect, Page, test } from '@playwright/test';
 import { EditorMenuPage } from '../../pages/editor-menu-page';
 
@@ -93,7 +94,9 @@ test.describe('Editor Menu (left and right)', () => {
     await page.click(editorMenuPage.docsIcon);
     const newPage = await newPagePromise;
     expect.soft(editorMenuPage.docsTitle);
+    // @ts-ignore
     await newPage.click(editorMenuPage.docsTitle);
-    expect.soft(newPage.url()).toEqual(baseURL + '/___docs/#/?id=bodilessjs');
+    // @ts-ignore
+    expect.soft(newPage.url()).toEqual(baseURL + editorMenuPage.bodilessDocUrl);
   });
 });

@@ -39,7 +39,7 @@ const config: PlaywrightTestConfig = {
     /* viewport */
     // viewport: { width: 1200, height: 850 },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
   },
 
   /* Configure projects for major browsers */
@@ -51,7 +51,8 @@ const config: PlaywrightTestConfig = {
         viewport: { width: 1200, height: 850 },
       },
     },
-
+    // remove to add firefox and webkit browsers support
+    /*
     {
       name: 'firefox',
       use: {
@@ -65,7 +66,7 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Safari'],
       },
     },
-
+*/
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

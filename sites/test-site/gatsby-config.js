@@ -3,7 +3,7 @@ const express = require('express');
 const {
   createDefaultContentPlugins,
   getSampleDefaultContentConfig,
-} = require('@bodiless/gatsby-theme-bodiless/dist/DefaultContent');
+} = require('@bodiless/gatsby-theme-bodiless/cjs/dist/DefaultContent');
 const { getDisabledPages } = require('@bodiless/components/node-api');
 const getSSIEntities = require('@bodiless/gatsby-plugin-ssi/read-ssi-entities');
 const {
@@ -62,16 +62,6 @@ const plugins = [
     ...getSiteDefaultContentConfig(),
   ),
 ];
-
-if (process.env.BODILESS_BUILD_STATS === '1') {
-  plugins.push({
-    resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
-    options: {
-      analyzerMode: 'static',
-      generateStatsFile: true,
-    }
-  });
-}
 
 const robotsTxtPolicy = [
   {
