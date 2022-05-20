@@ -22,7 +22,6 @@ export class PdpPage extends BasePage {
   readonly pdpPagePath: string;
   readonly title: string;
   readonly accordionBody: string;
-  readonly imageName: string;
   readonly pageIconXpath: string;
   readonly newPageIconXpath: string;
   readonly fieldAddPageFormXpath: string;
@@ -51,7 +50,6 @@ export class PdpPage extends BasePage {
     this.pdpPagePath = this.pagePath + this.pdpURL;
     this.title = 'AT - PDP title';
     this.accordionBody = 'AT - Overview';
-    this.imageName = 'img_615x500.jpg';
     this.pageIconXpath = '//*[@aria-label="Page"]';
     this.newPageIconXpath = '//*[@aria-label="New"]';
     this.fieldAddPageFormXpath = '//*[@aria-label="Context Submenu Form"]//input[@name="new-page-path"]';
@@ -70,6 +68,6 @@ export class PdpPage extends BasePage {
     this.checkmarkIconImageFormXpath = '//form[@aria-label="Context Menu Select Image Form"]//button[@aria-label="Submit"]';
     this.flexboxXpath = '//*[@data-product-element="flow-container"]';
     this.addComponentIconXpath = '//button[@aria-label="Add Flow Container"]';
-    this.imagePathRegex = new RegExp('images/pages' + this.pdpPagePath + '/[a-zA-Z0-9]+/' + this.imageName, '');
+    this.imagePathRegex = new RegExp('images/pages' + this.pdpPagePath + '/[a-zA-Z0-9]+/' + this.imageOneName, '');
   }
 }

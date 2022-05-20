@@ -8,6 +8,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
+const { addStatoscopePlugin } = require('@bodiless/webpack');
 
 // Fix sourcemap issue
 // See: https://github.com/gatsbyjs/gatsby/issues/6278#issuecomment-402540404
@@ -21,13 +22,18 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
     // won't be present in the test site's node_modules.
     const reactPath = path.resolve('./node_modules', 'react');
     const reactAlias = fs.existsSync(reactPath) ? { react: reactPath } : {};
+    const tsconfigPathDisabled = process.env.DISABLE_TSCONFIG_PATHS_PLUGIN === '1';
+    const webpackConfigPlugins = [];
+    if (!tsconfigPathDisabled) {
+      webpackConfigPlugins.push(new TsconfigPathsPlugin());
+    }
     actions.setWebpackConfig({
       // Set devtool to `false` below to disable sourcemap on performance improvement.
       // or set devtool as 'cheap-module-source-map' to re-enable sourcemap.
       // See https://webpack.js.org/configuration/devtool/
       devtool: false,
       resolve: {
-        plugins: [new TsconfigPathsPlugin()],
+        plugins: webpackConfigPlugins,
         alias: reactAlias,
       },
       // On development, we want changes on Bodiless packages to trigger
@@ -42,5 +48,18 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
         ),
       }
     });
+  }
+  // Always on bottom to keep the plugin as last,
+  if (stage === 'build-javascript') {
+    const options = {
+      enabled: process.env.BODILESS_BUILD_STATS === '1',
+      sitePath: path.resolve('./'),
+      name: 'test-site',
+      open: process.env.BODILESS_OPEN_STATS === '1' ? 'file' : false
+    };
+
+    actions.setWebpackConfig(
+      addStatoscopePlugin({}, options)
+    );
   }
 };

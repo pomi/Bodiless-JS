@@ -31,14 +31,14 @@ async function checkFileSubMenuButtons(mode: 'preview' | 'edit', page: Page, fil
 
 async function checkHistoryForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
   await Promise.all([
-    page.waitForResponse(response => response.url()
+    page.waitForResponse((response) => response.url()
       .includes('commits') && response.status() === 200),
     page.click(fileSubmenuPage.historyButton),
     page.waitForSelector(fileSubmenuPage.commitHistoryPanel),
   ]);
   expect(await page.locator(fileSubmenuPage.historyFormTitle).isVisible()).toBeTruthy();
   const historyItems = await page.$$(fileSubmenuPage.historyFormItems);
-  expect(historyItems.length).toBeGreaterThan(3);
+  expect(historyItems.length).toBeGreaterThan(1);
   expect(await page.locator(fileSubmenuPage.historyFormSubmitButton).isVisible()).toBeFalsy();
   await page.click(fileSubmenuPage.historyFormCloseButton);
 }
@@ -51,9 +51,10 @@ async function checkRevertForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
   await page.click(fileSubmenuPage.revertFormCloseButton);
 }
 
-test.describe('Editor Menu (left and right)', () => {
+test.describe('File Submenu Smoke Tests', () => {
   let page: Page;
   let fileSubmenuPage: FileSubmenuPage;
+  // tslint:disable-next-line:ter-arrow-parens
   test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
     fileSubmenuPage = new FileSubmenuPage(page);
@@ -78,6 +79,7 @@ test.describe('Editor Menu (left and right)', () => {
     await checkHistoryForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
+    await fileSubmenuPage.toggleMenuLeft();
   });
 
   test('File Submenu: 4 - Checking file submenu buttons in Edit Mode', async () => {
@@ -86,34 +88,31 @@ test.describe('Editor Menu (left and right)', () => {
   });
 
   test('File Submenu: 5 - Checking History button in Edit Mode (left)', async () => {
-    await fileSubmenuPage.toggleEditMode();
     await page.click(fileSubmenuPage.fileFormButton);
     await checkHistoryForm(page, fileSubmenuPage);
-    await page.click(fileSubmenuPage.fileFormCloseButton);
+    expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
+    // await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 
   test('File Submenu: 6 - Checking Revert button in Edit Mode (left)', async () => {
-    await fileSubmenuPage.toggleEditMode();
-    await page.click(fileSubmenuPage.fileFormButton);
+    // await page.click(fileSubmenuPage.fileFormButton);
     await checkRevertForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 
   test('File Submenu: 7 - Checking Revert button in Edit Mode (right)', async () => {
-    await fileSubmenuPage.toggleEditMode();
     await fileSubmenuPage.toggleMenuRight();
     await page.click(fileSubmenuPage.fileFormButton);
     await checkRevertForm(page, fileSubmenuPage);
     expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
-    await page.click(fileSubmenuPage.fileFormCloseButton);
+    // await page.click(fileSubmenuPage.fileFormCloseButton);
   });
 
   test('File Submenu: 8 - Checking History button in Edit Mode (right)', async () => {
-    await fileSubmenuPage.toggleEditMode();
-    await fileSubmenuPage.toggleMenuRight();
-    await page.click(fileSubmenuPage.fileFormButton);
     await checkHistoryForm(page, fileSubmenuPage);
+    expect(await page.locator(fileSubmenuPage.fileForm).isVisible()).toBeTruthy();
     await page.click(fileSubmenuPage.fileFormCloseButton);
+    await fileSubmenuPage.toggleMenuLeft();
   });
 });
