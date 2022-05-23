@@ -38,7 +38,7 @@ async function checkHistoryForm(page: Page, fileSubmenuPage: FileSubmenuPage) {
   ]);
   expect(await page.locator(fileSubmenuPage.historyFormTitle).isVisible()).toBeTruthy();
   const historyItems = await page.$$(fileSubmenuPage.historyFormItems);
-  expect(historyItems.length).toBeGreaterThan(1);
+  expect(historyItems.length).toBeGreaterThanOrEqual(1);
   expect(await page.locator(fileSubmenuPage.historyFormSubmitButton).isVisible()).toBeFalsy();
   await page.click(fileSubmenuPage.historyFormCloseButton);
 }
