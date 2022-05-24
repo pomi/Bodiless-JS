@@ -78,6 +78,8 @@ export class FlowContainerPage extends BasePage {
     noTitleAndBody: string,
   };
   readonly clearLink: string;
+  readonly componentWrapper: string;
+  readonly cardStructure: string;
 
   constructor(page: Page) {
     super(page);
@@ -122,8 +124,9 @@ export class FlowContainerPage extends BasePage {
     };
     this.searchField = '#Search';
     this.componentCategories = 'a > label';
-    this.typeSection = ':text("Type")';
-    this.orientationSection = ':text("Orientation")';
+    this.typeSection = 'label:has-text("Type")';
+    this.orientationSection = 'label:has-text("Orientation")';
+    this.cardStructure = 'label:has-text("Card Structure")';
     this.gridBox = '#gridlistboxinner';
     this.simpleRichText = 'div[data-item-id="EditorSimple"]';
     this.basicRichText = 'div[data-item-id="EditorBasic"]';
@@ -142,6 +145,7 @@ export class FlowContainerPage extends BasePage {
       noBody: '#No\\ Body',
       noTitleAndBody: '#No\\ Title\\ and\\ Body',
     };
-    this.clearLink = 'body > div:nth-child(34) > div > div > div > div.rc-tooltip-inner > div > form > div > div > div.bl-pt-grid-2.w-1\\/4.overflow-y-auto > a';
+    this.clearLink = 'a:has-text("Clear")';
+    this.componentWrapper = '#gridlistboxinner > div';
   }
 }
