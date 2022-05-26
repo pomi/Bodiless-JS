@@ -3,22 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0-beta.19](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.1...v1.0.0-beta.19) (2022-05-17)
+# [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 
 ### Bug Fixes
 
 * **bodiless-core:** Unhandled Runtime Error when node data is not available ([#1776](https://github.com/johnsonandjohnson/bodiless-js/issues/1776)) ([7519417](https://github.com/johnsonandjohnson/bodiless-js/commit/7519417eb3cb99d03bf7efac8013b1d3f7740f5e))
-* **gatsby-theme-bodiless:** add autoprefixer ([#1685](https://github.com/johnsonandjohnson/bodiless-js/issues/1685)) ([f501c3a](https://github.com/johnsonandjohnson/bodiless-js/commit/f501c3a3b9d9a3efc54375bd4ba89e23d3931732))
-* **gatsby-theme-bodiless:** Properly prefix paths for bodiless gatsby… ([#1502](https://github.com/johnsonandjohnson/bodiless-js/issues/1502)) ([806b41d](https://github.com/johnsonandjohnson/bodiless-js/commit/806b41d15da01c3b650410a1be0d6cf373e2dd8d)), closes [#1501](https://github.com/johnsonandjohnson/bodiless-js/issues/1501)
-* **gatsby-theme-bodiless:** remove null-loader package dep. ([#1493](https://github.com/johnsonandjohnson/bodiless-js/issues/1493)) ([18c3273](https://github.com/johnsonandjohnson/bodiless-js/commit/18c327348bdeb83ce0dca6aa74105b9dbf3f14f1))
-* **gatsby-theme-bodiless:** Revert crypto-js ([4cb1c8a](https://github.com/johnsonandjohnson/bodiless-js/commit/4cb1c8ab61186e138bed7d3ce47436d4530f90a2))
 
 
 ### Features
 
-* Add static replacement mechanism ([#1440](https://github.com/johnsonandjohnson/bodiless-js/issues/1440)) ([22384f1](https://github.com/johnsonandjohnson/bodiless-js/commit/22384f184e73366bc00ec619e7b08fa3e5dfc29d))
-* **cli:** Bodiless new ([#1568](https://github.com/johnsonandjohnson/bodiless-js/issues/1568)) ([3bc0e2c](https://github.com/johnsonandjohnson/bodiless-js/commit/3bc0e2c8e06fe78751c0712d7e1d3cfb8d1fb04d)), closes [#1520](https://github.com/johnsonandjohnson/bodiless-js/issues/1520)
 * **vital-hero, vital-image, vital-card:** Add Hero & Card component and update Image  ([#1500](https://github.com/johnsonandjohnson/bodiless-js/issues/1500)) ([95f2c3d](https://github.com/johnsonandjohnson/bodiless-js/commit/95f2c3dcf06c6f51bb6b3d252ca6f4f576899dd4)), closes [pr#1498](https://github.com/pr/issues/1498)
 
 

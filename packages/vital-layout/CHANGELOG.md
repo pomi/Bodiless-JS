@@ -3,20 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0-beta.19](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.1...v1.0.0-beta.19) (2022-05-17)
-
-
-### Bug Fixes
-
-* **vital-elements,layout,nav:** fix breakpt issues ([#1664](https://github.com/johnsonandjohnson/bodiless-js/issues/1664)) ([8026a2e](https://github.com/johnsonandjohnson/bodiless-js/commit/8026a2e54ccfa64815415978802df1065429ccdc))
-* **vital-header, vital-footer:** convert to default breakpoints and adjust header/footer  ([#1575](https://github.com/johnsonandjohnson/bodiless-js/issues/1575)) ([537cbab](https://github.com/johnsonandjohnson/bodiless-js/commit/537cbab75e960b805ac0b4ea7826d96dae0f5dbd))
-* **vital-site:** fix separator color ([#1609](https://github.com/johnsonandjohnson/bodiless-js/issues/1609)) ([7e62d6d](https://github.com/johnsonandjohnson/bodiless-js/commit/7e62d6d6322eac04a4e37ac33fd86b9088699bd1))
+# [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 
 ### Features
 
 * **vital-hero, vital-image, vital-card:** Add Hero & Card component and update Image  ([#1500](https://github.com/johnsonandjohnson/bodiless-js/issues/1500)) ([95f2c3d](https://github.com/johnsonandjohnson/bodiless-js/commit/95f2c3dcf06c6f51bb6b3d252ca6f4f576899dd4)), closes [pr#1498](https://github.com/pr/issues/1498)
-* **vital-meta:** Create new vital-meta package. ([#1555](https://github.com/johnsonandjohnson/bodiless-js/issues/1555)) ([f665120](https://github.com/johnsonandjohnson/bodiless-js/commit/f6651201a61c09d02b2974603f486cafedeab252))
 
 
 

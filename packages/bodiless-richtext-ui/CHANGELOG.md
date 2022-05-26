@@ -3,13 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0-beta.19](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.1...v1.0.0-beta.19) (2022-05-17)
+# [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
-
-### Bug Fixes
-
-* **bodiless-ui:** fix icon size & color ([#1596](https://github.com/johnsonandjohnson/bodiless-js/issues/1596)) ([e60b434](https://github.com/johnsonandjohnson/bodiless-js/commit/e60b43429511fa6c10774c01b12d1959841594de))
-* **bodiless-ui:** try find all missing bl- prefixes in editor  ([#1589](https://github.com/johnsonandjohnson/bodiless-js/issues/1589)) ([942cfd6](https://github.com/johnsonandjohnson/bodiless-js/commit/942cfd6dc522341a757f70b84cf6879f5690332b))
+**Note:** Version bump only for package @bodiless/richtext-ui
 
 
 

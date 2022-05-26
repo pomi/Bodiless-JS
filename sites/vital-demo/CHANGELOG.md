@@ -3,22 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.0.0-beta.19](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.1...v1.0.0-beta.19) (2022-05-17)
+# [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 
 ### Bug Fixes
 
-* **gatsby-theme-bodiless:** add autoprefixer ([#1685](https://github.com/johnsonandjohnson/bodiless-js/issues/1685)) ([f501c3a](https://github.com/johnsonandjohnson/bodiless-js/commit/f501c3a3b9d9a3efc54375bd4ba89e23d3931732))
-* **vital-header, vital-footer:** convert to default breakpoints and adjust header/footer  ([#1575](https://github.com/johnsonandjohnson/bodiless-js/issues/1575)) ([537cbab](https://github.com/johnsonandjohnson/bodiless-js/commit/537cbab75e960b805ac0b4ea7826d96dae0f5dbd))
-* **vital-list:** fix images on list page, bug in image size, updated /styleguide page to content ([#1633](https://github.com/johnsonandjohnson/bodiless-js/issues/1633)) ([cbac699](https://github.com/johnsonandjohnson/bodiless-js/commit/cbac699c4bfa44c4815fda9ea85f5c2ec6b65401))
+* **vital-demo:** fix logo & favicons ([#1788](https://github.com/johnsonandjohnson/bodiless-js/issues/1788)) ([67c3ebb](https://github.com/johnsonandjohnson/bodiless-js/commit/67c3ebbd71585052e1b9fd3160fabae140b28ebc)), closes [pr#1498](https://github.com/pr/issues/1498)
 
 
 ### Features
 
-* **cli:** Bodiless new ([#1568](https://github.com/johnsonandjohnson/bodiless-js/issues/1568)) ([3bc0e2c](https://github.com/johnsonandjohnson/bodiless-js/commit/3bc0e2c8e06fe78751c0712d7e1d3cfb8d1fb04d)), closes [#1520](https://github.com/johnsonandjohnson/bodiless-js/issues/1520)
-* **vital-flowcontainer, --vital--:** Add content library functionality to vital flow container ([#1733](https://github.com/johnsonandjohnson/bodiless-js/issues/1733)) ([fbe1907](https://github.com/johnsonandjohnson/bodiless-js/commit/fbe19078e6f7e8b7810f7d87f95795ef49b168d3))
 * **vital-hero, vital-image, vital-card:** Add Hero & Card component and update Image  ([#1500](https://github.com/johnsonandjohnson/bodiless-js/issues/1500)) ([95f2c3d](https://github.com/johnsonandjohnson/bodiless-js/commit/95f2c3dcf06c6f51bb6b3d252ca6f4f576899dd4)), closes [pr#1498](https://github.com/pr/issues/1498)
-* **vital-table:** add vital table ([#1598](https://github.com/johnsonandjohnson/bodiless-js/issues/1598)) ([cb145ed](https://github.com/johnsonandjohnson/bodiless-js/commit/cb145ed8b22fd0d87f9bbd3eafbefcdfa1444c65))
 
 
 
