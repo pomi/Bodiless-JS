@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.2](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.19...v1.0.0-rc.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **release:** Make schema-org and vital-youtube packages public ([#1795](https://github.com/johnsonandjohnson/bodiless-js/issues/1795)) ([209e84c](https://github.com/johnsonandjohnson/bodiless-js/commit/209e84c36556237cde51075650e797c131fb5561))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 

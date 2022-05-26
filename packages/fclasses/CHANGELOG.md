@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.2](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.19...v1.0.0-rc.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **fclasses:** Improve mobx warning. ([#1794](https://github.com/johnsonandjohnson/bodiless-js/issues/1794)) ([3d22eef](https://github.com/johnsonandjohnson/bodiless-js/commit/3d22eefdb358a8261495c031e675d491ad644812))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 

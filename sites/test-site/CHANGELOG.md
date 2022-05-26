@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.2](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.19...v1.0.0-rc.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **@sites/test-site:** Disable tsconfig-paths-webpack-plugin with environment variable ([#1775](https://github.com/johnsonandjohnson/bodiless-js/issues/1775)) ([d849a5e](https://github.com/johnsonandjohnson/bodiless-js/commit/d849a5e892b83909873c0567308ede67ace2176b))
+
+
+### Features
+
+* **vital-buttons:** Add Buttons ([#1781](https://github.com/johnsonandjohnson/bodiless-js/issues/1781)) ([e9dc1e5](https://github.com/johnsonandjohnson/bodiless-js/commit/e9dc1e55ed6f9d19dfa7d86375efd2b5ce5ca612))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 

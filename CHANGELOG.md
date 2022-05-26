@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.2](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.19...v1.0.0-rc.2) (2022-05-26)
+
+
+### Bug Fixes
+
+* **@sites/test-site:** Disable tsconfig-paths-webpack-plugin with environment variable ([#1775](https://github.com/johnsonandjohnson/bodiless-js/issues/1775)) ([d849a5e](https://github.com/johnsonandjohnson/bodiless-js/commit/d849a5e892b83909873c0567308ede67ace2176b))
+* checkout to merge commit on pull_request_target event ([#1808](https://github.com/johnsonandjohnson/bodiless-js/issues/1808)) ([6d79474](https://github.com/johnsonandjohnson/bodiless-js/commit/6d794747734a048e9ce094b2e6b2f34121671570))
+* **docs:** fixing failed gh-page publishing ([c61e13d](https://github.com/johnsonandjohnson/bodiless-js/commit/c61e13d333de8217bcaf2bc46eb661356f8c41bb))
+* **editors:** Fix hover menu closing on click ([#1799](https://github.com/johnsonandjohnson/bodiless-js/issues/1799)) ([441a81d](https://github.com/johnsonandjohnson/bodiless-js/commit/441a81da04967d72a47376685f35a4c97c06eb2a))
+* **fclasses:** Improve mobx warning. ([#1794](https://github.com/johnsonandjohnson/bodiless-js/issues/1794)) ([3d22eef](https://github.com/johnsonandjohnson/bodiless-js/commit/3d22eefdb358a8261495c031e675d491ad644812))
+* Fix Content Library hover indicator missing ([#1786](https://github.com/johnsonandjohnson/bodiless-js/issues/1786)) ([021be20](https://github.com/johnsonandjohnson/bodiless-js/commit/021be20132149e70d6db366ccc8c54f468ade423))
+* **lists:** Fix list context menu not opening on tab ([#1771](https://github.com/johnsonandjohnson/bodiless-js/issues/1771)) ([57878a1](https://github.com/johnsonandjohnson/bodiless-js/commit/57878a19966f0fdb4b2a4a00330536b6f0747299))
+* **release:** Make schema-org and vital-youtube packages public ([#1795](https://github.com/johnsonandjohnson/bodiless-js/issues/1795)) ([209e84c](https://github.com/johnsonandjohnson/bodiless-js/commit/209e84c36556237cde51075650e797c131fb5561))
+* **vital-cards:** update cards with buttons & misc fixes ([#1805](https://github.com/johnsonandjohnson/bodiless-js/issues/1805)) ([362d7f8](https://github.com/johnsonandjohnson/bodiless-js/commit/362d7f88e053982ca901d878c68e12285c67b731))
+* **vital-demo:** fix logo & favicons ([#1788](https://github.com/johnsonandjohnson/bodiless-js/issues/1788)) ([67c3ebb](https://github.com/johnsonandjohnson/bodiless-js/commit/67c3ebbd71585052e1b9fd3160fabae140b28ebc)), closes [pr#1498](https://github.com/pr/issues/1498)
+
+
+### Features
+
+* **playwright:** Migration from cypress to playwright ([#1487](https://github.com/johnsonandjohnson/bodiless-js/issues/1487)) ([0903817](https://github.com/johnsonandjohnson/bodiless-js/commit/090381731e21108e59b715d4b947eeb1838a5a09))
+* **search:** Add @bodiless/vital-search ([#1628](https://github.com/johnsonandjohnson/bodiless-js/issues/1628)) ([7ce3fb8](https://github.com/johnsonandjohnson/bodiless-js/commit/7ce3fb8e943d50be19e59758a8bc4452a06e61f9))
+* **vital-buttons:** Add Buttons ([#1781](https://github.com/johnsonandjohnson/bodiless-js/issues/1781)) ([e9dc1e5](https://github.com/johnsonandjohnson/bodiless-js/commit/e9dc1e55ed6f9d19dfa7d86375efd2b5ce5ca612))
+* **vital-navigation:** Add Breadcrumbs ([#1778](https://github.com/johnsonandjohnson/bodiless-js/issues/1778)) ([756284e](https://github.com/johnsonandjohnson/bodiless-js/commit/756284e2955c22fa398af293dec61b04021f0834))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/johnsonandjohnson/bodiless-js/compare/v1.0.0-beta.18...v1.0.0-rc.1) (2022-05-20)
 
 
