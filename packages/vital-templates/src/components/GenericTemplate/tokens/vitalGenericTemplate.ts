@@ -12,10 +12,12 @@
  * limitations under the License.
  */
 
+import { Fragment } from 'react';
 import {
   on,
   as,
   addProps,
+  replaceWith,
   withDesign,
   Img,
 } from '@bodiless/fclasses';
@@ -24,6 +26,8 @@ import { LayoutClean, vitalLayout } from '@bodiless/vital-layout';
 import { vitalFlowContainer } from '@bodiless/vital-flowcontainer';
 import { withNode, withNodeKey } from '@bodiless/core';
 import { vitalSpacing, vitalTypography } from '@bodiless/vital-elements';
+import { SearchLayoutClean, vitalSearchLayout } from '@bodiless/vital-search';
+import { vitalBreadcrumbs } from '@bodiless/vital-navigation';
 import { vitalImage } from '@bodiless/vital-image';
 import { YouTubeClean, vitalYouTube } from '@bodiless/vital-youtube';
 import { CardClean, vitalCard } from '@bodiless/vital-card';
@@ -41,8 +45,7 @@ const heroUseOverrides = () => ({
 const Default = asGenericTemplateToken({
   Components: {
     PageWrapper: on(LayoutClean)(vitalLayout.Default),
-    // @todo breadcrumb placeholder
-    Breadcrumb: addProps({ children: 'Breadcrumb Placeholder', }),
+    Breadcrumb: as(vitalBreadcrumbs.Default),
     TopContent: as(
       asBodilessChameleon('component', heroDefaultData, heroUseOverrides),
       withDesign({
@@ -65,6 +68,7 @@ const Default = asGenericTemplateToken({
       vitalSpacing.WithSiteXLConstraint,
       'my-2.5',
     ),
+    TopWrapper: vitalSpacing.GutterBottom,
     // @todo move styling of breadcrumb to breadcrumb component when it exists.
     Breadcrumb: vitalTypography.Rest,
     ContentWrapper: as(
@@ -78,6 +82,16 @@ const Default = asGenericTemplateToken({
   },
 });
 
+const Search = asGenericTemplateToken(Default, {
+  Components: {
+    Breadcrumb: addProps({ children: 'Search', }),
+    TopContent: replaceWith(Fragment),
+    Content: on(SearchLayoutClean)(vitalSearchLayout.Default),
+    BottomContent: replaceWith(Fragment),
+  }
+});
+
 export default {
   Default,
+  Search,
 };
