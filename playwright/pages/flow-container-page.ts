@@ -94,7 +94,6 @@ export class FlowContainerPage extends BasePage {
   readonly imageAlt: string;
   readonly altText: string;
   readonly accordionBodyText: string;
-  readonly landscapeLinkableImage: string;
   readonly accordionText: string;
   readonly accordionBodyPreview: string;
   readonly accordionTitlePreview: string;
